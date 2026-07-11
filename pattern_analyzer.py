@@ -41,22 +41,23 @@ _ISO_TS_RE   = re.compile(r"^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}")
 # Faker intent keywords (matched against lowercase column name)
 # ---------------------------------------------------------------------------
 _FAKER_RULES: list[tuple[list[str], str]] = [
-    # (keyword suffixes/substrings, faker_tag)
-    (["_last_nam", "_last_name", "last_nam", "lname"],         "last_name"),
-    (["_first_nam", "_first_name", "first_nam", "fname", "_first_nm"], "first_name"),
-    (["_mid_nam", "_mid_name", "middle_nam", "_mid_nm"],       "first_name"),
-    (["_contact_nam", "_contact_name", "_contct_nam", "_attn_nam"], "name"),
-    (["_addr", "_adr", "_street", "_address"],                  "street_address"),
-    (["_city"],                                                  "city"),
-    (["_state_cd", "_state_code"],                              "state_abbr"),
-    (["_zip", "_postal", "_post_cd"],                           "zipcode"),
-    (["_phone", "_tel", "_fax", "_phn_num", "phn_num"],         "phone_number"),
-    (["_email", "_mail"],                                       "email"),
-    (["_url", "_website"],                                      "url"),
-    (["_company", "_org_nm", "_org_name", "_firm"],             "company"),
-    (["_npi_num", "npi_num", "_npi_no", "npi_no", "_npi_id"],   "numerify_10"),   # 10-digit NPI
-    (["_ssn", "_tin", "_tax_id"],                               "ssn"),
-    (["_dob", "_birth_dt", "_date_of_birth"],                   "date_of_birth"),
+    (["first_name", "frst_nam", "fname", "first_nm"], "first_name"),
+    (["last_name", "lst_nam", "sort_nam", "surname", "lname"], "last_name"),
+    (["email", "mail_addr", "mail_address"], "email"),
+    (["phone", "fax", "mobile", "tel"], "phone_number"),
+    (["address", "addr1", "addr2", "adr_line", "adr_ln", "street"], "street_address"),
+    (["city"], "city"),
+    (["state_cd", "state_code"], "state_abbr"),
+    (["zip", "postal_code", "post_cd", "zip_cd"], "zipcode"),
+    (["dob", "birth_dt", "birth_date"], "date_of_birth"),
+    (["license", "lic_num", "lic_no", "cert_num"], "license"),
+    (["npi", "npi_num", "npi_no"], "npi"),
+    (["tin", "tax_id", "ssn", "ein"], "tin"),
+    (["dea", "dea_num", "dea_no"], "dea"),
+    (["uuid"], "uuid"),
+    (["mcare_id", "mcare_num", "mcare_alt_id", "mcaid_id", "mcaid_num", "mcaid_alt_id", "alt_id_val", "alt_id_num", "prov_num", "prov_id", "p_alt_id"], "provider_id"),
+    (["full_name", "provider_name", "prov_name", "prov_nam", "contact_name", "contact_nam", "contct_nam", "attn_nam", "dba_last_nam", "dba_first_nam"], "name"),
+    (["org_nm", "org_name", "dba_nam", "company", "firm", "p_nam"], "company"),
 ]
 
 
@@ -181,11 +182,22 @@ class PatternAnalyzer:
         max_len     = max((len(v) for v in non_null), default=0)
         is_unique   = len(non_null) > 0 and len(non_null) == len(set(non_null))
 
-        # Trivially null column
+        # 1. Null check
         if not non_null:
             return ColumnProfile(name=lower_col, strategy=STRAT_NULL, null_rate=1.0)
 
-        # ── Timestamp ────────────────────────────────────────────────── #
+        # 2. Identifier check (e.g. sys_id, affl_sk, etc.)
+        # If it matches, we immediately make it sequential, never duplicated
+        if self._is_identifier_col(lower_col):
+            ints = [int(v) for v in non_null if v.isdigit()]
+            int_start = max(ints) if ints else 1000000
+            return ColumnProfile(
+                name=lower_col, strategy=STRAT_SEQUENTIAL,
+                int_start=int_start, int_step=1,
+                null_rate=null_rate, is_unique=True
+            )
+
+        # 3. Timestamp check
         if self._all_match(_ORACLE_TS_RE, non_null) or self._all_match(_ISO_TS_RE, non_null):
             d_min, d_max = self._date_range(non_null)
             oracle_fmt   = self._all_match(_ORACLE_TS_RE, non_null)
@@ -195,7 +207,7 @@ class PatternAnalyzer:
                 null_rate=null_rate, is_unique=is_unique
             )
 
-        # ── Date ─────────────────────────────────────────────────────── #
+        # 4. Date check
         if self._all_match(_ORACLE_DATE_RE, non_null) or self._all_match(_ISO_DATE_RE, non_null):
             d_min, d_max = self._date_range(non_null)
             oracle_fmt   = self._all_match(_ORACLE_DATE_RE, non_null)
@@ -205,35 +217,29 @@ class PatternAnalyzer:
                 null_rate=null_rate, is_unique=is_unique
             )
 
-        # ── Code / indicator check ───────────────────────────────────── #
-        # Columns with suffixes like _cd, _ind, _class, _type, _status are codes.
-        # They should NOT be treated as Faker fields (even if they contain '_nam' like 'p_prev_nam_seq_num')
-        # and should not be treated as sequential ranges if we can avoid it.
-        is_code_like = any(
-            suffix in lower_col
-            for suffix in ["_cd", "_code", "_ind", "_type", "_ty", "_class", "_status", "_stat"]
-        )
-
-        # ── Faker check ──────────────────────────────────────────────── #
-        # Only use Faker if column is not code-like and max length > 1
-        faker_tag = ""
-        if max_len > 1 and not is_code_like:
-            faker_tag = self._detect_faker(lower_col)
-
+        # 5. Semantic Check (takes priority over general CD/IND fallback)
+        faker_tag = self._detect_faker(lower_col)
         if faker_tag:
-            strip_digits = non_null and all(v.isdigit() for v in non_null)
+            strip_digits = faker_tag in ("phone_number", "zipcode", "npi", "tin")
             # If strip_digits is True, we must strictly preserve the max observed length
             # to avoid exceeding the database column limit (e.g. phone or zip codes).
             col_max_len = max_len if strip_digits else max(max_len, 50)
+            
+            # Since some semantic columns (like NPI, License, DEA, Tax ID, Phone, Email, Name)
+            # must be highly unique, we set is_unique = True
+            # if the sample was unique OR if it's a field where duplicates are not realistically expected.
+            sem_unique = is_unique or (faker_tag in ("npi", "dea", "license", "tin", "email", "uuid"))
+            
             return ColumnProfile(
                 name=lower_col, strategy=STRAT_FAKER, faker_tag=faker_tag,
                 null_rate=null_rate, max_length=col_max_len,
-                is_unique=is_unique, strip_non_digits=strip_digits
+                is_unique=sem_unique, strip_non_digits=strip_digits
             )
 
-        # ── Code / flag fallback to enumeration ──────────────────────── #
+        # 6. Business Code / Indicator Check (e.g. _cd, _ind, _flag, _status)
+        is_code = self._is_business_code_col(lower_col)
         distinct = sorted(set(non_null))
-        if is_code_like:
+        if is_code:
             weights = [non_null.count(v) / len(non_null) for v in distinct]
             return ColumnProfile(
                 name=lower_col, strategy=STRAT_ENUM,
@@ -242,24 +248,11 @@ class PatternAnalyzer:
                 is_unique=is_unique
             )
 
-        # ── Numeric check ────────────────────────────────────────────── #
+        # 7. Numeric range check
         if self._all_numeric(non_null):
             # Integer vs float
             if all("." not in v for v in non_null):
                 ints = [int(v) for v in non_null]
-                # Sequential detection: only when all values are unique
-                is_seq = False
-                if len(ints) >= 2 and len(ints) == len(set(ints)):
-                    steps = [ints[i+1] - ints[i] for i in range(len(ints)-1)]
-                    if len(set(steps)) == 1 and steps[0] > 0:
-                        is_seq = True
-
-                if is_seq:
-                    return ColumnProfile(
-                        name=lower_col, strategy=STRAT_SEQUENTIAL,
-                        int_start=max(ints), int_step=steps[0],
-                        null_rate=null_rate, is_unique=True
-                    )
                 return ColumnProfile(
                     name=lower_col, strategy=STRAT_INT_RANGE,
                     int_min=min(ints), int_max=max(ints),
@@ -273,7 +266,7 @@ class PatternAnalyzer:
                     null_rate=null_rate, is_unique=is_unique
                 )
 
-        # ── Enumeration ──────────────────────────────────────────────── #
+        # 8. Enum fallback
         if len(distinct) <= max(8, len(non_null)):
             weights = [non_null.count(v) / len(non_null) for v in distinct]
             return ColumnProfile(
@@ -283,7 +276,7 @@ class PatternAnalyzer:
                 is_unique=is_unique
             )
 
-        # ── Free text fallback ───────────────────────────────────────── #
+        # 9. Free text fallback
         return ColumnProfile(
             name=lower_col, strategy=STRAT_FREE_TEXT,
             sample_values=non_null,
@@ -294,14 +287,41 @@ class PatternAnalyzer:
     # ── Helper methods ────────────────────────────────────────────────── #
 
     @staticmethod
+    def _is_identifier_col(col_name: str) -> bool:
+        """Return True if the column is a table sequence identifier."""
+        lower_col = col_name.lower()
+        if lower_col.endswith("_sys_id") or lower_col == "sys_id" or lower_col.endswith("_sk") or lower_col == "sk" or lower_col.endswith("_seq_num"):
+            return True
+        if lower_col.endswith("_id"):
+            if not any(sem in lower_col for sem in ["tax_id", "npi", "dea", "license", "payer", "user_id", "alt_id", "mcare", "mcaid", "ein"]):
+                return True
+        return False
+
+    @staticmethod
+    def _is_business_code_col(col_name: str) -> bool:
+        """Return True if the column represents a business code, flag, or status."""
+        if any(col_name.endswith(suffix) for suffix in ["_cd", "_ty_cd", "_ind", "_flag", "_status"]):
+            return True
+        if col_name in ["gender", "status", "gender_cd", "status_cd"]:
+            return True
+        return False
+
+    @staticmethod
     def _detect_faker(col_name: str) -> str:
         """Return a faker_tag if the column name matches a Faker pattern, else ''."""
-        # Guard against matching code or metadata fields (like phonetic columns '_phntc_')
-        if any(suffix in col_name for suffix in ["_seq_num", "_sk", "_cd", "_ind", "_dt", "_date", "_code", "_type", "_ty", "_status", "_stat", "_phntc_", "phntc_"]):
+        # Guard against matching table identifiers or phonetic columns
+        if any(suffix in col_name for suffix in ["_seq_num", "_sk", "_phntc_", "phntc_"]):
             return ""
+            
+        lower_col = col_name.lower()
+        ends_with_code = any(lower_col.endswith(s) for s in ["_cd", "_ind", "_flag", "_status", "_type", "_class"])
+        
         for keywords, tag in _FAKER_RULES:
             for kw in keywords:
-                if kw in col_name:
+                if kw in lower_col:
+                    if ends_with_code:
+                        if not (kw.endswith("_cd") or kw.endswith("_code") or kw.endswith("_ind") or kw.endswith("_flag") or kw == lower_col):
+                            continue
                     return tag
         return ""
 

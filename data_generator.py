@@ -29,6 +29,7 @@ import csv
 import logging
 import random
 import re
+import uuid
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any, Optional
@@ -139,6 +140,9 @@ class DataGenerator:
 
         # Mappings of (child_table, child_col) -> parent_col
         self._fk_mappings: dict[tuple[str, str], str] = {}
+
+        # Registry to enforce global uniqueness for unique columns
+        self._unique_registry: dict[str, set[Any]] = {}
 
         # Ordered list of table names (parents before children)
         self._order   = self._compute_generation_order()
@@ -310,6 +314,16 @@ class DataGenerator:
             for col in columns:
                 prof = profiles[col]
                 row[col] = self._generate_value(col, prof, fk_cols, seq_state)
+            
+            # Apply row-level constraints (dates and audit columns)
+            self._apply_row_constraints(row, table_name, profiles)
+            
+            # Format dates to string representations
+            for col in columns:
+                prof = profiles[col]
+                if isinstance(row[col], (date, datetime)):
+                    row[col] = self._format_date_val(row[col], prof)
+
             rows.append(row)
 
         # Write CSV
@@ -318,10 +332,13 @@ class DataGenerator:
             writer.writeheader()
             writer.writerows(rows)
 
-        # Update FK pool for every key-like column
+        # Update FK pool for key columns (use exact col name if generated, or matching mappings)
+        # To maintain FK pools for child tables that reference child columns by different names
+        # (e.g. child tables referencing p_sys_id using p_grp_sys_id), we record the generated values
+        # under the mapped parent column name in the pool.
         for col in columns:
             prof = profiles[col]
-            if prof.strategy in (STRAT_SEQUENTIAL, STRAT_INT_RANGE):
+            if prof.strategy in (STRAT_SEQUENTIAL, STRAT_INT_RANGE) or prof.is_unique:
                 pool = [r[col] for r in rows if r[col] is not None]
                 self._fk_pool.setdefault(col, []).extend(pool)
 
@@ -349,17 +366,40 @@ class DataGenerator:
         fk_cols   : dict[str, str],
         seq_state : dict[str, int],
     ) -> Any:
-        """Return a single generated value for the given column profile."""
-
-        # Nullable: randomly emit NULL based on null_rate
-        if prof.null_rate > 0 and random.random() < prof.null_rate:
-            return None
-
-        # FK: draw from parent pool
+        """Return a single generated value with uniqueness constraints."""
+        # FK values draw directly from parent pool
         if col in fk_cols:
             p_col = fk_cols[col]
             if self._fk_pool.get(p_col):
+                # FKs can be nullable
+                if prof.null_rate > 0 and random.random() < prof.null_rate:
+                    return None
                 return random.choice(self._fk_pool[p_col])
+
+        # Enforce uniqueness if required by looping up to 100 times
+        for _ in range(100):
+            val = self._generate_raw_value(col, prof, seq_state)
+            if val is None:
+                return None
+            if not prof.is_unique:
+                return val
+            
+            registry = self._unique_registry.setdefault(col, set())
+            if val not in registry:
+                registry.add(val)
+                return val
+        
+        return val
+
+    def _generate_raw_value(
+        self,
+        col       : str,
+        prof      : ColumnProfile,
+        seq_state : dict[str, int],
+    ) -> Any:
+        """Emits the raw unformatted synthetic value."""
+        if prof.null_rate > 0 and random.random() < prof.null_rate:
+            return None
 
         strategy = prof.strategy
 
@@ -394,7 +434,6 @@ class DataGenerator:
             val = self._call_faker(prof.faker_tag, prof.max_length)
             if prof.strip_non_digits:
                 val = re.sub(r"\D", "", val)
-            # Truncate after any digit-stripping to be safe
             if prof.max_length and len(val) > prof.max_length:
                 val = val[:prof.max_length]
             return val
@@ -410,18 +449,15 @@ class DataGenerator:
     # Date / timestamp helpers                                             #
     # ------------------------------------------------------------------ #
 
-    def _random_date(self, prof: ColumnProfile) -> str:
+    def _random_date(self, prof: ColumnProfile) -> date:
         d_min = _parse_date_bound(prof.date_min) or date(2000, 1, 1)
         d_max = _parse_date_bound(prof.date_max) or date(2030, 12, 31)
         if d_min > d_max:
             d_min, d_max = d_max, d_min
         delta = (d_max - d_min).days
-        rand_d = d_min + timedelta(days=random.randint(0, max(delta, 0)))
-        if prof.is_oracle_fmt:
-            return _date_to_oracle(rand_d, include_time=False)
-        return rand_d.isoformat()
+        return d_min + timedelta(days=random.randint(0, max(delta, 0)))
 
-    def _random_timestamp(self, prof: ColumnProfile) -> str:
+    def _random_timestamp(self, prof: ColumnProfile) -> datetime:
         d_min = _parse_date_bound(prof.date_min) or date(2000, 1, 1)
         d_max = _parse_date_bound(prof.date_max) or date(2030, 12, 31)
         if d_min > d_max:
@@ -431,21 +467,85 @@ class DataGenerator:
         h = random.randint(0, 23)
         mi = random.randint(0, 59)
         s  = random.randint(0, 59)
-        ns = random.randint(0, 999999999)
-        if prof.is_oracle_fmt:
-            mon = _MONTH_FROM_NUM[rand_d.month]
-            day = str(rand_d.day).zfill(2)
-            yr  = str(rand_d.year)[-2:].zfill(2)
-            meridian = "AM" if h < 12 else "PM"
-            h12 = h % 12 or 12
-            return (
-                f"{day}-{mon}-{yr} "
-                f"{h12:02d}.{mi:02d}.{s:02d}.{ns:09d} {meridian}"
-            )
-        return (
-            f"{rand_d.isoformat()} "
-            f"{h:02d}:{mi:02d}:{s:02d}.{ns:06d}"
-        )
+        us = random.randint(0, 999999)
+        return datetime(rand_d.year, rand_d.month, rand_d.day, h, mi, s, us)
+
+    # ------------------------------------------------------------------ #
+    # Date/Time Constraint enforcement & formatting                        #
+    # ------------------------------------------------------------------ #
+
+    def _apply_row_constraints(
+        self, row: dict[str, Any], table_name: str, profiles: dict[str, ColumnProfile]
+    ) -> None:
+        """Adjusts date, audit, and text fields to maintain logical integrity."""
+        # 1. Configured audit user IDs
+        for col in row:
+            if col in ("g_aud_user_id", "g_aud_add_user_id", "g_aud_upd_user_id", "g_web_user_id"):
+                from config import AUDIT_USER
+                row[col] = AUDIT_USER
+
+        # 2. Add / Audit dates
+        now_dt = datetime.now()
+        add_col = next((c for c in row if c == "g_aud_add_ts"), None)
+        aud_col = next((c for c in row if c == "g_aud_ts"), None)
+
+        if add_col and row[add_col] is not None:
+            # Shift add_ts to be within past year
+            add_val = now_dt - timedelta(days=random.randint(1, 365), seconds=random.randint(0, 86400))
+            row[add_col] = add_val
+        
+        if aud_col and row[aud_col] is not None:
+            if add_col and row[add_col] is not None:
+                # Audit ts must be >= Add ts
+                row[aud_col] = row[add_col] + timedelta(days=random.randint(0, 30), seconds=random.randint(0, 86400))
+            else:
+                row[aud_col] = now_dt
+
+        # 3. Begin Date < End Date
+        date_cols = [c for c in row if isinstance(row[c], (date, datetime))]
+        begin_patterns = ["beg_dt", "start_dt", "eff_dt", "add_dt", "upd_dt"]
+        end_patterns = ["end_dt", "term_dt", "cancel_dt", "rever_dt"]
+
+        begins = [c for c in date_cols if any(p in c for p in begin_patterns)]
+        ends = [c for c in date_cols if any(p in c for p in end_patterns)]
+
+        for b_col in begins:
+            for e_col in ends:
+                b_val = row[b_col]
+                e_val = row[e_col]
+                if b_val and e_val:
+                    b_date = b_val.date() if isinstance(b_val, datetime) else b_val
+                    e_date = e_val.date() if isinstance(e_val, datetime) else e_val
+                    if e_date <= b_date:
+                        new_e_date = b_date + timedelta(days=random.randint(30, 365 * 5))
+                        if isinstance(e_val, datetime):
+                            row[e_col] = datetime.combine(new_e_date, e_val.time())
+                        else:
+                            row[e_col] = new_e_date
+
+    def _format_date_val(self, val: date | datetime, prof: ColumnProfile) -> str:
+        """Formats dates to Oracle DD-MON-YY or ISO format."""
+        if isinstance(val, datetime):
+            if prof.is_oracle_fmt:
+                mon = _MONTH_FROM_NUM[val.month]
+                day = str(val.day).zfill(2)
+                yr  = str(val.year)[-2:].zfill(2)
+                h = val.hour
+                meridian = "AM" if h < 12 else "PM"
+                h12 = h % 12 or 12
+                ns = val.microsecond * 1000
+                return (
+                    f"{day}-{mon}-{yr} "
+                    f"{h12:02d}.{val.minute:02d}.{val.second:02d}.{ns:09d} {meridian}"
+                )
+            return val.strftime("%Y-%m-%d %H:%M:%S.%f")
+        else: # date
+            if prof.is_oracle_fmt:
+                mon = _MONTH_FROM_NUM[val.month]
+                day = str(val.day).zfill(2)
+                yr  = str(val.year)[-2:].zfill(2)
+                return f"{day}-{mon}-{yr}"
+            return val.isoformat()
 
     # ------------------------------------------------------------------ #
     # Faker dispatch                                                        #
@@ -453,6 +553,34 @@ class DataGenerator:
 
     def _call_faker(self, tag: str, max_length: int) -> str:
         fake = self._fake
+        
+        # Alphanumeric license or certifications
+        if tag == "license":
+            return f"ND{random.randint(100000, 9999999)}"
+        # Valid-looking 10-digit NPIs starting with 1 or 2
+        elif tag == "npi":
+            return str(random.choice([1, 2])) + "".join(str(random.randint(0, 9)) for _ in range(9))
+        # DEA checksummed registration numbers
+        elif tag == "dea":
+            first_letter = random.choice(["A", "B", "F", "G", "M", "P"])
+            second_letter = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            digits = [random.randint(0, 9) for _ in range(6)]
+            sum1 = digits[0] + digits[2] + digits[4]
+            sum2 = digits[1] + digits[3] + digits[5]
+            total = sum1 + 2 * sum2
+            check_digit = total % 10
+            digits.append(check_digit)
+            return f"{first_letter}{second_letter}{''.join(map(str, digits))}"
+        # 9-digit tax identifier / EIN / SSN
+        elif tag == "tin":
+            return "".join(str(random.randint(0, 9)) for _ in range(9))
+        # Standard UUID
+        elif tag == "uuid":
+            return str(uuid.uuid4())
+        # Provider Alt ID / Medicaid ID
+        elif tag == "provider_id":
+            return fake.bothify("??#######").upper()
+
         dispatch: dict[str, Any] = {
             "last_name"      : fake.last_name,
             "first_name"     : fake.first_name,
@@ -465,9 +593,7 @@ class DataGenerator:
             "email"          : fake.email,
             "url"            : fake.url,
             "company"        : fake.company,
-            "ssn"            : fake.ssn,
             "date_of_birth"  : lambda: fake.date_of_birth().strftime("%Y-%m-%d"),
-            "numerify_10"    : lambda: fake.numerify("##########"),
         }
         fn = dispatch.get(tag)
         if fn is None:
