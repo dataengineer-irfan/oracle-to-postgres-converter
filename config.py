@@ -48,3 +48,10 @@ DB_CONFIG: dict[str, str | int] = {
 # ---------------------------------------------------------------------------
 EXECUTE_DDL     : bool = os.getenv("EXECUTE_DDL",      "true").lower() == "true"
 LOAD_SAMPLE_DATA: bool = os.getenv("LOAD_SAMPLE_DATA", "true").lower() == "true"
+
+# ---------------------------------------------------------------------------
+# Smart Test Data Generator
+# ---------------------------------------------------------------------------
+GENERATED_DATA_DIR : Path = BASE_DIR / "generated_data"
+ROWS_PER_TABLE     : int  = int(os.getenv("ROWS_PER_TABLE", "1000"))
+RANDOM_SEED        : int  = int(os.getenv("RANDOM_SEED",    "12345"))

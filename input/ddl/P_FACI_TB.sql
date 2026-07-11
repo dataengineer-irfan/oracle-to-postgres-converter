@@ -1,0 +1,19 @@
+--------------------------------------------------------
+--  DDL for Table P_FACI_TB
+--------------------------------------------------------
+
+  CREATE TABLE "P_FACI_TB" ("P_SYS_ID" NUMBER(10,0), "P_FACI_SK" NUMBER(10,0), "P_FACI_TY_CD" VARCHAR2(3), "P_FACI_BEG_DT" DATE, "P_FACI_END_DT" DATE DEFAULT '31-DEC-9999', "P_FACI_ADMIN_NAM" VARCHAR2(50), "P_FACI_FY_MO_NUM" NUMBER(3,0), "L_HIBERNATE_VER_NUM" NUMBER(9,0) DEFAULT 0, "G_AUD_USER_ID" VARCHAR2(30), "G_AUD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_ADD_USER_ID" VARCHAR2(30), "G_AUD_ADD_TS" TIMESTAMP (6) DEFAULT SYSDATE) 
+
+   COMMENT ON COLUMN "P_FACI_TB"."P_SYS_ID" IS 'Provider Internal System Identifier.'
+   COMMENT ON COLUMN "P_FACI_TB"."P_FACI_SK" IS 'Provider Facility Surrogate Key'
+   COMMENT ON COLUMN "P_FACI_TB"."P_FACI_TY_CD" IS 'Provider Facility Type Code.'
+   COMMENT ON COLUMN "P_FACI_TB"."P_FACI_BEG_DT" IS 'Provider Facility Begin Date.'
+   COMMENT ON COLUMN "P_FACI_TB"."P_FACI_END_DT" IS 'Provider Facility End Date.'
+   COMMENT ON COLUMN "P_FACI_TB"."P_FACI_ADMIN_NAM" IS 'Provider Facility Admin Name.'
+   COMMENT ON COLUMN "P_FACI_TB"."P_FACI_FY_MO_NUM" IS 'Provider Facility Fiscal Year Month.'
+   COMMENT ON COLUMN "P_FACI_TB"."L_HIBERNATE_VER_NUM" IS 'This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism'
+   COMMENT ON COLUMN "P_FACI_TB"."G_AUD_USER_ID" IS 'The user ID or process that last modified the row.'
+   COMMENT ON COLUMN "P_FACI_TB"."G_AUD_TS" IS 'The timestamp when the row was last modified.'
+   COMMENT ON COLUMN "P_FACI_TB"."G_AUD_ADD_USER_ID" IS 'The user ID or process that added the row.'
+   COMMENT ON COLUMN "P_FACI_TB"."G_AUD_ADD_TS" IS 'The timestamp when the row was added.'
+   COMMENT ON TABLE "P_FACI_TB"  IS 'Provider Facility Table'

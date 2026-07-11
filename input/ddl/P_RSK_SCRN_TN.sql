@@ -1,0 +1,5 @@
+--------------------------------------------------------
+--  DDL for Table P_RSK_SCRN_TN
+--------------------------------------------------------
+
+  CREATE TABLE "P_RSK_SCRN_TN" ("P_SYS_ID" NUMBER(10,0), "P_RSK_SCRN_SK" NUMBER(10,0), "P_RS_TY_CD" VARCHAR2(1), "P_RS_LAST_DATE" DATE, "P_RS_LAST_VALUE" VARCHAR2(30), "P_RS_SOURCE" VARCHAR2(10), "L_HIBERNATE_VER_NUM" NUMBER(9,0), "G_AUD_USER_ID" VARCHAR2(30), "G_AUD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_ADD_USER_ID" VARCHAR2(30), "G_AUD_ADD_TS" TIMESTAMP (6) DEFAULT SYSDATE)

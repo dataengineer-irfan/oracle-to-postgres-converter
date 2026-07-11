@@ -1,0 +1,5 @@
+--------------------------------------------------------
+--  DDL for Table P_AFFL_TX
+--------------------------------------------------------
+
+  CREATE TABLE "P_AFFL_TX" ("P_GRP_SYS_ID" NUMBER(10,0), "P_MBR_SYS_ID" NUMBER(10,0), "P_AFFL_SK" NUMBER(10,0), "P_AFFL_PCP_IND" VARCHAR2(1) DEFAULT 'N', "L_HIBERNATE_VER_NUM" NUMBER(9,0) DEFAULT 0, "G_AUD_ADD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_ADD_USER_ID" VARCHAR2(30), "G_AUD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_USER_ID" VARCHAR2(30))

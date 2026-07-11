@@ -1,0 +1,27 @@
+--------------------------------------------------------
+--  DDL for Table P_OWNER_DTL_TB
+--------------------------------------------------------
+
+  CREATE TABLE "P_OWNER_DTL_TB" ("P_OWNER_TAX_ID" NUMBER(10,0), "P_OWNER_BUSN_ATTN_NAM" VARCHAR2(50), "P_OWNER_DBA_NAM" VARCHAR2(60), "P_OWNER_DOB_DT" DATE, "P_OWNER_FIRST_NAM" VARCHAR2(25), "P_OWNER_LAST_NAM" VARCHAR2(35), "P_OWNER_MCARE_ID" VARCHAR2(12), "P_OWNER_MID_NAM" VARCHAR2(25), "P_OWNER_SFX_NAM" VARCHAR2(10), "P_OWNER_SSN_NUM" VARCHAR2(9), "P_OWNER_BUSN_NAM" VARCHAR2(50), "P_OWNER_TITLE_NAM" VARCHAR2(20), "P_OWNER_TY_CD" VARCHAR2(1), "P_OWNER_MCAID_ID" VARCHAR2(10), "P_STATE_OR_CNTRY_OF_BIRTH_TEXT" VARCHAR2(15), "L_HIBERNATE_VER_NUM" NUMBER(9,0) DEFAULT 0, "G_AUD_USER_ID" VARCHAR2(30), "G_AUD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_ADD_USER_ID" VARCHAR2(30), "G_AUD_ADD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "P_OWNER_DTL_SEQ_NUM" NUMBER(6,0)) 
+
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_TAX_ID" IS 'Owner Tax ID.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_BUSN_ATTN_NAM" IS 'Owner Business Attending Name.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_DBA_NAM" IS 'Provider Name'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_DOB_DT" IS 'Date of Birth of entity owner.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_FIRST_NAM" IS 'Owner First Name'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_LAST_NAM" IS 'Owner Last Name'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_MCARE_ID" IS 'Owner Medicare ID.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_MID_NAM" IS 'Owner Mid Name'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_SFX_NAM" IS 'Owner Suffix Name'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_SSN_NUM" IS 'Owner SSN Number.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_BUSN_NAM" IS 'Owner Business Name.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_TITLE_NAM" IS 'Owner Title Name'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_TY_CD" IS 'Describes the type of ownership for the provider.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_OWNER_MCAID_ID" IS 'This field contains the Owner''s Medicaid id'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."P_STATE_OR_CNTRY_OF_BIRTH_TEXT" IS 'field contains the Owners State or Country of Birth.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."L_HIBERNATE_VER_NUM" IS 'This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."G_AUD_USER_ID" IS 'The user ID or process that last modified the row.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."G_AUD_TS" IS 'The timestamp when the row was last modified.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."G_AUD_ADD_USER_ID" IS 'The user ID or process that added the row.'
+   COMMENT ON COLUMN "P_OWNER_DTL_TB"."G_AUD_ADD_TS" IS 'The timestamp when the row was added.'
+   COMMENT ON TABLE "P_OWNER_DTL_TB"  IS 'Provider Owner Detail Table'

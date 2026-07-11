@@ -1,0 +1,36 @@
+--------------------------------------------------------
+--  DDL for Table P_OIG_TB
+--------------------------------------------------------
+
+  CREATE TABLE "P_OIG_TB" ("P_OIG_SK" NUMBER(10,0), "P_OIG_LAST_NAM" VARCHAR2(35), "P_OIG_FIRST_NAM" VARCHAR2(25), "P_OIG_MI_NAM" VARCHAR2(1), "P_OIG_UPIN_NUM" VARCHAR2(6), "P_OWNER_DOB_DT" DATE, "P_OIG_BUSN_NAM" VARCHAR2(50), "P_OIG_SSN_NUM" VARCHAR2(9), "P_OIG_SANC_DT" DATE, "P_OIG_SANC_RSLV_DT" DATE, "P_OIG_FED_TAX_ID" VARCHAR2(9), "P_OIG_SANC_TY_CD" VARCHAR2(9), "P_OIG_SFX_NAM" VARCHAR2(10), "P_OIG_GEN_DATA" VARCHAR2(20), "P_OIG_SPECL_DATA" VARCHAR2(20), "P_OIG_CNTRY_CD" VARCHAR2(3), "P_OIG_DOD_DT" DATE, "P_OIG_OSCAR_NUM" VARCHAR2(10), "P_OIG_NSC_NUM" VARCHAR2(10), "P_OIG_INTRMDT_NUM" VARCHAR2(8), "P_OIG_CARR_NUM" VARCHAR2(6), "P_OIG_MED_ASGN_ID" VARCHAR2(9), "G_CMN_ENTY_SK" NUMBER(10,0), "G_NOTE_SET_SK" NUMBER(10,0), "L_HIBERNATE_VER_NUM" NUMBER(9,0) DEFAULT 0, "G_AUD_USER_ID" VARCHAR2(30), "G_AUD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_ADD_USER_ID" VARCHAR2(30), "G_AUD_ADD_TS" TIMESTAMP (6) DEFAULT SYSDATE) 
+
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_SK" IS 'A sequence number assigen to OIG records to make each row unique.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_LAST_NAM" IS 'The legal last name of a provider.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_FIRST_NAM" IS 'The legal first name of a provider.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_MI_NAM" IS 'The legal middle name of a provider.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_UPIN_NUM" IS 'Indicates the provider''s universal physician id number.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OWNER_DOB_DT" IS 'Date of Birth of entity owner.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_BUSN_NAM" IS 'The legal name of the provider.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_SSN_NUM" IS 'This is the providers social security number.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_SANC_DT" IS 'The sanction date as received in the OIG inerface download.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_SANC_RSLV_DT" IS 'The santion re-instatement or resolved date as received from the OIG interface download.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_FED_TAX_ID" IS 'The provider''s federal tax identification number.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_SANC_TY_CD" IS 'The name or description of the OIG sanction as received from the OIG interface.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_SFX_NAM" IS 'The legal suffix name of a provider.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_GEN_DATA" IS 'Provider General Data'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_SPECL_DATA" IS 'Provider Special Data'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_CNTRY_CD" IS 'The legal Country Code of a provider.'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_DOD_DT" IS 'The legal Date of Death of the Provider'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_OSCAR_NUM" IS 'Provider Online Survey Certification and Reporting System (OSCAR) Number'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_NSC_NUM" IS 'Provider National Supplier Clearinghouse (NSC) Number'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_INTRMDT_NUM" IS 'Provider Intermediary Number'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_CARR_NUM" IS 'Provider Carrier Number'
+   COMMENT ON COLUMN "P_OIG_TB"."P_OIG_MED_ASGN_ID" IS 'Provider Medical Assign Identifier'
+   COMMENT ON COLUMN "P_OIG_TB"."G_CMN_ENTY_SK" IS 'Surrogate Key'
+   COMMENT ON COLUMN "P_OIG_TB"."G_NOTE_SET_SK" IS 'Surrogate Key'
+   COMMENT ON COLUMN "P_OIG_TB"."L_HIBERNATE_VER_NUM" IS 'This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism'
+   COMMENT ON COLUMN "P_OIG_TB"."G_AUD_USER_ID" IS 'The user ID or process that last modified the row.'
+   COMMENT ON COLUMN "P_OIG_TB"."G_AUD_TS" IS 'The timestamp when the row was last modified.'
+   COMMENT ON COLUMN "P_OIG_TB"."G_AUD_ADD_USER_ID" IS 'The user ID or process that added the row.'
+   COMMENT ON COLUMN "P_OIG_TB"."G_AUD_ADD_TS" IS 'The timestamp when the row was added.'
+   COMMENT ON TABLE "P_OIG_TB"  IS 'The Provider Office of the Inspector General (OIG) Table. Each month a file is downloaded from the state''s OIG containing information about criminal or civil convictions or sanctions that may disqualify a provider for Medicaid benefits. The file is loaded into this Table for matching against the provider database and any new enrollments.'

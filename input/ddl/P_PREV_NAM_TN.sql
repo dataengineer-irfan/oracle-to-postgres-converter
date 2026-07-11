@@ -1,0 +1,5 @@
+--------------------------------------------------------
+--  DDL for Table P_PREV_NAM_TN
+--------------------------------------------------------
+
+  CREATE TABLE "P_PREV_NAM_TN" ("P_SYS_ID" NUMBER(10,0), "P_PREV_NAM_SEQ_NUM" NUMBER(5,0), "P_PREV_LAST_NAM" VARCHAR2(35), "P_PREV_FIRST_NAM" VARCHAR2(25), "L_HIBERNATE_VER_NUM" NUMBER(9,0) DEFAULT 0, "G_AUD_ADD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_ADD_USER_ID" VARCHAR2(30), "G_AUD_TS" TIMESTAMP (6) DEFAULT SYSDATE, "G_AUD_USER_ID" VARCHAR2(30))

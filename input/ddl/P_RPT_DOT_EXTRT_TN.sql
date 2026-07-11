@@ -1,0 +1,5 @@
+--------------------------------------------------------
+--  DDL for Table P_RPT_DOT_EXTRT_TN
+--------------------------------------------------------
+
+  CREATE TABLE "P_RPT_DOT_EXTRT_TN" ("P_RPT_DOT_EXTRT_SK" NUMBER(10,0), "P_LIC_CERT_NUM" VARCHAR2(15), "P_ALT_ID" VARCHAR2(15), "P_ALT_ID_TY_CD" VARCHAR2(3), "P_SORT_NAM" VARCHAR2(60), "P_DOB_DT" DATE, "P_RPT_PRCS_DT" DATE, "L_HIBERNATE_VER_NUM" NUMBER(9,0) DEFAULT 0, "G_AUD_ADD_USER_ID" VARCHAR2(30), "G_AUD_ADD_TS" TIMESTAMP (6) DEFAULT SYSDATE)
