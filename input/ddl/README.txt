@@ -1,0 +1,3 @@
+# Place your Oracle DDL .sql files in this directory.
+# One file per table is recommended.
+# Example: P_ACPTNC_TB.sql, P_PRVDR_TB.sql, ...
