@@ -41,23 +41,33 @@ _ISO_TS_RE   = re.compile(r"^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}")
 # Faker intent keywords (matched against lowercase column name)
 # ---------------------------------------------------------------------------
 _FAKER_RULES: list[tuple[list[str], str]] = [
-    (["first_name", "frst_nam", "fname", "first_nm"], "first_name"),
-    (["last_name", "lst_nam", "sort_nam", "surname", "lname"], "last_name"),
+    (["first_name", "frst_nam", "fname", "first_nm",
+      "hcidea_first_nam", "owner_first_nam"], "first_name"),
+    (["last_name", "lst_nam", "sort_nam", "surname", "lname",
+      "hcidea_last_nam", "owner_last_nam"], "last_name"),
     (["email", "mail_addr", "mail_address"], "email"),
     (["phone", "fax", "mobile", "tel"], "phone_number"),
     (["address", "addr1", "addr2", "adr_line", "adr_ln", "street"], "street_address"),
     (["city"], "city"),
     (["state_cd", "state_code"], "state_abbr"),
     (["zip", "postal_code", "post_cd", "zip_cd"], "zipcode"),
-    (["dob", "birth_dt", "birth_date"], "date_of_birth"),
+    (["dob", "birth_dt", "birth_date", "owner_dob_dt", "hcidea_birth_dt"], "date_of_birth"),
     (["license", "lic_num", "lic_no", "cert_num"], "license"),
     (["npi", "npi_num", "npi_no"], "npi"),
-    (["tin", "tax_id", "ssn", "ein"], "tin"),
+    (["tin", "tax_id", "ssn", "ein", "owner_tax_id", "owner_ssn_num"], "tin"),
     (["dea", "dea_num", "dea_no"], "dea"),
     (["uuid"], "uuid"),
-    (["mcare_id", "mcare_num", "mcare_alt_id", "mcaid_id", "mcaid_num", "mcaid_alt_id", "alt_id_val", "alt_id_num", "prov_num", "prov_id", "p_alt_id"], "provider_id"),
-    (["full_name", "provider_name", "prov_name", "prov_nam", "contact_name", "contact_nam", "contct_nam", "attn_nam", "dba_last_nam", "dba_first_nam"], "name"),
-    (["org_nm", "org_name", "dba_nam", "company", "firm", "p_nam"], "company"),
+    (["mcare_id", "mcare_num", "mcare_alt_id", "mcaid_id", "mcaid_num", "mcaid_alt_id",
+      "alt_id_val", "alt_id_num", "prov_num", "prov_id", "p_alt_id",
+      "owner_mcare_id", "owner_mcaid_id"], "provider_id"),
+    (["full_name", "provider_name", "prov_name", "prov_nam",
+      "contact_name", "contact_nam", "contct_nam", "attn_nam",
+      "dba_last_nam", "dba_first_nam",
+      "owner_busn_attn_nam", "owner_title_nam"], "name"),
+    # Organisation / company names — these generate realistic provider org names
+    (["org_nm", "org_name", "dba_nam", "company", "firm",
+      "p_nam", "busn_nam", "owner_busn_nam", "owner_dba_nam",
+      "legal_nam", "legal_name"], "company"),
 ]
 
 
@@ -288,12 +298,68 @@ class PatternAnalyzer:
 
     @staticmethod
     def _is_identifier_col(col_name: str) -> bool:
-        """Return True if the column is a table sequence identifier."""
+        """
+        Return True if the column is a table-owned sequence identifier (PK/SK).
+
+        CRITICAL: Columns like p_grp_sys_id and p_mbr_sys_id end with _sys_id
+        but are FOREIGN KEYS referencing another table's p_sys_id.  We must NOT
+        classify them as sequential PKs — doing so causes the generator to emit
+        independent counter values that break all INNER JOINs.
+
+        Heuristic: if there is a qualifying segment before _sys_id that is not
+        just the table prefix (p_/g_/t_/l_), the column is a qualified FK.
+        Examples:
+          p_sys_id          → PK  (no qualifier before sys_id)
+          p_grp_sys_id      → FK  (qualifier = grp)
+          p_mbr_sys_id      → FK  (qualifier = mbr)
+          p_enrol_sys_id    → FK  (qualifier = enrol)
+          p_hcidea_sys_id   → PK of the hcidea sub-table (no extra qualifier)
+        """
         lower_col = col_name.lower()
-        if lower_col.endswith("_sys_id") or lower_col == "sys_id" or lower_col.endswith("_sk") or lower_col == "sk" or lower_col.endswith("_seq_num"):
+
+        # _seq_num columns are always sequential PKs
+        if lower_col.endswith("_seq_num"):
             return True
+
+        # Surrogate key columns (_sk suffix) — always PKs
+        if lower_col.endswith("_sk") or lower_col == "sk":
+            return True
+
+        if lower_col.endswith("_sys_id") or lower_col == "sys_id":
+            # Strip leading table prefix (p_, g_, t_, l_)
+            stem = lower_col
+            for pre in ("p_", "g_", "t_", "l_"):
+                if stem.startswith(pre):
+                    stem = stem[len(pre):]
+                    break
+            # Remove _sys_id suffix
+            core = stem[: -len("_sys_id")]
+            # If core still contains an underscore it is a qualified FK
+            # e.g. "grp" has no underscore → likely PK (p_grp_tb.p_grp_sys_id)
+            #      "grp_sys" came from p_grp_sys_id where stem=grp_sys → core=grp → no underscore
+            # Wait — stem of "p_grp_sys_id" after stripping "p_" = "grp_sys_id"
+            # core = "grp_sys_id"[:-7] = "grp" — no underscore → would be PK. Wrong.
+            # Better rule: if the original column name has MORE than one qualifier segment
+            # between the leading prefix and "_sys_id", it is a FK.
+            # p_sys_id      → segments=["sys"] → 1 → PK
+            # p_grp_sys_id  → segments=["grp","sys"] → 2 → FK
+            # p_mbr_sys_id  → segments=["mbr","sys"] → 2 → FK
+            # p_enrol_sys_id→ segments=["enrol","sys"] → 2 → FK
+            # p_hcidea_sys_id → segments=["hcidea","sys"] → 2 → FK?
+            # Exception: p_hcidea_sys_id is the PK of p_hcidea_prov_tb.
+            # Safe rule: columns explicitly in the FK_QUALIFIER list are FKs.
+            _FK_QUALIFIERS = {
+                "grp", "mbr", "enrol", "enrol", "b",  # b_sys_id in eligibility tables
+            }
+            if core in _FK_QUALIFIERS:
+                return False  # It's a FK, not a PK
+            return True
+
         if lower_col.endswith("_id"):
-            if not any(sem in lower_col for sem in ["tax_id", "npi", "dea", "license", "payer", "user_id", "alt_id", "mcare", "mcaid", "ein"]):
+            if not any(sem in lower_col for sem in [
+                "tax_id", "npi", "dea", "license", "payer",
+                "user_id", "alt_id", "mcare", "mcaid", "ein",
+            ]):
                 return True
         return False
 

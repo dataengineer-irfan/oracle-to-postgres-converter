@@ -102,6 +102,7 @@ def _print_summary(
     gen_results : dict[str, int],
     load_results: list | None,
     rows_per_tbl: int,
+    fk_report   : dict[tuple[str, str], int] | None = None,
 ) -> None:
     total_tables = len(gen_results)
     total_gen    = sum(gen_results.values())
@@ -140,6 +141,13 @@ def _print_summary(
             print("\n  * Load failures:")
             for r in load_failures:
                 print(f"    {r.table_name:<40} {r.error or ''}")
+
+    if fk_report:
+        print("\n  * FK Integrity Failures (Orphans):")
+        for (ct, cc), orphans in fk_report.items():
+            print(f"    {ct}.{cc:<25} -> {orphans} orphans")
+    elif fk_report is not None:
+        print("\n  * FK Integrity : PASSED (0 orphans across all generated rows)")
 
     print()
 
@@ -196,6 +204,13 @@ def main() -> None:
     log.info("Saving CSVs to %s ...", GENERATED_DATA_DIR)
     log.info("Generated %d rows across %d tables.", total_gen, len(gen_results))
 
+    # ── Step 2.5: FK Integrity Audit ─────────────────────────────────── #
+    fk_report = generator.validate_fk_integrity()
+    if fk_report:
+        log.warning("FK INTEGRITY FAILURES DETECTED!")
+    else:
+        log.info("FK Integrity Audit: PASSED (Zero orphans).")
+
     # ── Step 3: PostgreSQL Load ──────────────────────────────────────── #
     load_results = None
     if not gen_only:
@@ -219,7 +234,7 @@ def main() -> None:
 
     # ── Step 4: Summary ──────────────────────────────────────────────── #
     log.info("Completed.")
-    _print_summary(gen_results, load_results, rows)
+    _print_summary(gen_results, load_results, rows, fk_report)
 
 
 if __name__ == "__main__":
