@@ -99,7 +99,9 @@ class PostgresLoader:
     def _load_table(self, table_name: str, csv_path: Path) -> LoadResult:
         """TRUNCATE + bulk INSERT from csv_path into schema.table_name."""
         conn = self._db.connect()
-        full_table = f"{self._schema}.{table_name}"
+        from metadata_loader import MetadataLoader
+        from config import COMMON_SCHEMA
+        full_table = MetadataLoader.get_qualified_table_name(table_name, default_schema=self._schema, common_schema=COMMON_SCHEMA)
 
         try:
             # 1. Optional truncate

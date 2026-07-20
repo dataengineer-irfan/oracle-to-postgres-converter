@@ -1,0 +1,1459 @@
+"groupProvider": {
+
+    "doingBusinessAsName": {
+
+      "required": true,
+
+      "validationRules": {
+
+        "allowedCharacters": [
+
+          "A-Z",
+
+          "a-z",
+
+          "0-9",
+
+          ",",
+
+          "'",
+
+          "`",
+
+          "#",
+
+          "&",
+
+          ".",
+
+          "-",
+
+          "_",
+
+          " "
+
+        ],
+
+        "regex": "^[A-Za-z0-9,\\'`#&._\\- ]+$",
+
+        "errorMessage": "Special characters other than comma (,), apostrophe ('), backtick (`), hash tag (#), ampersand (&), period (.), dash (-), underscore (_), spaces, and alphanumeric characters are not allowed."
+
+      }
+
+    }
+
+  },
+
+  "sortName": {
+
+    "description": "Name used for sorting and display purposes.",
+
+    "rules": {
+
+      "individualProvider": {
+
+        "format": "{lastName}, {firstName} {middleInitial}",
+
+        "sourceFields": [
+
+          "lastName",
+
+          "firstName",
+
+          "middleInitial"
+
+        ]
+
+      },
+
+      "groupProvider": {
+
+        "format": "{doingBusinessAsName}",
+
+        "sourceFields": [
+
+          "doingBusinessAsName"
+
+        ]
+
+      }
+
+    }
+
+  }
+
+}
+
+{
+
+  "addressConfiguration": {
+
+    "primaryAddress": {
+
+      "isPrimary": true,
+
+      "maximumPrimaryServiceLocationsPerProvider": 1,
+
+      "rule": "Only one Service Location address can be designated as Primary for a provider."
+
+    },
+
+    "addressTypes": {
+
+      "serviceLocation": {
+
+        "required": true,
+
+        "isPrimary": true
+
+      },
+
+      "mailing": {
+
+        "copyFrom": "serviceLocation",
+
+        "copyAllAddressFields": true
+
+      },
+
+      "billing": {
+
+        "copyFrom": "serviceLocation",
+
+        "copyAllAddressFields": true
+
+      }
+
+    },
+
+    "geolocation": {
+
+      "latitude": {
+
+        "autoPopulate": true,
+
+        "source": "serviceLocationAddress"
+
+      },
+
+      "longitude": {
+
+        "autoPopulate": true,
+
+        "source": "serviceLocationAddress"
+
+      }
+
+    },
+
+    "significanceSynchronization": {
+
+      "trigger": "Service Location significance is changed",
+
+      "actions": [
+
+        {
+
+          "addressType": "Mailing",
+
+          "action": "Update significance to match the associated Service Location address"
+
+        },
+
+        {
+
+          "addressType": "Billing",
+
+          "action": "Update significance to match the associated Service Location address"
+
+        }
+
+      ]
+
+    },
+
+    "newAddressProcessing": {
+
+      "trigger": "A new Service Location address is added",
+
+      "previousAddressUpdates": {
+
+        "endDate": {
+
+          "calculation": "newAddress.beginDate - 1 day"
+
+        },
+
+        "status": "Inactive"
+
+      },
+
+      "newAddressUpdates": {
+
+        "status": "Active",
+
+        "isPrimary": true
+
+      }
+
+    }
+
+  },
+
+  "locationCodeAssignment": {
+
+    "targetField": "P_LOCN_CD",
+
+    "sourceAddressType": "Service Location",
+
+    "evaluationOrder": [
+
+      "IN_STATE",
+
+      "BORDER",
+
+      "OUT_OF_STATE"
+
+    ],
+
+    "rules": [
+
+      {
+
+        "ruleId": "IN_STATE",
+
+        "description": "In-State Provider",
+
+        "conditions": {
+
+          "stateEquals": "ND"
+
+        },
+
+        "result": {
+
+          "P_LOCN_CD": "I"
+
+        }
+
+      },
+
+      {
+
+        "ruleId": "BORDER",
+
+        "description": "Border Provider",
+
+        "conditions": {
+
+          "stateNotEquals": "ND",
+
+          "anyOf": [
+
+            {
+
+              "stateEquals": "MT",
+
+              "cityFoundInSystemList": "P1-7024"
+
+            },
+
+            {
+
+              "stateEquals": "SD",
+
+              "cityFoundInSystemList": "P1-7025"
+
+            },
+
+            {
+
+              "stateEquals": "MN",
+
+              "cityFoundInSystemList": "P1-7026"
+
+            }
+
+          ]
+
+        },
+
+        "result": {
+
+          "P_LOCN_CD": "B"
+
+        }
+
+      },
+
+      {
+
+        "ruleId": "OUT_OF_STATE",
+
+        "description": "Out-of-State Provider",
+
+        "conditions": {
+
+          "doesNotMeetRuleIds": [
+
+            "IN_STATE",
+
+            "BORDER"
+
+          ]
+
+        },
+
+        "result": {
+
+          "P_LOCN_CD": "O"
+
+        }
+
+      }
+
+    ]
+
+  },
+
+  "regionAssignment": {
+
+    "sourceAddressType": "Service Location",
+
+    "addressStatus": "Active",
+
+    "sourceField": "zipCode",
+
+    "targetField": "region",
+
+    "matchingMethod": "ZIP code membership in system list",
+
+    "rules": [
+
+      {
+
+        "systemList": "G1-7005",
+
+        "assignedRegion": "01"
+
+      },
+
+      {
+
+        "systemList": "G1-7006",
+
+        "assignedRegion": "02"
+
+      },
+
+      {
+
+        "systemList": "G1-7007",
+
+        "assignedRegion": "03"
+
+      },
+
+      {
+
+        "systemList": "G1-7008",
+
+        "assignedRegion": "04"
+
+      },
+
+      {
+
+        "systemList": "G1-7009",
+
+        "assignedRegion": "05"
+
+      },
+
+      {
+
+        "systemList": "G1-7010",
+
+        "assignedRegion": "06"
+
+      },
+
+      {
+
+        "systemList": "G1-7011",
+
+        "assignedRegion": "07"
+
+      },
+
+      {
+
+        "systemList": "G1-7012",
+
+        "assignedRegion": "08"
+
+      }
+
+    ],
+
+    "noMatchBehavior": {
+
+      "assignedRegion": null,
+
+      "action": "Flag the address for review when the active Service Location ZIP code is not found in any configured region system list."
+
+    }
+
+  }
+
+}
+
+{
+
+  "providerConfiguration": {
+
+    "providerCategory": "Individual",
+
+    "providerStatus": "Active",
+
+    "eligibilityConditions": {
+
+      "providerTypeRequired": true,
+
+      "requiredActiveRecords": [
+
+        "License",
+
+        "Address",
+
+        "Enrollment",
+
+        "Network Enrollment"
+
+      ],
+
+      "validationRule": "The individual provider must have an active license, active address, active enrollment, and active network enrollment."
+
+    },
+
+    "demographics": {
+
+      "firstName": {
+
+        "required": true,
+
+        "dataType": "string",
+
+        "maximumLength": 25
+
+      },
+
+      "lastName": {
+
+        "required": true,
+
+        "dataType": "string",
+
+        "maximumLength": 35
+
+      },
+
+      "middleName": {
+
+        "required": false,
+
+        "dataType": "string",
+
+        "maximumLength": 1
+
+      },
+
+      "suffix": {
+
+        "required": false,
+
+        "sourceType": "System List",
+
+        "systemList": "P1-1086"
+
+      },
+
+      "title": {
+
+        "required": false,
+
+        "sourceType": "System List",
+
+        "systemList": "P1-1059"
+
+      },
+
+      "dateOfBirth": {
+
+        "required": true,
+
+        "dataType": "date",
+
+        "validationRules": [
+
+          {
+
+            "ruleId": "DOB_NOT_AFTER_APPLICATION_DATE",
+
+            "condition": "dateOfBirth <= applicationDate",
+
+            "errorCondition": "dateOfBirth > applicationDate",
+
+            "errorMessage": "Provider Date of Birth cannot be greater than the application date."
+
+          },
+
+          {
+
+            "ruleId": "DOB_NOT_IN_FUTURE",
+
+            "condition": "dateOfBirth <= currentDate",
+
+            "errorCondition": "dateOfBirth > currentDate",
+
+            "errorMessage": "Provider Date of Birth cannot be a future date."
+
+          },
+
+          {
+
+            "ruleId": "MINIMUM_AGE",
+
+            "condition": "ageAsOfApplicationDate > 18",
+
+            "errorCondition": "ageAsOfApplicationDate <= 18",
+
+            "minimumAgeExclusive": 18,
+
+            "errorMessage": "Provider age must be greater than 18."
+
+          },
+
+          {
+
+            "ruleId": "MAXIMUM_AGE",
+
+            "condition": "ageAsOfApplicationDate <= 100",
+
+            "errorCondition": "ageAsOfApplicationDate > 100",
+
+            "maximumAgeInclusive": 100,
+
+            "errorMessage": "Provider age cannot be greater than 100."
+
+          }
+
+        ],
+
+        "ageCalculation": {
+
+          "calculationDate": "applicationDate",
+
+          "method": "Completed calendar years"
+
+        }
+
+      },
+
+      "gender": {
+
+        "required": true,
+
+        "dataType": "string",
+
+        "allowedValues": [
+
+          "Male",
+
+          "Female"
+
+        ]
+
+      },
+
+      "ssn": {
+
+        "required": true,
+
+        "dataType": "string",
+
+        "length": 9,
+
+        "digitsOnly": true,
+
+        "unique": true,
+
+        "preserveLeadingZeros": true,
+
+        "validationRules": [
+
+          {
+
+            "ruleId": "SSN_LENGTH",
+
+            "condition": "ssn matches ^[0-9]{9}$",
+
+            "errorMessage": "SSN must contain exactly 9 digits."
+
+          },
+
+          {
+
+            "ruleId": "SSN_UNIQUE",
+
+            "condition": "ssn is unique",
+
+            "errorMessage": "SSN must be unique."
+
+          },
+
+          {
+
+            "ruleId": "SSN_NOT_ALL_ZEROES",
+
+            "condition": "ssn != '000000000'",
+
+            "errorMessage": "SSN cannot contain all zeroes."
+
+          },
+
+          {
+
+            "ruleId": "SSN_NOT_BLANK",
+
+            "condition": "trim(ssn) != ''",
+
+            "errorMessage": "SSN cannot be blank or contain only spaces."
+
+          }
+
+        ]
+
+      },
+
+      "fein": {
+
+        "requiredWhenApplicable": true,
+
+        "dataType": "string",
+
+        "validationRules": [
+
+          {
+
+            "ruleId": "FEIN_NOT_ALL_ZEROES",
+
+            "condition": "fein does not consist entirely of zeroes",
+
+            "errorMessage": "FEIN cannot contain all zeroes."
+
+          },
+
+          {
+
+            "ruleId": "FEIN_NOT_BLANK",
+
+            "condition": "trim(fein) != ''",
+
+            "errorMessage": "FEIN cannot be blank or contain only spaces."
+
+          }
+
+        ]
+
+      },
+
+      "providerType": {
+
+        "required": true,
+
+        "sourceType": "System List",
+
+        "systemList": "P1-7017",
+
+        "activeValuesOnly": true
+
+      }
+
+    },
+
+    "license": {
+
+      "required": true,
+
+      "minimumActiveRecords": 1,
+
+      "fields": {
+
+        "licenseNumber": {
+
+          "required": true,
+
+          "dataType": "string",
+
+          "allowHyphen": true,
+
+          "example": "9999999999-9999",
+
+          "transformations": [
+
+            {
+
+              "operation": "Convert alphabetic characters to uppercase"
+
+            }
+
+          ]
+
+        },
+
+        "beginDate": {
+
+          "required": true,
+
+          "dataType": "date"
+
+        },
+
+        "endDate": {
+
+          "required": true,
+
+          "dataType": "date"
+
+        },
+
+        "status": {
+
+          "required": true
+
+        }
+
+      },
+
+      "validationRules": [
+
+        {
+
+          "ruleId": "LICENSE_DATE_ORDER",
+
+          "condition": "beginDate <= endDate",
+
+          "errorMessage": "License Begin Date cannot be greater than License End Date."
+
+        },
+
+        {
+
+          "ruleId": "DUPLICATE_LICENSE_SPAN",
+
+          "condition": "No other license row has the same normalized license number, begin date, and end date",
+
+          "duplicateKey": [
+
+            "normalizedLicenseNumber",
+
+            "beginDate",
+
+            "endDate"
+
+          ],
+
+          "errorMessage": "A duplicate license with the same Begin Date and End Date is not allowed."
+
+        }
+
+      ]
+
+    },
+
+    "specialty": {
+
+      "required": true,
+
+      "selectionMethod": "Automatic",
+
+      "minimumActiveRecords": 1,
+
+      "validationRules": [
+
+        {
+
+          "ruleId": "DUPLICATE_SPECIALTY_SPAN",
+
+          "condition": "No other specialty row has the same specialty, begin date, and end date",
+
+          "duplicateKey": [
+
+            "specialtyCode",
+
+            "beginDate",
+
+            "endDate"
+
+          ],
+
+          "errorMessage": "A duplicate specialty with the same Begin Date and End Date is not allowed."
+
+        }
+
+      ]
+
+    },
+
+    "taxonomy": {
+
+      "required": true,
+
+      "selectionMethod": "Automatic",
+
+      "minimumActiveRecords": 1,
+
+      "validationRules": [
+
+        {
+
+          "ruleId": "DUPLICATE_TAXONOMY_SPAN",
+
+          "condition": "No other taxonomy row has the same taxonomy, begin date, and end date",
+
+          "duplicateKey": [
+
+            "taxonomyCode",
+
+            "beginDate",
+
+            "endDate"
+
+          ],
+
+          "errorMessage": "A duplicate taxonomy with the same Begin Date and End Date is not allowed."
+
+        }
+
+      ]
+
+    },
+
+    "addresses": {
+
+      "requiredAddressTypes": [
+
+        "Service",
+
+        "Mailing",
+
+        "Billing"
+
+      ],
+
+      "serviceAddress": {
+
+        "required": true,
+
+        "minimumActiveRecords": 1,
+
+        "contactInformation": {
+
+          "contactNumbersRequired": true,
+
+          "contactPersonDetailsRequired": true
+
+        }
+
+      },
+
+      "mailingAddress": {
+
+        "required": true,
+
+        "minimumActiveRecords": 1,
+
+        "contactInformation": {
+
+          "contactNumbersRequired": true,
+
+          "contactPersonDetailsRequired": true
+
+        }
+
+      },
+
+      "billingAddress": {
+
+        "required": true,
+
+        "minimumActiveRecords": 1,
+
+        "contactInformation": {
+
+          "contactNumbersRequired": true,
+
+          "contactPersonDetailsRequired": true
+
+        }
+
+      }
+
+    },
+
+    "serviceCapabilities": {
+
+      "genderServed": {
+
+        "required": true,
+
+        "allowMultipleSelections": true
+
+      },
+
+      "ageRangeServed": {
+
+        "required": true,
+
+        "fields": {
+
+          "minimumAge": {
+
+            "dataType": "integer",
+
+            "minimumValue": 0
+
+          },
+
+          "maximumAge": {
+
+            "dataType": "integer",
+
+            "minimumValue": 0
+
+          }
+
+        },
+
+        "validationRule": "minimumAge must be less than or equal to maximumAge"
+
+      },
+
+      "languagesSupported": {
+
+        "required": true,
+
+        "allowMultipleSelections": true
+
+      },
+
+      "serviceAreaServed": {
+
+        "required": true,
+
+        "allowMultipleSelections": true
+
+      },
+
+      "wheelchairAccessibility": {
+
+        "required": true,
+
+        "dataType": "boolean"
+
+      },
+
+      "ttdTtyEquipped": {
+
+        "required": true,
+
+        "dataType": "boolean"
+
+      },
+
+      "afterHoursServices": {
+
+        "required": true,
+
+        "dataType": "boolean",
+
+        "detailsRequiredWhenTrue": true
+
+      },
+
+      "hoursOfOperation": {
+
+        "required": true,
+
+        "allowMultipleRows": true,
+
+        "fields": [
+
+          "dayOfWeek",
+
+          "openTime",
+
+          "closeTime",
+
+          "closedIndicator"
+
+        ]
+
+      }
+
+    },
+
+    "certificationsAndRelationships": {
+
+      "clia": {
+
+        "requiredWhenApplicable": true
+
+      },
+
+      "ra": {
+
+        "requiredWhenApplicable": true
+
+      },
+
+      "affiliation": {
+
+        "requiredWhenApplicable": true,
+
+        "allowMultipleRows": true
+
+      }
+
+    },
+
+    "enrollment": {
+
+      "required": true,
+
+      "minimumActiveRecords": 1,
+
+      "defaultValues": {
+
+        "beginDate": "CURRENT_DATE",
+
+        "endDate": "9999-12-31"
+
+      },
+
+      "fields": {
+
+        "beginDate": {
+
+          "required": true,
+
+          "dataType": "date",
+
+          "defaultValue": "CURRENT_DATE"
+
+        },
+
+        "endDate": {
+
+          "required": true,
+
+          "dataType": "date",
+
+          "defaultValue": "9999-12-31"
+
+        },
+
+        "status": {
+
+          "required": true,
+
+          "sourceType": "System List",
+
+          "systemList": "P1-1018",
+
+          "activeValuesOnly": true
+
+        },
+
+        "reason": {
+
+          "required": true,
+
+          "sourceType": "System List",
+
+          "systemList": "P1-1066",
+
+          "activeValuesOnly": true
+
+        }
+
+      },
+
+      "validationRules": [
+
+        {
+
+          "ruleId": "ENROLLMENT_DATE_ORDER",
+
+          "condition": "beginDate <= endDate",
+
+          "errorMessage": "Enrollment Begin Date cannot be greater than Enrollment End Date."
+
+        },
+
+        {
+
+          "ruleId": "NO_ENROLLMENT_OVERLAPS",
+
+          "condition": "Enrollment date spans must not overlap for the same provider and enrollment type",
+
+          "overlapFormula": "newBeginDate <= existingEndDate AND newEndDate >= existingBeginDate",
+
+          "errorMessage": "Overlapping enrollment date spans are not allowed."
+
+        }
+
+      ]
+
+    },
+
+    "networkEnrollment": {
+
+      "required": true,
+
+      "minimumActiveRecords": 1,
+
+      "defaultValues": {
+
+        "beginDate": "CURRENT_DATE",
+
+        "endDate": "9999-12-31"
+
+      },
+
+      "fields": {
+
+        "beginDate": {
+
+          "required": true,
+
+          "dataType": "date",
+
+          "defaultValue": "CURRENT_DATE"
+
+        },
+
+        "endDate": {
+
+          "required": true,
+
+          "dataType": "date",
+
+          "defaultValue": "9999-12-31"
+
+        },
+
+        "status": {
+
+          "required": true,
+
+          "sourceType": "System List",
+
+          "systemList": "P1-1034",
+
+          "activeValuesOnly": true
+
+        },
+
+        "reason": {
+
+          "required": true,
+
+          "sourceType": "System List",
+
+          "systemList": "P1-7015",
+
+          "activeValuesOnly": true
+
+        }
+
+      },
+
+      "validationRules": [
+
+        {
+
+          "ruleId": "NETWORK_DATE_ORDER",
+
+          "condition": "beginDate <= endDate",
+
+          "errorMessage": "Network Enrollment Begin Date cannot be greater than Network Enrollment End Date."
+
+        },
+
+        {
+
+          "ruleId": "NO_NETWORK_ENROLLMENT_OVERLAPS",
+
+          "condition": "Network enrollment date spans must not overlap for the same provider and network",
+
+          "overlapFormula": "newBeginDate <= existingEndDate AND newEndDate >= existingBeginDate",
+
+          "errorMessage": "Overlapping network enrollment date spans are not allowed."
+
+        }
+
+      ]
+
+    },
+
+    "activeProviderDetermination": {
+
+      "effectiveDate": "CURRENT_DATE",
+
+      "conditions": [
+
+        "providerCategory equals Individual",
+
+        "providerStatus equals Active",
+
+        "providerType is an active value from system list P1-7017",
+
+        "At least one license record is active on the effective date",
+
+        "At least one required address record is active on the effective date",
+
+        "At least one enrollment record is active on the effective date",
+
+        "At least one network enrollment record is active on the effective date"
+
+      ],
+
+      "activeDateRule": "beginDate <= effectiveDate AND endDate >= effectiveDate",
+
+      "result": {
+
+        "isActiveIndividualProvider": true
+
+      },
+
+      "failureResult": {
+
+        "isActiveIndividualProvider": false
+
+      }
+
+    }
+
+  }
+
+}
+
+ 
+For contact Numbers and Contact Person adding data {
+
+  "locationNumbers": {
+
+    "sectionName": "Location Numbers",
+
+    "fields": [
+
+      {
+
+        "fieldName": "Phone Type",
+
+        "fieldCode": "G1-7013",
+
+        "dataType": "string",
+
+        "required": false
+
+      },
+
+      {
+
+        "fieldName": "Contact Number",
+
+        "dataType": "string",
+
+        "required": false,
+
+        "format": "XXX-XXX-XXXX",
+
+        "pattern": "^\\d{3}-\\d{3}-\\d{4}$",
+
+        "validationMessage": "Contact Number must contain 10 digits in XXX-XXX-XXXX format."
+
+      },
+
+      {
+
+        "fieldName": "Begin Date",
+
+        "dataType": "date",
+
+        "required": false,
+
+        "format": "YYYY-MM-DD",
+
+        "validation": {
+
+          "operator": "greaterThanOrEqualTo",
+
+          "compareToField": "End Date",
+
+          "validationMessage": "Begin Date must be greater than or equal to End Date."
+
+        }
+
+      },
+
+      {
+
+        "fieldName": "End Date",
+
+        "dataType": "date",
+
+        "required": false,
+
+        "format": "YYYY-MM-DD"
+
+      }
+
+    ]
+
+  },
+
+  "locationContactPerson": {
+
+    "sectionName": "Location Contact Person",
+
+    "fields": [
+
+      {
+
+        "fieldName": "Last Name",
+
+        "dataType": "string",
+
+        "required": false
+
+      },
+
+      {
+
+        "fieldName": "First Name",
+
+        "dataType": "string",
+
+        "required": false
+
+      },
+
+      {
+
+        "fieldName": "Phone Number",
+
+        "displayName": "Phone #",
+
+        "dataType": "string",
+
+        "required": false,
+
+        "format": "XXX-XXX-XXXX",
+
+        "pattern": "^\\d{3}-\\d{3}-\\d{4}$",
+
+        "validationMessage": "Phone Number must contain 10 digits in XXX-XXX-XXXX format."
+
+      },
+
+      {
+
+        "fieldName": "Extension",
+
+        "displayName": "Ext",
+
+        "dataType": "string",
+
+        "required": false,
+
+        "pattern": "^\\d+$",
+
+        "validationMessage": "Extension must contain only numeric values."
+
+      },
+
+      {
+
+        "fieldName": "Fax Number",
+
+        "displayName": "Fax #",
+
+        "dataType": "string",
+
+        "required": false,
+
+        "format": "XXX-XXX-XXXX",
+
+        "pattern": "^\\d{3}-\\d{3}-\\d{4}$",
+
+        "validationMessage": "Fax Number must contain 10 digits in XXX-XXX-XXXX format."
+
+      },
+
+      {
+
+        "fieldName": "Position",
+
+        "fieldCode": "SL G1-1017",
+
+        "dataType": "string",
+
+        "required": false
+
+      },
+
+      {
+
+        "fieldName": "Cell Phone Number",
+
+        "displayName": "Cell Phone #",
+
+        "dataType": "string",
+
+        "required": false,
+
+        "format": "XXX-XXX-XXXX",
+
+        "pattern": "^\\d{3}-\\d{3}-\\d{4}$",
+
+        "validationMessage": "Cell Phone Number must contain 10 digits in XXX-XXX-XXXX format."
+
+      },
+
+      {
+
+        "fieldName": "Email",
+
+        "fieldCode": "SL G1-1009",
+
+        "dataType": "string",
+
+        "required": false,
+
+        "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+
+        "validationMessage": "Email address must contain '@' and at least one period after '@'."
+
+      }
+
+    ]
+
+  }
+
+}
+ 
+
+ 

@@ -1,0 +1,678 @@
+# metadata/glossary/provider_glossary.yaml
+glossary_name: "Provider Business Glossary"
+version: "1.0"
+terms:
+  - term: "Provider"
+    definition: >
+      A healthcare professional, facility, organization, group, or entity enrolled or
+      maintained in the provider system to deliver healthcare services or support Medicaid
+      program operations.
+    synonyms: ["healthcare provider", "service provider", "practitioner", "provider entity"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider"]
+  - term: "Provider System Identifier"
+    definition: >
+      The internal system-generated identifier used as the primary key to uniquely
+      identify a provider record across the Provider logical data model.
+    synonyms: ["P_SYS_ID", "provider internal system ID", "provider system ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider"]
+  - term: "Provider Name"
+    definition: >
+      The legal or business name used to identify a provider in provider master data and
+      downstream business processes.
+    synonyms: ["legal name", "provider legal name", "provider business name"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "NPPES NPI Source Provider"]
+  - term: "Provider Legal Name"
+    definition: >
+      The official legal name captured for an individual provider, facility, organization,
+      or group provider.
+    synonyms: ["legal provider name", "official provider name"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider"]
+  - term: "Doing Business As Name"
+    definition: >
+      The alternate business name under which a provider operates when different from the
+      legal provider name.
+    synonyms: ["DBA name", "trade name", "business alias"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Owner"]
+  - term: "Provider Type"
+    definition: >
+      A classification that identifies the kind of provider, such as individual
+      practitioner, group, institution, pharmacy, dentist, or physician-type provider.
+    synonyms: ["provider category", "provider classification", "provider type code"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Type", "Provider Type Specialty Cross Reference", "Provider"]
+  - term: "Provider Type Class"
+    definition: >
+      A higher-level classification of provider type used to group providers into broad
+      business classes such as physician, dentist, pharmacy, or institution.
+    synonyms: ["provider class", "provider type class code"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider"]
+  - term: "Individual or Group Provider"
+    definition: >
+      A designation that identifies whether the provider is enrolled as an individual
+      provider, group provider, sole proprietorship, or related practice structure.
+    synonyms: ["individual/group code", "provider practice structure"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Affiliation"]
+  - term: "Provider Specialty"
+    definition: >
+      The specialty or clinical area that applies to a provider and supports provider
+      classification, eligibility, service delivery, and network operations.
+    synonyms: ["specialty", "provider specialty code", "clinical specialty"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Specialty", "Provider Type Specialty Cross Reference"]
+  - term: "Provider Specialty Need"
+    definition: >
+      A special need or service-related designation associated with a provider, especially
+      for specific provider programs or benefit populations.
+    synonyms: ["special needs", "provider special need"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Specialty Need"]
+  - term: "Provider Taxonomy"
+    definition: >
+      A HIPAA-related taxonomy code assigned to a provider to describe provider
+      classification, specialty, or area of practice.
+    synonyms: ["taxonomy", "taxonomy code", "provider taxonomy code"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Taxonomy", "NPPES NPI Taxonomy"]
+  - term: "Provider Service Type Code"
+    definition: >
+      A code that represents the type of service a provider is eligible or configured to
+      provide.
+    synonyms: ["service type", "service type code", "provider service code"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Service Type Code", "Provider Category of Service Status"]
+  - term: "Category of Service Status"
+    definition: >
+      The status that indicates what category of service a provider is eligible to perform
+      during an effective date range.
+    synonyms: ["COS status", "category of service", "service eligibility status"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Category of Service Status"]
+  - term: "Provider Enrollment"
+    definition: >
+      The business process and data set used to track a provider from enrollment
+      application through approval, denial, status changes, or other enrollment outcomes.
+    synonyms: ["provider onboarding", "enrollment process", "provider application"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Application Status", "Provider Enrollment Status"]
+  - term: "Provider Application Number"
+    definition: >
+      A unique number assigned to a provider enrollment application to track the progress
+      of the enrollment process up to approval, denial, or cancellation.
+    synonyms: ["application number", "provider application ID", "enrollment application number"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Credentialing Response"]
+  - term: "Provider Application Status"
+    definition: >
+      The status assigned to a provider enrollment application at a point in time during
+      the application or onboarding workflow.
+    synonyms: ["application status", "provider application state"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Application Status"]
+  - term: "Provider Enrollment Status"
+    definition: >
+      The primary status used to track a provider's participation as a Medicaid provider,
+      including effective dates and reason codes.
+    synonyms: ["enrollment status", "provider participation status", "provider status"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Enrollment Status"]
+  - term: "Retroactive Eligibility Indicator"
+    definition: >
+      An indicator showing whether a provider was granted eligibility before the date the
+      enrollment application was received.
+    synonyms: ["retroactive eligible", "retro eligibility flag"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Enrollment Status"]
+  - term: "Provider Enrollment Affiliation"
+    definition: >
+      Affiliation information captured during provider enrollment before approved
+      affiliation data is moved to the main provider affiliation records.
+    synonyms: ["enrollment affiliation", "pending affiliation", "application affiliation"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Enrollment Affiliation", "Provider Affiliation"]
+  - term: "Provider Enrollment Alternate Identifier"
+    definition: >
+      An alternate provider identifier captured during provider enrollment before or
+      during approval of the provider record.
+    synonyms: ["enrollment alternate ID", "application alternate ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Enrollment Alternate Identifier", "Provider Alternate Identifier"]
+  - term: "Provider Alternate Identifier"
+    definition: >
+      An identifier other than the internal provider system identifier that can be used to
+      recognize a provider, such as a Medicaid, Medicare, DEA, NABP, tax, or other
+      external identifier.
+    synonyms: ["alternate ID", "provider cross-reference ID", "external provider ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Alternate Identifier", "Provider Previous Medicaid Identifier"]
+  - term: "Current Alternate Identifier"
+    definition: >
+      The current alternate identifier stored on the provider record and used for provider
+      lookup, cross-reference, or operational processing.
+    synonyms: ["current alternate ID", "current provider ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Credentialing Response"]
+  - term: "Previous Medicaid Identifier"
+    definition: >
+      A previous Medicaid identifier used by a provider, captured with begin and end dates
+      to maintain identifier history.
+    synonyms: ["previous Medicaid ID", "prior Medicaid number"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Previous Medicaid Identifier"]
+  - term: "National Provider Identifier"
+    definition: >
+      A standard national identifier assigned to healthcare providers and used for
+      provider identification in healthcare transactions and NPPES source data.
+    synonyms: ["NPI", "NPI number", "National Provider ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["NPPES NPI Source Provider", "NPPES NPI Taxonomy", "NPPES NPI Other Identifier"]
+  - term: "NPPES Source Provider"
+    definition: >
+      Provider data sourced from NPPES, including NPI, provider names, addresses,
+      taxonomy, entity type, and related identifier details.
+    synonyms: ["NPPES provider", "NPI source provider"]
+    subject_area: "Provider"
+    related_ldm_entities: ["NPPES NPI Source Provider"]
+  - term: "NPPES Other Identifier"
+    definition: >
+      An additional identifier associated with an NPI provider record, including issuer,
+      state, and other provider identifier details.
+    synonyms: ["NPI other ID", "other provider identifier"]
+    subject_area: "Provider"
+    related_ldm_entities: ["NPPES NPI Other Identifier"]
+  - term: "Provider Hierarchy"
+    definition: >
+      A reference hierarchy used to establish the order in which provider identifiers are
+      evaluated during claims adjudication to determine the provider role or entity
+      referenced by a claim.
+    synonyms: ["identifier hierarchy", "provider identifier sequence", "provider role hierarchy"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Hierarchy"]
+  - term: "Billing Provider"
+    definition: >
+      A provider role representing the provider or entity that bills or submits claims for
+      services.
+    synonyms: ["claim billing provider", "billing entity"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Hierarchy", "Provider Billing Medium"]
+  - term: "Rendering Provider"
+    definition: >
+      A provider role representing the provider who performed or rendered healthcare
+      services.
+    synonyms: ["servicing provider", "performing provider"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Hierarchy"]
+  - term: "Referring Provider"
+    definition: >
+      A provider role representing the provider who referred a member or patient for
+      services.
+    synonyms: ["referral provider", "ordering/referring provider"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Hierarchy"]
+  - term: "Attending Provider"
+    definition: >
+      A provider role representing the provider responsible for a patient during an
+      inpatient or facility-based episode of care.
+    synonyms: ["attending physician", "attending practitioner"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Hierarchy"]
+  - term: "Provider Affiliation"
+    definition: >
+      A relationship that links one provider to another, such as a group-to-member
+      relationship, billing-agent-to-member relationship, or association-to-member
+      relationship.
+    synonyms: ["provider relationship", "group affiliation", "provider association"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Affiliation"]
+  - term: "Group Provider"
+    definition: >
+      A provider entity that represents a group practice or organization and may be
+      affiliated with individual member providers.
+    synonyms: ["provider group", "group practice"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Affiliation", "Provider Enrollment Affiliation"]
+  - term: "Member Provider"
+    definition: >
+      A provider linked as a member of a group, association, billing agent, or other
+      provider affiliation structure.
+    synonyms: ["affiliated provider", "group member provider"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Affiliation", "Provider Enrollment Affiliation"]
+  - term: "Provider Ownership"
+    definition: >
+      The relationship between a provider and owner records, including ownership
+      percentage, ownership dates, tax identifiers, and relationship details.
+    synonyms: ["ownership relationship", "provider owner cross-reference"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Ownership", "Provider Owner"]
+  - term: "Provider Owner"
+    definition: >
+      An individual or organization recorded as an owner of a provider, including owner
+      name, tax identifier, SSN, date of birth, business name, and related identifiers.
+    synonyms: ["owner", "provider owner detail", "ownership detail"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Owner", "Provider Ownership"]
+  - term: "Provider Owner Tax Identifier"
+    definition: >
+      The tax identifier associated with a provider owner and used as part of the owner
+      detail and ownership relationship keys.
+    synonyms: ["owner tax ID", "owner TIN", "P_OWNER_TAX_ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Owner", "Provider Ownership"]
+  - term: "Federal Tax Identifier"
+    definition: >
+      The federal tax identification number associated with a provider, owner, CLIA
+      laboratory, OIG record, or previous Medicaid identifier record.
+    synonyms: ["FEIN", "TIN", "tax ID", "federal tax ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Provider Ownership", "Provider Previous Medicaid Identifier", "CLIA Laboratory", "Provider OIG"]
+  - term: "Provider License Certification"
+    definition: >
+      License or certification information associated with a provider, including
+      license/certification number, type, agency, state, effective dates, restrictions,
+      and verification status.
+    synonyms: ["license", "certification", "provider license", "provider certification"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider License Certification"]
+  - term: "License Certification Number"
+    definition: >
+      The provider's license or certification number assigned by a licensing or
+      certification authority.
+    synonyms: ["license number", "certification number", "permit number"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider License Certification", "Common License Upload"]
+  - term: "License Verification Indicator"
+    definition: >
+      An indicator showing whether the provider's license or certification has been
+      verified.
+    synonyms: ["license verified flag", "license verification"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider License Certification"]
+  - term: "CLIA Laboratory"
+    definition: >
+      A laboratory provider record identified by a CLIA number and used to store CLIA
+      laboratory provider information.
+    synonyms: ["clinical laboratory", "CLIA lab"]
+    subject_area: "Provider"
+    related_ldm_entities: ["CLIA Laboratory"]
+  - term: "CLIA Number"
+    definition: >
+      The Clinical Laboratory Improvement Amendments number assigned to a laboratory
+      provider for certification and identification.
+    synonyms: ["CLIA ID", "laboratory certification number"]
+    subject_area: "Provider"
+    related_ldm_entities: ["CLIA Laboratory", "CLIA Certification", "Provider CLIA Assignment"]
+  - term: "CLIA Certification"
+    definition: >
+      Certification information that identifies lab procedures a CLIA provider is
+      certified to perform, including certification type and effective dates.
+    synonyms: ["lab certification", "CLIA certificate"]
+    subject_area: "Provider"
+    related_ldm_entities: ["CLIA Certification", "CLIA Laboratory Specialty Code"]
+  - term: "Provider CLIA Assignment"
+    definition: >
+      The cross-reference between a provider and a CLIA number, with begin and end dates
+      for the assignment.
+    synonyms: ["CLIA provider assignment", "provider CLIA cross-reference"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider CLIA Assignment", "CLIA Laboratory"]
+  - term: "Provider Credentialing Response"
+    definition: >
+      Credentialing response data associated with a provider, including response type,
+      risk, alert, NPI, current alternate identifier, and related application information.
+    synonyms: ["credentialing response", "credentialing result"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Credentialing Response"]
+  - term: "Credentialing Response Status"
+    definition: >
+      A status history record that describes the state, date, source, watchlist, and text
+      associated with a provider credentialing response.
+    synonyms: ["credentialing status", "credential response status"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Credentialing Response Status"]
+  - term: "Credentialing Response Action"
+    definition: >
+      An action or review detail associated with a credentialing response status,
+      including action code, action text, and review indicator.
+    synonyms: ["credentialing action", "credential action"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Credentialing Response Action"]
+  - term: "Provider Screening"
+    definition: >
+      Screening information used in provider enrollment, credentialing, or compliance
+      review, including screening details and supporting history.
+    synonyms: ["provider screening", "screening record"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Screening", "Provider Screening Risk Lvl Asgn Hist"]
+  - term: "Screening Risk Level"
+    definition: >
+      The assigned risk level captured for provider screening and risk-level assignment
+      history.
+    synonyms: ["risk level", "screening risk", "provider risk level"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Screening", "Provider Screening Risk Lvl Asgn Hist"]
+  - term: "Provider Questionnaire"
+    definition: >
+      A provider questionnaire record used to capture compliance, legal, exclusion,
+      conviction, overpayment, or other business responses for provider enrollment or
+      maintenance.
+    synonyms: ["questionnaire", "provider disclosure", "provider attestation questionnaire"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Questionnaire"]
+  - term: "Adverse Legal Action"
+    definition: >
+      A questionnaire disclosure related to an adverse legal action involving a provider
+      or related party.
+    synonyms: ["legal action", "adverse action", "provider adverse legal action"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Questionnaire Advrs Legal Action"]
+  - term: "Provider Conviction"
+    definition: >
+      A questionnaire disclosure related to a conviction, including conviction date,
+      state, type, and associated individual details.
+    synonyms: ["conviction disclosure", "provider conviction"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Questionnaire Cnvctn"]
+  - term: "Provider Exclusion"
+    definition: >
+      A questionnaire disclosure related to exclusion events or exclusion history for a
+      provider or related party.
+    synonyms: ["exclusion disclosure", "program exclusion"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Questionnaire Exclsn"]
+  - term: "Provider Overpayment"
+    definition: >
+      A questionnaire disclosure related to overpayment information, including federal
+      program and overpayment amount details.
+    synonyms: ["overpayment disclosure", "provider overpayment"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Questionnaire Ovr Pmt"]
+  - term: "Provider OIG"
+    definition: >
+      Office of Inspector General data loaded for matching against provider records and
+      new enrollments, including sanction, conviction, or exclusion-related information.
+    synonyms: ["OIG record", "OIG provider", "exclusion source record"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider OIG"]
+  - term: "OIG Provider Match"
+    definition: >
+      A record showing how a provider matched to an OIG record, including match code and
+      related provider and OIG keys.
+    synonyms: ["OIG match", "provider OIG match"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider OIG Provider Match", "Provider OIG Provider Cross Reference"]
+  - term: "OIG Sanction"
+    definition: >
+      A sanction associated with an OIG provider record, including sanction type, sanction
+      date, and resolution date when available.
+    synonyms: ["sanction", "OIG sanction", "provider sanction"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider OIG"]
+  - term: "Provider Network Participation"
+    definition: >
+      A provider's participation in a network for a defined effective date range,
+      including network identifier, status, status reason, and subcapitation details.
+    synonyms: ["network participation", "network provider", "provider network status"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Network Participation"]
+  - term: "Network Status"
+    definition: >
+      The status assigned to a provider's participation in a specific network during a
+      defined time period.
+    synonyms: ["network status code", "provider network status"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Network Participation"]
+  - term: "Provider Facility Detail"
+    definition: >
+      Facility-specific provider information including facility type, administrator name,
+      fiscal year month, and effective date range.
+    synonyms: ["facility detail", "provider facility", "facility provider"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Facility Detail"]
+  - term: "Provider Bed Count"
+    definition: >
+      Counts of hospital patient bed categories associated with a provider, including bed
+      type, count, and effective dates.
+    synonyms: ["number of beds", "bed count", "provider beds"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Bed Count"]
+  - term: "Provider Language"
+    definition: >
+      A language supported by the provider, including whether it is the provider's primary
+      language.
+    synonyms: ["language", "provider language", "spoken language"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Language"]
+  - term: "Interpreter Service"
+    definition: >
+      Interpreter service information associated with a provider to indicate
+      interpretation services supported by the provider.
+    synonyms: ["interpreter support", "provider interpreter service"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Interpreter Service"]
+  - term: "Provider Office Hours"
+    definition: >
+      The days and times when a provider office is available or closed, including open
+      time, close time, and day-of-week information.
+    synonyms: ["office hours", "business hours", "provider availability"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Office Hours"]
+  - term: "Patient Acceptance"
+    definition: >
+      A provider's patient acceptance status, including the acceptance code and effective
+      date.
+    synonyms: ["acceptance status", "new patient acceptance", "patient acceptance code"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Patient Acceptance"]
+  - term: "Provider Billing Medium"
+    definition: >
+      The medium or method a provider uses for submitting claims.
+    synonyms: ["billing medium", "claim submission medium", "claim submission method"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Billing Medium"]
+  - term: "Remittance Advice Medium"
+    definition: >
+      The medium used by the State to send remittance advice information to a provider.
+    synonyms: ["RA medium", "remittance medium", "payment advice medium"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Remittance Advice Medium"]
+  - term: "Medicare Participation"
+    definition: >
+      Provider Medicare participation details, including Medicare alternate identifier,
+      participation code, carrier identifier, and participation effective dates.
+    synonyms: ["Medicare participation", "Medicare provider record", "Medicare ID cross-reference"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Medicare Participation"]
+  - term: "Disproportionate Share Status"
+    definition: >
+      The effective-dated period during which a provider is considered a disproportionate
+      share provider because the provider serves a large amount of business with the
+      State.
+    synonyms: ["DSH status", "disproportionate share provider"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Disproportionate Share Status"]
+  - term: "Provider Tax Notice"
+    definition: >
+      IRS B-notice and withholding information associated with providers by tax
+      identifier.
+    synonyms: ["tax notice", "B-notice", "withholding notice"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Tax Ntc"]
+  - term: "Provider Required Attachment"
+    definition: >
+      A required attachment or form needed for a provider enrollment application or
+      provider-related workflow.
+    synonyms: ["required form", "required document", "provider attachment requirement"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Required Attachment", "Provider Attachment Cross Reference"]
+  - term: "Provider Attachment Cross Reference"
+    definition: >
+      A cross-reference that links provider records to attachments or documents used in
+      provider workflows.
+    synonyms: ["attachment xref", "provider document link"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Attachment Cross Reference"]
+  - term: "Provider Letter Required"
+    definition: >
+      A provider letter trigger generated when business events require a letter to be sent
+      to the provider.
+    synonyms: ["letter request", "provider letter trigger", "required letter"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Letter Required"]
+  - term: "Provider Event"
+    definition: >
+      A date and time stamped provider lifecycle event used to track changes during
+      enrollment, maintenance, or operational processing.
+    synonyms: ["provider event", "provider tracking event", "lifecycle event"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Event"]
+  - term: "Provider Event Reason"
+    definition: >
+      The reason associated with a provider event, used to explain or classify why a
+      provider lifecycle event occurred.
+    synonyms: ["event reason", "provider event reason"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Event Reason"]
+  - term: "Provider Training Course"
+    definition: >
+      A training course associated with provider training course/session management.
+    synonyms: ["training course", "provider course"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Training Crse"]
+  - term: "Provider Training Session"
+    definition: >
+      A scheduled provider training session linked to a training course and used to manage
+      session details.
+    synonyms: ["training session", "provider session"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Training Session"]
+  - term: "Provider Training Registration"
+    definition: >
+      A registration record that links a provider or common entity to a training course
+      and session.
+    synonyms: ["training registration", "provider training enrollment"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Training Rgstr"]
+  - term: "Provider Extended Detail"
+    definition: >
+      Additional provider attributes maintained outside the core provider detail record,
+      including revalidation, EVV, FCBC, and other extended indicators or dates.
+    synonyms: ["extended provider detail", "provider extension"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Extended Detail"]
+  - term: "Provider Revalidation"
+    definition: >
+      The periodic process used to revalidate provider information, credentials,
+      addresses, affiliations, ownership, specialty, taxonomy, and related provider data.
+    synonyms: ["revalidation", "provider reverification", "provider re-enrollment validation"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Detail", "Provider Extended Detail"]
+  - term: "Revalidation Tracking Key"
+    definition: >
+      A tracking surrogate key used to connect related provider revalidation records
+      across revalidation detail, address, affiliation, specialty, license, owner,
+      questionnaire, and status entities.
+    synonyms: ["revalidation tracking ID", "P_REVLDTN_TRKNG_SK", "tracking key"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Detail", "Provider Revalidation Status Trkng"]
+  - term: "Revalidation Due Date"
+    definition: >
+      The date by which a provider is due for revalidation.
+    synonyms: ["revalidation due", "reverification due date"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Extended Detail"]
+  - term: "Revalidation Status Tracking"
+    definition: >
+      Status tracking information for a provider revalidation workflow, including status
+      history and related tracking keys.
+    synonyms: ["revalidation status", "revalidation tracking status"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Status Trkng"]
+  - term: "Revalidation Acceptance"
+    definition: >
+      Acceptance information captured during a provider revalidation workflow.
+    synonyms: ["revalidation acceptance", "revalidation approval"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Acceptance"]
+  - term: "Revalidation Address"
+    definition: >
+      Address information captured or reviewed as part of a provider revalidation
+      workflow.
+    synonyms: ["revalidation address", "revalidated provider address"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Address", "Provider Revalidation Address Usage"]
+  - term: "Revalidation Contact"
+    definition: >
+      Contact information captured during the provider revalidation workflow.
+    synonyms: ["revalidation contact", "provider revalidation contact"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Contct"]
+  - term: "Revalidation Representative"
+    definition: >
+      Representative information captured for a provider revalidation workflow, including
+      representative provider and identifier details.
+    synonyms: ["revalidation representative", "provider representative"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Representative", "Provider Revalidation Representative Provider", "Provider Revalidation Representative Provider Identifier"]
+  - term: "Revalidation License Certification"
+    definition: >
+      License or certification information captured or reviewed as part of provider
+      revalidation.
+    synonyms: ["revalidation license", "revalidation certification"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation License Certification", "Provider License Certification"]
+  - term: "Revalidation Questionnaire"
+    definition: >
+      Questionnaire information captured or reviewed during provider revalidation,
+      including conviction, exclusion, other state, and overpayment details.
+    synonyms: ["revalidation disclosure", "revalidation questionnaire"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Questionnaire"]
+  - term: "Revalidation Return"
+    definition: >
+      A revalidation return record used to track return count, return date, reason, review
+      indicator, and related return handling information.
+    synonyms: ["revalidation return", "returned revalidation"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Rtrn"]
+  - term: "Record Status Code"
+    definition: >
+      A code used to indicate the state of a record, such as current, historical, updated,
+      or otherwise categorized by the provider workflow.
+    synonyms: ["record status", "P_REC_STAT_CD", "status code"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Detail", "Provider Report Cldi Err"]
+  - term: "Modification Code"
+    definition: >
+      A code used in revalidation records to track the type of modification or change
+      represented by the record.
+    synonyms: ["mod code", "P_REVLDTN_MOD_CD", "change code"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider Revalidation Detail"]
+  - term: "Audit Timestamp"
+    definition: >
+      A timestamp used to record when a provider-related row was added or last modified
+      for auditability and traceability.
+    synonyms: ["audit date", "audit timestamp", "G_AUD_TS", "G_AUD_ADD_TS"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider"]
+  - term: "Audit User Identifier"
+    definition: >
+      The user ID or process identifier that added or last modified a provider-related
+      row.
+    synonyms: ["audit user", "G_AUD_USER_ID", "G_AUD_ADD_USER_ID"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider"]
+  - term: "Hibernate Version Number"
+    definition: >
+      A version number used to support Hibernate caching and pessimistic locking for
+      provider records.
+    synonyms: ["L_HIBERNATE_VER_NUM", "version number", "locking version"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider"]

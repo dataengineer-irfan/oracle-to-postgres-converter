@@ -87,8 +87,8 @@ Examples:
                         metavar="N", help=f"Rows per table (default: {ROWS_PER_TABLE}).")
     parser.add_argument("--schema", default=PG_SCHEMA,
                         metavar="SCHEMA", help=f"Target PG schema (default: {PG_SCHEMA!r}).")
-    parser.add_argument("--table", default=None,
-                        metavar="TABLE", help="Generate/load a single table only.")
+    parser.add_argument("--tables", default=None,
+                        metavar="TABLES", help="Generate/load a comma-separated list of tables.")
     parser.add_argument("--seed", type=int, default=RANDOM_SEED,
                         metavar="SEED", help=f"Random seed (default: {RANDOM_SEED}).")
     return parser
@@ -170,26 +170,48 @@ def main() -> None:
     rows        = args.rows
     schema      = args.schema
     seed        = args.seed
-    single_tbl  = args.table.lower() if args.table else None
     gen_only    = args.generate_only
     no_truncate = args.no_truncate
 
     GENERATED_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     # ── Step 1: Pattern Analysis ─────────────────────────────────────── #
+    # ── Step 1: Pattern Analysis & Rules Engine ───────────────────────── #
     log.info("=" * 56)
+    log.info("Loading enterprise rules from rules.yml ...")
+    from rules_engine import RulesEngine
+    rules_eng = RulesEngine()
+    log.info("Loaded %d rules.", len(rules_eng.rules))
+
     log.info("Reading sample CSVs from %s ...", INPUT_DATA_DIR)
-    analyzer = PatternAnalyzer(INPUT_DATA_DIR)
+    analyzer = PatternAnalyzer(INPUT_DATA_DIR, rules_engine=rules_eng)
     all_profiles = analyzer.analyze_all()
     log.info("Learning patterns ... %d tables analyzed.", len(all_profiles))
 
-    # Filter to single table if requested
-    if single_tbl:
-        if single_tbl not in all_profiles:
-            log.error("Table '%s' not found in sample data. Available: %s",
-                      single_tbl, sorted(all_profiles.keys()))
+    # Enrich profiles with PostgreSQL column max length constraints
+    if not gen_only:
+        try:
+            db_temp = DatabaseManager(DB_CONFIG)
+            analyzer.enrich_with_db_schema(db_temp, all_profiles)
+            db_temp.disconnect()
+        except Exception:
+            pass
+
+    target_tables = [t.strip().lower() for t in args.tables.split(",")] if args.tables else None
+
+    # Filter to requested tables if provided
+    if target_tables:
+        filtered_profiles = {}
+        for tbl in target_tables:
+            if tbl in all_profiles:
+                filtered_profiles[tbl] = all_profiles[tbl]
+            else:
+                log.warning("Table '%s' not found in sample data. Skipping.", tbl)
+        
+        if not filtered_profiles:
+            log.error("None of the requested tables were found in the sample data.")
             sys.exit(1)
-        all_profiles = {single_tbl: all_profiles[single_tbl]}
+        all_profiles = filtered_profiles
 
     # ── Step 2: Data Generation ──────────────────────────────────────── #
     log.info("Generating %d rows per table ...", rows)
@@ -198,6 +220,7 @@ def main() -> None:
         output_dir     = GENERATED_DATA_DIR,
         rows_per_table = rows,
         seed           = seed,
+        rules_engine   = rules_eng,
     )
     gen_results = generator.generate_all()
     total_gen   = sum(gen_results.values())

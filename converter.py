@@ -145,7 +145,9 @@ class OracleToPostgresConverter:
 
     def run(self) -> None:
         """Execute the complete conversion pipeline."""
-        ddl_files = sorted(INPUT_DDL_DIR.glob("*.sql"))
+        common_files = sorted((INPUT_DDL_DIR / "common").glob("*.sql")) if (INPUT_DDL_DIR / "common").exists() else []
+        provider_files = sorted(INPUT_DDL_DIR.glob("*.sql"))
+        ddl_files = common_files + provider_files
 
         if not ddl_files:
             self._log.warning(
@@ -154,7 +156,8 @@ class OracleToPostgresConverter:
             return
 
         self._log.info(
-            "Found %d DDL file(s) in %s", len(ddl_files), INPUT_DDL_DIR
+            "Found %d DDL file(s) (%d common, %d provider) in %s",
+            len(ddl_files), len(common_files), len(provider_files), INPUT_DDL_DIR
         )
 
         # Connect to database (unless convert-only mode)
@@ -266,17 +269,22 @@ class OracleToPostgresConverter:
 
     def _write_output(self, stem: str, result: TableConversion) -> None:
         """Write the converted PostgreSQL DDL to ``output/ddl/<stem>.sql``."""
-        out_path = OUTPUT_DDL_DIR / f"{stem}.sql"
+        from metadata_loader import MetadataLoader
+        from config import COMMON_SCHEMA
+        tbl_schema = MetadataLoader.get_schema_for_table(result.table_name, default_schema=self._schema, common_schema=COMMON_SCHEMA)
+        out_dir = OUTPUT_DDL_DIR / "common" if tbl_schema == COMMON_SCHEMA else OUTPUT_DDL_DIR
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_path = out_dir / f"{stem}.sql"
 
         header = "\n".join([
             "-- " + "=" * 66,
-            f"-- PostgreSQL DDL  :  {self._schema}.{result.table_name}",
+            f"-- PostgreSQL DDL  :  {tbl_schema}.{result.table_name}",
             f"-- Source file     :  {result.source_file}",
             f"-- Generated       :  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-            f"-- Schema          :  {self._schema}",
+            f"-- Schema          :  {tbl_schema}",
             "-- " + "=" * 66,
             "",
-            f"SET search_path TO {self._schema};",
+            f"SET search_path TO {self._schema}, {COMMON_SCHEMA}, public;",
             "",
         ])
 
@@ -298,16 +306,17 @@ class OracleToPostgresConverter:
     def _write_fk_file(self, fk_statements: list[str]) -> None:
         """Write all deferred FK statements to ``output/ddl/all_fk_constraints.sql``."""
         fk_path = OUTPUT_DDL_DIR / "all_fk_constraints.sql"
+        from config import COMMON_SCHEMA
 
         header = "\n".join([
             "-- " + "=" * 66,
             "-- All Foreign Key Constraints",
             "-- Run this script AFTER all tables have been created.",
             f"-- Generated  :  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-            f"-- Schema     :  {self._schema}",
+            f"-- Schema     :  {self._schema}, {COMMON_SCHEMA}",
             "-- " + "=" * 66,
             "",
-            f"SET search_path TO {self._schema};",
+            f"SET search_path TO {self._schema}, {COMMON_SCHEMA}, public;",
             "",
         ])
 

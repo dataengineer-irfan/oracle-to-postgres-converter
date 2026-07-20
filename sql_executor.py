@@ -80,8 +80,10 @@ class SQLExecutor:
         with conn.cursor() as cur:
             # pgcrypto supplies gen_random_uuid() for SYS_GUID() defaults
             cur.execute('CREATE EXTENSION IF NOT EXISTS "pgcrypto";')
+            cur.execute("CREATE SCHEMA IF NOT EXISTS common;")
             cur.execute(f"CREATE SCHEMA IF NOT EXISTS {self._schema};")
-        logger.info("Schema '%s' is ready.", self._schema)
+            cur.execute(f"SET search_path TO {self._schema}, common, public;")
+        logger.info("Schemas 'common' and '%s' are ready.", self._schema)
 
     # ------------------------------------------------------------------ #
     # Per-table DDL execution                                              #

@@ -1,0 +1,19 @@
+# business_rules.yaml
+# Use this file to define enterprise business rules that the Database Schema cannot enforce.
+# For example, injecting required Child tables when a Parent is requested.
+
+required_children:
+  # When the user asks to generate a Provider (p_dtl_tb)
+  # The database doesn't enforce that an address MUST exist (since it's a child relationship).
+  # We define it here so the engine automatically adds the Address and linking tables.
+  p_dtl_tb:
+    - g_cmn_enty_tb      # Common Entity
+    - g_adr_usg_tb       # Address Usage
+    - g_adr_tb           # Address
+    - p_enrol_stat_tb    # <--- GUARANTEES an Enrollment Status is generated
+    - p_lic_cert_tb      # <--- GUARANTEES a License is generated
+    - p_ntwk_prtcptn_tb  # <--- GUARANTEES Network Participation is generated
+
+  # You can add more scenarios below as you find them!
+  # example_parent_tb:
+  #   - example_child_tb

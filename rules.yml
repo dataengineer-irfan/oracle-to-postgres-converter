@@ -1,0 +1,337 @@
+# ==========================================================
+# Enterprise Synthetic Data Generation Rules
+# Healthcare Provider & Common Module
+# ==========================================================
+# Rebuilt against verified DDL (DDL_Tables.zip / DDLS.zip)
+# and enterprise rules from _Input/Rules.txt.
+# ==========================================================
+
+global:
+  locale: en_US
+  default_rows: 1000
+  random_seed: 12345
+  schema: provider
+  common_schema: common
+
+columns:
+
+  # --------------------------------------------------------
+  # Provider Internal System Identifier
+  # Table: p_dtl_tb / all child tables (PK / composite PK)
+  # --------------------------------------------------------
+  p_sys_id:
+    generator: sequence
+    start: 900001
+    increment: 1
+    description: "Provider Internal System Identifier - functions as the Medicaid Provider ID. Primary key on p_dtl_tb, first part of composite PK on every child table."
+
+  # --------------------------------------------------------
+  # Common Entity Surrogate Key
+  # Table: common.g_cmn_enty_tb, common.g_adr_usg_tb, p_dtl_tb
+  # --------------------------------------------------------
+  g_cmn_enty_sk:
+    generator: sequence
+    start: 1000001
+    increment: 1
+    description: "Common Entity Surrogate Key. Links provider.p_dtl_tb to common.g_cmn_enty_tb and common.g_adr_usg_tb."
+
+  # --------------------------------------------------------
+  # Address Surrogate Key
+  # Table: common.g_adr_tb, common.g_adr_usg_tb
+  # --------------------------------------------------------
+  g_adr_sk:
+    generator: sequence
+    start: 5000001
+    increment: 1
+    description: "Address Surrogate Key on common.g_adr_tb and common.g_adr_usg_tb."
+
+  # --------------------------------------------------------
+  # Location Code Assignment Rule (_Input/Rules.txt)
+  # Table: p_dtl_tb.p_locn_cd
+  # I = In-State (ND), B = Border (MT/SD/MN), O = Out-of-State
+  # --------------------------------------------------------
+  p_locn_cd:
+    generator: choice
+    values:
+      - "I"    # In-State (ND)
+      - "B"    # Border Provider (MT, SD, MN)
+      - "O"    # Out-of-State Provider
+    description: "Location Code Assignment Rule. Evaluated based on Service Location State: I = In-State (ND), B = Border (MT/SD/MN), O = Out-of-State."
+
+  # --------------------------------------------------------
+  # Doing Business As Name (_Input/Rules.txt)
+  # Allowed characters: A-Z, a-z, 0-9, comma, apostrophe, hashtag, ampersand, period, dash, underscore, space
+  # Table: p_dtl_tb.p_dba_nam, p_owner_dtl_tb.p_owner_dba_nam
+  # --------------------------------------------------------
+  p_dba_nam:
+    generator: regex
+    pattern: "[A-Z][a-zA-Z0-9 &#._-]{3,24}"
+    description: "Doing Business As Name. Follows enterprise validation regex ^[A-Za-z0-9,\\'`#&._\\- ]+$."
+
+  # --------------------------------------------------------
+  # Sort Name (_Input/Rules.txt)
+  # Individual: {lastName}, {firstName} {middleInitial}
+  # Group: {doingBusinessAsName}
+  # Table: p_dtl_tb.p_sort_nam
+  # --------------------------------------------------------
+  p_sort_nam:
+    generator: faker
+    faker_tag: last_name
+    description: "Provider Sort Name used for sorting and display purposes."
+
+  # --------------------------------------------------------
+  # Gender Code (_Input/Rules.txt)
+  # Table: p_dtl_tb.p_gender_cd, p_nppes_npi_src_tb.p_gender_cd
+  # --------------------------------------------------------
+  p_gender_cd:
+    generator: choice
+    values:
+      - "M"    # Male
+      - "F"    # Female
+    description: "Provider Gender Code (M = Male, F = Female). Actual DB column is p_gender_cd."
+
+  # Keep backward compatibility alias
+  p_gndr_cd:
+    generator: choice
+    values:
+      - "M"
+      - "F"
+    description: "Alias kept for backward compatibility. Actual column is p_gender_cd."
+
+  # --------------------------------------------------------
+  # Address Usage Type Code (_Input/Rules.txt)
+  # Table: common.g_adr_usg_tb.g_adr_usg_ty_cd
+  # --------------------------------------------------------
+  g_adr_usg_ty_cd:
+    generator: choice
+    values:
+      - "01"   # Billing Address
+      - "02"   # Service Location / Primary Address
+      - "03"   # Mailing Address
+    description: "Address Usage Type Code. 01 = Billing, 02 = Service Location (Primary), 03 = Mailing."
+
+  # --------------------------------------------------------
+  # Address State Code (_Input/Rules.txt)
+  # Table: common.g_adr_tb.g_us_state_cd, p_lic_cert_tb.p_lic_cert_state_cd
+  # --------------------------------------------------------
+  g_us_state_cd:
+    generator: choice
+    values: ["ND", "MT", "SD", "MN", "TX", "CA", "NY", "FL", "NC", "IL"]
+    description: "2-character USPS state code. Includes in-state (ND) and border states (MT, SD, MN)."
+
+  # --------------------------------------------------------
+  # Address 5-Digit ZIP Code (_Input/Rules.txt)
+  # Table: common.g_adr_tb.g_zip5_cd
+  # --------------------------------------------------------
+  g_zip5_cd:
+    generator: regex
+    pattern: "[0-9]{5}"
+    description: "5-digit USPS Postal ZIP Code on common.g_adr_tb."
+
+  # --------------------------------------------------------
+  # Phone Number Format (_Input/Rules.txt)
+  # 10 digits in XXX-XXX-XXXX format
+  # Table: common.g_phone_tb, provider contact tables
+  # --------------------------------------------------------
+  p_phn_num:
+    generator: regex
+    pattern: "[2-9][0-9]{2}-[0-9]{3}-[0-9]{4}"
+    description: "10-digit contact phone number in XXX-XXX-XXXX format."
+
+  # --------------------------------------------------------
+  # NPI (National Provider Identifier)
+  # Table: p_alt_id_tb.p_alt_id where p_alt_id_ty_cd = 'NPI'
+  # --------------------------------------------------------
+  p_alt_id_npi:
+    generator: regex
+    pattern: "[0-9]{10}"
+    description: "NPI value stored in p_alt_id_tb.p_alt_id when p_alt_id_ty_cd = 'NPI'. 10 numeric digits."
+    applies_to:
+      table: p_alt_id_tb
+      column: p_alt_id
+      condition: "p_alt_id_ty_cd = 'NPI'"
+
+  # --------------------------------------------------------
+  # Alternate Identifier Type Code
+  # Table: p_alt_id_tb.p_alt_id_ty_cd
+  # --------------------------------------------------------
+  p_alt_id_ty_cd:
+    generator: choice
+    values:
+      - "NPI"
+      - "DEA"
+      - "MCR"    # Medicare legacy number
+      - "ND"     # State-specific alternate ID
+    description: "Alternate Provider Identifier Type Code."
+
+  # --------------------------------------------------------
+  # State-Specific Alternate Provider Identifier
+  # Table: p_alt_id_tb.p_alt_id where p_alt_id_ty_cd = 'ND'
+  # --------------------------------------------------------
+  p_alt_id_state_specific:
+    generator: regex
+    pattern: "ND[0-9]{6}"
+    description: "State-specific alternate provider identifier"
+    applies_to:
+      table: p_alt_id_tb
+      column: p_alt_id
+      condition: "p_alt_id_ty_cd = 'ND'"
+
+  # --------------------------------------------------------
+  # DEA Number
+  # Table: p_alt_id_tb.p_alt_id where p_alt_id_ty_cd = 'DEA'
+  # --------------------------------------------------------
+  p_alt_id_dea:
+    generator: regex
+    pattern: "[A-Z]{2}[0-9]{7}"
+    description: "DEA registration number, stored in p_alt_id_tb.p_alt_id when p_alt_id_ty_cd = 'DEA'."
+    applies_to:
+      table: p_alt_id_tb
+      column: p_alt_id
+      condition: "p_alt_id_ty_cd = 'DEA'"
+
+  # --------------------------------------------------------
+  # Taxonomy Code
+  # Table: p_txnmy_tb.p_txnmy_cd
+  # --------------------------------------------------------
+  p_txnmy_cd:
+    generator: choice
+    values:
+      - "207Q00000X"
+      - "207R00000X"
+      - "207RC0000X"
+      - "208D00000X"
+      - "2084N0400X"
+      - "261QP2300X"
+      - "261QR1300X"
+      - "282N00000X"
+    description: "Valid Healthcare Provider Taxonomy Codes (NUCC)."
+
+  # --------------------------------------------------------
+  # License/Certification Number (_Input/Rules.txt)
+  # Uppercase alphanumeric with optional hyphens
+  # Table: p_lic_cert_tb.p_lic_cert_num
+  # --------------------------------------------------------
+  p_lic_cert_num:
+    generator: regex
+    pattern: "[A-Z]{2}-[A-Z]{2}-[0-9]{5}"
+    description: "State-issued license/certification number, e.g. ND-MD-88213."
+
+  # --------------------------------------------------------
+  # Owner Tax ID / SSN (_Input/Rules.txt)
+  # Must contain 9 numeric digits, non-all-zeroes
+  # Table: p_owner_dtl_tb.p_owner_tax_id, p_owner_dtl_tb.p_owner_ssn_num
+  # --------------------------------------------------------
+  p_owner_tax_id:
+    generator: regex
+    pattern: "[1-9][0-9]{8}"
+    description: "Owner's federal tax ID (EIN) or SSN. 9 numeric digits, non-all-zeroes."
+
+  p_owner_ssn_num:
+    generator: regex
+    pattern: "[1-9][0-9]{8}"
+    description: "Owner's Social Security Number - 9 digits, non-all-zeroes."
+    sensitive: true
+
+  # --------------------------------------------------------
+  # CLIA Number
+  # Table: p_clia_lab_tb.p_clia_num
+  # --------------------------------------------------------
+  p_clia_num:
+    generator: regex
+    pattern: "[0-9]{2}D[0-9]{7}"
+    description: "CLIA laboratory certification number: 2-digit state code + 'D' + 7 digits."
+
+  # --------------------------------------------------------
+  # Provider Type Code
+  # Table: p_ty_tb.p_ty_cd
+  # --------------------------------------------------------
+  p_ty_cd:
+    generator: choice
+    values: ["01", "02", "03", "04", "05"]
+    description: "Provider Type Code classification."
+
+  # --------------------------------------------------------
+  # Specialty Code
+  # Table: p_specl_tb.p_specl_cd
+  # --------------------------------------------------------
+  p_specl_cd:
+    generator: choice
+    values: ["011", "012", "021", "031", "041"]
+    description: "Provider certified medical specialty code."
+
+  # --------------------------------------------------------
+  # Language Code
+  # Table: p_lang_tb.p_lang_cd
+  # --------------------------------------------------------
+  p_lang_cd:
+    generator: choice
+    values: ["EN", "ES", "ZH", "VI", "FR", "DE", "KO", "AR"]
+    description: "Provider or staff language code."
+
+  # --------------------------------------------------------
+  # County Code
+  # Table: p_prov_cnty_tn.g_cnty_cd, common.g_adr_tb.g_cnty_cd
+  # --------------------------------------------------------
+  g_cnty_cd:
+    generator: regex
+    pattern: "[0-9]{5}"
+    description: "5-digit FIPS County Code."
+
+  # --------------------------------------------------------
+  # Medicare Provider Number
+  # Table: p_mcare_tb.p_mcare_alt_id
+  # --------------------------------------------------------
+  p_mcare_alt_id:
+    generator: regex
+    pattern: "[0-9]{6}[A-Z]{0,2}"
+    description: "Medicare provider alternate identifier."
+
+  p_mcare_part_cd:
+    generator: choice
+    values: ["A", "B", "AB"]
+    description: "Medicare Part participation code (Part A, Part B, or both)."
+
+  # --------------------------------------------------------
+  # Network Participation Status
+  # Table: p_nw_part_tb.p_nw_stat_cd
+  # --------------------------------------------------------
+  p_nw_stat_cd:
+    generator: choice
+    values: ["AC", "IN", "PN"]
+    description: "Network participation status code (Active / Inactive / Pending)."
+
+  p_cmn_lic_actn_cd:
+    generator: choice
+    values: ['A', 'B', 'C']
+  p_hcidea_alt_id:
+    generator: sequence
+    start: 2000000
+    increment: 1
+  p_hcidea_mcaid_state_cd:
+    generator: choice
+    values: ['NY', 'CA', 'TX', 'FL']
+  p_hcidea_spi_root_id:
+    generator: sequence
+    start: 3000000
+    increment: 1
+  p_oig_match_cd:
+    generator: choice
+    values: ['Y', 'N']
+  p_prim_dspnsng_ty_cd:
+    generator: choice
+    values: ['A1', 'B2', 'C3']
+  p_prc_lvl_id:
+    generator: choice
+    values: ['10', '20', '30']
+
+  p_hcidea_alt_id_ty_cd:
+    generator: choice
+    values: ['TY1', 'TY2']
+  p_hcidea_mcaid_id:
+    generator: sequence
+    start: 4000000
+    increment: 1
+  p_hcidea_spi_locn_cd:
+    generator: choice
+    values: ['L1', 'L2']

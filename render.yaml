@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: synthetic-data-backend
+    env: docker
+    dockerfilePath: ./Dockerfile.backend
+    envVars:
+      - key: DB_HOST
+        value: postgres-db
+      - key: DB_PORT
+        value: 5432
+      - key: DB_NAME
+        value: postgres
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        value: password
+
+  - type: web
+    name: synthetic-data-frontend
+    env: docker
+    dockerfilePath: ./Dockerfile.frontend
+    envVars:
+      - key: BACKEND_URL
+        value: synthetic-data-backend.onrender.com

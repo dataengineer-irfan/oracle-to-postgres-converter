@@ -28,9 +28,10 @@ OUTPUT_DDL_DIR  : Path = BASE_DIR / "output" / "ddl"
 OUTPUT_LOGS_DIR : Path = BASE_DIR / "output" / "logs"
 
 # ---------------------------------------------------------------------------
-# PostgreSQL target schema
+# PostgreSQL target schemas
 # ---------------------------------------------------------------------------
 PG_SCHEMA: str = os.getenv("PG_SCHEMA", "provider")
+COMMON_SCHEMA: str = os.getenv("COMMON_SCHEMA", "common")
 
 # ---------------------------------------------------------------------------
 # PostgreSQL connection parameters

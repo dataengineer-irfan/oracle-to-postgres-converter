@@ -30,6 +30,8 @@ from typing import Optional
 import sqlparse
 
 from datatype_mapper import DataTypeMapper
+from metadata_loader import MetadataLoader
+from config import INPUT_DDL_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -75,9 +77,11 @@ class DDLConverter:
         Target PostgreSQL schema name (default: ``"provider"``).
     """
 
-    def __init__(self, schema: str = "provider") -> None:
-        self.schema  = schema
-        self._mapper = DataTypeMapper()
+    def __init__(self, schema: str = "provider", common_schema: str = "common", metadata_loader: Optional[MetadataLoader] = None) -> None:
+        self.schema        = schema
+        self.common_schema = common_schema
+        self._mapper       = DataTypeMapper()
+        self._metadata_loader = metadata_loader or MetadataLoader(INPUT_DDL_DIR)
 
     # ------------------------------------------------------------------ #
     # Public entry point                                                   #
@@ -331,14 +335,39 @@ class DDLConverter:
                 if col:
                     columns.append(col)
 
+        # Merge Primary Keys from MetadataLoader if DDL did not contain PKs
+        if not pk_defs and self._metadata_loader:
+            pks = self._metadata_loader.get_pks_for_table(tbl_name)
+            if pks:
+                cols_str = ", ".join(f'"{pk.column_name.lower()}"' for pk in pks)
+                con_name = pks[0].constraint_name.lower() if pks[0].constraint_name else f"pk_{tbl_name}"
+                pk_defs.append(f"CONSTRAINT {con_name} PRIMARY KEY ({cols_str})")
+
+        tbl_schema = MetadataLoader.get_schema_for_table(tbl_name, default_schema=self.schema, common_schema=self.common_schema)
+
+        # Merge Foreign Keys from MetadataLoader
+        if self._metadata_loader:
+            excel_fks = self._metadata_loader.get_fks_for_table(tbl_name)
+            for fk in excel_fks:
+                child_s = MetadataLoader.get_schema_for_table(fk.child_table, default_schema=self.schema, common_schema=self.common_schema)
+                parent_s = MetadataLoader.get_schema_for_table(fk.parent_table, default_schema=self.schema, common_schema=self.common_schema)
+                fk_sql = (
+                    f"ALTER TABLE {child_s}.{fk.child_table.lower()} "
+                    f"ADD CONSTRAINT {fk.fk_name.lower()} "
+                    f"FOREIGN KEY ({fk.child_column.lower()}) "
+                    f"REFERENCES {parent_s}.{fk.parent_table.lower()} ({fk.parent_column.lower()});"
+                )
+                if fk_sql not in fk_stmts:
+                    fk_stmts.append(fk_sql)
+
         constraints = pk_defs + uq_defs + ck_defs
         body_lines  = self._format_table_body(columns, constraints)
 
         drop_stmt = (
-            f"DROP TABLE IF EXISTS {self.schema}.{tbl_name} CASCADE;"
+            f"DROP TABLE IF EXISTS {tbl_schema}.{tbl_name} CASCADE;"
         )
         create_stmt = (
-            f"CREATE TABLE {self.schema}.{tbl_name} (\n"
+            f"CREATE TABLE {tbl_schema}.{tbl_name} (\n"
             + ",\n".join(body_lines)
             + "\n);"
         )
@@ -628,11 +657,14 @@ class DDLConverter:
         on_delete  = (m.group(4) or "").strip()
         on_del_cl  = f"\n    {on_delete}" if on_delete else ""
 
+        child_s  = MetadataLoader.get_schema_for_table(src_table, default_schema=self.schema, common_schema=self.common_schema)
+        parent_s = MetadataLoader.get_schema_for_table(ref_table, default_schema=self.schema, common_schema=self.common_schema)
+
         return (
-            f"ALTER TABLE {self.schema}.{src_table}\n"
+            f"ALTER TABLE {child_s}.{src_table}\n"
             f"    ADD CONSTRAINT {con_name}\n"
             f"    FOREIGN KEY ({src_cols})\n"
-            f"    REFERENCES {self.schema}.{ref_table} ({ref_cols}){on_del_cl};"
+            f"    REFERENCES {parent_s}.{ref_table} ({ref_cols}){on_del_cl};"
         )
 
     def _bare_pk(self, defn: str) -> str:
@@ -675,9 +707,10 @@ class DDLConverter:
 
         columns = self._clean_index_cols(col_body)
 
+        tbl_schema = MetadataLoader.get_schema_for_table(tbl_name, default_schema=self.schema, common_schema=self.common_schema)
         return (
             f"CREATE {unique}INDEX IF NOT EXISTS {idx_name}\n"
-            f"    ON {self.schema}.{tbl_name} ({columns});"
+            f"    ON {tbl_schema}.{tbl_name} ({columns});"
         )
 
     # ── Index column cleaner (preserves ASC/DESC/expressions) ─────────── #
@@ -719,7 +752,8 @@ class DDLConverter:
         )
         if m:
             tbl = self._raw_name(m.group(1))
-            return f"COMMENT ON TABLE {self.schema}.{tbl} IS {m.group(2)};"
+            tbl_schema = MetadataLoader.get_schema_for_table(tbl, default_schema=self.schema, common_schema=self.common_schema)
+            return f"COMMENT ON TABLE {tbl_schema}.{tbl} IS {m.group(2)};"
 
         # ── COMMENT ON COLUMN (fully-qualified, quoted) ───────────────── #
         m = re.match(
@@ -734,7 +768,8 @@ class DDLConverter:
         if m:
             tbl = m.group(1).lower()
             col = m.group(2).lower()
-            return f"COMMENT ON COLUMN {self.schema}.{tbl}.{col} IS {m.group(3)};"
+            tbl_schema = MetadataLoader.get_schema_for_table(tbl, default_schema=self.schema, common_schema=self.common_schema)
+            return f"COMMENT ON COLUMN {tbl_schema}.{tbl}.{col} IS {m.group(3)};"
 
         # ── COMMENT ON COLUMN (unquoted identifiers) ──────────────────── #
         m = re.match(
@@ -749,7 +784,8 @@ class DDLConverter:
         if m:
             tbl = m.group(1).lower()
             col = m.group(2).lower()
-            return f"COMMENT ON COLUMN {self.schema}.{tbl}.{col} IS {m.group(3)};"
+            tbl_schema = MetadataLoader.get_schema_for_table(tbl, default_schema=self.schema, common_schema=self.common_schema)
+            return f"COMMENT ON COLUMN {tbl_schema}.{tbl}.{col} IS {m.group(3)};"
 
         logger.warning("Cannot parse COMMENT statement: %.100s", stmt)
         return None

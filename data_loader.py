@@ -179,13 +179,17 @@ class DataLoader:
         if exact_dt.exists():
             return exact_dt
 
-        # Case-insensitive scan
+        # Case-insensitive scan across data_dir and common DDL dir
         target = table_name.upper()
         target_dt = f"{target}_DATA_TABLE"
-        for path in self._data_dir.glob("*.csv"):
-            stem_upper = path.stem.upper()
-            if stem_upper == target or stem_upper == target_dt:
-                return path
+        search_dirs = [self._data_dir, self._data_dir.parent / "ddl" / "common"]
+        for sdir in search_dirs:
+            if not sdir.exists():
+                continue
+            for path in sdir.glob("*.csv"):
+                stem_upper = path.stem.upper()
+                if stem_upper == target or stem_upper == target_dt:
+                    return path
 
         return None
 
@@ -195,6 +199,9 @@ class DataLoader:
 
         Uses ``ON CONFLICT DO NOTHING`` so re-runs are idempotent.
         """
+        from metadata_loader import MetadataLoader
+        from config import COMMON_SCHEMA
+        full_table = MetadataLoader.get_qualified_table_name(table_name, default_schema=self._schema, common_schema=COMMON_SCHEMA)
         rows_loaded = 0
 
         with open(csv_path, newline="", encoding="utf-8-sig") as fh:
@@ -210,7 +217,7 @@ class DataLoader:
             col_list   = ", ".join(pg_columns)
             placeholders = ", ".join(["%s"] * len(pg_columns))
             insert_sql = (
-                f"INSERT INTO {self._schema}.{table_name} ({col_list})\n"
+                f"INSERT INTO {full_table} ({col_list})\n"
                 f"VALUES ({placeholders})\n"
                 f"ON CONFLICT DO NOTHING;"
             )
