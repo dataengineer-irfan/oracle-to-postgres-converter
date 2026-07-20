@@ -1,0 +1,51 @@
+Question,Status,Tables,Duration(s)
+create 1 provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",16.68
+generate location data,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",5.71
+create 50 addresses,Success,"g_adr_phone_usg_tb, g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, g_phone_tb, g_phone_usg_tb",4.2
+setup medicaid enrollment,Success,"g_cmn_enty_tb, g_note_set_tb",4.99
+I need data for an OIG excluded pharmacy,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",8.93
+generate a facility provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",2.6
+create data for taxonomy codes,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",2.58
+setup clia certification for a lab,Success,"g_adr_tb, g_cmn_enty_tb, g_note_set_tb, g_pye_pyr_eft_setup_tb, g_pye_pyr_tb",4.74
+create some provider affiliations,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",11.39
+I need 100 npi records,Success,"g_case_fltr_tb, g_cr_fltr_tb, g_user_tb, g_work_unit_tb",2.85
+setup medicare provider data,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",12.34
+generate email addresses for a provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",13.89
+add phone numbers to the address table,Success,"g_adr_phone_usg_tb, g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, g_phone_tb, g_phone_usg_tb",4.99
+create a business entity with notes,Success,"g_adr_phone_usg_tb, g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, g_phone_tb, g_phone_usg_tb",4.7
+generate data for special needs providers,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",12.09
+create a trading partner record,Success,"g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, t_carr_tb, w_tp_prov_xref_tb, w_tp_tb",3.44
+generate risk screening levels,Success,"p_scrng_risk_lvl_asgn_hist_tb, p_scrng_tb",3.43
+set up a revalidation tracking record,Skipped (No tables),None,1.15
+create letters for a provider request,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",13.28
+generate event tracking for providers,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",12.14
+create a group provider and link it,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",2.14
+generate individual provider with specialty,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",11.4
+setup a network participation record,Success,"g_adr_tb, g_cmn_enty_tb, g_note_set_tb, g_pye_pyr_eft_setup_tb, g_pye_pyr_tb",4.7
+I need 5 language records for interpretation services,Success,"g_case_fltr_tb, g_cr_fltr_tb, g_user_tb, g_work_unit_tb",2.92
+generate a comprehensive provider profile,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",12.23
+create data for dsh hospitals,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",2.51
+generate ownership changes requests,Success,g_work_unit_tb,3.36
+setup a provider with previous names,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",12.47
+add office hours for a clinic,Success,"g_adr_phone_usg_tb, g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, g_phone_tb, g_phone_usg_tb",3.55
+create provider demographics,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",11.6
+generate a record for an out of state provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",2.67
+setup global endorsements for a provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",3.06
+create 1915i service providers,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",10.91
+generate data for sandata providers,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",4.24
+setup therap providers,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",10.45
+create alternate IDs for a provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",2.65
+generate a record for a non-medical provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",3.1
+setup a QSP provider questionnaire,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",2.84
+create adverse legal action responses,Skipped (No tables),None,1.04
+generate overpayment questionnaire data,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",8.4
+setup exclusion responses,Success,"g_adr_tb, g_cmn_enty_tb, g_note_set_tb, g_pye_pyr_eft_setup_tb, g_pye_pyr_tb",3.24
+create data for a PBM network,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",9.12
+generate a provider correspondence record,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",11.24
+setup a call script for a provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",6.26
+create a manual review task for a provider,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",3.37
+generate some basic provider types,Success,"g_adr_tb, g_adr_usg_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_enrol_stat_tb, p_lic_cert_tb, p_ntwk_prtcptn_tb",11.51
+add enrollment status records,Success,"g_call_script_tb, g_crspd_cat_tb, g_work_unit_tb",3.33
+create application status tracking,Success,"g_call_script_tb, g_crspd_cat_tb, g_work_unit_tb",2.91
+setup electronic funds transfer setup,Success,g_e_adr_tb,3.73
+generate remittance advice mediums,Success,"g_adr_tb, g_cmn_enty_tb, g_note_set_tb, p_dtl_tb, p_ra_medm_tb",2.82

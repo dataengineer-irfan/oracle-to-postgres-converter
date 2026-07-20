@@ -10,6 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt fastapi uvicorn websockets Le
 # Copy the entire backend API code and the data generator core
 COPY api/ ./api/
 COPY *.py ./
+COPY *.yml ./
+COPY *.yaml ./
 COPY _Input/ ./_Input/
 COPY input/ ./input/
 

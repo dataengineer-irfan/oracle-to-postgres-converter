@@ -44,7 +44,7 @@ async def run_test_harness():
                 parse_resp = await client.post(f"{API_URL}/parse-intent", json={"prompt": prompt})
                 parse_resp.raise_for_status()
                 data = parse_resp.json()
-                tables = data.get("tables", [])
+                tables = data.get("plan", [])
                 print(f"  -> Identified {len(tables)} tables: {tables[:3]}{'...' if len(tables) > 3 else ''}")
             except Exception as e:
                 print(f"  -> [ERROR] Parsing failed: {e}")

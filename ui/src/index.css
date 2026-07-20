@@ -1,9 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── CSS DESIGN TOKENS ─────────────────────────────────────────────────────── */
+:root {
+  --color-bg:      #0B1220;
+  --color-panel:   #111827;
+  --color-border:  #2A3441;
+  --color-text:    #F8FAFC;
+  --color-muted:   #94A3B8;
+  --color-primary: #2563EB;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error:   #EF4444;
+
+  --radius: 2px;
+  --transition: 150ms;
+  --header-h: 36px;
+  --tab-h: 36px;
+  --toolbar-h: 32px;
+  --sidebar-w: 240px;
+  --inspector-w: 280px;
+}
+
+/* ─── GLOBAL RESET ───────────────────────────────────────────────────────────── */
 @layer base {
-  body {
-    @apply bg-slate-950 text-slate-200 antialiased;
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
+
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans;
+    font-size: 13px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── VS Code-style scrollbar ── */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+  ::-webkit-scrollbar-corner { background: transparent; }
+}
+
+/* ─── UTILITY CLASSES ─────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Flat border — same everywhere. No mixing. */
+  .ide-border      { border: 1px solid var(--color-border); }
+  .ide-border-t    { border-top: 1px solid var(--color-border); }
+  .ide-border-b    { border-bottom: 1px solid var(--color-border); }
+  .ide-border-l    { border-left: 1px solid var(--color-border); }
+  .ide-border-r    { border-right: 1px solid var(--color-border); }
+
+  /* Section header — flat, uppercase, compact */
+  .ide-section-header {
+    @apply flex items-center px-2 py-1 text-xs font-semibold uppercase tracking-wider text-muted;
+    height: 28px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+    letter-spacing: 0.08em;
+  }
+
+  /* Compact toolbar — locked height, border bottom */
+  .ide-toolbar {
+    @apply flex items-center px-2;
+    height: var(--toolbar-h);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-panel);
+    flex-shrink: 0;
+  }
+
+  /* Explorer tree item */
+  .ide-tree-item {
+    @apply flex items-center w-full cursor-pointer select-none;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 13px;
+    color: var(--color-muted);
+    transition: background var(--transition), color var(--transition);
+  }
+  .ide-tree-item:hover {
+    background: rgba(42,52,65,0.6);
+    color: var(--color-text);
+  }
+  .ide-tree-item.active {
+    background: rgba(37,99,235,0.15);
+    color: var(--color-text);
+    border-left: 2px solid var(--color-primary);
+  }
+
+  /* VS Code tab */
+  .ide-tab {
+    @apply flex items-center cursor-pointer select-none whitespace-nowrap;
+    height: var(--tab-h);
+    padding: 0 16px;
+    font-size: 13px;
+    color: var(--color-muted);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition);
+    flex-shrink: 0;
+  }
+  .ide-tab:hover {
+    background: rgba(42,52,65,0.5);
+    color: var(--color-text);
+  }
+  .ide-tab.active {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border-bottom-color: var(--color-primary);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center font-medium;
+    height: 28px;
+    padding: 0 12px;
+    font-size: 13px;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    transition: background var(--transition);
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: #1d4ed8; }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center font-medium;
+    height: 28px;
+    padding: 0 12px;
+    font-size: 13px;
+    background: transparent;
+    color: var(--color-text);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: rgba(42,52,65,0.6); }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center;
+    height: 28px;
+    padding: 0 8px;
+    font-size: 13px;
+    background: transparent;
+    color: var(--color-muted);
+    border-radius: var(--radius);
+    border: none;
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+  .btn-ghost:hover { background: rgba(42,52,65,0.6); color: var(--color-text); }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center font-medium;
+    height: 28px;
+    padding: 0 12px;
+    font-size: 13px;
+    background: var(--color-error);
+    color: #fff;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    transition: background var(--transition);
+    cursor: pointer;
+  }
+  .btn-danger:hover { background: #dc2626; }
+
+  /* Loading spinner */
+  .ide-spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-top-color: #fff;
+    border-radius: 9999px;
+    animation: spin 0.6s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Metric row — key/value, no card */
+  .ide-metric-row {
+    @apply flex items-center justify-between;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 12px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Role badge */
+  .role-badge {
+    @apply inline-flex items-center uppercase font-semibold;
+    font-size: 10px;
+    padding: 1px 6px;
+    letter-spacing: 0.08em;
+    border-radius: var(--radius);
+  }
+
+  /* Permission lock overlay */
+  .permission-lock {
+    @apply absolute inset-0 flex flex-col items-center justify-center;
+    background: rgba(11,18,32,0.85);
+    backdrop-filter: blur(2px);
+    z-index: 50;
+  }
+}
+
+/* ─── AG GRID DARK THEME ─────────────────────────────────────────────────────── */
+.ag-theme-alpine-dark {
+  --ag-background-color: var(--color-panel) !important;
+  --ag-header-background-color: var(--color-bg) !important;
+  --ag-odd-row-background-color: var(--color-panel) !important;
+  --ag-border-color: var(--color-border) !important;
+  --ag-font-family: 'Inter', sans-serif !important;
+  --ag-font-size: 12px !important;
+  --ag-row-height: 24px !important;
+  --ag-header-height: 28px !important;
+  --ag-cell-horizontal-padding: 8px !important;
+}
+
+/* ─── RESIZE HANDLES ─────────────────────────────────────────────────────────── */
+.ResizeHandleOuter {
+  flex: 0 0 1px;
+  background-color: var(--color-border);
+  position: relative;
+  transition: background-color var(--transition);
+}
+.ResizeHandleOuter[data-resize-handle-active] {
+  background-color: var(--color-primary);
+}
+.ResizeHandleInner {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -4px; right: -4px;
+  cursor: col-resize;
+  z-index: 10;
+}
+.ResizeHandleOuter[data-panel-group-direction="vertical"] .ResizeHandleInner {
+  top: -4px; bottom: -4px;
+  left: 0; right: 0;
+  cursor: row-resize;
 }
