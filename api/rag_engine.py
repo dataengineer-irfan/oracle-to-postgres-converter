@@ -8,6 +8,7 @@ class RAGEngine:
         self.odm_tables = set()
         self.ldm_to_tables = {} # Maps LDM entity name -> List of physical tables
         self.table_descriptions = {} # Maps table_name -> description
+        self.table_columns = {} # Maps table_name -> list of {name, desc}
         
         # Load ODM first to build the LDM -> Table mapping
         self._load_odm(odm_path)
@@ -23,6 +24,14 @@ class RAGEngine:
                         self.odm_tables.add(table_name)
                         desc = tbl.get("description", "").lower()
                         self.table_descriptions[table_name] = desc
+                        
+                        columns = []
+                        for col in tbl.get("columns", []):
+                            col_name = col.get("column_name", "").lower()
+                            col_desc = col.get("description", "").strip()
+                            if col_name:
+                                columns.append({"name": col_name, "desc": col_desc})
+                        self.table_columns[table_name] = columns
                         
                     ldm_entity = tbl.get("maps_to_ldm_entity", "")
                     if ldm_entity:
@@ -53,6 +62,15 @@ class RAGEngine:
         prompt_lower = prompt.lower()
         matched_tables = set()
         
+        # 0. DIRECT MATCH (Highest Priority): If the user literally types the table name!
+        for t in self.odm_tables:
+            if t in prompt_lower:
+                matched_tables.add(t)
+                
+        # If we found direct matches, just return them! No need to guess.
+        if matched_tables:
+            return sorted(list(matched_tables))[:3]
+        
         # 1. Match against Business Glossary terms
         for term, tables in self.glossary.items():
             if term in prompt_lower:
@@ -66,11 +84,11 @@ class RAGEngine:
             if core_name in prompt_lower or core_name_spaces in prompt_lower:
                 matched_tables.add(t)
                 
-            # Full text search on description as fallback
+            # Full text search on description as fallback (with strict stop words)
             desc = self.table_descriptions.get(t, "")
-            # Only match if description contains words from prompt
-            # We look for significant nouns like "address", "bank", etc.
-            words = [w for w in prompt_lower.split() if len(w) > 3 and w not in ["create", "generate", "record", "records", "table", "tables", "with", "that", "this", "some"]]
+            # Filter out extreme common SQL words
+            stop_words = {"create", "generate", "record", "records", "table", "tables", "with", "that", "this", "some", "from", "where", "delete", "update", "select", "insert", "number", "code", "date", "name", "type"}
+            words = [w for w in prompt_lower.split() if len(w) > 4 and w not in stop_words]
             for w in words:
                 if w in desc:
                     matched_tables.add(t)
@@ -83,7 +101,21 @@ class RAGEngine:
             matched_list.remove("p_dtl_tb")
             matched_list.insert(0, "p_dtl_tb")
             
-        return matched_list
+        # TUNE: Limit context window bloat by strictly capping matched tables to top 3
+        return matched_list[:3]
+
+    def retrieve_schema_context(self, matched_tables: list[str]) -> str:
+        """Returns a formatted string containing exact columns and their business descriptions for the LLM."""
+        if not matched_tables:
+            return ""
+        
+        context = "Exact columns from the Enterprise Data Dictionary for the relevant tables:\n"
+        for t in matched_tables:
+            cols = self.table_columns.get(t, [])
+            if cols:
+                col_strs = [f"{c['name']} ({c['desc']})" if c['desc'] else c['name'] for c in cols]
+                context += f"- Table {t}: {', '.join(col_strs)}\n"
+        return context
 
 # Singleton instance initialized lazily
 _engine = None

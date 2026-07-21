@@ -7,10 +7,13 @@ import PermissionGate from '../rbac/PermissionGate';
 import { ENDPOINTS } from '../api/endpoints';
 import client from '../api/client';
 import { useStore } from '../store/useStore';
+import AISqlAssistantTab from '../components/workspace/tabs/AISqlAssistantTab';
 
 export default function DataGenerator() {
   const navigate  = useNavigate();
   const addLog    = useStore(s => s.addLog);
+
+  const [activeMode, setActiveMode] = useState('data_gen'); // 'data_gen' | 'ai_sql'
 
   const [prompt,    setPrompt]   = useState('');
   const [parsing,   setParsing]  = useState(false);
@@ -161,7 +164,19 @@ export default function DataGenerator() {
             IDE
           </button>
           <span style={{ color: 'var(--color-border)' }}>›</span>
-          <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>Smart Test Data Generator</span>
+          <span 
+            style={{ color: activeMode === 'data_gen' ? 'var(--color-primary)' : 'var(--color-text-muted)', cursor: 'pointer', fontWeight: activeMode === 'data_gen' ? 500 : 400 }} 
+            onClick={() => setActiveMode('data_gen')}
+          >
+            Smart Test Data Generator
+          </span>
+          <span style={{ color: 'var(--color-border)' }}>|</span>
+          <span 
+            style={{ color: activeMode === 'ai_sql' ? 'var(--color-primary)' : 'var(--color-text-muted)', cursor: 'pointer', fontWeight: activeMode === 'ai_sql' ? 500 : 400 }} 
+            onClick={() => setActiveMode('ai_sql')}
+          >
+            AI SQL Assistant
+          </span>
         </div>
 
         {/* Toolbar */}
@@ -186,10 +201,15 @@ export default function DataGenerator() {
           }
         />
 
-        {/* Main workspace — two columns, NO cards */}
+        {/* Main workspace */}
         <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
-
-          {/* Left: Prompt + Logs */}
+          {activeMode === 'ai_sql' ? (
+            <div style={{ flex: 1, overflow: 'auto' }}>
+              <AISqlAssistantTab />
+            </div>
+          ) : (
+            <>
+              {/* Left: Prompt + Logs */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', borderRight: '1px solid var(--color-border)', overflow: 'hidden' }}>
 
             {/* Prompt section */}
@@ -332,6 +352,8 @@ export default function DataGenerator() {
               </div>
             </PermissionGate>
           </div>
+            </>
+          )}
         </div>
       </div>
     </PermissionGate>

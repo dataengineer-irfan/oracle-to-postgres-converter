@@ -43,6 +43,7 @@ export const PERMISSIONS = {
   view_validation:    ['admin', 'engineer', 'analyst', 'auditor'],
   view_logs:          ['admin', 'engineer', 'auditor'],
   view_reports:       ['admin', 'engineer', 'analyst', 'auditor'],
+  view_ai_sql_assistant: ['admin', 'engineer', 'qa', 'analyst', 'auditor'],
 
   // Actions
   execute_dml:        ['admin', 'engineer', 'qa'],

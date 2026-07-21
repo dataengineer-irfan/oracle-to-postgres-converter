@@ -6,9 +6,11 @@ from typing import List
 import sys
 from pathlib import Path
 
-from api.llm_agent import parse_intent
+from api.llm_agent import parse_intent, generate_sql_from_intent
 from api.dependency_graph import resolve_dependencies
 from api.guardrails import enforce_schema
+from config import DB_CONFIG
+import psycopg
 
 app = FastAPI(title="Smart Test Data Generator API")
 
@@ -279,16 +281,51 @@ class SQLRequest(BaseModel):
     sql: str
     database: str = "postgres"
 
+from api.rag_engine import get_rag_engine
+
+@app.post("/api/sql/ai-generate")
+async def ai_generate_sql(req: GenerateRequest):
+    """Generate SQL from natural language."""
+    engine = get_rag_engine()
+    relevant_tables = engine.retrieve_context(req.prompt)
+    
+    schema_context = engine.retrieve_schema_context(relevant_tables)
+
+    sql = await generate_sql_from_intent(req.prompt, schema_context)
+    return {"sql": sql}
+
 @app.post("/api/sql/execute")
 async def execute_sql(req: SQLRequest):
     """Execute a SQL statement and return results."""
-    # TODO: wire to real sql_executor.py
-    return {
-        "columns": ["id", "name", "status"],
-        "rows":    [[1, "Sample Row", "active"]],
-        "rowcount": 1,
-        "duration_ms": 12,
-    }
+    try:
+        with psycopg.connect(**DB_CONFIG) as conn:
+            with conn.cursor() as cur:
+                # Basic safety check for demo purposes
+                if req.sql.strip().lower().startswith(("drop", "truncate", "alter")):
+                    raise HTTPException(status_code=400, detail="Destructive DDL commands are blocked for safety.")
+                
+                cur.execute("SET search_path TO public, provider, common;")
+                cur.execute(req.sql)
+                
+                is_select = cur.description is not None
+                if is_select:
+                    columns = [desc.name for desc in cur.description]
+                    rows = cur.fetchall()
+                    rowcount = len(rows)
+                else:
+                    columns = []
+                    rows = []
+                    rowcount = cur.rowcount
+                    conn.commit()
+                
+                return {
+                    "columns": columns,
+                    "rows": rows,
+                    "rowcount": rowcount,
+                    "duration_ms": 0, # Placeholder
+                }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/api/data/{table}")
 async def get_table_data(table: str, page: int = 1, per_page: int = 100):

@@ -11,6 +11,8 @@ services:
       - .env
     environment:
       - DB_HOST=host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - db
 

@@ -33,6 +33,7 @@ export const ENDPOINTS = {
   DATA_TABLE:          (table) => `${API_BASE}/api/data/${table}`,
   PREVIEW_DML:         `${API_BASE}/api/data/preview-dml`,
   SQL_EXECUTE:         `${API_BASE}/api/sql/execute`,
+  AI_SQL_GENERATE:     `${API_BASE}/api/sql/ai-generate`,
   EXECUTE_PIPELINE:    `${API_BASE}/execute`,
 
   // Validation
