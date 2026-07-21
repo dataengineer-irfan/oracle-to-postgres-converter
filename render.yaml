@@ -27,7 +27,6 @@ services:
   - type: web
     name: ets-migration-frontend
     env: static
-    plan: free
     buildCommand: cd ui && npm install && npm run build
     staticPublishPath: ./ui/dist
     envVars:
