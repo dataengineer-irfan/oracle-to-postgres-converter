@@ -1,6 +1,14 @@
 import yaml
 import re
 from pathlib import Path
+import psycopg
+import sys
+
+# Import DB_CONFIG; we need to append the root dir to sys.path to find config.py
+root_dir = Path(__file__).parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.append(str(root_dir))
+from config import DB_CONFIG
 
 class RAGEngine:
     def __init__(self, glossary_path: Path, odm_path: Path):
@@ -9,11 +17,40 @@ class RAGEngine:
         self.ldm_to_tables = {} # Maps LDM entity name -> List of physical tables
         self.table_descriptions = {} # Maps table_name -> description
         self.table_columns = {} # Maps table_name -> list of {name, desc}
+        self.joins = [] # List of (source_table, source_col, target_table, target_col)
         
         # Load ODM first to build the LDM -> Table mapping
         self._load_odm(odm_path)
         self._load_glossary(glossary_path)
+        self._load_postgres_schema()
         
+    def _load_postgres_schema(self):
+        """Fetches table columns directly from Postgres for tables NOT in the ODM."""
+        try:
+            with psycopg.connect(**DB_CONFIG) as conn:
+                with conn.cursor() as cur:
+                    cur.execute("""
+                        SELECT table_name, column_name 
+                        FROM information_schema.columns 
+                        WHERE table_schema = 'provider'
+                        ORDER BY table_name, ordinal_position;
+                    """)
+                    for row in cur.fetchall():
+                        t_name = row[0].lower()
+                        c_name = row[1].lower()
+                        
+                        self.odm_tables.add(t_name)
+                        
+                        if t_name not in self.table_columns:
+                            self.table_columns[t_name] = []
+                            
+                        # Only add if we didn't already get this column from the ODM
+                        existing = [c["name"] for c in self.table_columns[t_name]]
+                        if c_name not in existing:
+                            self.table_columns[t_name].append({"name": c_name, "desc": f"Postgres column {c_name}"})
+        except Exception as e:
+            print(f"Failed to load schema from Postgres: {e}")
+
     def _load_odm(self, path: Path):
         try:
             with open(path, "r", encoding="utf-8") as f:
@@ -29,6 +66,15 @@ class RAGEngine:
                         for col in tbl.get("columns", []):
                             col_name = col.get("column_name", "").lower()
                             col_desc = col.get("description", "").strip()
+                            references = col.get("references", "")
+                            
+                            if references:
+                                parts = references.lower().split('.')
+                                if len(parts) >= 2:
+                                    target_table = parts[-2]
+                                    target_col = parts[-1]
+                                    self.joins.append((table_name, col_name, target_table, target_col))
+                                    
                             if col_name:
                                 columns.append({"name": col_name, "desc": col_desc})
                         self.table_columns[table_name] = columns
@@ -116,6 +162,19 @@ class RAGEngine:
                 col_strs = [f"{c['name']} ({c['desc']})" if c['desc'] else c['name'] for c in cols]
                 context += f"- Table {t}: {', '.join(col_strs)}\n"
         return context
+
+    def retrieve_join_context(self, matched_tables: list[str]) -> str:
+        if len(matched_tables) < 2:
+            return ""
+            
+        join_rules = []
+        for src_tbl, src_col, tgt_tbl, tgt_col in self.joins:
+            if src_tbl in matched_tables and tgt_tbl in matched_tables:
+                join_rules.append(f"Join {src_tbl} and {tgt_tbl} ON {src_tbl}.{src_col} = {tgt_tbl}.{tgt_col}")
+                
+        if join_rules:
+            return "EXPLICIT DATABASE JOIN RULES (CRITICAL):\n" + "\n".join(f"- {r}" for r in join_rules)
+        return ""
 
 # Singleton instance initialized lazily
 _engine = None

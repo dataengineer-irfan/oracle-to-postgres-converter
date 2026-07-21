@@ -54,7 +54,7 @@ async def parse_intent(prompt: str) -> list[str]:
     
     for url in urls_to_try:
         try:
-            async with httpx.AsyncClient(timeout=120.0) as client:
+            async with httpx.AsyncClient(timeout=None) as client:
                 response = await client.post(url, json=payload)
                 
                 if response.status_code == 200:
@@ -84,13 +84,22 @@ async def generate_sql_from_intent(prompt: str, schema_context: str = "") -> str
         context_hint = f"\nRelevant tables based on your keywords: {', '.join(relevant_tables)}"
         if schema_context:
             context_hint += f"\n{schema_context}"
+            
+        join_context = engine.retrieve_join_context(relevant_tables)
+        if join_context:
+            context_hint += f"\n{join_context}"
         
     system_prompt = (
         "You are an expert PostgreSQL Database Administrator. "
         "Your job is to translate the user's natural language request into a single, valid PostgreSQL SQL statement. "
-        "Do not include any explanations, markdown formatting, or SQL block backticks. "
-        "Output ONLY the raw SQL string ending with a semicolon. "
-        "Example output: UPDATE p_dtl_tb SET p_dba_nam = 'testname' WHERE p_sys_id = 3163961;"
+        "CRITICAL INSTRUCTIONS: "
+        "1. Do not include any explanations, greetings, or markdown formatting (no ```sql). "
+        "2. NEVER ask for more information, clarification, or follow-up questions. "
+        "3. ALWAYS prefix EVERY table name with the 'provider.' schema (e.g., provider.p_mcare_tb). "
+        "4. NEVER invent or hallucinate column names. ONLY use the exact column names provided in the context below. "
+        "5. If the user's request is vague or missing details, MAKE YOUR BEST GUESS and write a generic SQL query anyway. "
+        "6. Output ONLY the raw SQL string ending with a semicolon. If you output anything other than SQL, the system will crash."
+        "Example output: UPDATE provider.p_dtl_tb SET p_dba_nam = 'testname' WHERE p_sys_id = 3163961;"
         f"{context_hint}"
     )
     
@@ -119,7 +128,7 @@ async def generate_sql_from_intent(prompt: str, schema_context: str = "") -> str
     
     for url in urls_to_try:
         try:
-            async with httpx.AsyncClient(timeout=120.0) as client:
+            async with httpx.AsyncClient(timeout=None) as client:
                 response = await client.post(url, json=payload)
                 if response.status_code == 200:
                     data = response.json()

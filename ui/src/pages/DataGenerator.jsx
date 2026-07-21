@@ -19,6 +19,7 @@ export default function DataGenerator() {
   const [parsing,   setParsing]  = useState(false);
   const [executing, setExecuting]= useState(false);
   const [plan,      setPlan]     = useState(null);
+  const [targetRows, setTargetRows] = useState(5);
   const [logs,      setLogs]     = useState([]);
   const [downloading, setDownloading] = useState(false);
   const [copying,     setCopying]     = useState(false);
@@ -67,7 +68,7 @@ export default function DataGenerator() {
     };
 
     try {
-      await client.post(ENDPOINTS.EXECUTE_PIPELINE, { tables: plan, rows: 50 });
+      await client.post(ENDPOINTS.EXECUTE_PIPELINE, { tables: plan, rows: targetRows });
       appendLog('Pipeline started.', 'INFO');
     } catch {
       appendLog('Failed to start pipeline.', 'ERROR');
@@ -235,17 +236,30 @@ export default function DataGenerator() {
                   onFocus={e => e.target.style.borderColor = 'var(--color-primary)'}
                   onBlur={e  => e.target.style.borderColor = 'var(--color-border)'}
                 />
-                <button
-                  className="btn-primary"
-                  style={{ width: '100%', marginTop: 8, height: 28, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
-                  onClick={handleParse}
-                  disabled={parsing || executing}
-                >
-                  {parsing
-                    ? <><span className="ide-spinner" />  Compiling plan…</>
-                    : 'Compile Data Generation Plan'
-                  }
-                </button>
+                <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                  <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', background: 'var(--color-bg)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius)', padding: '0 8px' }}>
+                    <span style={{ fontSize: 12, color: 'var(--color-text-muted)', marginRight: 8 }}>Target Rows:</span>
+                    <input 
+                      type="number" 
+                      min="1" 
+                      max="1000" 
+                      value={targetRows} 
+                      onChange={e => setTargetRows(parseInt(e.target.value) || 1)} 
+                      style={{ background: 'transparent', border: 'none', color: 'var(--color-text)', outline: 'none', fontSize: 13, width: '60px' }} 
+                    />
+                  </div>
+                  <button
+                    className="btn-primary"
+                    style={{ flex: 1, height: 28, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
+                    onClick={handleParse}
+                    disabled={parsing || executing}
+                  >
+                    {parsing
+                      ? <><span className="ide-spinner" />  Compiling plan…</>
+                      : 'Compile Data Generation Plan'
+                    }
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -256,7 +270,7 @@ export default function DataGenerator() {
                 flexShrink: 0,
               }}>
                 {[
-                  { label: 'Target Rows', value: '50', icon: Table2 },
+                  { label: 'Target Rows', value: targetRows, icon: Table2 },
                   { label: 'Tables',      value: plan.length, icon: Database },
                   { label: 'Dependencies',value: plan.length * 2 - 1, icon: ListTree },
                   { label: 'Warnings',    value: 0, icon: AlertTriangle },

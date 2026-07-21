@@ -9,7 +9,7 @@ import { API_BASE } from './endpoints';
  */
 const client = axios.create({
   baseURL: API_BASE,
-  timeout: 120000,
+  timeout: 0,
   headers: { 'Content-Type': 'application/json' },
 });
 
