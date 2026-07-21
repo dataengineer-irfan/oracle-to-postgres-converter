@@ -55,7 +55,10 @@ async def parse_intent(prompt: str) -> list[str]:
     for url in urls_to_try:
         try:
             async with httpx.AsyncClient(timeout=None) as client:
-                headers = {"ngrok-skip-browser-warning": "true"}
+                headers = {
+                    "ngrok-skip-browser-warning": "true",
+                    "Bypass-Tunnel-Reminder": "true"
+                }
                 response = await client.post(url, json=payload, headers=headers)
                 
                 if response.status_code == 200:
@@ -130,7 +133,10 @@ async def generate_sql_from_intent(prompt: str, schema_context: str = "") -> str
     for url in urls_to_try:
         try:
             async with httpx.AsyncClient(timeout=None) as client:
-                headers = {"ngrok-skip-browser-warning": "true"}
+                headers = {
+                    "ngrok-skip-browser-warning": "true",
+                    "Bypass-Tunnel-Reminder": "true"
+                }
                 response = await client.post(url, json=payload, headers=headers)
                 if response.status_code == 200:
                     data = response.json()
