@@ -1,11 +1,11 @@
-services:
+databases:
   # 1. Managed PostgreSQL Database
-  - type: psql
-    name: ets-migration-db
+  - name: ets-migration-db
     plan: free # Change to 'starter' for a non-expiring persistent database
     databaseName: ets_migration
     user: ets_user
 
+services:
   # 2. FastAPI Backend Service
   - type: web
     name: ets-migration-backend
