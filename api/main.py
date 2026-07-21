@@ -109,8 +109,8 @@ async def websocket_endpoint(websocket: WebSocket):
                     await websocket.send_text(log)
                 last_idx = len(execution_logs)
             await asyncio.sleep(0.5)
-        except:
-            pass
+    except:
+        pass
 
 class DMLPreviewRequest(BaseModel):
     tables: List[str]
