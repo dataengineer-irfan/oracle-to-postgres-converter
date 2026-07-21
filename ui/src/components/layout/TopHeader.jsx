@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, Search, Bell, Settings, ChevronDown, ArrowRight, Shield, LogOut } from 'lucide-react';
+import { Database, Search, Bell, Settings, ChevronDown, ArrowRight, LogOut, PanelLeft, Sparkles } from 'lucide-react';
 import { useStore } from '../../store/useStore';
 import { useNavigate } from 'react-router-dom';
 import { ROLE_COLORS, ROLE_LABELS } from '../../rbac/roles';
@@ -8,6 +8,8 @@ export default function TopHeader() {
   const user = useStore(state => state.user);
   const logout = useStore(state => state.logout);
   const navigate = useNavigate();
+
+  const { leftPanelOpen, toggleLeftPanel, rightPanelOpen, toggleRightPanel } = useStore();
 
   const roleBg   = ROLE_COLORS[user?.role]?.bg   ?? 'rgba(37,99,235,0.15)';
   const roleText = ROLE_COLORS[user?.role]?.text  ?? '#2563EB';
@@ -23,8 +25,16 @@ export default function TopHeader() {
       className="bg-panel ide-border-b flex items-center justify-between px-3 select-none shrink-0"
       style={{ height: 'var(--header-h)' }}
     >
-      {/* Left: App identity */}
+      {/* Left: App identity & Toggle */}
       <div className="flex items-center gap-2 shrink-0">
+        <button 
+          className={`flex items-center justify-center gap-1.5 px-2 border border-border rounded shadow-sm text-xs font-medium transition-colors ${leftPanelOpen ? 'bg-primary/10 text-primary border-primary/30' : 'bg-panel text-muted hover:bg-border'}`}
+          style={{ height: 26, flexShrink: 0 }}
+          onClick={toggleLeftPanel}
+        >
+          <PanelLeft style={{ width: 14, height: 14 }} />
+          Explorer
+        </button>
         <Database className="text-primary" style={{ width: 16, height: 16 }} />
         <span className="text-sm font-semibold text-text whitespace-nowrap">ETS Migration Studio</span>
         <span className="text-xs text-muted hidden md:inline">—</span>
@@ -32,16 +42,16 @@ export default function TopHeader() {
       </div>
 
       {/* Center: Context ribbon */}
-      <div className="flex items-center gap-0 text-xs text-muted overflow-hidden mx-4 flex-1 min-w-0">
+      <div className="flex items-center gap-1 text-xs text-muted mx-4 flex-1 min-w-0" style={{ overflowX: 'auto', overflowY: 'hidden', scrollbarWidth: 'none' }}>
         {[
-          { label: 'Project',     value: 'Oracle-Financials' },
+          { label: 'Project',     value: 'ETS Sandbox' },
           { label: 'Workspace',   value: 'Alpha-Team' },
           { label: 'Branch',      value: 'feature/hr' },
           { label: 'Env',         value: 'Staging', valueClass: 'text-success' },
         ].map((item, i) => (
           <React.Fragment key={item.label}>
-            {i > 0 && <span className="text-border mx-2">|</span>}
-            <button className="flex items-center gap-1 btn-ghost px-1 h-full whitespace-nowrap" style={{ height: 'var(--header-h)', fontSize: 12 }}>
+            {i > 0 && <span className="text-border shrink-0">|</span>}
+            <button className="flex items-center gap-1 btn-ghost px-1 h-full whitespace-nowrap shrink-0" style={{ height: 'var(--header-h)', fontSize: 12 }}>
               <span className="text-muted">{item.label}:</span>
               <span className={item.valueClass ?? 'text-text'}>{item.value}</span>
               <ChevronDown style={{ width: 10, height: 10 }} className="text-muted" />
@@ -49,18 +59,17 @@ export default function TopHeader() {
           </React.Fragment>
         ))}
 
-        <span className="text-border mx-2">|</span>
-
-        {/* DB Version indicator */}
-        <div className="flex items-center gap-1 text-xs whitespace-nowrap">
-          <span className="text-warning font-medium">Oracle 19c</span>
-          <ArrowRight style={{ width: 10, height: 10 }} className="text-muted" />
-          <span className="text-primary font-medium">PostgreSQL 17</span>
-        </div>
       </div>
 
       {/* Right: Search + actions + user */}
       <div className="flex items-center gap-2 shrink-0">
+        {/* DB Version indicator */}
+        <div className="hidden lg:flex items-center gap-1 text-xs whitespace-nowrap shrink-0 pr-2 border-r border-border">
+          <span className="text-warning font-medium">Oracle 19c</span>
+          <ArrowRight style={{ width: 10, height: 10 }} className="text-muted" />
+          <span className="text-primary font-medium">PostgreSQL 17</span>
+        </div>
+
         {/* Search */}
         <div className="relative hidden lg:flex items-center">
           <Search className="absolute left-2 text-muted" style={{ width: 12, height: 12 }} />
@@ -68,15 +77,24 @@ export default function TopHeader() {
             type="text"
             placeholder="Search… (Ctrl+K)"
             className="bg-bg ide-border text-text placeholder:text-muted focus:outline-none focus:border-primary"
-            style={{ height: 24, paddingLeft: 24, paddingRight: 8, width: 200, fontSize: 12, borderRadius: 'var(--radius)' }}
+            style={{ height: 24, paddingLeft: 24, paddingRight: 8, width: 180, fontSize: 12, borderRadius: 'var(--radius)' }}
           />
         </div>
+
+        {/* AI Panel Toggle */}
+        <button 
+          className={`flex items-center justify-center gap-1.5 px-2 border border-border rounded shadow-sm text-xs font-medium transition-colors ${rightPanelOpen ? 'bg-primary/10 text-primary border-primary/30' : 'bg-panel text-muted hover:bg-border'}`}
+          style={{ height: 26, flexShrink: 0 }}
+          onClick={toggleRightPanel}
+        >
+          <Sparkles style={{ width: 14, height: 14 }} />
+          AI Panel
+        </button>
 
         {/* Notifications */}
         <div className="relative group">
           <button className="btn-ghost relative" style={{ width: 28, height: 28, padding: 0 }}>
             <Bell style={{ width: 14, height: 14 }} />
-            <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-error rounded-full"></span>
           </button>
           {/* Dropdown */}
           <div className="absolute right-0 top-full mt-1 w-56 bg-panel ide-border hidden group-hover:block z-50"

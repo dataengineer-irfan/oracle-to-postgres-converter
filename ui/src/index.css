@@ -195,9 +195,9 @@
 
   /* Metric row — key/value, no card */
   .ide-metric-row {
-    @apply flex items-center justify-between;
-    height: 24px;
-    padding: 0 8px;
+    @apply flex items-center justify-between hover:bg-border transition-colors cursor-default;
+    height: 32px;
+    padding: 0 16px;
     font-size: 12px;
     border-bottom: 1px solid var(--color-border);
   }

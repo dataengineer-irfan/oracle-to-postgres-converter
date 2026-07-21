@@ -75,31 +75,23 @@ export default function BottomOutput() {
         />
       </div>
       
-      <div className="flex bg-panel border-b border-border px-2 py-1 items-center justify-between text-muted">
-         <div className="flex space-x-1">
-            <button className="p-1 hover:bg-border/50 rounded" title="Filter"><Filter className="w-3.5 h-3.5" /></button>
-            <button className="p-1 hover:bg-border/50 rounded" title="Search Logs"><Search className="w-3.5 h-3.5" /></button>
-         </div>
-         <div className="flex space-x-1">
-            <button className="p-1 hover:bg-border/50 rounded" title="Clear"><Eraser className="w-3.5 h-3.5" /></button>
-            <div className="w-[1px] h-4 bg-border/50 mx-1 mt-0.5"></div>
-            <button 
-              className={`p-1 rounded flex items-center ${autoScroll ? 'bg-primary/20 text-primary' : 'hover:bg-border/50'}`} 
-              onClick={() => setAutoScroll(!autoScroll)}
-              title="Auto Scroll"
-            >
-              <ArrowDown className="w-3.5 h-3.5 mr-1" /><span className="text-[10px]">Auto-Scroll</span>
-            </button>
-            <button className="p-1 hover:bg-border/50 rounded" title="Pause"><Pause className="w-3.5 h-3.5" /></button>
-         </div>
-      </div>
+
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto custom-scrollbar bg-bg p-0">
         
         {logs.length === 0 ? (
-          <div className="flex h-full items-center justify-center text-muted font-mono text-xs opacity-50">
-            No logs available.
+          <div className="flex flex-col h-full items-center justify-center text-center p-8">
+            <div className="w-10 h-10 rounded-full bg-bg border border-border flex items-center justify-center mb-4">
+              <Terminal className="w-5 h-5 text-muted" />
+            </div>
+            <h4 className="text-[13px] font-semibold text-text mb-1">No Output Available</h4>
+            <p className="text-[12px] text-muted max-w-sm leading-relaxed mb-4">
+              Logs, warnings, and validation results will stream here during execution.
+            </p>
+            <p className="text-[12px] text-muted max-w-sm leading-relaxed">
+              <strong>Next Action:</strong> Select a database object from the Explorer and trigger an Analysis or Conversion task to generate output.
+            </p>
           </div>
         ) : (
           <div className="font-mono text-[11px] leading-relaxed w-full min-w-max">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Download, Search, Trash2, Share2, Printer, Maximize2, Loader2, Filter } from 'lucide-react';
+import { Copy, Download, Search, Share2, Printer, Maximize2, Loader2, Filter } from 'lucide-react';
 
 /**
  * Universal ActionToolbar — locked spec, never deviates.
@@ -24,9 +24,10 @@ import { Copy, Download, Search, Trash2, Share2, Printer, Maximize2, Loader2, Fi
 function TBtn({ icon: Icon, label, onClick, active, loading: isLoading, title: tip, children }) {
   return (
     <button
-      className="btn-ghost flex items-center gap-1"
+      className={`btn-ghost flex items-center gap-1 ${!onClick ? 'opacity-40 cursor-not-allowed' : ''}`}
       style={{ height: 28, padding: '0 6px', fontSize: 12 }}
       onClick={onClick}
+      disabled={!onClick}
       title={tip ?? label}
     >
       {isLoading
@@ -56,7 +57,7 @@ function CopyMenu({ loading, onCopy }) {
   ];
   return (
     <div className="relative">
-      <TBtn icon={Copy} label="Copy" loading={loading} onClick={() => setOpen(o => !o)} />
+      <TBtn icon={Copy} label="Copy" loading={loading} onClick={onCopy ? () => setOpen(o => !o) : undefined} />
       {open && (
         <div className="absolute top-full left-0 mt-0.5 bg-panel ide-border z-50"
              style={{ minWidth: 140, boxShadow: '0 4px 16px rgba(0,0,0,0.5)' }}>
@@ -87,7 +88,7 @@ function DownloadMenu({ loading, onDownload }) {
   ];
   return (
     <div className="relative">
-      <TBtn icon={Download} label="Download" loading={loading} onClick={() => setOpen(o => !o)} />
+      <TBtn icon={Download} label="Download" loading={loading} onClick={onDownload ? () => setOpen(o => !o) : undefined} />
       {open && (
         <div className="absolute top-full left-0 mt-0.5 bg-panel ide-border z-50"
              style={{ minWidth: 160, boxShadow: '0 4px 16px rgba(0,0,0,0.5)' }}>
@@ -148,11 +149,6 @@ export default function ActionToolbar({
         <TBtn icon={Search} onClick={onSearch} tip="Search" />
         {/* Filter */}
         <TBtn icon={Filter} onClick={onFilter} tip="Filter" />
-
-        <Sep />
-
-        {/* Clear */}
-        <TBtn icon={Trash2} onClick={onClear} tip="Clear" />
 
         <Sep />
 

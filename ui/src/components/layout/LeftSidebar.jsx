@@ -7,16 +7,29 @@ import { useLiveData } from '../../hooks/useLiveData';
 import { ENDPOINTS } from '../../api/endpoints';
 
 // ── Tree Item ─────────────────────────────────────────────────────────────────
-function TreeItem({ label, depth = 0, icon: Icon, children, defaultOpen = false, onClick, badge, dot }) {
-  const [open, setOpen] = useState(defaultOpen);
+function TreeItem({ id, label, depth = 0, icon: Icon, children, defaultOpen = false, onClick, badge, dot }) {
+  const [open, setOpen] = useState(() => {
+    if (!id) return defaultOpen;
+    const saved = localStorage.getItem(`tree_${id}`);
+    return saved !== null ? saved === 'true' : defaultOpen;
+  });
+
+  const toggle = () => {
+    setOpen(o => {
+      const next = !o;
+      if (id) localStorage.setItem(`tree_${id}`, next);
+      return next;
+    });
+  };
+
   const hasChildren = !!children;
 
   return (
     <div>
       <div
         className="ide-tree-item"
-        style={{ paddingLeft: 8 + depth * 12 }}
-        onClick={() => { if (hasChildren) setOpen(o => !o); if (onClick) onClick(); }}
+        style={{ paddingLeft: 8 + depth * 20 }}
+        onClick={() => { if (hasChildren) toggle(); if (onClick) onClick(); }}
       >
         {/* Chevron */}
         <span style={{ width: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -50,16 +63,36 @@ function TreeItem({ label, depth = 0, icon: Icon, children, defaultOpen = false,
 }
 
 // ── Sidebar Section Header ────────────────────────────────────────────────────
-function SectionHeader({ label }) {
+function ExpandableSection({ id, label, children, defaultOpen = true }) {
+  const [open, setOpen] = useState(() => {
+    if (!id) return defaultOpen;
+    const saved = localStorage.getItem(`section_${id}`);
+    return saved !== null ? saved === 'true' : defaultOpen;
+  });
+
+  const toggle = () => {
+    setOpen(o => {
+      const next = !o;
+      if (id) localStorage.setItem(`section_${id}`, next);
+      return next;
+    });
+  };
+
   return (
-    <div style={{
-      height: 24, display: 'flex', alignItems: 'center',
-      padding: '0 8px', fontSize: 11, fontWeight: 600,
-      color: 'var(--color-muted)', textTransform: 'uppercase',
-      letterSpacing: '0.08em', borderTop: '1px solid var(--color-border)',
-      marginTop: 4,
-    }}>
-      {label}
+    <div>
+      <div style={{
+        height: 24, display: 'flex', alignItems: 'center',
+        padding: '0 8px', fontSize: 11, fontWeight: 600,
+        color: 'var(--color-muted)', textTransform: 'uppercase',
+        letterSpacing: '0.08em', borderTop: '1px solid var(--color-border)',
+        marginTop: 4, cursor: 'pointer', userSelect: 'none'
+      }} onClick={toggle} className="hover:text-text transition-colors">
+        <span style={{ width: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          {open ? <ChevronDown style={{ width: 12, height: 12 }} /> : <ChevronRight style={{ width: 12, height: 12 }} />}
+        </span>
+        {label}
+      </div>
+      {open && <div>{children}</div>}
     </div>
   );
 }
@@ -75,13 +108,13 @@ export default function LeftSidebar() {
   const { data: pgSchema }     = useLiveData(ENDPOINTS.SCHEMA_POSTGRES, 30000);
   const { data: health }       = useLiveData(ENDPOINTS.CONNECTIONS_HEALTH, 10000);
 
-  const oracleTables  = oracleSchema?.tables  ?? 420;
-  const oracleViews   = oracleSchema?.views   ?? 62;
-  const oraclePkgs    = oracleSchema?.packages ?? 18;
-  const oracleIndexes = oracleSchema?.indexes  ?? 822;
+  const oracleTables  = oracleSchema?.tables  ?? 0;
+  const oracleViews   = oracleSchema?.views   ?? 0;
+  const oraclePkgs    = oracleSchema?.packages ?? 0;
+  const oracleIndexes = oracleSchema?.indexes  ?? 0;
 
-  const pgTables = pgSchema?.tables ?? 14;
-  const pgViews  = pgSchema?.views  ?? 3;
+  const pgTables = pgSchema?.tables ?? 0;
+  const pgViews  = pgSchema?.views  ?? 0;
 
   const oracleConn = health?.oracle    !== false;
   const pgConn     = health?.postgres  !== false;
@@ -106,48 +139,51 @@ export default function LeftSidebar() {
 
         {/* ── Quick Nav ── */}
         {hasScreen('dashboard') && (
-          <TreeItem label="Dashboard" icon={LayoutGrid} onClick={() => openTab({ id: 'dashboard', title: 'Dashboard', type: 'dashboard' })} />
+          <TreeItem id="nav_dashboard" label="Dashboard" icon={LayoutGrid} onClick={() => openTab({ id: 'dashboard', title: 'Dashboard', type: 'dashboard' })} />
         )}
 
         {/* ── Oracle Source ── */}
-        <SectionHeader label="Oracle (Source)" />
-        <TreeItem label="Oracle Database" icon={Database} dot={oracleConn ? 'green' : 'red'} defaultOpen={true} depth={0}
-                  badge={oracleConn ? 'Connected' : 'Disconnected'}>
-          {hasScreen('sql_editor') && (
-            <TreeItem label="Tables" icon={Table2} depth={1} badge={oracleTables} defaultOpen={false}>
-              <TreeItem label="provider"  depth={2} onClick={openEditor} />
-              <TreeItem label="common"    depth={2} onClick={openEditor} />
-              <TreeItem label="public"    depth={2} onClick={openEditor} />
-            </TreeItem>
-          )}
-          <TreeItem label="Views"    icon={LayoutGrid} depth={1} badge={oracleViews}   />
-          <TreeItem label="Indexes"  icon={ListTree}   depth={1} badge={oracleIndexes} />
-          <TreeItem label="Packages" icon={FileText}   depth={1} badge={oraclePkgs}    />
-        </TreeItem>
+        <ExpandableSection id="sec_oracle" label="Oracle (Source)" defaultOpen={true}>
+          <TreeItem id="tree_oracle_db" label="Oracle Database" icon={Database} dot={oracleConn ? 'green' : 'red'} defaultOpen={true} depth={0}
+                    badge={oracleConn ? 'Connected' : 'Disconnected'}>
+            {hasScreen('sql_editor') && (
+              <TreeItem id="tree_oracle_tables" label="Tables" icon={Table2} depth={1} badge={oracleTables} defaultOpen={false}>
+                <TreeItem id="tree_oracle_tbl_provider" label="provider"  depth={2} onClick={openEditor} />
+                <TreeItem id="tree_oracle_tbl_common" label="common"    depth={2} onClick={openEditor} />
+                <TreeItem id="tree_oracle_tbl_public" label="public"    depth={2} onClick={openEditor} />
+              </TreeItem>
+            )}
+            <TreeItem id="tree_oracle_views" label="Views"    icon={LayoutGrid} depth={1} badge={oracleViews}   />
+            <TreeItem id="tree_oracle_indexes" label="Indexes"  icon={ListTree}   depth={1} badge={oracleIndexes} />
+            <TreeItem id="tree_oracle_packages" label="Packages" icon={FileText}   depth={1} badge={oraclePkgs}    />
+          </TreeItem>
+        </ExpandableSection>
 
         {/* ── PostgreSQL Target ── */}
-        <SectionHeader label="PostgreSQL (Target)" />
-        <TreeItem label="PostgreSQL" icon={Database} dot={pgConn ? 'green' : 'red'} depth={0}
-                  badge={pgConn ? 'Connected' : 'Disconnected'}>
-          {hasScreen('data_preview') && (
-            <TreeItem label="Tables" icon={Table2} depth={1} badge={pgTables} onClick={openGrid} />
-          )}
-          <TreeItem label="Views" icon={LayoutGrid} depth={1} badge={pgViews} />
-        </TreeItem>
+        <ExpandableSection id="sec_postgres" label="PostgreSQL (Target)" defaultOpen={true}>
+          <TreeItem id="tree_pg_db" label="PostgreSQL" icon={Database} dot={pgConn ? 'green' : 'red'} depth={0} defaultOpen={true}
+                    badge={pgConn ? 'Connected' : 'Disconnected'}>
+            {hasScreen('data_preview') && (
+              <TreeItem id="tree_pg_tables" label="Tables" icon={Table2} depth={1} badge={pgTables} onClick={openGrid} />
+            )}
+            <TreeItem id="tree_pg_views" label="Views" icon={LayoutGrid} depth={1} badge={pgViews} />
+          </TreeItem>
+        </ExpandableSection>
 
         {/* ── Tools ── */}
-        <SectionHeader label="Tools" />
-        {can('execute_dml') && (
-          <TreeItem label="Smart Test Data Generator" icon={CheckSquare} onClick={openGen} />
-        )}
-        <TreeItem label="Dependency Explorer"  icon={ListTree}   />
-        <TreeItem label="Conversion Rules"     icon={FileText}   />
-        <TreeItem label="Migration Tasks"      icon={CheckSquare}/>
-        {hasScreen('validation') && <TreeItem label="Validation" icon={AlertCircle} />}
-        {hasScreen('reports')    && <TreeItem label="Reports"    icon={FileText}    />}
-        {hasScreen('logs')       && <TreeItem label="Execution History" icon={History} />}
-        {can('manage_users')     && <TreeItem label="User Management"   icon={Settings} />}
-        {can('manage_settings')  && <TreeItem label="Settings"          icon={Settings} />}
+        <ExpandableSection id="sec_tools" label="Tools" defaultOpen={true}>
+          {can('execute_dml') && (
+            <TreeItem id="tree_tools_gen" label="Smart Test Data Generator" icon={CheckSquare} onClick={openGen} />
+          )}
+          <TreeItem id="tree_tools_deps" label="Dependency Explorer"  icon={ListTree}   />
+          <TreeItem id="tree_tools_rules" label="Conversion Rules"     icon={FileText}   />
+          <TreeItem id="tree_tools_tasks" label="Migration Tasks"      icon={CheckSquare}/>
+          {hasScreen('validation') && <TreeItem id="tree_tools_valid" label="Validation" icon={AlertCircle} />}
+          {hasScreen('reports')    && <TreeItem id="tree_tools_reports" label="Reports"    icon={FileText}    />}
+          {hasScreen('logs')       && <TreeItem id="tree_tools_logs" label="Execution History" icon={History} />}
+          {can('manage_users')     && <TreeItem id="tree_tools_users" label="User Management"   icon={Settings} />}
+          {can('manage_settings')  && <TreeItem id="tree_tools_settings" label="Settings"          icon={Settings} />}
+        </ExpandableSection>
       </div>
     </div>
   );

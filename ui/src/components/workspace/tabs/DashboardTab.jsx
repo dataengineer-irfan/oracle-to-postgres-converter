@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Database, Code2, CheckCircle2, AlertTriangle, XCircle, History, Table2, FileText, ServerCog, Zap } from 'lucide-react';
+import { Database, CheckCircle2, History } from 'lucide-react';
 import ActionToolbar from '../../common/ActionToolbar';
 import { useLiveData } from '../../../hooks/useLiveData';
 import { ENDPOINTS } from '../../../api/endpoints';
@@ -18,9 +18,9 @@ function Pipeline({ stageIndex = 0, progress = 0 }) {
           return (
             <React.Fragment key={stage}>
               {/* Stage node */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, minWidth: 64 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, minWidth: 64 }}>
                 <div style={{
-                  width: 20, height: 20, borderRadius: '50%', border: '2px solid',
+                  width: 24, height: 24, borderRadius: '50%', border: '2px solid',
                   borderColor: done ? 'var(--color-success)' : active ? 'var(--color-primary)' : 'var(--color-border)',
                   background: done ? 'rgba(34,197,94,0.15)' : active ? 'rgba(37,99,235,0.15)' : 'transparent',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -39,7 +39,7 @@ function Pipeline({ stageIndex = 0, progress = 0 }) {
               {/* Connector line */}
               {i < STAGES.length - 1 && (
                 <div style={{
-                  flex: 1, height: 1, marginBottom: 18,
+                  flex: 1, height: 3, marginBottom: 16,
                   background: done ? 'var(--color-success)' : 'var(--color-border)',
                 }} />
               )}
@@ -77,7 +77,7 @@ function InfoBar({ stats }) {
       {items.map(({ label, value, color }, i) => (
         <div key={label} style={{
           flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          height: 48, borderRight: i < items.length - 1 ? '1px solid var(--color-border)' : 'none',
+          height: 40, borderRight: i < items.length - 1 ? '1px solid var(--color-border)' : 'none',
           gap: 2, padding: '0 8px',
         }}>
           <span style={{ fontSize: 14, fontWeight: 700, color }}>{value}</span>
@@ -92,12 +92,12 @@ function InfoBar({ stats }) {
 function SectionHeader({ icon: Icon, label, iconColor }) {
   return (
     <div style={{
-      height: 28, display: 'flex', alignItems: 'center', padding: '0 12px', gap: 6,
+      height: 32, display: 'flex', alignItems: 'center', padding: '0 16px', gap: 6,
       fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em',
       color: 'var(--color-muted)', background: 'var(--color-bg)',
       borderBottom: '1px solid var(--color-border)', flexShrink: 0,
     }}>
-      {Icon && <Icon style={{ width: 12, height: 12, color: iconColor ?? 'var(--color-muted)' }} />}
+      {Icon && <Icon style={{ width: 14, height: 14, color: iconColor ?? 'var(--color-muted)' }} />}
       {label}
     </div>
   );
@@ -106,11 +106,14 @@ function SectionHeader({ icon: Icon, label, iconColor }) {
 // ── Flat data row ──────────────────────────────────────────────────────────────
 function DataRow({ label, value, valueColor, meta }) {
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      height: 28, padding: '0 12px', borderBottom: '1px solid var(--color-border)',
-      fontSize: 12,
-    }}>
+    <div 
+      className="hover:bg-border transition-colors cursor-default"
+      style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        height: 32, padding: '0 16px', borderBottom: '1px solid var(--color-border)',
+        fontSize: 12,
+      }}
+    >
       <span style={{ color: 'var(--color-muted)' }}>{label}</span>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         {meta && <span style={{ color: 'var(--color-muted)', fontSize: 11 }}>{meta}</span>}
@@ -158,7 +161,7 @@ export default function DashboardTab() {
   const projectList= projects?.projects     ?? [];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg)', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg)', overflowY: 'auto', overflowX: 'hidden' }}>
 
       {/* Toolbar */}
       <ActionToolbar
@@ -174,32 +177,60 @@ export default function DashboardTab() {
       <InfoBar stats={stats} />
 
       {/* Content — two columns, flat tables */}
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex' }}>
 
         {/* Left column — Object Stats */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', borderRight: '1px solid var(--color-border)', overflow: 'hidden' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', borderRight: '1px solid var(--color-border)' }}>
           <SectionHeader icon={Database} label="Object Statistics" iconColor="var(--color-warning)" />
-          <div style={{ flex: 1, overflowY: 'auto' }}>
-            <DataRow label="Tables"       value={stats?.tables      ?? '—'} />
-            <DataRow label="Views"        value={stats?.views       ?? '—'} />
-            <DataRow label="Packages"     value={stats?.packages    ?? '—'} />
-            <DataRow label="Functions"    value={stats?.functions   ?? '—'} />
-            <DataRow label="Converted"    value={stats?.converted   != null ? `${stats.converted}%` : '—'} valueColor="var(--color-success)" />
-            <DataRow label="Validated"    value={stats?.validated   != null ? `${stats.validated}%` : '—'} valueColor="var(--color-success)" />
-            <DataRow label="Errors"       value={stats?.errors      ?? '—'} valueColor={stats?.errors > 0 ? 'var(--color-error)' : 'var(--color-success)'} />
-            <DataRow label="Warnings"     value={stats?.warnings    ?? '—'} valueColor={stats?.warnings > 0 ? 'var(--color-warning)' : 'var(--color-text)'} />
-            <DataRow label="Last Run"     value={stats?.last_run    ?? '—'} valueColor="var(--color-muted)" />
+          <div style={{ flex: 1 }}>
+            {(!stats || Object.keys(stats).length === 0) ? (
+              <div style={{ padding: '16px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 8 }}>
+                <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--color-bg)', border: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Database style={{ width: 16, height: 16, color: 'var(--color-muted)' }} />
+                </div>
+                <div>
+                  <h4 style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)', marginBottom: 6 }}>No Object Data</h4>
+                  <p style={{ fontSize: 12, color: 'var(--color-muted)', maxWidth: 280, lineHeight: 1.5 }}>
+                    Migration statistics will populate once you connect a source database and trigger metadata discovery.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <>
+                <DataRow label="Tables"       value={stats?.tables      ?? '—'} />
+                <DataRow label="Views"        value={stats?.views       ?? '—'} />
+                <DataRow label="Packages"     value={stats?.packages    ?? '—'} />
+                <DataRow label="Functions"    value={stats?.functions   ?? '—'} />
+                <DataRow label="Converted"    value={stats?.converted   != null ? `${stats.converted}%` : '—'} valueColor="var(--color-success)" />
+                <DataRow label="Validated"    value={stats?.validated   != null ? `${stats.validated}%` : '—'} valueColor="var(--color-success)" />
+                <DataRow label="Errors"       value={stats?.errors      ?? '—'} valueColor={stats?.errors > 0 ? 'var(--color-error)' : 'var(--color-success)'} />
+                <DataRow label="Warnings"     value={stats?.warnings    ?? '—'} valueColor={stats?.warnings > 0 ? 'var(--color-warning)' : 'var(--color-text)'} />
+                <DataRow label="Last Run"     value={stats?.last_run    ?? '—'} valueColor="var(--color-muted)" />
+              </>
+            )}
           </div>
         </div>
 
         {/* Right column — Recent Projects */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <SectionHeader icon={History} label="Recent Projects" iconColor="var(--color-primary)" />
-          <div style={{ flex: 1, overflowY: 'auto' }}>
+          <div style={{ flex: 1 }}>
             {loadingProjects
               ? <div style={{ padding: 16, fontSize: 12, color: 'var(--color-muted)' }}>Loading…</div>
               : projectList.length === 0
-                ? <div style={{ padding: 16, fontSize: 12, color: 'var(--color-muted)', fontStyle: 'italic' }}>No projects found.</div>
+                ? (
+                  <div style={{ padding: '16px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 8 }}>
+                    <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--color-bg)', border: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Database style={{ width: 16, height: 16, color: 'var(--color-muted)' }} />
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)', marginBottom: 6 }}>No Active Projects</h4>
+                      <p style={{ fontSize: 12, color: 'var(--color-muted)', maxWidth: 280, lineHeight: 1.5 }}>
+                        Connect an Oracle source database and map it to a PostgreSQL target in the Explorer to begin your first migration project.
+                      </p>
+                    </div>
+                  </div>
+                )
                 : projectList.map(p => <ProjectRow key={p.id} project={p} />)
             }
           </div>

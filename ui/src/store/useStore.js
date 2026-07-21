@@ -37,10 +37,27 @@ export const useStore = create(
       user: null,
       login:  (user) => set({ user }),
       logout: () => set({ user: null, tabs: [{ id: 'dashboard', title: 'Dashboard', type: 'dashboard' }], activeTab: 'dashboard' }),
+
+      // ── Layout Panels ──────────────────────────────────────────────────────
+      leftPanelOpen: true,
+      rightPanelOpen: true,
+      leftPanelSize: 20,
+      rightPanelSize: 20,
+      
+      toggleLeftPanel: () => set((state) => ({ leftPanelOpen: !state.leftPanelOpen })),
+      toggleRightPanel: () => set((state) => ({ rightPanelOpen: !state.rightPanelOpen })),
+      setLeftPanelSize: (size) => set({ leftPanelSize: size }),
+      setRightPanelSize: (size) => set({ rightPanelSize: size }),
     }),
     {
       name: 'ets-store',
-      partialize: (state) => ({ user: state.user }), // only persist user session
+      partialize: (state) => ({ 
+        user: state.user,
+        leftPanelOpen: state.leftPanelOpen,
+        rightPanelOpen: state.rightPanelOpen,
+        leftPanelSize: state.leftPanelSize,
+        rightPanelSize: state.rightPanelSize
+      }), 
     }
   )
 )
