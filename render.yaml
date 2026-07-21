@@ -1,23 +1,16 @@
-databases:
-  # 1. Managed PostgreSQL Database
-  - name: ets-migration-db
-    plan: free # Change to 'starter' for a non-expiring persistent database
-    databaseName: ets_migration
-    user: ets_user
-
 services:
-  # 2. FastAPI Backend Service
+  # 1. FastAPI Backend Service
   - type: web
     name: ets-migration-backend
     env: docker
     dockerfilePath: ./Dockerfile.backend
     plan: free
     envVars:
-      # Render automatically sets DATABASE_URL from the linked database
+      # Since you already have a Postgres DB on Render, you'll need to manually
+      # paste your existing Internal Database URL into the Render dashboard 
+      # for this backend service after deployment.
       - key: DATABASE_URL
-        fromDatabase:
-          name: ets-migration-db
-          property: connectionString
+        sync: false
       - key: PG_SCHEMA
         value: provider
       - key: COMMON_SCHEMA
