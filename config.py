@@ -33,16 +33,31 @@ OUTPUT_LOGS_DIR : Path = BASE_DIR / "output" / "logs"
 PG_SCHEMA: str = os.getenv("PG_SCHEMA", "provider")
 COMMON_SCHEMA: str = os.getenv("COMMON_SCHEMA", "common")
 
+import urllib.parse
+
 # ---------------------------------------------------------------------------
 # PostgreSQL connection parameters
 # ---------------------------------------------------------------------------
-DB_CONFIG: dict[str, str | int] = {
-    "host"    : os.getenv("DB_HOST",     "localhost"),
-    "port"    : int(os.getenv("DB_PORT", "5432")),
-    "dbname"  : os.getenv("DB_NAME",     "postgres"),
-    "user"    : os.getenv("DB_USER",     "postgres"),
-    "password": os.getenv("DB_PASSWORD", ""),
-}
+_db_url = os.getenv("DATABASE_URL")
+if _db_url:
+    # Render.com / cloud environment
+    parsed = urllib.parse.urlparse(_db_url)
+    DB_CONFIG: dict[str, str | int] = {
+        "host":     parsed.hostname,
+        "port":     parsed.port or 5432,
+        "dbname":   parsed.path.lstrip('/'),
+        "user":     parsed.username,
+        "password": parsed.password,
+    }
+else:
+    # Local docker-compose fallback
+    DB_CONFIG: dict[str, str | int] = {
+        "host"    : os.getenv("DB_HOST",     "localhost"),
+        "port"    : int(os.getenv("DB_PORT", "5432")),
+        "dbname"  : os.getenv("DB_NAME",     "postgres"),
+        "user"    : os.getenv("DB_USER",     "postgres"),
+        "password": os.getenv("DB_PASSWORD", ""),
+    }
 
 # ---------------------------------------------------------------------------
 # Runtime behaviour flags  (can also be overridden via .env)

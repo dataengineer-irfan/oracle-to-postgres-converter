@@ -84,8 +84,55 @@ export default function DataGenerator() {
   const handleCopy = async (format) => {
     setCopying(true);
     appendLog(`Copying as ${format.toUpperCase()}...`, 'INFO');
-    await new Promise(r => setTimeout(r, 400));
-    appendLog(`Copied to clipboard.`, 'SUCCESS');
+    try {
+      let textToCopy = '';
+      if (format === 'all') {
+         textToCopy = logs.map(l => `[${l.level}] ${l.time} ${l.text}`).join('\n') || 'No logs available.';
+      } else if (format === 'sql' || format === 'dml') {
+         if (plan && plan.length > 0) {
+           try {
+             const res = await client.post(ENDPOINTS.PREVIEW_DML, { tables: plan });
+             textToCopy = res.data.dml || '-- No data generated yet.';
+           } catch (e) {
+             textToCopy = '-- Error fetching DML preview. Have you run the pipeline?';
+           }
+         } else {
+           textToCopy = '-- No tables in plan.';
+         }
+      } else if (format === 'ddl') {
+         textToCopy = (plan || []).map(t => `CREATE TABLE ${t} (\n  id SERIAL PRIMARY KEY\n);`).join('\n\n') || '-- No tables in plan.';
+      } else if (format === 'json') {
+         textToCopy = JSON.stringify({ plan: plan || [], targetRows: 50 }, null, 2);
+      } else if (format === 'csv') {
+         textToCopy = (plan || []).join(',\n') || 'No tables';
+      } else {
+         textToCopy = logs.map(l => `[${l.level}] ${l.time} ${l.text}`).join('\n') || 'No logs available.';
+      }
+
+      // Robust copy fallback for non-secure contexts
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(textToCopy);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          throw new Error("execCommand failed");
+        } finally {
+          textArea.remove();
+        }
+      }
+      appendLog(`Copied to clipboard.`, 'SUCCESS');
+    } catch (err) {
+      appendLog(`Failed to copy to clipboard.`, 'ERROR');
+    }
     setCopying(false);
   };
 

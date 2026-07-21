@@ -109,8 +109,58 @@ async def websocket_endpoint(websocket: WebSocket):
                     await websocket.send_text(log)
                 last_idx = len(execution_logs)
             await asyncio.sleep(0.5)
-    except:
-        pass
+        except:
+            pass
+
+class DMLPreviewRequest(BaseModel):
+    tables: List[str]
+
+import csv
+
+@app.post("/api/data/preview-dml")
+async def preview_dml(req: DMLPreviewRequest):
+    """Generate up to 10 real INSERT statements per table from generated CSVs."""
+    output = []
+    data_dir = Path(__file__).parent.parent / "generated_data"
+    
+    for table in req.tables:
+        csv_file = data_dir / f"{table.upper()}.csv"
+        if not csv_file.exists():
+            output.append(f"-- No generated data found for {table}")
+            continue
+            
+        output.append(f"-- Smart Test Data Generation DML for {table} (First 10 rows)")
+        try:
+            with open(csv_file, 'r', encoding='utf-8') as f:
+                reader = csv.reader(f)
+                headers = next(reader, None)
+                if not headers:
+                    continue
+                
+                cols = ", ".join(headers)
+                count = 0
+                for row in reader:
+                    if count >= 10:
+                        break
+                    
+                    # Escape quotes and handle nulls
+                    vals = []
+                    for val in row:
+                        if val == '' or val is None:
+                            vals.append('NULL')
+                        else:
+                            clean_val = str(val).replace("'", "''")
+                            vals.append(f"'{clean_val}'")
+                            
+                    vals_str = ", ".join(vals)
+                    output.append(f"INSERT INTO {table} ({cols})\nVALUES ({vals_str});")
+                    count += 1
+        except Exception as e:
+            output.append(f"-- Error reading {table}: {e}")
+            
+        output.append("") # blank line between tables
+        
+    return {"dml": "\n".join(output)}
 
 # ─── LIVE DATA STUBS ──────────────────────────────────────────────────────────
 # TODO: wire each stub to real database / migration engine

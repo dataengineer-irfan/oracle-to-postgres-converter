@@ -3,8 +3,11 @@
  * Change base URL here to switch environments.
  */
 
-export const API_BASE = 'http://localhost:8080';
-export const WS_BASE  = 'ws://localhost:8080';
+// Use VITE_API_URL if provided (e.g. on Render), fallback to relative path (if served together) or localhost
+export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
+// Construct WebSocket URL by replacing http with ws
+export const WS_BASE = API_BASE.replace(/^http/, 'ws');
 
 export const ENDPOINTS = {
   // Auth
@@ -28,6 +31,7 @@ export const ENDPOINTS = {
 
   // Data
   DATA_TABLE:          (table) => `${API_BASE}/api/data/${table}`,
+  PREVIEW_DML:         `${API_BASE}/api/data/preview-dml`,
   SQL_EXECUTE:         `${API_BASE}/api/sql/execute`,
   EXECUTE_PIPELINE:    `${API_BASE}/execute`,
 
