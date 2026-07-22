@@ -124,13 +124,9 @@ async def generate_sql_from_intent(prompt: str) -> str:
     if enum_constraints:
         enum_constraints = "\n\nCRITICAL ENUM CONSTRAINTS FOR VALUES (DO NOT INVENT VALUES):\n" + enum_constraints
 
-    scenarios = engine.retrieve_relevant_scenarios(prompt)
-    if scenarios:
-        scenarios = f"\n\n{scenarios}\nYou MUST follow the Required Insert Sequence strictly and include all Tables Involved.\n"
-
     payload = {
         "model": "qwen2.5:3b",
-        "prompt": system_prompt + enum_constraints + scenarios + "\n\nUser Request: " + prompt,
+        "prompt": system_prompt + enum_constraints + "\n\nUser Request: " + prompt,
         "stream": False,
         "options": {
             "temperature": 0.0,
