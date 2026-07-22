@@ -72,13 +72,20 @@ async def run_data_generator(tables: List[str], rows: int):
     tables_arg = ",".join(tables)
     
     import random
+    import os
     dynamic_seed = str(random.randint(1, 999999))
+    
+    env = os.environ.copy()
+    # Add the backend directory to PYTHONPATH so it can find config.py
+    backend_dir = str(Path(__file__).parent.parent)
+    env["PYTHONPATH"] = backend_dir + (os.pathsep + env["PYTHONPATH"] if "PYTHONPATH" in env else "")
     
     try:
         process = await asyncio.create_subprocess_exec(
             sys.executable, script_path, "--rows", str(rows), "--tables", tables_arg, "--no-truncate", "--seed", dynamic_seed,
             stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.STDOUT
+            stderr=asyncio.subprocess.STDOUT,
+            env=env
         )
 
         while True:
