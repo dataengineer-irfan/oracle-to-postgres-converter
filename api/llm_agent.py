@@ -117,7 +117,7 @@ async def generate_sql_from_intent(prompt: str) -> str:
         "stream": False,
         "options": {
             "temperature": 0.0,
-            "num_predict": 300,
+            "num_predict": 800,
             "top_k": 10
         }
     }
@@ -151,8 +151,8 @@ async def generate_sql_from_intent(prompt: str) -> str:
                     if sql_match:
                         sql_text = sql_match.group(1).strip()
                     else:
-                        # 2. Try to extract everything from the first SELECT or UPDATE or DELETE or INSERT to the last semicolon
-                        stmt_match = re.search(r"(SELECT|UPDATE|DELETE|INSERT|WITH)\s+.*?;", response_text, re.DOTALL | re.IGNORECASE)
+                        # 2. Try to extract everything from the first SELECT or UPDATE or DELETE or INSERT to the last semicolon or end of string
+                        stmt_match = re.search(r"(SELECT|UPDATE|DELETE|INSERT|WITH)\s+.*?(?:;|$)", response_text, re.DOTALL | re.IGNORECASE)
                         if stmt_match:
                             sql_text = stmt_match.group(0).strip()
                         else:
