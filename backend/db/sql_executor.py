@@ -16,7 +16,7 @@ import logging
 from dataclasses import dataclass, field
 from typing import Optional
 
-from db import DatabaseManager
+from db.db import DatabaseManager
 
 logger = logging.getLogger(__name__)
 

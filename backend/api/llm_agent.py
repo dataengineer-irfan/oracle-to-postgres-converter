@@ -3,7 +3,7 @@ import json
 import os
 import re
 from api.rag_engine import get_rag_engine
-from metadata_loader import MetadataLoader
+from core.metadata_loader import MetadataLoader
 
 # Determine if running in Docker to reach host machine's Ollama
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "host.docker.internal")

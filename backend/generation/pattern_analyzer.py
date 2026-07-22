@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Optional
 
-from rules_engine import ColumnRule, RulesEngine
+from generation.rules_engine import ColumnRule, RulesEngine
 
 logger = logging.getLogger(__name__)
 
@@ -181,7 +181,7 @@ class PatternAnalyzer:
         common_ddl_dir = self._data_dir.parent / "ddl" / "common"
         if common_ddl_dir.exists():
             for sql_file in sorted(common_ddl_dir.glob("*.sql")):
-                from ddl_converter import DDLConverter
+                from conversion.ddl_converter import DDLConverter
                 conv = DDLConverter(schema="provider", common_schema="common")
                 res = conv.convert_file(sql_file)
                 tbl = res.table_name.lower()

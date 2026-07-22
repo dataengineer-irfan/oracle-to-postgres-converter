@@ -29,8 +29,8 @@ from typing import Optional
 
 import sqlparse
 
-from datatype_mapper import DataTypeMapper
-from metadata_loader import MetadataLoader
+from conversion.datatype_mapper import DataTypeMapper
+from core.metadata_loader import MetadataLoader
 from config import INPUT_DDL_DIR
 
 logger = logging.getLogger(__name__)

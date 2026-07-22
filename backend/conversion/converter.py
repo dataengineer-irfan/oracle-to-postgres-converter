@@ -40,10 +40,10 @@ from config import (
     OUTPUT_LOGS_DIR,
     PG_SCHEMA,
 )
-from data_loader import DataLoader
-from db import DatabaseManager
-from ddl_converter import DDLConverter, TableConversion
-from sql_executor import SQLExecutor
+from core.data_loader import DataLoader
+from db.db import DatabaseManager
+from conversion.ddl_converter import DDLConverter, TableConversion
+from db.sql_executor import SQLExecutor
 
 
 # ─────────────────────────────────────────────────────────────────────────── #
@@ -269,7 +269,7 @@ class OracleToPostgresConverter:
 
     def _write_output(self, stem: str, result: TableConversion) -> None:
         """Write the converted PostgreSQL DDL to ``output/ddl/<stem>.sql``."""
-        from metadata_loader import MetadataLoader
+        from core.metadata_loader import MetadataLoader
         from config import COMMON_SCHEMA
         tbl_schema = MetadataLoader.get_schema_for_table(result.table_name, default_schema=self._schema, common_schema=COMMON_SCHEMA)
         out_dir = OUTPUT_DDL_DIR / "common" if tbl_schema == COMMON_SCHEMA else OUTPUT_DDL_DIR

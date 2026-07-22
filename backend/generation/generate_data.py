@@ -35,10 +35,10 @@ from config import (
     RANDOM_SEED,
     ROWS_PER_TABLE,
 )
-from data_generator import DataGenerator
-from db import DatabaseManager
-from pattern_analyzer import PatternAnalyzer
-from postgres_loader import PostgresLoader
+from generation.data_generator import DataGenerator
+from db.db import DatabaseManager
+from generation.pattern_analyzer import PatternAnalyzer
+from db.postgres_loader import PostgresLoader
 
 
 # ---------------------------------------------------------------------------
@@ -179,7 +179,7 @@ def main() -> None:
     # ── Step 1: Pattern Analysis & Rules Engine ───────────────────────── #
     log.info("=" * 56)
     log.info("Loading enterprise rules from rules.yml ...")
-    from rules_engine import RulesEngine
+    from generation.rules_engine import RulesEngine
     rules_eng = RulesEngine()
     log.info("Loaded %d rules.", len(rules_eng.rules))
 

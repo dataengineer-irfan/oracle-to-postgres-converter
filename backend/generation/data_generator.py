@@ -29,13 +29,13 @@ from typing import Any, Optional
 from faker import Faker
 
 from config import AUDIT_USER
-from pattern_analyzer import (
+from generation.pattern_analyzer import (
     ColumnProfile,
     STRAT_DATE, STRAT_ENUM, STRAT_FAKER,
     STRAT_FLOAT_RANGE, STRAT_FREE_TEXT,
     STRAT_INT_RANGE, STRAT_NULL, STRAT_RULE, STRAT_SEQUENTIAL, STRAT_TIMESTAMP,
 )
-from rules_engine import ColumnRule, RulesEngine
+from generation.rules_engine import ColumnRule, RulesEngine
 
 logger = logging.getLogger(__name__)
 

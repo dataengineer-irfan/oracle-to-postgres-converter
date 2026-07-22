@@ -1,8 +1,3 @@
-# metadata/odm/providers_odm.yaml
-# Generated from Provider Module Details.xlsx.
-# IMPORTANT: owner is set to provider per ETS KB Preparation Guide.
-# Source DDL schema in workbook was NHMMIS52E2; update owner only if platform config requires actual schema.
-# PII classification is rule-based draft and should be reviewed by Data Steward before production.
 model_name: Providers Operational Data Model
 version: '1.0'
 tables:
@@ -949,8 +944,8 @@ tables:
   - column_name: C8_ENC_SUB_CAP_SRC_LOC1
     data_type: VARCHAR2(2)
     nullable: true
-    description: The source location 1 of the sub-capitated encounter claim. The field denotes the claims payment system from
-      which the claim was extracted.
+    description: The source location 1 of the sub-capitated encounter claim. The field
+      denotes the claims payment system from which the claim was extracted.
     pii_classification: none
   - column_name: C8_ENC_SUB_CAP_SRC_LOC2
     data_type: VARCHAR2(2)
@@ -2256,16 +2251,20 @@ tables:
   table_name: G_ADR_PHONE_USG_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderAddress
-  description: The Address Phone Usage Table associates a phone [that is associated with an entity] with an address [that
-    is associated with an entity]. Before this Table existed, we knew that an entity had X number of phones and Y number of
-    addresses, but we didn't know which phones were associated with which addresses. So this Table tells us that, for a particular
-    entity, Phone1 is associated with Office2 and Phone3 is associated with Office4.
-  grain: One row per G_CMN_ENTY_SK, G_ADR_USG_TY_CD, G_ADR_SK, G_ADR_USG_SEQ_NUM, G_PHONE_USG_TY_CD, G_PHONE_SK, G_PHONE_USG_SEQ_NUM.
+  description: The Address Phone Usage Table associates a phone [that is associated
+    with an entity] with an address [that is associated with an entity]. Before this
+    Table existed, we knew that an entity had X number of phones and Y number of addresses,
+    but we didn't know which phones were associated with which addresses. So this
+    Table tells us that, for a particular entity, Phone1 is associated with Office2
+    and Phone3 is associated with Office4.
+  grain: One row per G_CMN_ENTY_SK, G_ADR_USG_TY_CD, G_ADR_SK, G_ADR_USG_SEQ_NUM,
+    G_PHONE_USG_TY_CD, G_PHONE_SK, G_PHONE_USG_SEQ_NUM.
   columns:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -2273,7 +2272,8 @@ tables:
   - column_name: G_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: Member Residential Mailing Provider Service Location Billing Mailing Carrier Corporate Billing Payment
+    description: Member Residential Mailing Provider Service Location Billing Mailing
+      Carrier Corporate Billing Payment
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -2297,9 +2297,10 @@ tables:
   - column_name: G_PHONE_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: 'e.g. Home, Work, Cell, Home Fax, Work Fax, Bank, Web Access, etc. Member: Home, Work, Fax, Cell Provider:
-      Phone, Fax (dual-purpose code would show Service Phone, Service Fax, Billing Phone, Billing Fax, Mailing Phone, etc.)
-      Carrier:'
+    description: 'e.g. Home, Work, Cell, Home Fax, Work Fax, Bank, Web Access, etc.
+      Member: Home, Work, Fax, Cell Provider: Phone, Fax (dual-purpose code would
+      show Service Phone, Service Fax, Billing Phone, Billing Fax, Mailing Phone,
+      etc.) Carrier:'
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -2323,7 +2324,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -2351,7 +2353,8 @@ tables:
   table_name: G_ADR_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderAddress
-  description: The General Address Table is used to store addresses for all types of entties throughout the Enterprise system.
+  description: The General Address Table is used to store addresses for all types
+    of entties throughout the Enterprise system.
   grain: One row per G_ADR_SK.
   columns:
   - column_name: G_ADR_SK
@@ -2423,22 +2426,26 @@ tables:
   - column_name: G_USPS_LINE1_ADR
     data_type: VARCHAR2(64)
     nullable: true
-    description: Verfified USPS address. Will conform to the output parameters of the call to Geostan.
+    description: Verfified USPS address. Will conform to the output parameters of
+      the call to Geostan.
     pii_classification: restricted
   - column_name: G_USPS_LINE2_ADR
     data_type: VARCHAR2(64)
     nullable: true
-    description: Verfified USPS address. Will conform to the output parameters of the call to Geostan.
+    description: Verfified USPS address. Will conform to the output parameters of
+      the call to Geostan.
     pii_classification: restricted
   - column_name: G_LAT_NUM
     data_type: NUMBER(7,4)
     nullable: true
-    description: Latitude of the address. The value will be null if the address cannot be validated (per GeoStan as per 12/13/06).
+    description: Latitude of the address. The value will be null if the address cannot
+      be validated (per GeoStan as per 12/13/06).
     pii_classification: restricted
   - column_name: G_LON_NUM
     data_type: NUMBER(7,4)
     nullable: true
-    description: Latitude of the address. The value will be null if the address cannot be validated (per GeoStan as per 12/13/06).
+    description: Latitude of the address. The value will be null if the address cannot
+      be validated (per GeoStan as per 12/13/06).
     pii_classification: restricted
   - column_name: G_CMN_ENTY_TY_CD
     data_type: VARCHAR2(2)
@@ -2453,7 +2460,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -2502,7 +2510,8 @@ tables:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -2510,7 +2519,8 @@ tables:
   - column_name: G_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: Member Residential Mailing Provider Service Location Billing Mailing Carrier Corporate Billing Payment
+    description: Member Residential Mailing Provider Service Location Billing Mailing
+      Carrier Corporate Billing Payment
     pii_classification: none
     is_primary_key: true
   - column_name: G_ADR_SK
@@ -2540,7 +2550,8 @@ tables:
   - column_name: G_ADR_USG_CHG_RSN_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: Explains the reason for the Address Usage being changed. R Returned mail I Incorrect
+    description: Explains the reason for the Address Usage being changed. R Returned
+      mail I Incorrect
     pii_classification: none
   - column_name: G_ADR_USG_STAT_CD
     data_type: VARCHAR2(2)
@@ -2550,8 +2561,9 @@ tables:
   - column_name: G_ADR_USG_END_DT
     data_type: DATE
     nullable: false
-    description: Initially set to '12-31-9999'. This column can be used to record when the current date ceases to be effective.
-      This can be used with or without the Address History table.
+    description: Initially set to '12-31-9999'. This column can be used to record
+      when the current date ceases to be effective. This can be used with or without
+      the Address History table.
     pii_classification: restricted
     is_metric: true
     default_sort_direction: DESC
@@ -2568,7 +2580,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -2609,14 +2622,15 @@ tables:
   table_name: G_CMN_ENTY_REP_XREF_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderRepresentative
-  description: The Common Entity Represenative Xref Table provides a many-to-many association between Common Entity and Common
-    Entity Rep.
+  description: The Common Entity Represenative Xref Table provides a many-to-many
+    association between Common Entity and Common Entity Rep.
   grain: One row per G_CMN_ENTY_SK, G_REP_SK, G_REP_XREF_TY_CD.
   columns:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -2632,10 +2646,12 @@ tables:
   - column_name: G_REP_XREF_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: Defines the type of representative for any type of Common Entity. For SA - Presumptive Member, Requesting
-      Office, Alternate Addressee For Provider - RA contact, Authorized Rep, Managing Employee, Pharmacist in charge. For
-      Member - Absent Parent, Custodial Parent. For Member Case - Head of Household, Authorized Rep. For TPL Carrier - Contact.
-      For Acuity - Facility Administrator (maybe in Provider's system list)
+    description: Defines the type of representative for any type of Common Entity.
+      For SA - Presumptive Member, Requesting Office, Alternate Addressee For Provider
+      - RA contact, Authorized Rep, Managing Employee, Pharmacist in charge. For Member
+      - Absent Parent, Custodial Parent. For Member Case - Head of Household, Authorized
+      Rep. For TPL Carrier - Contact. For Acuity - Facility Administrator (maybe in
+      Provider's system list)
     pii_classification: none
     is_primary_key: true
   - column_name: G_BEG_DT
@@ -2658,8 +2674,8 @@ tables:
   - column_name: G_REL_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: Generally used for family relationships. Generally, these represent dependent relationships of the provider.
-      e.g. Child, Grandmother, Spouse, Parent
+    description: Generally used for family relationships. Generally, these represent
+      dependent relationships of the provider. e.g. Child, Grandmother, Spouse, Parent
     pii_classification: none
   - column_name: G_CMN_ENTY_REP_XREF_STAT_CD
     data_type: VARCHAR2(2)
@@ -2669,7 +2685,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -2710,16 +2727,19 @@ tables:
   table_name: G_CMN_ENTY_TB
   subject_area: Providers
   maps_to_ldm_entity: CommonEntity
-  description: 'The Common Entity Table is the primary portal into Contact Management and Common data. Generally represents
-    a Provider or Recipient. Can be other types, such as Attorney or state government employee. i.e. This is generally a person
-    or place that possesses a Medicaid ID. Common Entity types include (not limited to): 1. MMIS specific entity types a.
-    Provider (entered) b. Member (enrolled) c. TPL Carrier 2. Specific Entity (Contact Management Entity)'
+  description: 'The Common Entity Table is the primary portal into Contact Management
+    and Common data. Generally represents a Provider or Recipient. Can be other types,
+    such as Attorney or state government employee. i.e. This is generally a person
+    or place that possesses a Medicaid ID. Common Entity types include (not limited
+    to): 1. MMIS specific entity types a. Provider (entered) b. Member (enrolled)
+    c. TPL Carrier 2. Specific Entity (Contact Management Entity)'
   grain: One row per G_CMN_ENTY_SK.
   columns:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
   - column_name: G_PREFRD_COMMUN_MTHD_CD
@@ -2752,7 +2772,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -2795,19 +2816,23 @@ tables:
   table_name: G_CMN_REVW_TB
   subject_area: Providers
   maps_to_ldm_entity: CommonEntity
-  description: The Review Table contains dated spans that identify the criteria that must be met for putting an entity (member
-    or provider) on review. "On Review" means that any claims coming in for this specific entity where the date of service
-    falls within the Review span dates and where the claim criteria matches the criteria stored in this table will post an
-    exception and be further processed according to the fields in the Claims Exception Control table for the exception code.
-    This Review Table contains the review criteria, which claim exception code to post when the criteria are met, and an optional
-    Location/User ID override where the claim should be routed. The review criteria use the Mapset functionality to define
+  description: The Review Table contains dated spans that identify the criteria that
+    must be met for putting an entity (member or provider) on review. "On Review"
+    means that any claims coming in for this specific entity where the date of service
+    falls within the Review span dates and where the claim criteria matches the criteria
+    stored in this table will post an exception and be further processed according
+    to the fields in the Claims Exception Control table for the exception code. This
+    Review Table contains the review criteria, which claim exception code to post
+    when the criteria are met, and an optional Location/User ID override where the
+    claim should be routed. The review criteria use the Mapset functionality to define
     the conditions that must be met for an exception to be posted to claim
   grain: One row per G_CMN_ENTY_SK, G_REVW_SEQ_NUM.
   columns:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -2826,8 +2851,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: false
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
     is_foreign_key: true
@@ -2867,23 +2893,24 @@ tables:
   - column_name: R_MPST_ID
     data_type: VARCHAR2(6)
     nullable: true
-    description: Mapset Identifer. Mapsets are used to define a set of mapping criteria, which if the set of data values being
-      evaluated fall within those criteria, identify a specific condition, and thereby establish a set of processing rules
+    description: Mapset Identifer. Mapsets are used to define a set of mapping criteria,
+      which if the set of data values being evaluated fall within those criteria,
+      identify a specific condition, and thereby establish a set of processing rules
       to be followed and applied.
     pii_classification: none
   - column_name: R_CLM_EXC_CD
     data_type: VARCHAR2(4)
     nullable: true
-    description: Claim Exception Code. Unique number that indicates the code (number) that identifies the Claim Exception
-      Code
+    description: Claim Exception Code. Unique number that indicates the code (number)
+      that identifies the Claim Exception Code
     pii_classification: none
     is_foreign_key: true
     references: provider.R_CLM_EXC_TB.R_CLM_EXC_CD
   - column_name: R_TEXT_LOCN_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: The Text Location Code is the location where a claim or service authorization is assigned to be worked if
-      an exception posts.
+    description: The Text Location Code is the location where a claim or service authorization
+      is assigned to be worked if an exception posts.
     pii_classification: none
     is_foreign_key: true
     references: provider.R_TEXT_LOCN_TB.R_TEXT_LOCN_CD
@@ -2895,7 +2922,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -2974,14 +3002,16 @@ tables:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: true
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_foreign_key: true
     references: provider.G_ADR_USG_TB.G_CMN_ENTY_SK
   - column_name: G_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: Member Residential Mailing Provider Service Location Billing Mailing Carrier Corporate Billing Payment
+    description: Member Residential Mailing Provider Service Location Billing Mailing
+      Carrier Corporate Billing Payment
     pii_classification: none
     is_foreign_key: true
     references: provider.G_ADR_USG_TB.G_ADR_USG_TY_CD
@@ -2995,7 +3025,8 @@ tables:
   - column_name: G_E_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: e.g. email address, IP address, FTP address, URL, Web Access, Provider Inbox ID, etc.
+    description: e.g. email address, IP address, FTP address, URL, Web Access, Provider
+      Inbox ID, etc.
     pii_classification: none
     is_foreign_key: true
     references: provider.G_E_ADR_USG_TB.G_E_ADR_USG_TY_CD
@@ -3069,17 +3100,20 @@ tables:
   - column_name: G_USPS_LINE1_ADR
     data_type: VARCHAR2(64)
     nullable: true
-    description: Verfified USPS address. Will conform to the output parameters of the call to Geostan.
+    description: Verfified USPS address. Will conform to the output parameters of
+      the call to Geostan.
     pii_classification: restricted
   - column_name: G_USPS_LINE2_ADR
     data_type: VARCHAR2(64)
     nullable: true
-    description: Verfified USPS address. Will conform to the output parameters of the call to Geostan.
+    description: Verfified USPS address. Will conform to the output parameters of
+      the call to Geostan.
     pii_classification: restricted
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -3186,15 +3220,17 @@ tables:
   - column_name: G_COTS_LTR_TMPLT_KEY_DATA
     data_type: VARCHAR2(50)
     nullable: false
-    description: Correlates directly with a letter template in the COTS letter generation product.
+    description: Correlates directly with a letter template in the COTS letter generation
+      product.
     pii_classification: restricted
     is_foreign_key: true
     references: provider.G_COTS_LTR_TMPLT_TB.G_COTS_LTR_TMPLT_KEY_DATA
   - column_name: G_SPRVSR_REVW_REQD_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Indicates whether the letter request has been reviewed by a supervisor. Source of this attribute is the Letter
-      Temlate entity. This attribute stores a historical record of the value as of the date this row was inserted.
+    description: Indicates whether the letter request has been reviewed by a supervisor.
+      Source of this attribute is the Letter Temlate entity. This attribute stores
+      a historical record of the value as of the date this row was inserted.
     pii_classification: restricted
   - column_name: G_SPRVSR_REVW_DT
     data_type: DATE
@@ -3260,7 +3296,8 @@ tables:
   - column_name: G_ALERT_BASED_ON_TABLE_NAM
     data_type: VARCHAR2(30)
     nullable: true
-    description: Data Dictionary Table Definition. One row exists for each table defined for the Enterprise MMIS application.
+    description: Data Dictionary Table Definition. One row exists for each table defined
+      for the Enterprise MMIS application.
     pii_classification: none
     is_foreign_key: true
     references: provider.R_DD_COL_TB.R_TABLE_NAM
@@ -3284,12 +3321,15 @@ tables:
   - column_name: G_COTS_LTR_GNRTN_RTRN_CD
     data_type: VARCHAR2(20)
     nullable: true
-    description: 'This error code value comes from the COTS letter generation request product. The data type was made intentionally
-      generic. The value is null initially (status code of in process), 0 for success (status code of complete), and one of
-      the following for errors (status code of pended): Fault Code Fault String 9000 An error occurred while executing the
-      web service. 9002 Access denied. The user name or password are incorrect. 9003 User is not authorized to access the
-      required document. 9004 Output profile not found. 9005 Document not found. 9006 No Web service license available. 9007
-      Invalid customer key. 9008 Application not defined. 9009 Customer data source not defined. 9010 Data source not found.
+    description: 'This error code value comes from the COTS letter generation request
+      product. The data type was made intentionally generic. The value is null initially
+      (status code of in process), 0 for success (status code of complete), and one
+      of the following for errors (status code of pended): Fault Code Fault String
+      9000 An error occurred while executing the web service. 9002 Access denied.
+      The user name or password are incorrect. 9003 User is not authorized to access
+      the required document. 9004 Output profile not found. 9005 Document not found.
+      9006 No Web service license available. 9007 Invalid customer key. 9008 Application
+      not defined. 9009 Customer data source not defined. 9010 Data source not found.
       9011 Failed to get connection to the database.'
     pii_classification: none
   - column_name: G_COTS_LTR_GNRTN_RTRN_CD_DT
@@ -3300,21 +3340,24 @@ tables:
   - column_name: G_NOTE_SET_SK
     data_type: NUMBER(10,0)
     nullable: true
-    description: The most recent Case note set for this Letter Request. Paired with "g note sequence number".
+    description: The most recent Case note set for this Letter Request. Paired with
+      "g note sequence number".
     pii_classification: none
     is_foreign_key: true
     references: provider.G_NOTE_TB.G_NOTE_SET_SK
   - column_name: G_NOTE_SEQ_NUM
     data_type: NUMBER(5,0)
     nullable: true
-    description: The most recent Case note for this Letter Request. Paired with "g note set SK".
+    description: The most recent Case note for this Letter Request. Paired with "g
+      note set SK".
     pii_classification: none
     is_foreign_key: true
     references: provider.G_NOTE_TB.G_NOTE_SEQ_NUM
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -3350,8 +3393,8 @@ tables:
   table_name: G_CR_CMN_ENTY_XREF_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderCorrespondence
-  description: The Change Request (CR) Correspondence Common Entity Xref Table defines the Common Entities that a call is
-    about.
+  description: The Change Request (CR) Correspondence Common Entity Xref Table defines
+    the Common Entities that a call is about.
   grain: One row per G_CR_SK, G_CMN_ENTY_SK.
   columns:
   - column_name: G_CR_SK
@@ -3365,7 +3408,8 @@ tables:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -3373,9 +3417,11 @@ tables:
   - column_name: G_CASE_CR_CONTCT_RSN_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: Example values are "Inquired about" and "Inquiring". This code becomes a FK in the two Xref entities ("g
-      case common entity xref tb" and "g CR common entity xref tb"). This provides the flexibility within the database for
-      any number of entities to inquire or be inquired about for cases and CRs. The app restricts the cardinality as necessary.
+    description: Example values are "Inquired about" and "Inquiring". This code becomes
+      a FK in the two Xref entities ("g case common entity xref tb" and "g CR common
+      entity xref tb"). This provides the flexibility within the database for any
+      number of entities to inquire or be inquired about for cases and CRs. The app
+      restricts the cardinality as necessary.
     pii_classification: none
   - column_name: G_CMN_ENTY_TY_CD
     data_type: VARCHAR2(2)
@@ -3385,7 +3431,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -3413,8 +3460,9 @@ tables:
   table_name: G_CR_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderCorrespondence
-  description: The Change Request (CR) Table Represents an individual correspondence event with a contact. Typically, this
-    is a phone call. There are SLA requirements and/or penalties associated with correspondences.
+  description: The Change Request (CR) Table Represents an individual correspondence
+    event with a contact. Typically, this is a phone call. There are SLA requirements
+    and/or penalties associated with correspondences.
   grain: One row per G_CR_SK.
   columns:
   - column_name: G_CR_SK
@@ -3426,13 +3474,15 @@ tables:
   - column_name: G_SUBM_AUTH_NUM
     data_type: VARCHAR2(12)
     nullable: true
-    description: This is the unique Service Authorization identifier. The format is state specific.
+    description: This is the unique Service Authorization identifier. The format is
+      state specific.
     pii_classification: none
   - column_name: G_SUBM_TCN_NUM
     data_type: VARCHAR2(17)
     nullable: true
-    description: The TCN (transaction control number) uniquely identifies each claim and trransaction in the claims processing
-      subsystem and is used as the primary key for all tables that make up a single claim.
+    description: The TCN (transaction control number) uniquely identifies each claim
+      and trransaction in the claims processing subsystem and is used as the primary
+      key for all tables that make up a single claim.
     pii_classification: none
   - column_name: G_CR_CRTD_BY_WORK_UNIT_SK
     data_type: NUMBER(10,0)
@@ -3495,13 +3545,15 @@ tables:
   - column_name: G_CR_PRTY_DT
     data_type: DATE
     nullable: true
-    description: Tracks when a priority of the CR is changed. This is required by the 'Priority Escalation' batch process
-      which escalates the priority of the CR based on the 'configurable' parameters of the category.
+    description: Tracks when a priority of the CR is changed. This is required by
+      the 'Priority Escalation' batch process which escalates the priority of the
+      CR based on the 'configurable' parameters of the category.
     pii_classification: restricted
   - column_name: G_CRSPD_SRC_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: Defines the source of the correspondence. e.g. Phone, email, written document, web portal, etc.
+    description: Defines the source of the correspondence. e.g. Phone, email, written
+      document, web portal, etc.
     pii_classification: none
   - column_name: G_DAYS_TO_CLOSE_NUM
     data_type: NUMBER(4,0)
@@ -3513,24 +3565,28 @@ tables:
   - column_name: G_RESP_EXSTS_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Indicates if there are any response documents associated with this Correspondence. If yes, they must all
-      be considered "closed" before the correspondence can be closed.
+    description: Indicates if there are any response documents associated with this
+      Correspondence. If yes, they must all be considered "closed" before the correspondence
+      can be closed.
     pii_classification: none
   - column_name: G_RESP_HAS_FILE_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Indicates if this correspondence includes responses that do not include documents.
+    description: Indicates if this correspondence includes responses that do not include
+      documents.
     pii_classification: none
   - column_name: G_RESP_ALL_CLOSED_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Indicates all the associated responses in TBD (fka CORR_DOC) have a Closed status. This improves performance
-      by not having to join to that table to determine this when generating reports.
+    description: Indicates all the associated responses in TBD (fka CORR_DOC) have
+      a Closed status. This improves performance by not having to join to that table
+      to determine this when generating reports.
     pii_classification: restricted
   - column_name: G_REP_SK
     data_type: NUMBER(10,0)
     nullable: true
-    description: The person representing the Common Entity who called and caused the CR to be created.
+    description: The person representing the Common Entity who called and caused the
+      CR to be created.
     pii_classification: restricted
     is_foreign_key: true
     references: provider.G_REP_TB.G_REP_SK
@@ -3556,8 +3612,9 @@ tables:
   - column_name: G_SPRVSR_REVWD_WORK_UNIT_SK
     data_type: NUMBER(10,0)
     nullable: true
-    description: Dropped "g supervisor approval indicator" in favor of "g supervisor approved work unit SK". A value in this
-      column indicates that the CR has been approved.
+    description: Dropped "g supervisor approval indicator" in favor of "g supervisor
+      approved work unit SK". A value in this column indicates that the CR has been
+      approved.
     pii_classification: none
     is_foreign_key: true
     references: provider.G_WORK_UNIT_TB.G_WORK_UNIT_SK
@@ -3571,8 +3628,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
     is_foreign_key: true
@@ -3585,7 +3643,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_CRSPD_SUBJ_CD
     data_type: VARCHAR2(2)
@@ -3626,8 +3685,9 @@ tables:
   table_name: G_CRSPD_CAT_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderCorrespondence
-  description: The Correspondence Category Table contains information on Categories. The Category is the reason for the call.
-    e.g. Calling to determine the status of something. FKA CATEGORY
+  description: The Correspondence Category Table contains information on Categories.
+    The Category is the reason for the call. e.g. Calling to determine the status
+    of something. FKA CATEGORY
   grain: One row per G_CRSPD_CAT_SK.
   columns:
   - column_name: G_CRSPD_CAT_SK
@@ -3659,8 +3719,9 @@ tables:
   - column_name: G_CAT_DLTN_DAYS
     data_type: NUMBER(5,0)
     nullable: true
-    description: The number of days before a "closed" Correspondence of this category type is removed from the Watchlist table.
-      This value, if specified, overrides the system default value from the Parameter table.
+    description: The number of days before a "closed" Correspondence of this category
+      type is removed from the Watchlist table. This value, if specified, overrides
+      the system default value from the Parameter table.
     pii_classification: none
     is_metric: true
     default_sort_direction: DESC
@@ -3701,7 +3762,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -3749,13 +3811,14 @@ tables:
   - column_name: G_CMN_ENTY_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: e.g. Member, Provider, TPL, Contact Management, etc. In this entity, the Common Entity type code is used
-      to help filter rows to assist search performance.
+    description: e.g. Member, Provider, TPL, Contact Management, etc. In this entity,
+      the Common Entity type code is used to help filter rows to assist search performance.
     pii_classification: none
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -3798,14 +3861,15 @@ tables:
   table_name: G_E_ADR_USG_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderAddress
-  description: The Electronic Usage Table is an associative Table, which allows an address to be defined as multiple types
-    (billing, shipping, etc.).
+  description: The Electronic Usage Table is an associative Table, which allows an
+    address to be defined as multiple types (billing, shipping, etc.).
   grain: One row per G_CMN_ENTY_SK, G_E_ADR_USG_TY_CD, G_E_ADR_SK, G_E_ADR_USG_SEQ_NUM.
   columns:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -3813,7 +3877,8 @@ tables:
   - column_name: G_E_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: e.g. email address, IP address, FTP address, URL, Web Access, Provider Inbox ID, etc.
+    description: e.g. email address, IP address, FTP address, URL, Web Access, Provider
+      Inbox ID, etc.
     pii_classification: none
     is_primary_key: true
   - column_name: G_E_ADR_SK
@@ -3838,7 +3903,8 @@ tables:
   - column_name: G_E_ADR_TY_SIG_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: e.g. Primary, Secondary, etc. This is the significance type *within* an e-address type.
+    description: e.g. Primary, Secondary, etc. This is the significance type *within*
+      an e-address type.
     pii_classification: none
   - column_name: G_E_ADR_USG_STAT_CD
     data_type: VARCHAR2(2)
@@ -3860,7 +3926,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -3923,7 +3990,8 @@ tables:
   - column_name: G_CNTRY_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: If the phone number is in the USA, this attribute will contain no value.
+    description: If the phone number is in the USA, this attribute will contain no
+      value.
     pii_classification: none
   - column_name: G_INTL_PHONE_NUM
     data_type: VARCHAR2(20)
@@ -3938,13 +4006,14 @@ tables:
   - column_name: G_CMN_ENTY_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: e.g. Member, Provider, TPL, Contact Management, etc. In this context, the Common Entity type code is used
-      to help filter rows to assist search performance.
+    description: e.g. Member, Provider, TPL, Contact Management, etc. In this context,
+      the Common Entity type code is used to help filter rows to assist search performance.
     pii_classification: none
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -3987,14 +4056,15 @@ tables:
   table_name: G_PHONE_USG_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderPhone
-  description: The Phone Usage Table indicates how a phone number can be used as defined by Phone Type. Each phone number
-    can be associated with one or more Phone Types.
+  description: The Phone Usage Table indicates how a phone number can be used as defined
+    by Phone Type. Each phone number can be associated with one or more Phone Types.
   grain: One row per G_CMN_ENTY_SK, G_PHONE_USG_TY_CD, G_PHONE_SK, G_PHONE_USG_SEQ_NUM.
   columns:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -4002,9 +4072,10 @@ tables:
   - column_name: G_PHONE_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: 'e.g. Home, Work, Cell, Home Fax, Work Fax, Bank, Web Access, etc. Member: Home, Work, Fax, Cell Provider:
-      Phone, Fax (dual-purpose code would show Service Phone, Service Fax, Billing Phone, Billing Fax, Mailing Phone, etc.)
-      Carrier:'
+    description: 'e.g. Home, Work, Cell, Home Fax, Work Fax, Bank, Web Access, etc.
+      Member: Home, Work, Fax, Cell Provider: Phone, Fax (dual-purpose code would
+      show Service Phone, Service Fax, Billing Phone, Billing Fax, Mailing Phone,
+      etc.) Carrier:'
     pii_classification: none
     is_primary_key: true
   - column_name: G_PHONE_SK
@@ -4029,8 +4100,8 @@ tables:
   - column_name: G_PHONE_TY_SIG_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: 'e.g. Primary, Secondary, Tertiary, etc. Note: This code identifies the primary (etc.) phone *within* each
-      phone type.'
+    description: 'e.g. Primary, Secondary, Tertiary, etc. Note: This code identifies
+      the primary (etc.) phone *within* each phone type.'
     pii_classification: none
   - column_name: G_PHONE_USG_STAT_CD
     data_type: VARCHAR2(2)
@@ -4052,7 +4123,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -4246,7 +4318,8 @@ tables:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -4304,7 +4377,8 @@ tables:
   - column_name: G_RECOUP_LAG_DAYS_NUM
     data_type: NUMBER(5,0)
     nullable: true
-    description: How long to delay the recoupment from the time the receivable is created.
+    description: How long to delay the recoupment from the time the receivable is
+      created.
     pii_classification: restricted
     is_metric: true
     default_sort_direction: DESC
@@ -4328,13 +4402,15 @@ tables:
   - column_name: G_VND_MSTR_NUM
     data_type: VARCHAR2(10)
     nullable: true
-    description: The Vendor Master Number is a unique identifier assigned to all payee's in the NH accounting system. The
-      Vendor Master Number must be submitted to the NH accounting system for check and EFT transactions.
+    description: The Vendor Master Number is a unique identifier assigned to all payee's
+      in the NH accounting system. The Vendor Master Number must be submitted to the
+      NH accounting system for check and EFT transactions.
     pii_classification: restricted
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -4380,10 +4456,12 @@ tables:
   table_name: G_REP_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderRepresentative
-  description: g rep tb - fka Contact The Rep Table contains information about an individual that represents the entity (e.g.
-    Someone who works for a Provider). A Rep cannot be a payee. Payees that don't have base Tables associated with them are
-    stored in Specific Entity. Notice that Rep is a "base" Table. Thus, every row in the Rep Table has one corresponding row
-    in Common Entity. Also, the app must enforce that a Rep cannot have Reps associated with him/her."
+  description: g rep tb - fka Contact The Rep Table contains information about an
+    individual that represents the entity (e.g. Someone who works for a Provider).
+    A Rep cannot be a payee. Payees that don't have base Tables associated with them
+    are stored in Specific Entity. Notice that Rep is a "base" Table. Thus, every
+    row in the Rep Table has one corresponding row in Common Entity. Also, the app
+    must enforce that a Rep cannot have Reps associated with him/her."
   grain: One row per G_REP_SK.
   columns:
   - column_name: G_REP_SK
@@ -4447,7 +4525,8 @@ tables:
   - column_name: G_SSN
     data_type: VARCHAR2(9)
     nullable: true
-    description: Social Security Number. There is not a requirement to know the Rep's SSN.
+    description: Social Security Number. There is not a requirement to know the Rep's
+      SSN.
     pii_classification: restricted
   - column_name: G_GENDER_CD
     data_type: VARCHAR2(1)
@@ -4457,12 +4536,14 @@ tables:
   - column_name: G_CMN_ENTY_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: Denormalized for performance reasons. This value can be found in Common Entity.
+    description: Denormalized for performance reasons. This value can be found in
+      Common Entity.
     pii_classification: none
   - column_name: G_REP_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_foreign_key: true
     references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
@@ -4481,7 +4562,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -4522,16 +4604,19 @@ tables:
   table_name: G_SPEC_ENTY_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: 'Contact Management specific entity. e.g. Attorney, Employer, Member-Unenrolled, Provider-Request. Note: There
-    is no corresponding MMIS entity. Payees that don''t have base tables associated with them are stored here. Because this
-    is not a legacy table, the PK is exactly the same as the Common Entity PK. In the legacy base tables, they have their
-    own PK structure independent of Common Entity and the Common Entity FK is a non-key attribute.'
+  description: 'Contact Management specific entity. e.g. Attorney, Employer, Member-Unenrolled,
+    Provider-Request. Note: There is no corresponding MMIS entity. Payees that don''t
+    have base tables associated with them are stored here. Because this is not a legacy
+    table, the PK is exactly the same as the Common Entity PK. In the legacy base
+    tables, they have their own PK structure independent of Common Entity and the
+    Common Entity FK is a non-key attribute.'
   grain: One row per G_SPEC_ENTY_SK.
   columns:
   - column_name: G_SPEC_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -4574,7 +4659,8 @@ tables:
   - column_name: G_SPEC_ENTY_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: e.g. Unenrolled provider, Unenrolled member, Attorney, District Office, County, Interested Party...
+    description: e.g. Unenrolled provider, Unenrolled member, Attorney, District Office,
+      County, Interested Party...
     pii_classification: none
   - column_name: G_ORG_TY_CD
     data_type: VARCHAR2(2)
@@ -4584,8 +4670,8 @@ tables:
   - column_name: G_ENTY_TAX_ID
     data_type: VARCHAR2(9)
     nullable: true
-    description: The Federal Employer Identification Number of the entity (aka Tax Identification Number and Federal Employee
-      ID Number).
+    description: The Federal Employer Identification Number of the entity (aka Tax
+      Identification Number and Federal Employee ID Number).
     pii_classification: restricted
   - column_name: G_ENTY_SSN_NUM
     data_type: VARCHAR2(9)
@@ -4605,8 +4691,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
     is_foreign_key: true
@@ -4614,8 +4701,9 @@ tables:
   - column_name: G_DSTCT_OFC_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: e.g. 01 Keene District Office, 02 Claremont, 03 Locana, 04 Conway, 05 Concord, 06 Portsmouth, 07 Rochester,
-      08 Littleton, 09 Berlin, 10 Manchester, 11 Nashua 16 Salem, 17 Rochester, 78 Central Health Kids, 99 Division of Human
+    description: e.g. 01 Keene District Office, 02 Claremont, 03 Locana, 04 Conway,
+      05 Concord, 06 Portsmouth, 07 Rochester, 08 Littleton, 09 Berlin, 10 Manchester,
+      11 Nashua 16 Salem, 17 Rochester, 78 Central Health Kids, 99 Division of Human
       Services
     pii_classification: none
   - column_name: G_DOB_DT
@@ -4643,7 +4731,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -4669,9 +4758,11 @@ tables:
   table_name: G_USER_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The master user data originates in, and resides in, LDAP. Custom code integrated with LDAP will synchronize
-    the user data with "g user tb" for internal users. The rows in "g user tb" can be queried as necessary (by Enterprise
-    or other tools (e.g. Cognos)). There is no need for Enterprise to modify the information in "g user tb".
+  description: The master user data originates in, and resides in, LDAP. Custom code
+    integrated with LDAP will synchronize the user data with "g user tb" for internal
+    users. The rows in "g user tb" can be queried as necessary (by Enterprise or other
+    tools (e.g. Cognos)). There is no need for Enterprise to modify the information
+    in "g user tb".
   grain: One row per G_USER_WORK_UNIT_SK.
   columns:
   - column_name: G_USER_WORK_UNIT_SK
@@ -4745,7 +4836,8 @@ tables:
   - column_name: G_SPRVSR_REVW_REQD_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Supervisor must review CR before it is closed. A supervisor cannot have this indicator set to positive.
+    description: Supervisor must review CR before it is closed. A supervisor cannot
+      have this indicator set to positive.
     pii_classification: none
   - column_name: G_CASE_FLTR_NAM
     data_type: VARCHAR2(50)
@@ -4774,7 +4866,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -4812,8 +4905,9 @@ tables:
   table_name: G_WORK_UNIT_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Work Unit Table contains information, which represents either a user or a deparment. If a person changes
-    from State employment to ACS employment, create a new work unit row for them.
+  description: The Work Unit Table contains information, which represents either a
+    user or a deparment. If a person changes from State employment to ACS employment,
+    create a new work unit row for them.
   grain: One row per G_WORK_UNIT_SK.
   columns:
   - column_name: G_WORK_UNIT_SK
@@ -4830,7 +4924,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -4858,14 +4953,16 @@ tables:
   table_name: P_AFFL_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider Affiliation Table links groups to group members, billing agents (if billing agents exist) to their
-    provider members, and associations to their members.
+  description: The Provider Affiliation Table links groups to group members, billing
+    agents (if billing agents exist) to their provider members, and associations to
+    their members.
   grain: One row per P_GRP_SYS_ID, P_MBR_SYS_ID, P_AFFL_SK.
   columns:
   - column_name: P_GRP_SYS_ID
     data_type: NUMBER(10,0)
     nullable: false
-    description: This coulmn is used in the provider affilation table to store the P_SYS_ID of the group provider.
+    description: This coulmn is used in the provider affilation table to store the
+      P_SYS_ID of the group provider.
     pii_classification: restricted
     is_primary_key: true
     is_foreign_key: true
@@ -4873,7 +4970,8 @@ tables:
   - column_name: P_MBR_SYS_ID
     data_type: NUMBER(10,0)
     nullable: false
-    description: This column is used in the provider affilaiton table to store the sys ID of the member provider.
+    description: This column is used in the provider affilaiton table to store the
+      sys ID of the member provider.
     pii_classification: restricted
     is_primary_key: true
     is_foreign_key: true
@@ -4904,7 +5002,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -4955,13 +5054,15 @@ tables:
   - column_name: P_ALT_ID
     data_type: VARCHAR2(15)
     nullable: false
-    description: An alternate identifier for a Provider. This may be used when a Provider is assigned an ID different than
-      their primary ID (i.e. NABP Number, DEA Number) by a Customer or has multiple identifiers it can be recognized by.
+    description: An alternate identifier for a Provider. This may be used when a Provider
+      is assigned an ID different than their primary ID (i.e. NABP Number, DEA Number)
+      by a Customer or has multiple identifiers it can be recognized by.
     pii_classification: none
   - column_name: P_ALT_ID_TY_CD
     data_type: VARCHAR2(3)
     nullable: false
-    description: The Provider Alternate Identifier Type Code identifies the source of the identifier.
+    description: The Provider Alternate Identifier Type Code identifies the source
+      of the identifier.
     pii_classification: none
   - column_name: P_ALT_ID_BEG_DT
     data_type: DATE
@@ -4988,7 +5089,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -5095,7 +5197,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -5121,8 +5224,8 @@ tables:
   table_name: P_CLIA_PROV_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider CLIA Provider Table cross references the CLIA number to an internal MMIS provider system identifier
-    (P_SYS_ID).
+  description: The Provider CLIA Provider Table cross references the CLIA number to
+    an internal MMIS provider system identifier (P_SYS_ID).
   grain: One row per P_SYS_ID, P_CLIA_PROV_SK.
   columns:
   - column_name: P_SYS_ID
@@ -5142,8 +5245,9 @@ tables:
   - column_name: P_CLIA_NUM
     data_type: VARCHAR2(10)
     nullable: false
-    description: The CLIA number assigned to the provider regarding the provider's certification as a laboratory provider
-      of services. This field is updated through the HCFA OSCAR interface.
+    description: The CLIA number assigned to the provider regarding the provider's
+      certification as a laboratory provider of services. This field is updated through
+      the HCFA OSCAR interface.
     pii_classification: none
     is_foreign_key: true
     references: provider.P_CLIA_LAB_TB.P_CLIA_NUM
@@ -5162,7 +5266,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -5295,7 +5400,8 @@ tables:
   table_name: P_DTL_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider Detail Table is the main provider Table, holding data that occurs once for a provider.
+  description: The Provider Detail Table is the main provider Table, holding data
+    that occurs once for a provider.
   grain: One row per P_SYS_ID.
   columns:
   - column_name: P_SYS_ID
@@ -5307,31 +5413,35 @@ tables:
   - column_name: P_TY_CLASS_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: The Provider Type Class Code is the classification of the Provider Type. 1 = Physician, 2 = Dentist, 3 =
-      Pharmacy, 4 = Institution
+    description: The Provider Type Class Code is the classification of the Provider
+      Type. 1 = Physician, 2 = Dentist, 3 = Pharmacy, 4 = Institution
     pii_classification: none
   - column_name: P_REC_TY_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: This field is used to segregate those provider records that are still in the enrollment process from those
-      that have completed the process and have been accepted as enrolled providers.
+    description: This field is used to segregate those provider records that are still
+      in the enrollment process from those that have completed the process and have
+      been accepted as enrolled providers.
     pii_classification: none
   - column_name: P_APPL_NUM
     data_type: VARCHAR2(15)
     nullable: true
-    description: A unique number assigned to each provider enrollment application form. This number is used to track the progress
-      of the provider's enrollment up to approval or denial. The number is assigned by the system at the time the data from
-      the enrollment for is en
+    description: A unique number assigned to each provider enrollment application
+      form. This number is used to track the progress of the provider's enrollment
+      up to approval or denial. The number is assigned by the system at the time the
+      data from the enrollment for is en
     pii_classification: none
   - column_name: P_LOCN_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: Indicates if the provider's practice location is in-state, out-of-state or on the border.
+    description: Indicates if the provider's practice location is in-state, out-of-state
+      or on the border.
     pii_classification: none
   - column_name: P_RA_SORT_SEQ_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: This code indicates how the remittance advice is sorted before it is sent to the provider.
+    description: This code indicates how the remittance advice is sorted before it
+      is sent to the provider.
     pii_classification: none
   - column_name: P_RA_PRT_SUSP_CD
     data_type: VARCHAR2(1)
@@ -5341,14 +5451,16 @@ tables:
   - column_name: P_PRACT_TY_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: This code indicates the legal organization that the provider belongs to.
+    description: This code indicates the legal organization that the provider belongs
+      to.
     pii_classification: none
   - column_name: P_INDIV_GRP_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: 'The Provider Individual or Group Code identifies whether the provider?s practice is an individual or group
-      practice, for example: I ? Individual provider / sole proprietorship G ? Group provider / corporate partnership B ?
-      Independent practitioner / sole proprietor group'
+    description: 'The Provider Individual or Group Code identifies whether the provider?s
+      practice is an individual or group practice, for example: I ? Individual provider
+      / sole proprietorship G ? Group provider / corporate partnership B ? Independent
+      practitioner / sole proprietor group'
     pii_classification: none
   - column_name: P_OWNER_TY_CD
     data_type: VARCHAR2(1)
@@ -5363,7 +5475,8 @@ tables:
   - column_name: P_PHARM_CLASS_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: This explains what type of business a pharmacy provider participates in.
+    description: This explains what type of business a pharmacy provider participates
+      in.
     pii_classification: none
   - column_name: P_DBA_NAM
     data_type: VARCHAR2(60)
@@ -5460,25 +5573,29 @@ tables:
   - column_name: P_BKUP_WHOLD_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Indicates the provider's current W9 or tax withholding status, as related to B-Notice processing.
+    description: Indicates the provider's current W9 or tax withholding status, as
+      related to B-Notice processing.
     pii_classification: restricted
   - column_name: P_MULTI_LOCN_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This indicates whether a provider practices in multiple locations and has more than one provider number.
-      This indicator will have a value of 'Y' of 'N'. It will default to 'N' when the row is inserted.
+    description: This indicates whether a provider practices in multiple locations
+      and has more than one provider number. This indicator will have a value of 'Y'
+      of 'N'. It will default to 'N' when the row is inserted.
     pii_classification: none
   - column_name: P_PRFT_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This indicates if this provider is a profit of non-profit provider. This indicator will have a value of 'Y'
-      of 'N'. It will default to 'Y' (for profit) when the row is inserted.
+    description: This indicates if this provider is a profit of non-profit provider.
+      This indicator will have a value of 'Y' of 'N'. It will default to 'Y' (for
+      profit) when the row is inserted.
     pii_classification: none
   - column_name: P_REVER_DT
     data_type: DATE
     nullable: true
-    description: This indicates the date by which the provider must reverify selected data. It has a DATE format and will
-      default to '0001-01-01' when the row is inserted.
+    description: This indicates the date by which the provider must reverify selected
+      data. It has a DATE format and will default to '0001-01-01' when the row is
+      inserted.
     pii_classification: none
   - column_name: P_BLNG_CD
     data_type: VARCHAR2(1)
@@ -5493,20 +5610,23 @@ tables:
   - column_name: P_IHS_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This indicates if the provider is an Indian Health Service provider. This indicator will have a value of
-      'Y' or 'N'. It will default to 'N' when the row is inserted.
+    description: This indicates if the provider is an Indian Health Service provider.
+      This indicator will have a value of 'Y' or 'N'. It will default to 'N' when
+      the row is inserted.
     pii_classification: none
   - column_name: P_SOLE_COMM_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This indicates whether the provider participates in a community program. This indicator will have a value
-      of 'Y' or 'N'. It will default to 'N' when the row is inserted.
+    description: This indicates whether the provider participates in a community program.
+      This indicator will have a value of 'Y' or 'N'. It will default to 'N' when
+      the row is inserted.
     pii_classification: none
   - column_name: P_EPSDT_ONLY_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This indicates that the provider can only provide services for the EPSDT program. This indicator will have
-      a value of 'Y' or 'N'. It will default to 'N' when the row is inserted.
+    description: This indicates that the provider can only provide services for the
+      EPSDT program. This indicator will have a value of 'Y' or 'N'. It will default
+      to 'N' when the row is inserted.
     pii_classification: none
   - column_name: P_ADD_DT
     data_type: DATE
@@ -5521,7 +5641,8 @@ tables:
   - column_name: P_STATE_MATCH_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This field indicates if the provider is eligible for state matching funds.
+    description: This field indicates if the provider is eligible for state matching
+      funds.
     pii_classification: none
   - column_name: P_PHNTC_SORT_NAM
     data_type: VARCHAR2(4)
@@ -5531,8 +5652,8 @@ tables:
   - column_name: P_ENROL_ACTN_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: A code indicating if the provider enrollment form being processed is for an initial enrollment or for a change
-      of ownership.
+    description: A code indicating if the provider enrollment form being processed
+      is for an initial enrollment or for a change of ownership.
     pii_classification: none
   - column_name: P_TPL_AUD_DT
     data_type: DATE
@@ -5547,8 +5668,8 @@ tables:
   - column_name: P_DUPL_OVRRD_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This indicator is checked when the user wants to override a duplicate SSN or TIN condition during provider
-      enrollment.
+    description: This indicator is checked when the user wants to override a duplicate
+      SSN or TIN condition during provider enrollment.
     pii_classification: restricted
   - column_name: P_CANCEL_APPL_IND
     data_type: VARCHAR2(1)
@@ -5563,7 +5684,8 @@ tables:
   - column_name: P_FSCL_END_MO_NUM
     data_type: VARCHAR2(2)
     nullable: true
-    description: This indicates the month when the fiscal year ends for the provider. Default to 00.
+    description: This indicates the month when the fiscal year ends for the provider.
+      Default to 00.
     pii_classification: none
   - column_name: P_BIRTH_CNTRY_CD
     data_type: VARCHAR2(3)
@@ -5618,9 +5740,11 @@ tables:
   - column_name: P_IN_KIND_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Provider In Kind Indicator If Yes, the provider is a type of state agency that provides Medicaid services.
-      It is used during final payment calculations if a provider is in-kind, the payment is reduced to the amount that will
-      be covered by Federal match money, so additional state-budgeted money is not transferred from DHHS to the other agency.
+    description: Provider In Kind Indicator If Yes, the provider is a type of state
+      agency that provides Medicaid services. It is used during final payment calculations
+      if a provider is in-kind, the payment is reduced to the amount that will be
+      covered by Federal match money, so additional state-budgeted money is not transferred
+      from DHHS to the other agency.
     pii_classification: restricted
   - column_name: P_DBA_YRS_NUM
     data_type: NUMBER(3,0)
@@ -5640,7 +5764,8 @@ tables:
   - column_name: P_CURR_ALT_ID_TY_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: The Provider Alternate Identifier Type Code identifies the source of the identifier.
+    description: The Provider Alternate Identifier Type Code identifies the source
+      of the identifier.
     pii_classification: none
   - column_name: P_PEER_GRP_CD
     data_type: VARCHAR2(2)
@@ -5665,12 +5790,14 @@ tables:
   - column_name: P_PHARM_DLVRY_SVC_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Indicates that the pharmacy offers delivery of pharmaceuticals or durable medical equipment.
+    description: Indicates that the pharmacy offers delivery of pharmaceuticals or
+      durable medical equipment.
     pii_classification: none
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Common Entity Surrogate Key (pointing to the contact management data for the enrolled provider).
+    description: Common Entity Surrogate Key (pointing to the contact management data
+      for the enrolled provider).
     pii_classification: restricted
     is_foreign_key: true
     references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
@@ -5684,7 +5811,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_WEB_USER_ID
     data_type: VARCHAR2(30)
@@ -5719,7 +5847,8 @@ tables:
   - column_name: P_SA_LTR_MEDM_CD
     data_type: VARCHAR2(1)
     nullable: true
-    description: This controls if the provide receives their SA Letters in their Inbox or Mailbox.
+    description: This controls if the provide receives their SA Letters in their Inbox
+      or Mailbox.
     pii_classification: none
   - column_name: P_LEGAL_NAM
     data_type: VARCHAR2(60)
@@ -5770,13 +5899,15 @@ tables:
   - column_name: P_ALT_ID
     data_type: VARCHAR2(15)
     nullable: false
-    description: An alternate identifier for a Provider. This may be used when a Provider is assigned an ID different than
-      their primary ID (i.e. NABP Number, DEA Number) by a Customer or has multiple identifiers it can be recognized by.
+    description: An alternate identifier for a Provider. This may be used when a Provider
+      is assigned an ID different than their primary ID (i.e. NABP Number, DEA Number)
+      by a Customer or has multiple identifiers it can be recognized by.
     pii_classification: none
   - column_name: P_ENROL_ALT_ID_TY_CD
     data_type: VARCHAR2(3)
     nullable: false
-    description: The Provider Alternate Identifier Type Code identifies the source of the identifier.
+    description: The Provider Alternate Identifier Type Code identifies the source
+      of the identifier.
     pii_classification: none
   - column_name: P_ENROL_ALT_ID_BEG_DT
     data_type: DATE
@@ -5793,13 +5924,15 @@ tables:
   - column_name: P_TAX_RPT_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: If the P_ALT_ID_TY_CD is "Tax ID" or "SSN" tells whether it should also be used for tax withholding. Should
-      only be used if the provider has both a Tax ID and an SSN.
+    description: If the P_ALT_ID_TY_CD is "Tax ID" or "SSN" tells whether it should
+      also be used for tax withholding. Should only be used if the provider has both
+      a Tax ID and an SSN.
     pii_classification: restricted
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -5825,7 +5958,8 @@ tables:
   table_name: P_ENROL_STAT_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider Enroll Status Table contains the enrollment statuses with their effective date.
+  description: The Provider Enroll Status Table contains the enrollment statuses with
+    their effective date.
   grain: One row per P_SYS_ID, P_ENROL_STAT_SK.
   columns:
   - column_name: P_SYS_ID
@@ -5845,7 +5979,8 @@ tables:
   - column_name: P_ENROL_STAT_BEG_DT
     data_type: DATE
     nullable: false
-    description: The effective date for the provider's status regarding participation as a Medicaid provider.
+    description: The effective date for the provider's status regarding participation
+      as a Medicaid provider.
     pii_classification: none
     is_metric: true
     default_sort_direction: DESC
@@ -5857,8 +5992,9 @@ tables:
   - column_name: P_ENROL_STAT_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
-    description: This is the enrollment status of the provider. The enrollment status is the primary mechanism that tracks
-      the enrollment of a provider into the Medicaid program.
+    description: This is the enrollment status of the provider. The enrollment status
+      is the primary mechanism that tracks the enrollment of a provider into the Medicaid
+      program.
     pii_classification: none
   - column_name: P_ENROL_STAT_RSN_CD
     data_type: VARCHAR2(3)
@@ -5868,14 +6004,15 @@ tables:
   - column_name: P_RTRCTV_ELIG_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: This field indicates if the Provider is Retroactively Eligible. This indicates if the provider was given
-      special consideration at the time of enrollment approval, to be eligible prior to the date when the application was
-      received.
+    description: This field indicates if the Provider is Retroactively Eligible. This
+      indicates if the provider was given special consideration at the time of enrollment
+      approval, to be eligible prior to the date when the application was received.
     pii_classification: none
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -5928,18 +6065,20 @@ tables:
   - column_name: P_EVENT_CD
     data_type: VARCHAR2(4)
     nullable: false
-    description: A code used to identify an event that occurred during provider enrollment tracking.
+    description: A code used to identify an event that occurred during provider enrollment
+      tracking.
     pii_classification: none
   - column_name: P_EVENT_USER_ID
     data_type: VARCHAR2(30)
     nullable: true
-    description: The user ID associated with a provider enrollment tracking event. The event may have been entereed manually
-      or by the system
+    description: The user ID associated with a provider enrollment tracking event.
+      The event may have been entereed manually or by the system
     pii_classification: none
   - column_name: P_EVENT_NOTE_TEXT
     data_type: VARCHAR2(128)
     nullable: true
-    description: Note or comment text associated with a provider enrollment tracking event.
+    description: Note or comment text associated with a provider enrollment tracking
+      event.
     pii_classification: none
   - column_name: P_EVENT_PRCS_IND
     data_type: VARCHAR2(1)
@@ -5954,7 +6093,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -5979,7 +6119,8 @@ tables:
   - column_name: P_EXPLN_TXT
     data_type: VARCHAR2(4000)
     nullable: true
-    description: This is a freeform text field that allows the user to add details to a provider letter.
+    description: This is a freeform text field that allows the user to add details
+      to a provider letter.
     pii_classification: none
 - owner: provider
   table_name: P_GROWTH_SUM_TB
@@ -6219,7 +6360,8 @@ tables:
   table_name: P_LIC_CERT_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider License Certification Table contains license information for a provider.
+  description: The Provider License Certification Table contains license information
+    for a provider.
   grain: One row per P_SYS_ID, P_LIC_CERT_SK.
   columns:
   - column_name: P_SYS_ID
@@ -6281,7 +6423,8 @@ tables:
   - column_name: P_LIC_PRMT_ID
     data_type: VARCHAR2(30)
     nullable: true
-    description: The name of the Permit holder associtated with the provider's license or permit.
+    description: The name of the Permit holder associtated with the provider's license
+      or permit.
     pii_classification: none
   - column_name: P_LIC_CERT_STATE_CD
     data_type: VARCHAR2(2)
@@ -6291,7 +6434,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -6317,7 +6461,8 @@ tables:
   table_name: P_NUM_BED_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider Number Bed Table contains counts of categories of hospital patients.
+  description: The Provider Number Bed Table contains counts of categories of hospital
+    patients.
   grain: One row per P_SYS_ID, P_NUM_BED_SK.
   columns:
   - column_name: P_SYS_ID
@@ -6359,7 +6504,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -6429,13 +6575,14 @@ tables:
   - column_name: P_NWST_RSN_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: Provider Network Status (NWST) Reason Code Describes why a provider's status in a particular network changed
-      (moved out of area, etc.)
+    description: Provider Network Status (NWST) Reason Code Describes why a provider's
+      status in a particular network changed (moved out of area, etc.)
     pii_classification: none
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -6508,7 +6655,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -6534,8 +6682,8 @@ tables:
   table_name: P_RA_MEDM_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The table contains information about the type of medium we should use for Remittance Advices that we send a
-    provider.
+  description: The table contains information about the type of medium we should use
+    for Remittance Advices that we send a provider.
   grain: One row per P_SYS_ID, P_RA_MEDM_SK.
   columns:
   - column_name: P_SYS_ID
@@ -6555,12 +6703,14 @@ tables:
   - column_name: P_RA_MEDM_CD
     data_type: VARCHAR2(1)
     nullable: false
-    description: This code indicates the medium that the State uses to send remittance advices to the provider.
+    description: This code indicates the medium that the State uses to send remittance
+      advices to the provider.
     pii_classification: none
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -6786,8 +6936,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_RPT_PRCS_DT
@@ -6810,7 +6961,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_ADD_USER_ID
     data_type: VARCHAR2(30)
@@ -6863,8 +7015,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_RPT_PRCS_DT
@@ -6877,7 +7030,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_ADD_USER_ID
     data_type: VARCHAR2(30)
@@ -7002,8 +7156,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_RPT_PRCS_DT
@@ -7019,7 +7174,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_ADD_USER_ID
     data_type: VARCHAR2(30)
@@ -7074,8 +7230,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_RPT_PRCS_DT
@@ -7096,7 +7253,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_ADD_USER_ID
     data_type: VARCHAR2(30)
@@ -7176,7 +7334,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_ADD_USER_ID
     data_type: VARCHAR2(30)
@@ -7353,14 +7512,16 @@ tables:
   - column_name: P_NCPDP_IFACE_ERR_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Provider National Council for Prescription Drug Program (NCPDP) Interface Error Surrogate Key
+    description: Provider National Council for Prescription Drug Program (NCPDP) Interface
+      Error Surrogate Key
     pii_classification: none
     is_primary_key: true
   - column_name: P_ALT_ID
     data_type: VARCHAR2(15)
     nullable: true
-    description: An alternate identifier for a Provider. This may be used when a Provider is assigned an ID different than
-      their primary ID (i.e. NABP Number, DEA Number) by a Customer or has multiple identifiers it can be recognized by.
+    description: An alternate identifier for a Provider. This may be used when a Provider
+      is assigned an ID different than their primary ID (i.e. NABP Number, DEA Number)
+      by a Customer or has multiple identifiers it can be recognized by.
     pii_classification: none
   - column_name: P_ERR_FLD_NAM
     data_type: VARCHAR2(10)
@@ -7375,7 +7536,8 @@ tables:
   - column_name: P_NCPDP_ID
     data_type: VARCHAR2(15)
     nullable: true
-    description: A unique number the system assigns to the provider for NHMMIS claims processing.
+    description: A unique number the system assigns to the provider for NHMMIS claims
+      processing.
     pii_classification: none
   - column_name: G_RPT_ERR_MSG_TEXT
     data_type: VARCHAR2(100)
@@ -7385,8 +7547,9 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_RPT_PRCS_DT
@@ -7399,7 +7562,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_ADD_USER_ID
     data_type: VARCHAR2(30)
@@ -7421,26 +7585,30 @@ tables:
   - column_name: P_NCPDP_IFACE_UPD_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Provider National Council for Prescription Drug Program (NCPDP) Interface Update Surrogate Key
+    description: Provider National Council for Prescription Drug Program (NCPDP) Interface
+      Update Surrogate Key
     pii_classification: none
     is_primary_key: true
   - column_name: P_ALT_ID
     data_type: VARCHAR2(15)
     nullable: true
-    description: An alternate identifier for a Provider. This may be used when a Provider is assigned an ID different than
-      their primary ID (i.e. NABP Number, DEA Number) by a Customer or has multiple identifiers it can be recognized by.
+    description: An alternate identifier for a Provider. This may be used when a Provider
+      is assigned an ID different than their primary ID (i.e. NABP Number, DEA Number)
+      by a Customer or has multiple identifiers it can be recognized by.
     pii_classification: none
   - column_name: P_ALT_ID_BEG_DT
     data_type: DATE
     nullable: false
-    description: Provider National Council for Prescription Drug Programs (NCPDP) Begin Date
+    description: Provider National Council for Prescription Drug Programs (NCPDP)
+      Begin Date
     pii_classification: none
     is_metric: true
     default_sort_direction: DESC
   - column_name: P_ALT_ID_END_DT
     data_type: DATE
     nullable: false
-    description: Provider National Council for Prescription Drug Programs (NCPDP) End Date
+    description: Provider National Council for Prescription Drug Programs (NCPDP)
+      End Date
     pii_classification: none
   - column_name: P_NAM
     data_type: VARCHAR2(60)
@@ -7455,13 +7623,15 @@ tables:
   - column_name: P_NCPDP_ID
     data_type: VARCHAR2(15)
     nullable: true
-    description: Provider National Council for Prescription Drug Programs (NCPDP) Identifier
+    description: Provider National Council for Prescription Drug Programs (NCPDP)
+      Identifier
     pii_classification: none
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_RPT_PRCS_DT
@@ -7472,7 +7642,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_ADD_USER_ID
     data_type: VARCHAR2(30)
@@ -7800,7 +7971,8 @@ tables:
   table_name: P_SPECL_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider Specialty Table contains the specialties that apply to specific providers.
+  description: The Provider Specialty Table contains the specialties that apply to
+    specific providers.
   grain: One row per P_SYS_ID, P_SPECL_SK.
   columns:
   - column_name: P_SYS_ID
@@ -7852,7 +8024,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -7912,7 +8085,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -7962,7 +8136,8 @@ tables:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -8010,7 +8185,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8138,7 +8314,8 @@ tables:
   table_name: P_TXNMY_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider TaxonomyTable contains Provider Taxonomy codes for HIPAA compliance.
+  description: The Provider TaxonomyTable contains Provider Taxonomy codes for HIPAA
+    compliance.
   grain: One row per P_SYS_ID, P_TXNMY_SK.
   columns:
   - column_name: P_SYS_ID
@@ -8175,7 +8352,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8201,7 +8379,8 @@ tables:
   table_name: P_TY_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Provider Type Table contains information about different provider types.
+  description: The Provider Type Table contains information about different provider
+    types.
   grain: One row per P_SYS_ID, P_TY_SK.
   columns:
   - column_name: P_SYS_ID
@@ -8226,7 +8405,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8250,18 +8430,19 @@ tables:
     nullable: false
     description: The timestamp when the row was added.
     pii_classification: none
-- owner: provider
+- owner: reference
   table_name: R_LIST_DTL_TB
   subject_area: Providers
   maps_to_ldm_entity: Reference
-  description: The Reference List Detail Table contains the detail rows and associated from/to range values that comprise
-    the definition of the System List.
+  description: The Reference List Detail Table contains the detail rows and associated
+    from/to range values that comprise the definition of the System List.
   grain: One row per R_FUNC_AREA_CD, R_LIST_NUM, R_LIST_DTL_SK.
   columns:
   - column_name: R_FUNC_AREA_CD
     data_type: VARCHAR2(2)
     nullable: false
-    description: Functional Area Code, identifying the functional team that is responsible for maintenance of codes.
+    description: Functional Area Code, identifying the functional team that is responsible
+      for maintenance of codes.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -8283,22 +8464,25 @@ tables:
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: false
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: R_LIST_BEG_DT
     data_type: DATE
     nullable: false
-    description: This field is the beginning effective date on which the value limits for the system list parameter are valid.
+    description: This field is the beginning effective date on which the value limits
+      for the system list parameter are valid.
     pii_classification: none
     is_metric: true
     default_sort_direction: DESC
   - column_name: R_LIST_BEG_VALUE
     data_type: VARCHAR2(30)
     nullable: false
-    description: This field contains the description of the system parameter. The description is validated against the expected
-      description that is hard-coded in the application program that is using the parameter 's value.
+    description: This field contains the description of the system parameter. The
+      description is validated against the expected description that is hard-coded
+      in the application program that is using the parameter 's value.
     pii_classification: none
   - column_name: R_VOID_DT
     data_type: DATE
@@ -8308,13 +8492,15 @@ tables:
   - column_name: R_LIST_END_DT
     data_type: DATE
     nullable: false
-    description: This field is the ending effective date on which the value limits for the system list parameter are valid.
+    description: This field is the ending effective date on which the value limits
+      for the system list parameter are valid.
     pii_classification: none
   - column_name: R_LIST_END_VALUE
     data_type: VARCHAR2(30)
     nullable: true
-    description: For system list parameters that are defining a range of values, this field is the ending value for the range.
-      For list parameters that are not defining a range of values, this field is blank.
+    description: For system list parameters that are defining a range of values, this
+      field is the ending value for the range. For list parameters that are not defining
+      a range of values, this field is blank.
     pii_classification: none
   - column_name: R_LIST_SORT_NUM
     data_type: NUMBER(10,0)
@@ -8324,7 +8510,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8346,23 +8533,26 @@ tables:
     nullable: false
     description: The timestamp when the row was added.
     pii_classification: none
-- owner: provider
+- owner: reference
   table_name: R_MPST_HDR_TB
   subject_area: Providers
   maps_to_ldm_entity: Reference
-  description: The Reference Mapset Header Table is used to define mapsets which may be referenced in the Benefit Plan mapping
-    Tables, as well as other places throughout the system, as defined by the mapset type code. They are used to define a set
-    of mapping criteria, which if the set of data values being evaluated fall within those criteria, identify a specific application
-    condition, and associated processing rules to be applied. For example, if the set of services in a claim fall within a
-    coverage mapset in the benefit plan mapping Tables, this will identify the claim as containing covered services which
-    are eligible for payment.
+  description: The Reference Mapset Header Table is used to define mapsets which may
+    be referenced in the Benefit Plan mapping Tables, as well as other places throughout
+    the system, as defined by the mapset type code. They are used to define a set
+    of mapping criteria, which if the set of data values being evaluated fall within
+    those criteria, identify a specific application condition, and associated processing
+    rules to be applied. For example, if the set of services in a claim fall within
+    a coverage mapset in the benefit plan mapping Tables, this will identify the claim
+    as containing covered services which are eligible for payment.
   grain: One row per R_MPST_ID.
   columns:
   - column_name: R_MPST_ID
     data_type: VARCHAR2(6)
     nullable: false
-    description: Mapset Identifer. Mapsets are used to define a set of mapping criteria, which if the set of data values being
-      evaluated fall within those criteria, identify a specific condition, and thereby establish a set of processing rules
+    description: Mapset Identifer. Mapsets are used to define a set of mapping criteria,
+      which if the set of data values being evaluated fall within those criteria,
+      identify a specific condition, and thereby establish a set of processing rules
       to be followed and applied.
     pii_classification: none
     is_primary_key: true
@@ -8374,13 +8564,15 @@ tables:
   - column_name: R_MPST_DESC
     data_type: VARCHAR2(30)
     nullable: true
-    description: Mapset Description. This describes the function and scope of the mapset.
+    description: Mapset Description. This describes the function and scope of the
+      mapset.
     pii_classification: none
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_NOTE_SET_SK
@@ -8393,7 +8585,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8421,19 +8614,22 @@ tables:
   table_name: R_MPST_HDR_TB
   subject_area: Providers
   maps_to_ldm_entity: Reference
-  description: The Reference Mapset Header Table is used to define mapsets which may be referenced in the Benefit Plan mapping
-    Tables, as well as other places throughout the system, as defined by the mapset type code. They are used to define a set
-    of mapping criteria, which if the set of data values being evaluated fall within those criteria, identify a specific application
-    condition, and associated processing rules to be applied. For example, if the set of services in a claim fall within a
-    coverage mapset in the benefit plan mapping Tables, this will identify the claim as containing covered services which
-    are eligible for payment.
+  description: The Reference Mapset Header Table is used to define mapsets which may
+    be referenced in the Benefit Plan mapping Tables, as well as other places throughout
+    the system, as defined by the mapset type code. They are used to define a set
+    of mapping criteria, which if the set of data values being evaluated fall within
+    those criteria, identify a specific application condition, and associated processing
+    rules to be applied. For example, if the set of services in a claim fall within
+    a coverage mapset in the benefit plan mapping Tables, this will identify the claim
+    as containing covered services which are eligible for payment.
   grain: One row per R_MPST_ID.
   columns:
   - column_name: R_MPST_ID
     data_type: VARCHAR2(6)
     nullable: false
-    description: Mapset Identifer. Mapsets are used to define a set of mapping criteria, which if the set of data values being
-      evaluated fall within those criteria, identify a specific condition, and thereby establish a set of processing rules
+    description: Mapset Identifer. Mapsets are used to define a set of mapping criteria,
+      which if the set of data values being evaluated fall within those criteria,
+      identify a specific condition, and thereby establish a set of processing rules
       to be followed and applied.
     pii_classification: none
     is_primary_key: true
@@ -8445,13 +8641,15 @@ tables:
   - column_name: R_MPST_DESC
     data_type: VARCHAR2(30)
     nullable: true
-    description: Mapset Description. This describes the function and scope of the mapset.
+    description: Mapset Description. This describes the function and scope of the
+      mapset.
     pii_classification: none
   - column_name: R_LOB_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: This field indicates a line of business code to be used for system processing. The line of business is used
-      to identify the entities that have fiscal responsibility for payment of insurance claims on behalf of their respective
+    description: This field indicates a line of business code to be used for system
+      processing. The line of business is used to identify the entities that have
+      fiscal responsibility for payment of insurance claims on behalf of their respective
       members.
     pii_classification: none
   - column_name: G_NOTE_SET_SK
@@ -8464,7 +8662,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8514,26 +8713,30 @@ tables:
   - column_name: P_MCO_ALT_ID
     data_type: VARCHAR2(15)
     nullable: true
-    description: Identifier that was entered on the UI when the MCO provider ID is added to the network table.
+    description: Identifier that was entered on the UI when the MCO provider ID is
+      added to the network table.
     pii_classification: none
   - column_name: P_MCO_ALT_ID_TY_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: Identifier Type that was entered on the UI when the MCO provider ID is added to the network table.
+    description: Identifier Type that was entered on the UI when the MCO provider
+      ID is added to the network table.
     pii_classification: none
   - column_name: P_MCO_SYS_ID
     data_type: NUMBER(10,0)
     nullable: true
-    description: This is the ID we would expect to see as the billing provider on an Encounter claim. It may also be the provider
-      who is paid for capitation claims (although the network could be set up as a financial entity and we could just pay
-      the network instead).
+    description: This is the ID we would expect to see as the billing provider on
+      an Encounter claim. It may also be the provider who is paid for capitation claims
+      (although the network could be set up as a financial entity and we could just
+      pay the network instead).
     pii_classification: none
     is_foreign_key: true
     references: provider.P_DTL_TB.P_SYS_ID
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Specifies that this is a Base Table. Thus, each row has a corresponding row in Common Entity.
+    description: Specifies that this is a Base Table. Thus, each row has a corresponding
+      row in Common Entity.
     pii_classification: none
     is_foreign_key: true
     references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
@@ -8547,7 +8750,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8571,20 +8775,21 @@ tables:
     nullable: false
     description: The timestamp when the row was added.
     pii_classification: none
-- owner: provider
+- owner: reference
   table_name: R_VV_TB
   subject_area: Providers
   maps_to_ldm_entity: Reference
-  description: The Reference Valid Value Table defines the set of valid values that are associated with a specific data domain,
-    and is used for all generic code fields which do not require any additional information, other than a long and short description,
+  description: The Reference Valid Value Table defines the set of valid values that
+    are associated with a specific data domain, and is used for all generic code fields
+    which do not require any additional information, other than a long and short description,
     and whose set of valid values are reasonably limited in number.
   grain: One row per R_VV_DOMAIN_NAM, R_VV_CD.
   columns:
   - column_name: R_VV_DOMAIN_NAM
     data_type: VARCHAR2(30)
     nullable: false
-    description: Valid Value Domain Name. This is the data domain as defined in R_VV_DOMAIN_TB, with which a set of valid
-      values may be associated.
+    description: Valid Value Domain Name. This is the data domain as defined in R_VV_DOMAIN_TB,
+      with which a set of valid values may be associated.
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
@@ -8592,7 +8797,8 @@ tables:
   - column_name: R_VV_CD
     data_type: VARCHAR2(15)
     nullable: false
-    description: Valid Value Code. This identifies one specific valid value for the associated data domain.
+    description: Valid Value Code. This identifies one specific valid value for the
+      associated data domain.
     pii_classification: none
     is_primary_key: true
   - column_name: R_VOID_DT
@@ -8615,7 +8821,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8640,20 +8847,22 @@ tables:
   - column_name: R_CNSTNT_TEXT
     data_type: VARCHAR2(50)
     nullable: true
-    description: This column is used to generate a constant file that can be used in java code as a mnemonic for code values,
-      rather than hard coding the codes themselves.
+    description: This column is used to generate a constant file that can be used
+      in java code as a mnemonic for code values, rather than hard coding the codes
+      themselves.
     pii_classification: none
   - column_name: R_USED_IN_APPL_IND
     data_type: VARCHAR2(1)
     nullable: false
     description: Indicates that a valid value is used within the application code.
     pii_classification: none
-- owner: provider
+- owner: reference
   table_name: W_TP_PROV_XREF_TB
   subject_area: Providers
   maps_to_ldm_entity: Provider
-  description: The Trading Partner Provider Xref Table provides a many-to-many relationship between TP and Provider. The UIS
-    "PRV-ENR-01.5 Trading Partner Enrollment" refers to this as providers being "linked" to TPs.
+  description: The Trading Partner Provider Xref Table provides a many-to-many relationship
+    between TP and Provider. The UIS "PRV-ENR-01.5 Trading Partner Enrollment" refers
+    to this as providers being "linked" to TPs.
   grain: One row per W_TP_ID, P_SYS_ID, W_TP_PROV_XREF_SEQ_NUM.
   columns:
   - column_name: W_TP_ID
@@ -8681,7 +8890,8 @@ tables:
   - column_name: W_TP_PROV_XREF_BEG_DT
     data_type: DATE
     nullable: false
-    description: Beginning date of the association between a Trading Partner and a provider.
+    description: Beginning date of the association between a Trading Partner and a
+      provider.
     pii_classification: none
     is_metric: true
     default_sort_direction: DESC
@@ -8698,7 +8908,8 @@ tables:
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8724,8 +8935,8 @@ tables:
   table_name: W_TP_TB
   subject_area: Providers
   maps_to_ldm_entity: TradingPartner
-  description: The Trading Partner / EDI Table contains information about anyone who submits or receives electronic data with
-    ACS.
+  description: The Trading Partner / EDI Table contains information about anyone who
+    submits or receives electronic data with ACS.
   grain: One row per W_TP_ID.
   columns:
   - column_name: W_TP_ID
@@ -8752,7 +8963,8 @@ tables:
   - column_name: W_SORT_NAM
     data_type: VARCHAR2(60)
     nullable: true
-    description: A single attribute that can be used for sorting and/or phonetic search purposes.
+    description: A single attribute that can be used for sorting and/or phonetic search
+      purposes.
     pii_classification: restricted
   - column_name: W_PHNTC_LAST_NAM
     data_type: VARCHAR2(4)
@@ -8787,7 +8999,8 @@ tables:
   - column_name: W_APPL_TRKNG_NUM
     data_type: NUMBER(10,0)
     nullable: false
-    description: Tracking number provided to Trading Partner so they can inquire regarding the status of their application.
+    description: Tracking number provided to Trading Partner so they can inquire regarding
+      the status of their application.
     pii_classification: none
   - column_name: G_WEB_USER_ID
     data_type: VARCHAR2(30)
@@ -8809,7 +9022,8 @@ tables:
   - column_name: W_APPRVL_PRCS_RSN_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: The reason for the enrollment status being set. Sample values not determined as of 12/6/06.
+    description: The reason for the enrollment status being set. Sample values not
+      determined as of 12/6/06.
     pii_classification: none
   - column_name: W_SEG_DLMTR_CD
     data_type: VARCHAR2(2)
@@ -8839,7 +9053,8 @@ tables:
   - column_name: W_NONX12_TXN_ALLOW_IND
     data_type: VARCHAR2(1)
     nullable: false
-    description: Indicates whether the Trading Partner is eligible to select non-X12 transactions.
+    description: Indicates whether the Trading Partner is eligible to select non-X12
+      transactions.
     pii_classification: none
   - column_name: T_CARR_ID
     data_type: VARCHAR2(10)
@@ -8851,7 +9066,8 @@ tables:
   - column_name: G_CMN_ENTY_SK
     data_type: NUMBER(10,0)
     nullable: false
-    description: Surrogate Key for the Common Entity. This value may be referred to as Payer ID on some UI screens.
+    description: Surrogate Key for the Common Entity. This value may be referred to
+      as Payer ID on some UI screens.
     pii_classification: none
     is_foreign_key: true
     references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
@@ -8865,30 +9081,34 @@ tables:
   - column_name: P_SYS_ID
     data_type: NUMBER(10,0)
     nullable: true
-    description: Identifies the Provider row that corresponds to this TP row. i.e. This TP is a provider and this column identifies
-      his/her provider row.
+    description: Identifies the Provider row that corresponds to this TP row. i.e.
+      This TP is a provider and this column identifies his/her provider row.
     pii_classification: none
     is_foreign_key: true
     references: provider.P_DTL_TB.P_SYS_ID
   - column_name: W_SUBM_PROV_ALT_ID_TY_CD
     data_type: VARCHAR2(3)
     nullable: true
-    description: Submitted Provider ID type - Type of Provider ID submitted by Trading Partner (usually Medicaid or NPI).
+    description: Submitted Provider ID type - Type of Provider ID submitted by Trading
+      Partner (usually Medicaid or NPI).
     pii_classification: none
   - column_name: W_SUBM_PROV_ALT_ID
     data_type: VARCHAR2(15)
     nullable: true
-    description: Submitted Provider ID - ID submitted by enrolling Trading Partner if classification is Provider/Self.
+    description: Submitted Provider ID - ID submitted by enrolling Trading Partner
+      if classification is Provider/Self.
     pii_classification: none
   - column_name: W_SUBM_CARR_ID
     data_type: VARCHAR2(10)
     nullable: true
-    description: Submitted Carrier ID - ID Submitted by enrolling Trading Partner if classification is Carrier.
+    description: Submitted Carrier ID - ID Submitted by enrolling Trading Partner
+      if classification is Carrier.
     pii_classification: none
   - column_name: L_HIBERNATE_VER_NUM
     data_type: NUMBER(9,0)
     nullable: false
-    description: This supports hibernate caching mechanism and also supports the pessimistic Locking mechanism
+    description: This supports hibernate caching mechanism and also supports the pessimistic
+      Locking mechanism
     pii_classification: none
   - column_name: G_AUD_USER_ID
     data_type: VARCHAR2(30)
@@ -8963,29 +9183,34 @@ tables:
 join_paths:
 - from_table: provider.C_HDR_AUX_TB
   to_table: provider.C_HDR_PARENT_TB
-  join_condition: C_HDR_AUX_TB.B_SYS_ID = C_HDR_PARENT_TB.B_SYS_ID AND C_HDR_AUX_TB.C_TCN_NUM = C_HDR_PARENT_TB.C_TCN_NUM
+  join_condition: C_HDR_AUX_TB.B_SYS_ID = C_HDR_PARENT_TB.B_SYS_ID AND C_HDR_AUX_TB.C_TCN_NUM
+    = C_HDR_PARENT_TB.C_TCN_NUM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.C_HDR_TB
   to_table: provider.C_HDR_PARENT_TB
-  join_condition: C_HDR_TB.B_SYS_ID = C_HDR_PARENT_TB.B_SYS_ID AND C_HDR_TB.C_TCN_NUM = C_HDR_PARENT_TB.C_TCN_NUM
+  join_condition: C_HDR_TB.B_SYS_ID = C_HDR_PARENT_TB.B_SYS_ID AND C_HDR_TB.C_TCN_NUM
+    = C_HDR_PARENT_TB.C_TCN_NUM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.C_LI_TB
   to_table: provider.C_HDR_PARENT_TB
-  join_condition: C_LI_TB.B_SYS_ID = C_HDR_PARENT_TB.B_SYS_ID AND C_LI_TB.C_TCN_NUM = C_HDR_PARENT_TB.C_TCN_NUM
+  join_condition: C_LI_TB.B_SYS_ID = C_HDR_PARENT_TB.B_SYS_ID AND C_LI_TB.C_TCN_NUM
+    = C_HDR_PARENT_TB.C_TCN_NUM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_ADR_PHONE_USG_TB
   to_table: provider.G_ADR_USG_TB
-  join_condition: G_ADR_PHONE_USG_TB.G_CMN_ENTY_SK = G_ADR_USG_TB.G_CMN_ENTY_SK AND G_ADR_PHONE_USG_TB.G_ADR_USG_TY_CD = G_ADR_USG_TB.G_ADR_USG_TY_CD
-    AND G_ADR_PHONE_USG_TB.G_ADR_SK = G_ADR_USG_TB.G_ADR_SK AND G_ADR_PHONE_USG_TB.G_ADR_USG_SEQ_NUM = G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
+  join_condition: G_ADR_PHONE_USG_TB.G_CMN_ENTY_SK = G_ADR_USG_TB.G_CMN_ENTY_SK AND
+    G_ADR_PHONE_USG_TB.G_ADR_USG_TY_CD = G_ADR_USG_TB.G_ADR_USG_TY_CD AND G_ADR_PHONE_USG_TB.G_ADR_SK
+    = G_ADR_USG_TB.G_ADR_SK AND G_ADR_PHONE_USG_TB.G_ADR_USG_SEQ_NUM = G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_ADR_PHONE_USG_TB
   to_table: provider.G_PHONE_USG_TB
-  join_condition: G_ADR_PHONE_USG_TB.G_CMN_ENTY_SK = G_PHONE_USG_TB.G_CMN_ENTY_SK AND G_ADR_PHONE_USG_TB.G_PHONE_USG_TY_CD
-    = G_PHONE_USG_TB.G_PHONE_USG_TY_CD AND G_ADR_PHONE_USG_TB.G_PHONE_SK = G_PHONE_USG_TB.G_PHONE_SK AND G_ADR_PHONE_USG_TB.G_PHONE_USG_SEQ_NUM
+  join_condition: G_ADR_PHONE_USG_TB.G_CMN_ENTY_SK = G_PHONE_USG_TB.G_CMN_ENTY_SK
+    AND G_ADR_PHONE_USG_TB.G_PHONE_USG_TY_CD = G_PHONE_USG_TB.G_PHONE_USG_TY_CD AND
+    G_ADR_PHONE_USG_TB.G_PHONE_SK = G_PHONE_USG_TB.G_PHONE_SK AND G_ADR_PHONE_USG_TB.G_PHONE_USG_SEQ_NUM
     = G_PHONE_USG_TB.G_PHONE_USG_SEQ_NUM
   join_type: INNER
   cardinality: many-to-one
@@ -9041,8 +9266,9 @@ join_paths:
   cardinality: many-to-one
 - from_table: provider.G_COTS_LTR_REQ_RECR_TB
   to_table: provider.G_E_ADR_USG_TB
-  join_condition: G_COTS_LTR_REQ_RECR_TB.G_CMN_ENTY_SK = G_E_ADR_USG_TB.G_CMN_ENTY_SK AND G_COTS_LTR_REQ_RECR_TB.G_E_ADR_USG_TY_CD
-    = G_E_ADR_USG_TB.G_E_ADR_USG_TY_CD AND G_COTS_LTR_REQ_RECR_TB.G_E_ADR_SK = G_E_ADR_USG_TB.G_E_ADR_SK AND G_COTS_LTR_REQ_RECR_TB.G_E_ADR_USG_SEQ_NUM
+  join_condition: G_COTS_LTR_REQ_RECR_TB.G_CMN_ENTY_SK = G_E_ADR_USG_TB.G_CMN_ENTY_SK
+    AND G_COTS_LTR_REQ_RECR_TB.G_E_ADR_USG_TY_CD = G_E_ADR_USG_TB.G_E_ADR_USG_TY_CD
+    AND G_COTS_LTR_REQ_RECR_TB.G_E_ADR_SK = G_E_ADR_USG_TB.G_E_ADR_SK AND G_COTS_LTR_REQ_RECR_TB.G_E_ADR_USG_SEQ_NUM
     = G_E_ADR_USG_TB.G_E_ADR_USG_SEQ_NUM
   join_type: INNER
   cardinality: many-to-one
@@ -9053,15 +9279,16 @@ join_paths:
   cardinality: many-to-one
 - from_table: provider.G_COTS_LTR_REQ_RECR_TB
   to_table: provider.G_ADR_USG_TB
-  join_condition: G_COTS_LTR_REQ_RECR_TB.G_CMN_ENTY_SK = G_ADR_USG_TB.G_CMN_ENTY_SK AND G_COTS_LTR_REQ_RECR_TB.G_ADR_USG_TY_CD
-    = G_ADR_USG_TB.G_ADR_USG_TY_CD AND G_COTS_LTR_REQ_RECR_TB.G_ADR_SK = G_ADR_USG_TB.G_ADR_SK AND G_COTS_LTR_REQ_RECR_TB.G_ADR_USG_SEQ_NUM
+  join_condition: G_COTS_LTR_REQ_RECR_TB.G_CMN_ENTY_SK = G_ADR_USG_TB.G_CMN_ENTY_SK
+    AND G_COTS_LTR_REQ_RECR_TB.G_ADR_USG_TY_CD = G_ADR_USG_TB.G_ADR_USG_TY_CD AND
+    G_COTS_LTR_REQ_RECR_TB.G_ADR_SK = G_ADR_USG_TB.G_ADR_SK AND G_COTS_LTR_REQ_RECR_TB.G_ADR_USG_SEQ_NUM
     = G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_COTS_LTR_REQ_TB
   to_table: provider.R_DD_COL_TB
-  join_condition: G_COTS_LTR_REQ_TB.G_ALERT_BASED_ON_TABLE_NAM = R_DD_COL_TB.R_TABLE_NAM AND G_COTS_LTR_REQ_TB.G_ALERT_BASED_ON_COL_NAM
-    = R_DD_COL_TB.R_COL_NAM
+  join_condition: G_COTS_LTR_REQ_TB.G_ALERT_BASED_ON_TABLE_NAM = R_DD_COL_TB.R_TABLE_NAM
+    AND G_COTS_LTR_REQ_TB.G_ALERT_BASED_ON_COL_NAM = R_DD_COL_TB.R_COL_NAM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_COTS_LTR_REQ_TB
@@ -9076,7 +9303,8 @@ join_paths:
   cardinality: many-to-one
 - from_table: provider.G_COTS_LTR_REQ_TB
   to_table: provider.G_NOTE_TB
-  join_condition: G_COTS_LTR_REQ_TB.G_NOTE_SET_SK = G_NOTE_TB.G_NOTE_SET_SK AND G_COTS_LTR_REQ_TB.G_NOTE_SEQ_NUM = G_NOTE_TB.G_NOTE_SEQ_NUM
+  join_condition: G_COTS_LTR_REQ_TB.G_NOTE_SET_SK = G_NOTE_TB.G_NOTE_SET_SK AND G_COTS_LTR_REQ_TB.G_NOTE_SEQ_NUM
+    = G_NOTE_TB.G_NOTE_SEQ_NUM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_COTS_LTR_REQ_TB
@@ -9336,14 +9564,14 @@ join_paths:
   cardinality: many-to-one
 - from_table: provider.P_REVLDTN_STAT_TRKNG_TB
   to_table: provider.P_REVLDTN_APPL_STAT_TB
-  join_condition: P_REVLDTN_STAT_TRKNG_TB.P_SYS_ID = P_REVLDTN_APPL_STAT_TB.P_SYS_ID AND P_REVLDTN_STAT_TRKNG_TB.P_REVLDTN_TRKNG_SK
-    = P_REVLDTN_APPL_STAT_TB.P_REVLDTN_TRKNG_SK
+  join_condition: P_REVLDTN_STAT_TRKNG_TB.P_SYS_ID = P_REVLDTN_APPL_STAT_TB.P_SYS_ID
+    AND P_REVLDTN_STAT_TRKNG_TB.P_REVLDTN_TRKNG_SK = P_REVLDTN_APPL_STAT_TB.P_REVLDTN_TRKNG_SK
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.P_SCRNG_RISK_LVL_ASGN_HIST_TB
   to_table: provider.P_SCRNG_TB
-  join_condition: P_SCRNG_RISK_LVL_ASGN_HIST_TB.P_SYS_ID = P_SCRNG_TB.P_SYS_ID AND P_SCRNG_RISK_LVL_ASGN_HIST_TB.P_SCRNG_SK
-    = P_SCRNG_TB.P_SCRNG_SK
+  join_condition: P_SCRNG_RISK_LVL_ASGN_HIST_TB.P_SYS_ID = P_SCRNG_TB.P_SYS_ID AND
+    P_SCRNG_RISK_LVL_ASGN_HIST_TB.P_SCRNG_SK = P_SCRNG_TB.P_SCRNG_SK
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.P_SPECL_TB
@@ -9358,7 +9586,8 @@ join_paths:
   cardinality: many-to-one
 - from_table: provider.P_TRNG_RGSTR_TB
   to_table: provider.P_TRNG_SESSN_TB
-  join_condition: P_TRNG_RGSTR_TB.P_TRNG_CRSE_ID = P_TRNG_SESSN_TB.P_TRNG_CRSE_ID AND P_TRNG_RGSTR_TB.P_TRNG_SESSN_ID = P_TRNG_SESSN_TB.P_TRNG_SESSN_ID
+  join_condition: P_TRNG_RGSTR_TB.P_TRNG_CRSE_ID = P_TRNG_SESSN_TB.P_TRNG_CRSE_ID
+    AND P_TRNG_RGSTR_TB.P_TRNG_SESSN_ID = P_TRNG_SESSN_TB.P_TRNG_SESSN_ID
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.P_TRNG_RGSTR_TB
@@ -9388,7 +9617,8 @@ join_paths:
   cardinality: many-to-one
 - from_table: provider.R_LIST_DTL_TB
   to_table: provider.R_LIST_HDR_TB
-  join_condition: R_LIST_DTL_TB.R_FUNC_AREA_CD = R_LIST_HDR_TB.R_FUNC_AREA_CD AND R_LIST_DTL_TB.R_LIST_NUM = R_LIST_HDR_TB.R_LIST_NUM
+  join_condition: R_LIST_DTL_TB.R_FUNC_AREA_CD = R_LIST_HDR_TB.R_FUNC_AREA_CD AND
+    R_LIST_DTL_TB.R_LIST_NUM = R_LIST_HDR_TB.R_LIST_NUM
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.R_MPST_HDR_TB

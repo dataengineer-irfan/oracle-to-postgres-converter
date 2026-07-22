@@ -16,12 +16,12 @@ from dotenv import load_dotenv
 # Load .env from the project root (the directory that contains this file)
 # ---------------------------------------------------------------------------
 _PROJECT_ROOT = Path(__file__).parent
-load_dotenv(_PROJECT_ROOT / ".env", override=False)
+BASE_DIR = _PROJECT_ROOT.parent
+load_dotenv(BASE_DIR / ".env", override=False)
 
 # ---------------------------------------------------------------------------
 # Directory layout
 # ---------------------------------------------------------------------------
-BASE_DIR        : Path = _PROJECT_ROOT
 INPUT_DDL_DIR   : Path = BASE_DIR / "input" / "ddl"
 INPUT_DATA_DIR  : Path = BASE_DIR / "input" / "data"
 OUTPUT_DDL_DIR  : Path = BASE_DIR / "output" / "ddl"

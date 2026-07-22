@@ -18,8 +18,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-from data_loader import _format_datetime_for_pg
-from db import DatabaseManager
+from core.data_loader import _format_datetime_for_pg
+from db.db import DatabaseManager
 
 logger = logging.getLogger(__name__)
 
@@ -99,7 +99,7 @@ class PostgresLoader:
     def _load_table(self, table_name: str, csv_path: Path) -> LoadResult:
         """TRUNCATE + bulk INSERT from csv_path into schema.table_name."""
         conn = self._db.connect()
-        from metadata_loader import MetadataLoader
+        from core.metadata_loader import MetadataLoader
         from config import COMMON_SCHEMA
         full_table = MetadataLoader.get_qualified_table_name(table_name, default_schema=self._schema, common_schema=COMMON_SCHEMA)
 

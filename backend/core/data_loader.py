@@ -26,7 +26,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-from db import DatabaseManager
+from db.db import DatabaseManager
 
 logger = logging.getLogger(__name__)
 
@@ -199,7 +199,7 @@ class DataLoader:
 
         Uses ``ON CONFLICT DO NOTHING`` so re-runs are idempotent.
         """
-        from metadata_loader import MetadataLoader
+        from core.metadata_loader import MetadataLoader
         from config import COMMON_SCHEMA
         full_table = MetadataLoader.get_qualified_table_name(table_name, default_schema=self._schema, common_schema=COMMON_SCHEMA)
         rows_loaded = 0

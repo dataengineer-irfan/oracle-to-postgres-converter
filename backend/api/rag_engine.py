@@ -17,6 +17,7 @@ class RAGEngine:
         self.ldm_to_tables = {} # Maps LDM entity name -> List of physical tables
         self.table_descriptions = {} # Maps table_name -> description
         self.table_columns = {} # Maps table_name -> list of {name, desc}
+        self.table_owners = {} # Maps table_name -> schema/owner
         self.joins = [] # List of (source_table, source_col, target_table, target_col)
         
         # Load ODM first to build the LDM -> Table mapping
@@ -40,6 +41,7 @@ class RAGEngine:
                         c_name = row[1].lower()
                         
                         self.odm_tables.add(t_name)
+                        self.table_owners[t_name] = "provider"
                         
                         if t_name not in self.table_columns:
                             self.table_columns[t_name] = []
@@ -59,6 +61,7 @@ class RAGEngine:
                     table_name = tbl.get("table_name", "").lower()
                     if table_name:
                         self.odm_tables.add(table_name)
+                        self.table_owners[table_name] = tbl.get("owner", "").lower()
                         desc = tbl.get("description", "").lower()
                         self.table_descriptions[table_name] = desc
                         
@@ -180,7 +183,12 @@ class RAGEngine:
         join_rules = []
         for src_tbl, src_col, tgt_tbl, tgt_col in self.joins:
             if src_tbl in matched_tables and tgt_tbl in matched_tables:
-                join_rules.append(f"Join {src_tbl} and {tgt_tbl} ON {src_tbl}.{src_col} = {tgt_tbl}.{tgt_col}")
+                src_owner = self.table_owners.get(src_tbl, "")
+                tgt_owner = self.table_owners.get(tgt_tbl, "")
+                if src_owner in ["reference", "referance"] or tgt_owner in ["reference", "referance"]:
+                    join_rules.append(f"Left Join {src_tbl} and {tgt_tbl} ON {src_tbl}.{src_col} = {tgt_tbl}.{tgt_col}")
+                else:
+                    join_rules.append(f"Join {src_tbl} and {tgt_tbl} ON {src_tbl}.{src_col} = {tgt_tbl}.{tgt_col}")
                 
         if join_rules:
             return "EXPLICIT DATABASE JOIN RULES (CRITICAL):\n" + "\n".join(f"- {r}" for r in join_rules)
@@ -192,7 +200,7 @@ _engine = None
 def get_rag_engine() -> RAGEngine:
     global _engine
     if _engine is None:
-        base_dir = Path(__file__).parent.parent
+        base_dir = Path(__file__).parent.parent.parent
         _engine = RAGEngine(
             base_dir / "_Input" / "provider_business_glossary.yaml",
             base_dir / "_Input" / "provider_odm.yaml"

@@ -6,7 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 try:
-    from data_generator import PROVIDER_FK_MAP
+    from generation.data_generator import PROVIDER_FK_MAP
 except ImportError:
     PROVIDER_FK_MAP = {}
 
