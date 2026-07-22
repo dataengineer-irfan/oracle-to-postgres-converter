@@ -1,3 +1,500 @@
 "P_SYS_ID","P_ENDRSMNT_CD","P_ENDRSMNT_NAM","L_HIBERNATE_VER_NUM","G_AUD_USER_ID","G_AUD_TS","G_AUD_ADD_USER_ID","G_AUD_ADD_TS"
 1279394,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"NMAIER",09-AUG-13 01.52.01.415000000 PM,"NMAIER",09-AUG-13 01.52.01.415000000 PM
 1281211,"E","Suppository, Non-prescription",0,"guestUser",22-NOV-13 04.32.11.602000000 PM,"guestUser",22-NOV-13 04.32.11.602000000 PM
+1279392,"A","Exercise",0,"NMAIER",09-AUG-13 02.09.43.632000000 PM,"NMAIER",09-AUG-13 02.09.43.632000000 PM
+1276787,"A","Exercise",0,"guestUser",10-APR-13 10.34.17.747000000 AM,"guestUser",10-APR-13 10.34.17.747000000 AM
+1276787,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-APR-13 10.34.17.747000000 AM,"guestUser",10-APR-13 10.34.17.747000000 AM
+1276787,"C","Ted Stockings",0,"guestUser",10-APR-13 10.34.17.747000000 AM,"guestUser",10-APR-13 10.34.17.747000000 AM
+1281708,"E","Suppository, Non-prescription",0,"NMAIER",07-JAN-14 11.49.45.485000000 AM,"NMAIER",07-JAN-14 11.49.45.485000000 AM
+1281708,"D","Medical Gasses, Oxygen Only",0,"NMAIER",07-JAN-14 11.49.45.485000000 AM,"NMAIER",07-JAN-14 11.49.45.485000000 AM
+1279394,"G","Cognitive/Supervision",0,"NMAIER",09-AUG-13 01.52.01.415000000 PM,"NMAIER",09-AUG-13 01.52.01.415000000 PM
+1279394,"C","Ted Stockings",0,"NMAIER",09-AUG-13 01.52.01.416000000 PM,"NMAIER",09-AUG-13 01.52.01.416000000 PM
+1281708,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"NMAIER",07-JAN-14 11.49.45.485000000 AM,"NMAIER",07-JAN-14 11.49.45.485000000 AM
+1281708,"C","Ted Stockings",0,"NMAIER",07-JAN-14 11.49.45.486000000 AM,"NMAIER",07-JAN-14 11.49.45.486000000 AM
+1281708,"H","Prosthesis/Orthotics/Adaptive Devices",0,"NMAIER",07-JAN-14 11.49.45.486000000 AM,"NMAIER",07-JAN-14 11.49.45.486000000 AM
+1281708,"B","Catheter",0,"NMAIER",07-JAN-14 11.49.45.486000000 AM,"NMAIER",07-JAN-14 11.49.45.486000000 AM
+1281708,"G","Cognitive/Supervision",0,"NMAIER",07-JAN-14 11.49.45.487000000 AM,"NMAIER",07-JAN-14 11.49.45.487000000 AM
+1281708,"A","Exercise",0,"NMAIER",07-JAN-14 11.49.45.487000000 AM,"NMAIER",07-JAN-14 11.49.45.487000000 AM
+1281211,"D","Medical Gasses, Oxygen Only",0,"guestUser",22-NOV-13 04.32.11.602000000 PM,"guestUser",22-NOV-13 04.32.11.602000000 PM
+1281211,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",22-NOV-13 04.32.11.603000000 PM,"guestUser",22-NOV-13 04.32.11.603000000 PM
+1281211,"C","Ted Stockings",0,"guestUser",22-NOV-13 04.32.11.603000000 PM,"guestUser",22-NOV-13 04.32.11.603000000 PM
+1281211,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",22-NOV-13 04.32.11.603000000 PM,"guestUser",22-NOV-13 04.32.11.603000000 PM
+1281211,"B","Catheter",0,"guestUser",22-NOV-13 04.32.11.603000000 PM,"guestUser",22-NOV-13 04.32.11.603000000 PM
+1281211,"G","Cognitive/Supervision",0,"guestUser",22-NOV-13 04.32.11.604000000 PM,"guestUser",22-NOV-13 04.32.11.604000000 PM
+1281211,"A","Exercise",0,"guestUser",22-NOV-13 04.32.11.604000000 PM,"guestUser",22-NOV-13 04.32.11.604000000 PM
+1281711,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 12.45.42.536000000 PM,"guestUser",07-JAN-14 12.45.42.536000000 PM
+1281711,"C","Ted Stockings",0,"guestUser",07-JAN-14 12.45.42.536000000 PM,"guestUser",07-JAN-14 12.45.42.536000000 PM
+1281711,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 12.45.42.536000000 PM,"guestUser",07-JAN-14 12.45.42.536000000 PM
+1281711,"B","Catheter",0,"guestUser",07-JAN-14 12.45.42.537000000 PM,"guestUser",07-JAN-14 12.45.42.537000000 PM
+1281711,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 12.45.42.537000000 PM,"guestUser",07-JAN-14 12.45.42.537000000 PM
+1281711,"A","Exercise",0,"guestUser",07-JAN-14 12.45.42.537000000 PM,"guestUser",07-JAN-14 12.45.42.537000000 PM
+1281711,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 12.45.42.538000000 PM,"guestUser",07-JAN-14 12.45.42.538000000 PM
+1281724,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 02.43.28.103000000 PM,"guestUser",07-JAN-14 02.43.28.103000000 PM
+1281724,"D","Medical Gasses, Oxygen Only",0,"guestUser",07-JAN-14 02.43.28.103000000 PM,"guestUser",07-JAN-14 02.43.28.103000000 PM
+1281708,"F","Hoyer Lift/Mechanized Bath Chair",0,"NMAIER",07-JAN-14 11.49.45.487000000 AM,"NMAIER",07-JAN-14 11.49.45.487000000 AM
+1281724,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 02.43.28.103000000 PM,"guestUser",07-JAN-14 02.43.28.103000000 PM
+1281724,"C","Ted Stockings",0,"guestUser",07-JAN-14 02.43.28.104000000 PM,"guestUser",07-JAN-14 02.43.28.104000000 PM
+1281724,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 02.43.28.104000000 PM,"guestUser",07-JAN-14 02.43.28.104000000 PM
+1281727,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 03.06.45.089000000 PM,"guestUser",07-JAN-14 03.06.45.089000000 PM
+1281727,"D","Medical Gasses, Oxygen Only",0,"guestUser",07-JAN-14 03.06.45.089000000 PM,"guestUser",07-JAN-14 03.06.45.089000000 PM
+1281727,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 03.06.45.089000000 PM,"guestUser",07-JAN-14 03.06.45.089000000 PM
+1281727,"C","Ted Stockings",0,"guestUser",07-JAN-14 03.06.45.090000000 PM,"guestUser",07-JAN-14 03.06.45.090000000 PM
+1281727,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 03.06.45.090000000 PM,"guestUser",07-JAN-14 03.06.45.090000000 PM
+1281724,"B","Catheter",0,"guestUser",07-JAN-14 02.43.28.104000000 PM,"guestUser",07-JAN-14 02.43.28.104000000 PM
+1281724,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 02.43.28.105000000 PM,"guestUser",07-JAN-14 02.43.28.105000000 PM
+1281724,"A","Exercise",0,"guestUser",07-JAN-14 02.43.28.105000000 PM,"guestUser",07-JAN-14 02.43.28.105000000 PM
+1281724,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 02.43.28.105000000 PM,"guestUser",07-JAN-14 02.43.28.105000000 PM
+1281727,"B","Catheter",0,"guestUser",07-JAN-14 03.06.45.090000000 PM,"guestUser",07-JAN-14 03.06.45.090000000 PM
+1281727,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 03.06.45.091000000 PM,"guestUser",07-JAN-14 03.06.45.091000000 PM
+1281727,"A","Exercise",0,"guestUser",07-JAN-14 03.06.45.091000000 PM,"guestUser",07-JAN-14 03.06.45.091000000 PM
+1281727,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 03.06.45.091000000 PM,"guestUser",07-JAN-14 03.06.45.091000000 PM
+1281729,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 03.20.03.205000000 PM,"guestUser",07-JAN-14 03.20.03.205000000 PM
+1281729,"A","Exercise",0,"guestUser",07-JAN-14 03.20.03.205000000 PM,"guestUser",07-JAN-14 03.20.03.205000000 PM
+1281739,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 04.37.24.082000000 PM,"guestUser",07-JAN-14 04.37.24.082000000 PM
+1281739,"D","Medical Gasses, Oxygen Only",0,"guestUser",07-JAN-14 04.37.24.082000000 PM,"guestUser",07-JAN-14 04.37.24.082000000 PM
+1281739,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 04.37.24.083000000 PM,"guestUser",07-JAN-14 04.37.24.083000000 PM
+1281739,"C","Ted Stockings",0,"guestUser",07-JAN-14 04.37.24.083000000 PM,"guestUser",07-JAN-14 04.37.24.083000000 PM
+1281739,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 04.37.24.083000000 PM,"guestUser",07-JAN-14 04.37.24.083000000 PM
+1281739,"B","Catheter",0,"guestUser",07-JAN-14 04.37.24.084000000 PM,"guestUser",07-JAN-14 04.37.24.084000000 PM
+1281739,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 04.37.24.084000000 PM,"guestUser",07-JAN-14 04.37.24.084000000 PM
+1281741,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 09.13.29.201000000 AM,"guestUser",08-JAN-14 09.13.29.201000000 AM
+1281741,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 09.13.29.202000000 AM,"guestUser",08-JAN-14 09.13.29.202000000 AM
+1281739,"A","Exercise",0,"guestUser",07-JAN-14 04.37.24.084000000 PM,"guestUser",07-JAN-14 04.37.24.084000000 PM
+1281739,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 04.37.24.085000000 PM,"guestUser",07-JAN-14 04.37.24.085000000 PM
+1281741,"A","Exercise",0,"guestUser",08-JAN-14 09.13.29.202000000 AM,"guestUser",08-JAN-14 09.13.29.202000000 AM
+1281741,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 09.13.29.202000000 AM,"guestUser",08-JAN-14 09.13.29.202000000 AM
+1281741,"C","Ted Stockings",0,"guestUser",08-JAN-14 09.13.29.202000000 AM,"guestUser",08-JAN-14 09.13.29.202000000 AM
+1281768,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 03.23.21.932000000 PM,"guestUser",08-JAN-14 03.23.21.932000000 PM
+1281768,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 03.23.21.932000000 PM,"guestUser",08-JAN-14 03.23.21.932000000 PM
+1281768,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 03.23.21.932000000 PM,"guestUser",08-JAN-14 03.23.21.932000000 PM
+1281768,"C","Ted Stockings",0,"guestUser",08-JAN-14 03.23.21.933000000 PM,"guestUser",08-JAN-14 03.23.21.933000000 PM
+1281768,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 03.23.21.933000000 PM,"guestUser",08-JAN-14 03.23.21.933000000 PM
+1281768,"B","Catheter",0,"guestUser",08-JAN-14 03.23.21.933000000 PM,"guestUser",08-JAN-14 03.23.21.933000000 PM
+1281768,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 03.23.21.934000000 PM,"guestUser",08-JAN-14 03.23.21.934000000 PM
+1281768,"A","Exercise",0,"guestUser",08-JAN-14 03.23.21.934000000 PM,"guestUser",08-JAN-14 03.23.21.934000000 PM
+1281768,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 03.23.21.934000000 PM,"guestUser",08-JAN-14 03.23.21.934000000 PM
+1276782,"E","Suppository, Non-prescription",0,"guestUser",10-APR-13 09.06.17.452000000 AM,"guestUser",10-APR-13 09.06.17.452000000 AM
+1276782,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-APR-13 09.06.17.452000000 AM,"guestUser",10-APR-13 09.06.17.452000000 AM
+1276782,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-APR-13 09.06.17.452000000 AM,"guestUser",10-APR-13 09.06.17.452000000 AM
+1276782,"C","Ted Stockings",0,"guestUser",10-APR-13 09.06.17.452000000 AM,"guestUser",10-APR-13 09.06.17.452000000 AM
+1276782,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-APR-13 09.06.17.453000000 AM,"guestUser",10-APR-13 09.06.17.453000000 AM
+1276782,"B","Catheter",0,"guestUser",10-APR-13 09.06.17.453000000 AM,"guestUser",10-APR-13 09.06.17.453000000 AM
+1276782,"G","Cognitive/Supervision",0,"guestUser",10-APR-13 09.06.17.453000000 AM,"guestUser",10-APR-13 09.06.17.453000000 AM
+1276782,"A","Exercise",0,"guestUser",10-APR-13 09.06.17.453000000 AM,"guestUser",10-APR-13 09.06.17.453000000 AM
+1276782,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-APR-13 09.06.17.454000000 AM,"guestUser",10-APR-13 09.06.17.454000000 AM
+1281204,"E","Suppository, Non-prescription",0,"guestUser",22-NOV-13 03.19.13.924000000 PM,"guestUser",22-NOV-13 03.19.13.924000000 PM
+1281204,"D","Medical Gasses, Oxygen Only",0,"guestUser",22-NOV-13 03.19.13.924000000 PM,"guestUser",22-NOV-13 03.19.13.924000000 PM
+1281204,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",22-NOV-13 03.19.13.925000000 PM,"guestUser",22-NOV-13 03.19.13.925000000 PM
+1281204,"C","Ted Stockings",0,"guestUser",22-NOV-13 03.19.13.925000000 PM,"guestUser",22-NOV-13 03.19.13.925000000 PM
+1281204,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",22-NOV-13 03.19.13.925000000 PM,"guestUser",22-NOV-13 03.19.13.925000000 PM
+1281204,"B","Catheter",0,"guestUser",22-NOV-13 03.19.13.925000000 PM,"guestUser",22-NOV-13 03.19.13.925000000 PM
+1278163,"E","Suppository, Non-prescription",0,"guestUser",24-JUN-13 01.41.28.543000000 PM,"guestUser",24-JUN-13 01.41.28.543000000 PM
+1278163,"D","Medical Gasses, Oxygen Only",0,"guestUser",24-JUN-13 01.41.28.543000000 PM,"guestUser",24-JUN-13 01.41.28.543000000 PM
+1278163,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",24-JUN-13 01.41.28.543000000 PM,"guestUser",24-JUN-13 01.41.28.543000000 PM
+1278163,"C","Ted Stockings",0,"guestUser",24-JUN-13 01.41.28.544000000 PM,"guestUser",24-JUN-13 01.41.28.544000000 PM
+1278163,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",24-JUN-13 01.41.28.544000000 PM,"guestUser",24-JUN-13 01.41.28.544000000 PM
+1278163,"B","Catheter",0,"guestUser",24-JUN-13 01.41.28.544000000 PM,"guestUser",24-JUN-13 01.41.28.544000000 PM
+1278163,"G","Cognitive/Supervision",0,"guestUser",24-JUN-13 01.41.28.544000000 PM,"guestUser",24-JUN-13 01.41.28.544000000 PM
+1281204,"G","Cognitive/Supervision",0,"guestUser",22-NOV-13 03.19.13.926000000 PM,"guestUser",22-NOV-13 03.19.13.926000000 PM
+1281204,"A","Exercise",0,"guestUser",22-NOV-13 03.19.13.926000000 PM,"guestUser",22-NOV-13 03.19.13.926000000 PM
+1278163,"A","Exercise",0,"guestUser",24-JUN-13 01.41.28.545000000 PM,"guestUser",24-JUN-13 01.41.28.545000000 PM
+1278163,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",24-JUN-13 01.41.28.545000000 PM,"guestUser",24-JUN-13 01.41.28.545000000 PM
+1281705,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 10.53.58.573000000 AM,"guestUser",07-JAN-14 10.53.58.573000000 AM
+1281705,"D","Medical Gasses, Oxygen Only",0,"guestUser",07-JAN-14 10.53.58.574000000 AM,"guestUser",07-JAN-14 10.53.58.574000000 AM
+1281705,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 10.53.58.574000000 AM,"guestUser",07-JAN-14 10.53.58.574000000 AM
+1281705,"C","Ted Stockings",0,"guestUser",07-JAN-14 10.53.58.574000000 AM,"guestUser",07-JAN-14 10.53.58.574000000 AM
+1281204,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",22-NOV-13 03.19.13.926000000 PM,"guestUser",22-NOV-13 03.19.13.926000000 PM
+1281705,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 10.53.58.575000000 AM,"guestUser",07-JAN-14 10.53.58.575000000 AM
+1281705,"B","Catheter",0,"guestUser",07-JAN-14 10.53.58.575000000 AM,"guestUser",07-JAN-14 10.53.58.575000000 AM
+1281705,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 10.53.58.575000000 AM,"guestUser",07-JAN-14 10.53.58.575000000 AM
+1281705,"A","Exercise",0,"guestUser",07-JAN-14 10.53.58.576000000 AM,"guestUser",07-JAN-14 10.53.58.576000000 AM
+1281705,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 10.53.58.576000000 AM,"guestUser",07-JAN-14 10.53.58.576000000 AM
+1281721,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 02.24.57.498000000 PM,"guestUser",07-JAN-14 02.24.57.498000000 PM
+1281721,"D","Medical Gasses, Oxygen Only",0,"guestUser",07-JAN-14 02.24.57.498000000 PM,"guestUser",07-JAN-14 02.24.57.498000000 PM
+1281721,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 02.24.57.499000000 PM,"guestUser",07-JAN-14 02.24.57.499000000 PM
+1281721,"C","Ted Stockings",0,"guestUser",07-JAN-14 02.24.57.499000000 PM,"guestUser",07-JAN-14 02.24.57.499000000 PM
+1281721,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 02.24.57.499000000 PM,"guestUser",07-JAN-14 02.24.57.499000000 PM
+1281721,"B","Catheter",0,"guestUser",07-JAN-14 02.24.57.500000000 PM,"guestUser",07-JAN-14 02.24.57.500000000 PM
+1281721,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 02.24.57.500000000 PM,"guestUser",07-JAN-14 02.24.57.500000000 PM
+1281721,"A","Exercise",0,"guestUser",07-JAN-14 02.24.57.500000000 PM,"guestUser",07-JAN-14 02.24.57.500000000 PM
+1281721,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 02.24.57.500000000 PM,"guestUser",07-JAN-14 02.24.57.500000000 PM
+1281752,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 11.15.22.938000000 AM,"guestUser",08-JAN-14 11.15.22.938000000 AM
+1281740,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 08.36.34.439000000 AM,"guestUser",08-JAN-14 08.36.34.439000000 AM
+1281742,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 09.26.27.192000000 AM,"guestUser",08-JAN-14 09.26.27.192000000 AM
+1281742,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 09.26.27.192000000 AM,"guestUser",08-JAN-14 09.26.27.192000000 AM
+1281742,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 09.26.27.193000000 AM,"guestUser",08-JAN-14 09.26.27.193000000 AM
+1281742,"C","Ted Stockings",0,"guestUser",08-JAN-14 09.26.27.193000000 AM,"guestUser",08-JAN-14 09.26.27.193000000 AM
+1281742,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 09.26.27.193000000 AM,"guestUser",08-JAN-14 09.26.27.193000000 AM
+1281742,"B","Catheter",0,"guestUser",08-JAN-14 09.26.27.193000000 AM,"guestUser",08-JAN-14 09.26.27.193000000 AM
+1281742,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 09.26.27.194000000 AM,"guestUser",08-JAN-14 09.26.27.194000000 AM
+1281742,"A","Exercise",0,"guestUser",08-JAN-14 09.26.27.194000000 AM,"guestUser",08-JAN-14 09.26.27.194000000 AM
+1281742,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 09.26.27.194000000 AM,"guestUser",08-JAN-14 09.26.27.194000000 AM
+1281752,"A","Exercise",0,"guestUser",08-JAN-14 11.15.22.938000000 AM,"guestUser",08-JAN-14 11.15.22.938000000 AM
+1281752,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 11.15.22.938000000 AM,"guestUser",08-JAN-14 11.15.22.938000000 AM
+1281752,"C","Ted Stockings",0,"guestUser",08-JAN-14 11.15.22.938000000 AM,"guestUser",08-JAN-14 11.15.22.938000000 AM
+1281756,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 12.50.45.004000000 PM,"guestUser",08-JAN-14 12.50.45.004000000 PM
+1281756,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 12.50.45.005000000 PM,"guestUser",08-JAN-14 12.50.45.005000000 PM
+1281756,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 12.50.45.005000000 PM,"guestUser",08-JAN-14 12.50.45.005000000 PM
+1281756,"A","Exercise",0,"guestUser",08-JAN-14 12.50.45.005000000 PM,"guestUser",08-JAN-14 12.50.45.005000000 PM
+1281744,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 09.43.15.882000000 AM,"guestUser",08-JAN-14 09.43.15.882000000 AM
+1281744,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 09.43.15.882000000 AM,"guestUser",08-JAN-14 09.43.15.882000000 AM
+1281744,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 09.43.15.882000000 AM,"guestUser",08-JAN-14 09.43.15.882000000 AM
+1281744,"C","Ted Stockings",0,"guestUser",08-JAN-14 09.43.15.883000000 AM,"guestUser",08-JAN-14 09.43.15.883000000 AM
+1281744,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 09.43.15.883000000 AM,"guestUser",08-JAN-14 09.43.15.883000000 AM
+1281744,"B","Catheter",0,"guestUser",08-JAN-14 09.43.15.883000000 AM,"guestUser",08-JAN-14 09.43.15.883000000 AM
+1281744,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 09.43.15.883000000 AM,"guestUser",08-JAN-14 09.43.15.883000000 AM
+1281744,"A","Exercise",0,"guestUser",08-JAN-14 09.43.15.884000000 AM,"guestUser",08-JAN-14 09.43.15.884000000 AM
+1281744,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 09.43.15.884000000 AM,"guestUser",08-JAN-14 09.43.15.884000000 AM
+1281799,"E","Suppository, Non-prescription",0,"guestUser",09-JAN-14 04.17.49.092000000 PM,"guestUser",09-JAN-14 04.17.49.092000000 PM
+1281799,"D","Medical Gasses, Oxygen Only",0,"guestUser",09-JAN-14 04.17.49.092000000 PM,"guestUser",09-JAN-14 04.17.49.092000000 PM
+1281799,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",09-JAN-14 04.17.49.093000000 PM,"guestUser",09-JAN-14 04.17.49.093000000 PM
+1281756,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 12.50.45.006000000 PM,"guestUser",08-JAN-14 12.50.45.006000000 PM
+1281756,"C","Ted Stockings",0,"guestUser",08-JAN-14 12.50.45.006000000 PM,"guestUser",08-JAN-14 12.50.45.006000000 PM
+1281799,"C","Ted Stockings",0,"guestUser",09-JAN-14 04.17.49.093000000 PM,"guestUser",09-JAN-14 04.17.49.093000000 PM
+1281799,"B","Catheter",0,"guestUser",09-JAN-14 04.17.49.093000000 PM,"guestUser",09-JAN-14 04.17.49.093000000 PM
+1281799,"G","Cognitive/Supervision",0,"guestUser",09-JAN-14 04.17.49.093000000 PM,"guestUser",09-JAN-14 04.17.49.093000000 PM
+1281799,"A","Exercise",0,"guestUser",09-JAN-14 04.17.49.094000000 PM,"guestUser",09-JAN-14 04.17.49.094000000 PM
+1281707,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 11.08.40.281000000 AM,"guestUser",07-JAN-14 11.08.40.281000000 AM
+1281737,"A","Exercise",0,"guestUser",07-JAN-14 04.23.08.044000000 PM,"guestUser",07-JAN-14 04.23.08.044000000 PM
+1281737,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 04.23.08.044000000 PM,"guestUser",07-JAN-14 04.23.08.044000000 PM
+1281737,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 04.23.08.044000000 PM,"guestUser",07-JAN-14 04.23.08.044000000 PM
+1278219,"E","Suppository, Non-prescription",0,"NMAIER",26-JUN-13 03.28.03.079000000 PM,"NMAIER",26-JUN-13 03.28.03.079000000 PM
+1278219,"B","Catheter",0,"NMAIER",26-JUN-13 03.28.03.079000000 PM,"NMAIER",26-JUN-13 03.28.03.079000000 PM
+1278219,"D","Medical Gasses, Oxygen Only",0,"NMAIER",26-JUN-13 03.28.03.079000000 PM,"NMAIER",26-JUN-13 03.28.03.079000000 PM
+1278219,"A","Exercise",0,"NMAIER",26-JUN-13 03.28.03.080000000 PM,"NMAIER",26-JUN-13 03.28.03.080000000 PM
+1281718,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 01.40.41.146000000 PM,"guestUser",07-JAN-14 01.40.41.146000000 PM
+1281718,"B","Catheter",0,"guestUser",07-JAN-14 01.40.41.147000000 PM,"guestUser",07-JAN-14 01.40.41.147000000 PM
+1281718,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 01.40.41.147000000 PM,"guestUser",07-JAN-14 01.40.41.147000000 PM
+1281707,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 11.08.40.281000000 AM,"guestUser",07-JAN-14 11.08.40.281000000 AM
+1281707,"C","Ted Stockings",0,"guestUser",07-JAN-14 11.08.40.282000000 AM,"guestUser",07-JAN-14 11.08.40.282000000 AM
+1281707,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 11.08.40.282000000 AM,"guestUser",07-JAN-14 11.08.40.282000000 AM
+1281707,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 11.08.40.282000000 AM,"guestUser",07-JAN-14 11.08.40.282000000 AM
+1281707,"A","Exercise",0,"guestUser",07-JAN-14 11.08.40.283000000 AM,"guestUser",07-JAN-14 11.08.40.283000000 AM
+1281707,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 11.08.40.283000000 AM,"guestUser",07-JAN-14 11.08.40.283000000 AM
+1281820,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 11.08.18.717000000 AM,"guestUser",10-JAN-14 11.08.18.717000000 AM
+1281820,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 11.08.18.718000000 AM,"guestUser",10-JAN-14 11.08.18.718000000 AM
+1281718,"A","Exercise",0,"guestUser",07-JAN-14 01.40.41.148000000 PM,"guestUser",07-JAN-14 01.40.41.148000000 PM
+1281718,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 01.40.41.148000000 PM,"guestUser",07-JAN-14 01.40.41.148000000 PM
+1281820,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 11.08.18.718000000 AM,"guestUser",10-JAN-14 11.08.18.718000000 AM
+1281770,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 03.34.30.370000000 PM,"guestUser",08-JAN-14 03.34.30.370000000 PM
+1281770,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 03.34.30.370000000 PM,"guestUser",08-JAN-14 03.34.30.370000000 PM
+1281770,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 03.34.30.371000000 PM,"guestUser",08-JAN-14 03.34.30.371000000 PM
+1281770,"C","Ted Stockings",0,"guestUser",08-JAN-14 03.34.30.371000000 PM,"guestUser",08-JAN-14 03.34.30.371000000 PM
+1281770,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 03.34.30.371000000 PM,"guestUser",08-JAN-14 03.34.30.371000000 PM
+1281770,"B","Catheter",0,"guestUser",08-JAN-14 03.34.30.372000000 PM,"guestUser",08-JAN-14 03.34.30.372000000 PM
+1281770,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 03.34.30.372000000 PM,"guestUser",08-JAN-14 03.34.30.372000000 PM
+1281770,"A","Exercise",0,"guestUser",08-JAN-14 03.34.30.374000000 PM,"guestUser",08-JAN-14 03.34.30.374000000 PM
+1281770,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 03.34.30.374000000 PM,"guestUser",08-JAN-14 03.34.30.374000000 PM
+1281820,"B","Catheter",0,"guestUser",10-JAN-14 11.08.18.718000000 AM,"guestUser",10-JAN-14 11.08.18.718000000 AM
+1281820,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 11.08.18.719000000 AM,"guestUser",10-JAN-14 11.08.18.719000000 AM
+1281819,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 11.26.41.823000000 AM,"guestUser",10-JAN-14 11.26.41.823000000 AM
+1281819,"C","Ted Stockings",0,"guestUser",10-JAN-14 11.26.41.823000000 AM,"guestUser",10-JAN-14 11.26.41.823000000 AM
+1281822,"A","Exercise",0,"guestUser",10-JAN-14 11.32.39.178000000 AM,"guestUser",10-JAN-14 11.32.39.178000000 AM
+1281822,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 11.32.39.178000000 AM,"guestUser",10-JAN-14 11.32.39.178000000 AM
+1281827,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 12.50.09.437000000 PM,"guestUser",10-JAN-14 12.50.09.437000000 PM
+1281820,"A","Exercise",0,"guestUser",10-JAN-14 11.08.18.719000000 AM,"guestUser",10-JAN-14 11.08.18.719000000 AM
+1281820,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 11.08.18.719000000 AM,"guestUser",10-JAN-14 11.08.18.719000000 AM
+1281827,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 12.50.09.437000000 PM,"guestUser",10-JAN-14 12.50.09.437000000 PM
+1281830,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 01.37.43.936000000 PM,"guestUser",10-JAN-14 01.37.43.936000000 PM
+1281830,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 01.37.43.937000000 PM,"guestUser",10-JAN-14 01.37.43.937000000 PM
+1281830,"C","Ted Stockings",0,"guestUser",10-JAN-14 01.37.43.937000000 PM,"guestUser",10-JAN-14 01.37.43.937000000 PM
+1281830,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 01.37.43.937000000 PM,"guestUser",10-JAN-14 01.37.43.937000000 PM
+1281830,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 01.37.43.937000000 PM,"guestUser",10-JAN-14 01.37.43.937000000 PM
+1281830,"A","Exercise",0,"guestUser",10-JAN-14 01.37.43.938000000 PM,"guestUser",10-JAN-14 01.37.43.938000000 PM
+1281830,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 01.37.43.938000000 PM,"guestUser",10-JAN-14 01.37.43.938000000 PM
+1281833,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 02.06.08.492000000 PM,"guestUser",10-JAN-14 02.06.08.492000000 PM
+1281833,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 02.06.08.493000000 PM,"guestUser",10-JAN-14 02.06.08.493000000 PM
+1281827,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 12.50.09.437000000 PM,"guestUser",10-JAN-14 12.50.09.437000000 PM
+1281827,"C","Ted Stockings",0,"guestUser",10-JAN-14 12.50.09.438000000 PM,"guestUser",10-JAN-14 12.50.09.438000000 PM
+1281827,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 12.50.09.438000000 PM,"guestUser",10-JAN-14 12.50.09.438000000 PM
+1281827,"B","Catheter",0,"guestUser",10-JAN-14 12.50.09.438000000 PM,"guestUser",10-JAN-14 12.50.09.438000000 PM
+1281827,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 12.50.09.439000000 PM,"guestUser",10-JAN-14 12.50.09.439000000 PM
+1281827,"A","Exercise",0,"guestUser",10-JAN-14 12.50.09.439000000 PM,"guestUser",10-JAN-14 12.50.09.439000000 PM
+1281827,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 12.50.09.439000000 PM,"guestUser",10-JAN-14 12.50.09.439000000 PM
+1281828,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 01.07.10.056000000 PM,"guestUser",10-JAN-14 01.07.10.056000000 PM
+1281828,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 01.07.10.057000000 PM,"guestUser",10-JAN-14 01.07.10.057000000 PM
+1281828,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 01.07.10.057000000 PM,"guestUser",10-JAN-14 01.07.10.057000000 PM
+1281828,"C","Ted Stockings",0,"guestUser",10-JAN-14 01.07.10.057000000 PM,"guestUser",10-JAN-14 01.07.10.057000000 PM
+1281828,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 01.07.10.058000000 PM,"guestUser",10-JAN-14 01.07.10.058000000 PM
+1281828,"B","Catheter",0,"guestUser",10-JAN-14 01.07.10.058000000 PM,"guestUser",10-JAN-14 01.07.10.058000000 PM
+1281828,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 01.07.10.058000000 PM,"guestUser",10-JAN-14 01.07.10.058000000 PM
+1281828,"A","Exercise",0,"guestUser",10-JAN-14 01.07.10.059000000 PM,"guestUser",10-JAN-14 01.07.10.059000000 PM
+1281828,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 01.07.10.059000000 PM,"guestUser",10-JAN-14 01.07.10.059000000 PM
+1281833,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 02.06.08.493000000 PM,"guestUser",10-JAN-14 02.06.08.493000000 PM
+1281833,"C","Ted Stockings",0,"guestUser",10-JAN-14 02.06.08.493000000 PM,"guestUser",10-JAN-14 02.06.08.493000000 PM
+1281833,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 02.06.08.494000000 PM,"guestUser",10-JAN-14 02.06.08.494000000 PM
+1281833,"B","Catheter",0,"guestUser",10-JAN-14 02.06.08.494000000 PM,"guestUser",10-JAN-14 02.06.08.494000000 PM
+1281833,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 02.06.08.494000000 PM,"guestUser",10-JAN-14 02.06.08.494000000 PM
+1281834,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 02.19.21.794000000 PM,"guestUser",10-JAN-14 02.19.21.794000000 PM
+1281834,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 02.19.21.795000000 PM,"guestUser",10-JAN-14 02.19.21.795000000 PM
+1281834,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 02.19.21.795000000 PM,"guestUser",10-JAN-14 02.19.21.795000000 PM
+1281834,"C","Ted Stockings",0,"guestUser",10-JAN-14 02.19.21.795000000 PM,"guestUser",10-JAN-14 02.19.21.795000000 PM
+1281834,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 02.19.21.795000000 PM,"guestUser",10-JAN-14 02.19.21.795000000 PM
+1281834,"B","Catheter",0,"guestUser",10-JAN-14 02.19.21.796000000 PM,"guestUser",10-JAN-14 02.19.21.796000000 PM
+1281834,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 02.19.21.796000000 PM,"guestUser",10-JAN-14 02.19.21.796000000 PM
+1281834,"A","Exercise",0,"guestUser",10-JAN-14 02.19.21.796000000 PM,"guestUser",10-JAN-14 02.19.21.796000000 PM
+1281834,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 02.19.21.796000000 PM,"guestUser",10-JAN-14 02.19.21.796000000 PM
+1281833,"A","Exercise",0,"guestUser",10-JAN-14 02.06.08.495000000 PM,"guestUser",10-JAN-14 02.06.08.495000000 PM
+1281833,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 02.06.08.495000000 PM,"guestUser",10-JAN-14 02.06.08.495000000 PM
+1281095,"E","Suppository, Non-prescription",0,"guestUser",15-NOV-13 10.44.04.744000000 AM,"guestUser",15-NOV-13 10.44.04.744000000 AM
+1281095,"D","Medical Gasses, Oxygen Only",0,"guestUser",15-NOV-13 10.44.04.744000000 AM,"guestUser",15-NOV-13 10.44.04.744000000 AM
+1281095,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",15-NOV-13 10.44.04.745000000 AM,"guestUser",15-NOV-13 10.44.04.745000000 AM
+1281095,"C","Ted Stockings",0,"guestUser",15-NOV-13 10.44.04.745000000 AM,"guestUser",15-NOV-13 10.44.04.745000000 AM
+1281095,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",15-NOV-13 10.44.04.746000000 AM,"guestUser",15-NOV-13 10.44.04.746000000 AM
+1281095,"B","Catheter",0,"guestUser",15-NOV-13 10.44.04.746000000 AM,"guestUser",15-NOV-13 10.44.04.746000000 AM
+1281095,"G","Cognitive/Supervision",0,"guestUser",15-NOV-13 10.44.04.746000000 AM,"guestUser",15-NOV-13 10.44.04.746000000 AM
+1281095,"A","Exercise",0,"guestUser",15-NOV-13 10.44.04.747000000 AM,"guestUser",15-NOV-13 10.44.04.747000000 AM
+1281095,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",15-NOV-13 10.44.04.747000000 AM,"guestUser",15-NOV-13 10.44.04.747000000 AM
+1279564,"E","Suppository, Non-prescription",0,"guestUser",16-AUG-13 03.10.12.829000000 PM,"guestUser",16-AUG-13 03.10.12.829000000 PM
+1279564,"D","Medical Gasses, Oxygen Only",0,"guestUser",16-AUG-13 03.10.12.830000000 PM,"guestUser",16-AUG-13 03.10.12.830000000 PM
+1279564,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",16-AUG-13 03.10.12.830000000 PM,"guestUser",16-AUG-13 03.10.12.830000000 PM
+1279564,"C","Ted Stockings",0,"guestUser",16-AUG-13 03.10.12.830000000 PM,"guestUser",16-AUG-13 03.10.12.830000000 PM
+1279564,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",16-AUG-13 03.10.12.831000000 PM,"guestUser",16-AUG-13 03.10.12.831000000 PM
+1279564,"B","Catheter",0,"guestUser",16-AUG-13 03.10.12.831000000 PM,"guestUser",16-AUG-13 03.10.12.831000000 PM
+1279564,"G","Cognitive/Supervision",0,"guestUser",16-AUG-13 03.10.12.831000000 PM,"guestUser",16-AUG-13 03.10.12.831000000 PM
+1279564,"A","Exercise",0,"guestUser",16-AUG-13 03.10.12.832000000 PM,"guestUser",16-AUG-13 03.10.12.832000000 PM
+1279564,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",16-AUG-13 03.10.12.832000000 PM,"guestUser",16-AUG-13 03.10.12.832000000 PM
+1281714,"A","Exercise",0,"guestUser",07-JAN-14 01.08.02.977000000 PM,"guestUser",07-JAN-14 01.08.02.977000000 PM
+1281714,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 01.08.02.977000000 PM,"guestUser",07-JAN-14 01.08.02.977000000 PM
+1281714,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 01.08.02.977000000 PM,"guestUser",07-JAN-14 01.08.02.977000000 PM
+1281715,"A","Exercise",0,"guestUser",07-JAN-14 01.22.18.551000000 PM,"guestUser",07-JAN-14 01.22.18.551000000 PM
+1281715,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 01.22.18.552000000 PM,"guestUser",07-JAN-14 01.22.18.552000000 PM
+1281715,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 01.22.18.552000000 PM,"guestUser",07-JAN-14 01.22.18.552000000 PM
+1281736,"E","Suppository, Non-prescription",0,"guestUser",07-JAN-14 04.11.08.507000000 PM,"guestUser",07-JAN-14 04.11.08.507000000 PM
+1281719,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 01.57.29.817000000 PM,"guestUser",07-JAN-14 01.57.29.817000000 PM
+1281748,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 10.26.41.970000000 AM,"guestUser",08-JAN-14 10.26.41.970000000 AM
+1281748,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 10.26.41.971000000 AM,"guestUser",08-JAN-14 10.26.41.971000000 AM
+1281748,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 10.26.41.971000000 AM,"guestUser",08-JAN-14 10.26.41.971000000 AM
+1281748,"C","Ted Stockings",0,"guestUser",08-JAN-14 10.26.41.971000000 AM,"guestUser",08-JAN-14 10.26.41.971000000 AM
+1281748,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 10.26.41.972000000 AM,"guestUser",08-JAN-14 10.26.41.972000000 AM
+1281748,"B","Catheter",0,"guestUser",08-JAN-14 10.26.41.972000000 AM,"guestUser",08-JAN-14 10.26.41.972000000 AM
+1281748,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 10.26.41.972000000 AM,"guestUser",08-JAN-14 10.26.41.972000000 AM
+1281748,"A","Exercise",0,"guestUser",08-JAN-14 10.26.41.973000000 AM,"guestUser",08-JAN-14 10.26.41.973000000 AM
+1281748,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 10.26.41.973000000 AM,"guestUser",08-JAN-14 10.26.41.973000000 AM
+1281736,"D","Medical Gasses, Oxygen Only",0,"guestUser",07-JAN-14 04.11.08.507000000 PM,"guestUser",07-JAN-14 04.11.08.507000000 PM
+1281736,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",07-JAN-14 04.11.08.507000000 PM,"guestUser",07-JAN-14 04.11.08.507000000 PM
+1281736,"C","Ted Stockings",0,"guestUser",07-JAN-14 04.11.08.508000000 PM,"guestUser",07-JAN-14 04.11.08.508000000 PM
+1281736,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 04.11.08.508000000 PM,"guestUser",07-JAN-14 04.11.08.508000000 PM
+1281736,"B","Catheter",0,"guestUser",07-JAN-14 04.11.08.508000000 PM,"guestUser",07-JAN-14 04.11.08.508000000 PM
+1281736,"G","Cognitive/Supervision",0,"guestUser",07-JAN-14 04.11.08.509000000 PM,"guestUser",07-JAN-14 04.11.08.509000000 PM
+1281736,"A","Exercise",0,"guestUser",07-JAN-14 04.11.08.509000000 PM,"guestUser",07-JAN-14 04.11.08.509000000 PM
+1281736,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",07-JAN-14 04.11.08.509000000 PM,"guestUser",07-JAN-14 04.11.08.509000000 PM
+1281764,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 03.00.40.330000000 PM,"guestUser",08-JAN-14 03.00.40.330000000 PM
+1281764,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 03.00.40.331000000 PM,"guestUser",08-JAN-14 03.00.40.331000000 PM
+1281764,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 03.00.40.331000000 PM,"guestUser",08-JAN-14 03.00.40.331000000 PM
+1281764,"C","Ted Stockings",0,"guestUser",08-JAN-14 03.00.40.332000000 PM,"guestUser",08-JAN-14 03.00.40.332000000 PM
+1281764,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 03.00.40.332000000 PM,"guestUser",08-JAN-14 03.00.40.332000000 PM
+1281764,"B","Catheter",0,"guestUser",08-JAN-14 03.00.40.332000000 PM,"guestUser",08-JAN-14 03.00.40.332000000 PM
+1281764,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 03.00.40.332000000 PM,"guestUser",08-JAN-14 03.00.40.332000000 PM
+1281764,"A","Exercise",0,"guestUser",08-JAN-14 03.00.40.333000000 PM,"guestUser",08-JAN-14 03.00.40.333000000 PM
+1281764,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 03.00.40.333000000 PM,"guestUser",08-JAN-14 03.00.40.333000000 PM
+1281795,"B","Catheter",0,"guestUser",09-JAN-14 04.04.16.095000000 PM,"guestUser",09-JAN-14 04.04.16.095000000 PM
+1281795,"D","Medical Gasses, Oxygen Only",0,"guestUser",09-JAN-14 04.04.16.096000000 PM,"guestUser",09-JAN-14 04.04.16.096000000 PM
+1281795,"A","Exercise",0,"guestUser",09-JAN-14 04.04.16.096000000 PM,"guestUser",09-JAN-14 04.04.16.096000000 PM
+1281795,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",09-JAN-14 04.04.16.096000000 PM,"guestUser",09-JAN-14 04.04.16.096000000 PM
+1281795,"C","Ted Stockings",0,"guestUser",09-JAN-14 04.04.16.097000000 PM,"guestUser",09-JAN-14 04.04.16.097000000 PM
+1281805,"E","Suppository, Non-prescription",0,"guestUser",09-JAN-14 04.52.09.590000000 PM,"guestUser",09-JAN-14 04.52.09.590000000 PM
+1281805,"D","Medical Gasses, Oxygen Only",0,"guestUser",09-JAN-14 04.52.09.590000000 PM,"guestUser",09-JAN-14 04.52.09.590000000 PM
+1281805,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",09-JAN-14 04.52.09.591000000 PM,"guestUser",09-JAN-14 04.52.09.591000000 PM
+1281805,"C","Ted Stockings",0,"guestUser",09-JAN-14 04.52.09.591000000 PM,"guestUser",09-JAN-14 04.52.09.591000000 PM
+1281774,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 04.27.51.324000000 PM,"guestUser",08-JAN-14 04.27.51.324000000 PM
+1281774,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 04.27.51.325000000 PM,"guestUser",08-JAN-14 04.27.51.325000000 PM
+1281774,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 04.27.51.325000000 PM,"guestUser",08-JAN-14 04.27.51.325000000 PM
+1281774,"C","Ted Stockings",0,"guestUser",08-JAN-14 04.27.51.325000000 PM,"guestUser",08-JAN-14 04.27.51.325000000 PM
+1281774,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 04.27.51.326000000 PM,"guestUser",08-JAN-14 04.27.51.326000000 PM
+1281774,"B","Catheter",0,"guestUser",08-JAN-14 04.27.51.326000000 PM,"guestUser",08-JAN-14 04.27.51.326000000 PM
+1281774,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 04.27.51.326000000 PM,"guestUser",08-JAN-14 04.27.51.326000000 PM
+1281774,"A","Exercise",0,"guestUser",08-JAN-14 04.27.51.326000000 PM,"guestUser",08-JAN-14 04.27.51.326000000 PM
+1281774,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 04.27.51.327000000 PM,"guestUser",08-JAN-14 04.27.51.327000000 PM
+1281815,"A","Exercise",0,"guestUser",10-JAN-14 10.21.50.541000000 AM,"guestUser",10-JAN-14 10.21.50.541000000 AM
+1281815,"C","Ted Stockings",0,"guestUser",10-JAN-14 10.21.50.541000000 AM,"guestUser",10-JAN-14 10.21.50.541000000 AM
+1281814,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 10.11.29.427000000 AM,"guestUser",10-JAN-14 10.11.29.427000000 AM
+1281814,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 10.11.29.427000000 AM,"guestUser",10-JAN-14 10.11.29.427000000 AM
+1281814,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 10.11.29.428000000 AM,"guestUser",10-JAN-14 10.11.29.428000000 AM
+1281805,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",09-JAN-14 04.52.09.591000000 PM,"guestUser",09-JAN-14 04.52.09.591000000 PM
+1281805,"B","Catheter",0,"guestUser",09-JAN-14 04.52.09.591000000 PM,"guestUser",09-JAN-14 04.52.09.591000000 PM
+1281805,"G","Cognitive/Supervision",0,"guestUser",09-JAN-14 04.52.09.592000000 PM,"guestUser",09-JAN-14 04.52.09.592000000 PM
+1281805,"A","Exercise",0,"guestUser",09-JAN-14 04.52.09.592000000 PM,"guestUser",09-JAN-14 04.52.09.592000000 PM
+1281805,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",09-JAN-14 04.52.09.592000000 PM,"guestUser",09-JAN-14 04.52.09.592000000 PM
+1281814,"C","Ted Stockings",0,"guestUser",10-JAN-14 10.11.29.428000000 AM,"guestUser",10-JAN-14 10.11.29.428000000 AM
+1281814,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 10.11.29.428000000 AM,"guestUser",10-JAN-14 10.11.29.428000000 AM
+1281814,"B","Catheter",0,"guestUser",10-JAN-14 10.11.29.429000000 AM,"guestUser",10-JAN-14 10.11.29.429000000 AM
+1281814,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 10.11.29.429000000 AM,"guestUser",10-JAN-14 10.11.29.429000000 AM
+1281814,"A","Exercise",0,"guestUser",10-JAN-14 10.11.29.429000000 AM,"guestUser",10-JAN-14 10.11.29.429000000 AM
+1281814,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 10.11.29.430000000 AM,"guestUser",10-JAN-14 10.11.29.430000000 AM
+1281746,"B","Catheter",0,"guestUser",08-JAN-14 10.09.53.904000000 AM,"guestUser",08-JAN-14 10.09.53.904000000 AM
+1281679,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",06-JAN-14 09.46.56.133000000 AM,"guestUser",06-JAN-14 09.46.56.133000000 AM
+1281679,"E","Suppository, Non-prescription",0,"guestUser",06-JAN-14 09.46.56.133000000 AM,"guestUser",06-JAN-14 09.46.56.133000000 AM
+1281679,"G","Cognitive/Supervision",0,"guestUser",06-JAN-14 09.46.56.134000000 AM,"guestUser",06-JAN-14 09.46.56.134000000 AM
+1281679,"D","Medical Gasses, Oxygen Only",0,"guestUser",06-JAN-14 09.46.56.134000000 AM,"guestUser",06-JAN-14 09.46.56.134000000 AM
+1281679,"A","Exercise",0,"guestUser",06-JAN-14 09.46.56.134000000 AM,"guestUser",06-JAN-14 09.46.56.134000000 AM
+1281679,"C","Ted Stockings",0,"guestUser",06-JAN-14 09.46.56.134000000 AM,"guestUser",06-JAN-14 09.46.56.134000000 AM
+1281746,"A","Exercise",0,"guestUser",08-JAN-14 10.09.53.904000000 AM,"guestUser",08-JAN-14 10.09.53.904000000 AM
+1281746,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 10.09.53.905000000 AM,"guestUser",08-JAN-14 10.09.53.905000000 AM
+1281723,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",07-JAN-14 02.38.21.127000000 PM,"guestUser",07-JAN-14 02.38.21.127000000 PM
+1281723,"A","Exercise",0,"guestUser",07-JAN-14 02.38.21.128000000 PM,"guestUser",07-JAN-14 02.38.21.128000000 PM
+1281723,"C","Ted Stockings",0,"guestUser",07-JAN-14 02.38.21.128000000 PM,"guestUser",07-JAN-14 02.38.21.128000000 PM
+1281749,"B","Catheter",0,"guestUser",08-JAN-14 10.40.39.981000000 AM,"guestUser",08-JAN-14 10.40.39.981000000 AM
+1281749,"A","Exercise",0,"guestUser",08-JAN-14 10.40.39.981000000 AM,"guestUser",08-JAN-14 10.40.39.981000000 AM
+1281749,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 10.40.39.981000000 AM,"guestUser",08-JAN-14 10.40.39.981000000 AM
+1281749,"C","Ted Stockings",0,"guestUser",08-JAN-14 10.40.39.982000000 AM,"guestUser",08-JAN-14 10.40.39.982000000 AM
+1281746,"C","Ted Stockings",0,"guestUser",08-JAN-14 10.09.53.905000000 AM,"guestUser",08-JAN-14 10.09.53.905000000 AM
+1281786,"E","Suppository, Non-prescription",0,"guestUser",09-JAN-14 12.55.35.865000000 PM,"guestUser",09-JAN-14 12.55.35.865000000 PM
+1281786,"D","Medical Gasses, Oxygen Only",0,"guestUser",09-JAN-14 12.55.35.865000000 PM,"guestUser",09-JAN-14 12.55.35.865000000 PM
+1281786,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",09-JAN-14 12.55.35.866000000 PM,"guestUser",09-JAN-14 12.55.35.866000000 PM
+1281786,"C","Ted Stockings",0,"guestUser",09-JAN-14 12.55.35.866000000 PM,"guestUser",09-JAN-14 12.55.35.866000000 PM
+1281771,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 03.45.49.116000000 PM,"guestUser",08-JAN-14 03.45.49.116000000 PM
+1281771,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 03.45.49.116000000 PM,"guestUser",08-JAN-14 03.45.49.116000000 PM
+1281771,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 03.45.49.116000000 PM,"guestUser",08-JAN-14 03.45.49.116000000 PM
+1281771,"C","Ted Stockings",0,"guestUser",08-JAN-14 03.45.49.116000000 PM,"guestUser",08-JAN-14 03.45.49.116000000 PM
+1281771,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 03.45.49.117000000 PM,"guestUser",08-JAN-14 03.45.49.117000000 PM
+1281771,"B","Catheter",0,"guestUser",08-JAN-14 03.45.49.117000000 PM,"guestUser",08-JAN-14 03.45.49.117000000 PM
+1281771,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 03.45.49.117000000 PM,"guestUser",08-JAN-14 03.45.49.117000000 PM
+1281771,"A","Exercise",0,"guestUser",08-JAN-14 03.45.49.118000000 PM,"guestUser",08-JAN-14 03.45.49.118000000 PM
+1281771,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 03.45.49.118000000 PM,"guestUser",08-JAN-14 03.45.49.118000000 PM
+1281786,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",09-JAN-14 12.55.35.866000000 PM,"guestUser",09-JAN-14 12.55.35.866000000 PM
+1281786,"B","Catheter",0,"guestUser",09-JAN-14 12.55.35.867000000 PM,"guestUser",09-JAN-14 12.55.35.867000000 PM
+1281786,"G","Cognitive/Supervision",0,"guestUser",09-JAN-14 12.55.35.867000000 PM,"guestUser",09-JAN-14 12.55.35.867000000 PM
+1281786,"A","Exercise",0,"guestUser",09-JAN-14 12.55.35.867000000 PM,"guestUser",09-JAN-14 12.55.35.867000000 PM
+1281773,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 04.11.59.667000000 PM,"guestUser",08-JAN-14 04.11.59.667000000 PM
+1281773,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 04.11.59.668000000 PM,"guestUser",08-JAN-14 04.11.59.668000000 PM
+1281773,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 04.11.59.668000000 PM,"guestUser",08-JAN-14 04.11.59.668000000 PM
+1281773,"C","Ted Stockings",0,"guestUser",08-JAN-14 04.11.59.669000000 PM,"guestUser",08-JAN-14 04.11.59.669000000 PM
+1281773,"B","Catheter",0,"guestUser",08-JAN-14 04.11.59.669000000 PM,"guestUser",08-JAN-14 04.11.59.669000000 PM
+1281773,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 04.11.59.669000000 PM,"guestUser",08-JAN-14 04.11.59.669000000 PM
+1281773,"A","Exercise",0,"guestUser",08-JAN-14 04.11.59.669000000 PM,"guestUser",08-JAN-14 04.11.59.669000000 PM
+1281773,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 04.11.59.670000000 PM,"guestUser",08-JAN-14 04.11.59.670000000 PM
+1281776,"E","Suppository, Non-prescription",0,"guestUser",08-JAN-14 04.39.43.366000000 PM,"guestUser",08-JAN-14 04.39.43.366000000 PM
+1281776,"D","Medical Gasses, Oxygen Only",0,"guestUser",08-JAN-14 04.39.43.366000000 PM,"guestUser",08-JAN-14 04.39.43.366000000 PM
+1281776,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",08-JAN-14 04.39.43.366000000 PM,"guestUser",08-JAN-14 04.39.43.366000000 PM
+1281776,"C","Ted Stockings",0,"guestUser",08-JAN-14 04.39.43.366000000 PM,"guestUser",08-JAN-14 04.39.43.366000000 PM
+1281776,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",08-JAN-14 04.39.43.367000000 PM,"guestUser",08-JAN-14 04.39.43.367000000 PM
+1281776,"B","Catheter",0,"guestUser",08-JAN-14 04.39.43.367000000 PM,"guestUser",08-JAN-14 04.39.43.367000000 PM
+1281776,"G","Cognitive/Supervision",0,"guestUser",08-JAN-14 04.39.43.368000000 PM,"guestUser",08-JAN-14 04.39.43.368000000 PM
+1281776,"A","Exercise",0,"guestUser",08-JAN-14 04.39.43.368000000 PM,"guestUser",08-JAN-14 04.39.43.368000000 PM
+1281776,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",08-JAN-14 04.39.43.368000000 PM,"guestUser",08-JAN-14 04.39.43.368000000 PM
+1281786,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",09-JAN-14 12.55.35.867000000 PM,"guestUser",09-JAN-14 12.55.35.867000000 PM
+1281804,"D","Medical Gasses, Oxygen Only",0,"guestUser",09-JAN-14 04.41.41.915000000 PM,"guestUser",09-JAN-14 04.41.41.915000000 PM
+1281804,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",09-JAN-14 04.41.41.915000000 PM,"guestUser",09-JAN-14 04.41.41.915000000 PM
+1281804,"A","Exercise",0,"guestUser",09-JAN-14 04.41.41.915000000 PM,"guestUser",09-JAN-14 04.41.41.915000000 PM
+1281804,"C","Ted Stockings",0,"guestUser",09-JAN-14 04.41.41.916000000 PM,"guestUser",09-JAN-14 04.41.41.916000000 PM
+1281811,"A","Exercise",0,"guestUser",10-JAN-14 10.01.40.187000000 AM,"guestUser",10-JAN-14 10.01.40.187000000 AM
+1281796,"E","Suppository, Non-prescription",0,"guestUser",09-JAN-14 04.08.27.754000000 PM,"guestUser",09-JAN-14 04.08.27.754000000 PM
+1281796,"D","Medical Gasses, Oxygen Only",0,"guestUser",09-JAN-14 04.08.27.754000000 PM,"guestUser",09-JAN-14 04.08.27.754000000 PM
+1281796,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",09-JAN-14 04.08.27.755000000 PM,"guestUser",09-JAN-14 04.08.27.755000000 PM
+1281796,"C","Ted Stockings",0,"guestUser",09-JAN-14 04.08.27.755000000 PM,"guestUser",09-JAN-14 04.08.27.755000000 PM
+1281796,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",09-JAN-14 04.08.27.755000000 PM,"guestUser",09-JAN-14 04.08.27.755000000 PM
+1281796,"B","Catheter",0,"guestUser",09-JAN-14 04.08.27.756000000 PM,"guestUser",09-JAN-14 04.08.27.756000000 PM
+1281796,"G","Cognitive/Supervision",0,"guestUser",09-JAN-14 04.08.27.756000000 PM,"guestUser",09-JAN-14 04.08.27.756000000 PM
+1281796,"A","Exercise",0,"guestUser",09-JAN-14 04.08.27.756000000 PM,"guestUser",09-JAN-14 04.08.27.756000000 PM
+1281796,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",09-JAN-14 04.08.27.756000000 PM,"guestUser",09-JAN-14 04.08.27.756000000 PM
+1281811,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 10.01.40.187000000 AM,"guestUser",10-JAN-14 10.01.40.187000000 AM
+1281818,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 10.53.43.509000000 AM,"guestUser",10-JAN-14 10.53.43.509000000 AM
+1281818,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 10.53.43.510000000 AM,"guestUser",10-JAN-14 10.53.43.510000000 AM
+1281818,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 10.53.43.510000000 AM,"guestUser",10-JAN-14 10.53.43.510000000 AM
+1281818,"C","Ted Stockings",0,"guestUser",10-JAN-14 10.53.43.510000000 AM,"guestUser",10-JAN-14 10.53.43.510000000 AM
+1281818,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 10.53.43.511000000 AM,"guestUser",10-JAN-14 10.53.43.511000000 AM
+1281818,"B","Catheter",0,"guestUser",10-JAN-14 10.53.43.511000000 AM,"guestUser",10-JAN-14 10.53.43.511000000 AM
+1281818,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 10.53.43.511000000 AM,"guestUser",10-JAN-14 10.53.43.511000000 AM
+1281818,"A","Exercise",0,"guestUser",10-JAN-14 10.53.43.512000000 AM,"guestUser",10-JAN-14 10.53.43.512000000 AM
+1281818,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 10.53.43.512000000 AM,"guestUser",10-JAN-14 10.53.43.512000000 AM
+1282359,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 11.47.16.874000000 AM,"guestUser",28-JAN-14 11.47.16.874000000 AM
+1282359,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 11.47.16.874000000 AM,"guestUser",28-JAN-14 11.47.16.874000000 AM
+1281896,"A","Exercise",0,"guestUser",14-JAN-14 10.22.43.731000000 AM,"guestUser",14-JAN-14 10.22.43.731000000 AM
+1281896,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",14-JAN-14 10.22.43.731000000 AM,"guestUser",14-JAN-14 10.22.43.731000000 AM
+1282358,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 11.37.35.690000000 AM,"guestUser",28-JAN-14 11.37.35.690000000 AM
+1282358,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 11.37.35.690000000 AM,"guestUser",28-JAN-14 11.37.35.690000000 AM
+1282359,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 11.47.16.874000000 AM,"guestUser",28-JAN-14 11.47.16.874000000 AM
+1282359,"C","Ted Stockings",0,"guestUser",28-JAN-14 11.47.16.875000000 AM,"guestUser",28-JAN-14 11.47.16.875000000 AM
+1282359,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 11.47.16.875000000 AM,"guestUser",28-JAN-14 11.47.16.875000000 AM
+1281843,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 03.39.20.429000000 PM,"guestUser",10-JAN-14 03.39.20.429000000 PM
+1281843,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 03.39.20.429000000 PM,"guestUser",10-JAN-14 03.39.20.429000000 PM
+1281843,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 03.39.20.429000000 PM,"guestUser",10-JAN-14 03.39.20.429000000 PM
+1281843,"C","Ted Stockings",0,"guestUser",10-JAN-14 03.39.20.429000000 PM,"guestUser",10-JAN-14 03.39.20.429000000 PM
+1281843,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 03.39.20.430000000 PM,"guestUser",10-JAN-14 03.39.20.430000000 PM
+1281843,"B","Catheter",0,"guestUser",10-JAN-14 03.39.20.430000000 PM,"guestUser",10-JAN-14 03.39.20.430000000 PM
+1281843,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 03.39.20.430000000 PM,"guestUser",10-JAN-14 03.39.20.430000000 PM
+1281843,"A","Exercise",0,"guestUser",10-JAN-14 03.39.20.431000000 PM,"guestUser",10-JAN-14 03.39.20.431000000 PM
+1281843,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",10-JAN-14 03.39.20.431000000 PM,"guestUser",10-JAN-14 03.39.20.431000000 PM
+1282359,"B","Catheter",0,"guestUser",28-JAN-14 11.47.16.875000000 AM,"guestUser",28-JAN-14 11.47.16.875000000 AM
+1282359,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 11.47.16.875000000 AM,"guestUser",28-JAN-14 11.47.16.875000000 AM
+1282359,"A","Exercise",0,"guestUser",28-JAN-14 11.47.16.876000000 AM,"guestUser",28-JAN-14 11.47.16.876000000 AM
+1282359,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 11.47.16.876000000 AM,"guestUser",28-JAN-14 11.47.16.876000000 AM
+1282358,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 11.37.35.691000000 AM,"guestUser",28-JAN-14 11.37.35.691000000 AM
+1282358,"C","Ted Stockings",0,"guestUser",28-JAN-14 11.37.35.691000000 AM,"guestUser",28-JAN-14 11.37.35.691000000 AM
+1282358,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 11.37.35.691000000 AM,"guestUser",28-JAN-14 11.37.35.691000000 AM
+1282358,"B","Catheter",0,"guestUser",28-JAN-14 11.37.35.692000000 AM,"guestUser",28-JAN-14 11.37.35.692000000 AM
+1282358,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 11.37.35.692000000 AM,"guestUser",28-JAN-14 11.37.35.692000000 AM
+1282358,"A","Exercise",0,"guestUser",28-JAN-14 11.37.35.692000000 AM,"guestUser",28-JAN-14 11.37.35.692000000 AM
+1282358,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 11.37.35.693000000 AM,"guestUser",28-JAN-14 11.37.35.693000000 AM
+1282363,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 12.28.15.616000000 PM,"guestUser",28-JAN-14 12.28.15.616000000 PM
+1282363,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 12.28.15.616000000 PM,"guestUser",28-JAN-14 12.28.15.616000000 PM
+1282363,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 12.28.15.617000000 PM,"guestUser",28-JAN-14 12.28.15.617000000 PM
+1282363,"C","Ted Stockings",0,"guestUser",28-JAN-14 12.28.15.617000000 PM,"guestUser",28-JAN-14 12.28.15.617000000 PM
+1282363,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 12.28.15.617000000 PM,"guestUser",28-JAN-14 12.28.15.617000000 PM
+1282363,"B","Catheter",0,"guestUser",28-JAN-14 12.28.15.617000000 PM,"guestUser",28-JAN-14 12.28.15.617000000 PM
+1282363,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 12.28.15.618000000 PM,"guestUser",28-JAN-14 12.28.15.618000000 PM
+1282363,"A","Exercise",0,"guestUser",28-JAN-14 12.28.15.618000000 PM,"guestUser",28-JAN-14 12.28.15.618000000 PM
+1282363,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 12.28.15.618000000 PM,"guestUser",28-JAN-14 12.28.15.618000000 PM
+1282367,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 01.00.53.701000000 PM,"guestUser",28-JAN-14 01.00.53.701000000 PM
+1282367,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 01.00.53.701000000 PM,"guestUser",28-JAN-14 01.00.53.701000000 PM
+1282367,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 01.00.53.701000000 PM,"guestUser",28-JAN-14 01.00.53.701000000 PM
+1282367,"C","Ted Stockings",0,"guestUser",28-JAN-14 01.00.53.702000000 PM,"guestUser",28-JAN-14 01.00.53.702000000 PM
+1282367,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 01.00.53.702000000 PM,"guestUser",28-JAN-14 01.00.53.702000000 PM
+1282367,"B","Catheter",0,"guestUser",28-JAN-14 01.00.53.702000000 PM,"guestUser",28-JAN-14 01.00.53.702000000 PM
+1282367,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 01.00.53.703000000 PM,"guestUser",28-JAN-14 01.00.53.703000000 PM
+1282367,"A","Exercise",0,"guestUser",28-JAN-14 01.00.53.703000000 PM,"guestUser",28-JAN-14 01.00.53.703000000 PM
+1282367,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 01.00.53.703000000 PM,"guestUser",28-JAN-14 01.00.53.703000000 PM
+1282364,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 12.45.37.311000000 PM,"guestUser",28-JAN-14 12.45.37.311000000 PM
+1282364,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 12.45.37.311000000 PM,"guestUser",28-JAN-14 12.45.37.311000000 PM
+1282364,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 12.45.37.312000000 PM,"guestUser",28-JAN-14 12.45.37.312000000 PM
+1282364,"C","Ted Stockings",0,"guestUser",28-JAN-14 12.45.37.312000000 PM,"guestUser",28-JAN-14 12.45.37.312000000 PM
+1282364,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 12.45.37.312000000 PM,"guestUser",28-JAN-14 12.45.37.312000000 PM
+1282364,"B","Catheter",0,"guestUser",28-JAN-14 12.45.37.312000000 PM,"guestUser",28-JAN-14 12.45.37.312000000 PM
+1282364,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 12.45.37.313000000 PM,"guestUser",28-JAN-14 12.45.37.313000000 PM
+1282364,"A","Exercise",0,"guestUser",28-JAN-14 12.45.37.313000000 PM,"guestUser",28-JAN-14 12.45.37.313000000 PM
+1282364,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 12.45.37.313000000 PM,"guestUser",28-JAN-14 12.45.37.313000000 PM
+1282376,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 02.07.40.614000000 PM,"guestUser",28-JAN-14 02.07.40.614000000 PM
+1282376,"A","Exercise",0,"guestUser",28-JAN-14 02.07.40.614000000 PM,"guestUser",28-JAN-14 02.07.40.614000000 PM
+1282376,"B","Catheter",0,"guestUser",28-JAN-14 02.07.40.614000000 PM,"guestUser",28-JAN-14 02.07.40.614000000 PM
+1282369,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 01.19.14.090000000 PM,"guestUser",28-JAN-14 01.19.14.090000000 PM
+1282369,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 01.19.14.090000000 PM,"guestUser",28-JAN-14 01.19.14.090000000 PM
+1282369,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 01.19.14.091000000 PM,"guestUser",28-JAN-14 01.19.14.091000000 PM
+1282369,"C","Ted Stockings",0,"guestUser",28-JAN-14 01.19.14.091000000 PM,"guestUser",28-JAN-14 01.19.14.091000000 PM
+1282369,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 01.19.14.091000000 PM,"guestUser",28-JAN-14 01.19.14.091000000 PM
+1282369,"B","Catheter",0,"guestUser",28-JAN-14 01.19.14.091000000 PM,"guestUser",28-JAN-14 01.19.14.091000000 PM
+1282369,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 01.19.14.092000000 PM,"guestUser",28-JAN-14 01.19.14.092000000 PM
+1282369,"A","Exercise",0,"guestUser",28-JAN-14 01.19.14.092000000 PM,"guestUser",28-JAN-14 01.19.14.092000000 PM
+1282369,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 01.19.14.092000000 PM,"guestUser",28-JAN-14 01.19.14.092000000 PM
+1282370,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 01.28.55.394000000 PM,"guestUser",28-JAN-14 01.28.55.394000000 PM
+1282370,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 01.28.55.395000000 PM,"guestUser",28-JAN-14 01.28.55.395000000 PM
+1282370,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 01.28.55.395000000 PM,"guestUser",28-JAN-14 01.28.55.395000000 PM
+1282370,"C","Ted Stockings",0,"guestUser",28-JAN-14 01.28.55.395000000 PM,"guestUser",28-JAN-14 01.28.55.395000000 PM
+1282370,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 01.28.55.395000000 PM,"guestUser",28-JAN-14 01.28.55.395000000 PM
+1282370,"B","Catheter",0,"guestUser",28-JAN-14 01.28.55.396000000 PM,"guestUser",28-JAN-14 01.28.55.396000000 PM
+1282370,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 01.28.55.396000000 PM,"guestUser",28-JAN-14 01.28.55.396000000 PM
+1282370,"A","Exercise",0,"guestUser",28-JAN-14 01.28.55.396000000 PM,"guestUser",28-JAN-14 01.28.55.396000000 PM
+1282370,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 01.28.55.397000000 PM,"guestUser",28-JAN-14 01.28.55.397000000 PM
+1282382,"E","Suppository, Non-prescription",0,"guestUser",28-JAN-14 03.13.33.071000000 PM,"guestUser",28-JAN-14 03.13.33.071000000 PM
+1282382,"D","Medical Gasses, Oxygen Only",0,"guestUser",28-JAN-14 03.13.33.071000000 PM,"guestUser",28-JAN-14 03.13.33.071000000 PM
+1282382,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",28-JAN-14 03.13.33.071000000 PM,"guestUser",28-JAN-14 03.13.33.071000000 PM
+1282382,"C","Ted Stockings",0,"guestUser",28-JAN-14 03.13.33.072000000 PM,"guestUser",28-JAN-14 03.13.33.072000000 PM
+1282382,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",28-JAN-14 03.13.33.072000000 PM,"guestUser",28-JAN-14 03.13.33.072000000 PM
+1282382,"B","Catheter",0,"guestUser",28-JAN-14 03.13.33.072000000 PM,"guestUser",28-JAN-14 03.13.33.072000000 PM
+1282382,"G","Cognitive/Supervision",0,"guestUser",28-JAN-14 03.13.33.072000000 PM,"guestUser",28-JAN-14 03.13.33.072000000 PM
+1282382,"A","Exercise",0,"guestUser",28-JAN-14 03.13.33.073000000 PM,"guestUser",28-JAN-14 03.13.33.073000000 PM
+1282382,"F","Hoyer Lift/Mechanized Bath Chair",0,"guestUser",28-JAN-14 03.13.33.073000000 PM,"guestUser",28-JAN-14 03.13.33.073000000 PM
+1281837,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 02.29.43.797000000 PM,"guestUser",10-JAN-14 02.29.43.797000000 PM
+1281837,"D","Medical Gasses, Oxygen Only",0,"guestUser",10-JAN-14 02.29.43.797000000 PM,"guestUser",10-JAN-14 02.29.43.797000000 PM
+1281837,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 02.29.43.797000000 PM,"guestUser",10-JAN-14 02.29.43.797000000 PM
+1281837,"C","Ted Stockings",0,"guestUser",10-JAN-14 02.29.43.797000000 PM,"guestUser",10-JAN-14 02.29.43.797000000 PM
+1281835,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",10-JAN-14 02.37.52.122000000 PM,"guestUser",10-JAN-14 02.37.52.122000000 PM
+1281948,"E","Suppository, Non-prescription",0,"guestUser",14-JAN-14 04.39.39.293000000 PM,"guestUser",14-JAN-14 04.39.39.293000000 PM
+1281947,"E","Suppository, Non-prescription",0,"guestUser",14-JAN-14 04.31.34.013000000 PM,"guestUser",14-JAN-14 04.31.34.013000000 PM
+1281947,"D","Medical Gasses, Oxygen Only",0,"guestUser",14-JAN-14 04.31.34.013000000 PM,"guestUser",14-JAN-14 04.31.34.013000000 PM
+1281947,"I","Temp/Blood Pres/Respiration Rate/Pulse",0,"guestUser",14-JAN-14 04.31.34.013000000 PM,"guestUser",14-JAN-14 04.31.34.013000000 PM
+1281839,"E","Suppository, Non-prescription",0,"guestUser",10-JAN-14 03.02.32.657000000 PM,"guestUser",10-JAN-14 03.02.32.657000000 PM
+1281839,"G","Cognitive/Supervision",0,"guestUser",10-JAN-14 03.02.32.657000000 PM,"guestUser",10-JAN-14 03.02.32.657000000 PM
+1281839,"A","Exercise",0,"guestUser",10-JAN-14 03.02.32.657000000 PM,"guestUser",10-JAN-14 03.02.32.657000000 PM
+1281839,"C","Ted Stockings",0,"guestUser",10-JAN-14 03.02.32.658000000 PM,"guestUser",10-JAN-14 03.02.32.658000000 PM
+1281837,"H","Prosthesis/Orthotics/Adaptive Devices",0,"guestUser",10-JAN-14 02.29.43.798000000 PM,"guestUser",10-JAN-14 02.29.43.798000000 PM
