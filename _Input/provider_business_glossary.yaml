@@ -17,6 +17,13 @@ terms:
     synonyms: ["P_SYS_ID", "provider internal system ID", "provider system ID"]
     subject_area: "Provider"
     related_ldm_entities: ["Provider"]
+  - term: "Address"
+    definition: >
+      A structured location record used to identify where a provider or related entity is
+      located.
+    synonyms: ["location", "provider address", "physical address", "mailing address"]
+    subject_area: "Provider"
+    related_ldm_entities: ["Provider", "Common Entity", "ProviderAddress"]
   - term: "Provider Name"
     definition: >
       The legal or business name used to identify a provider in provider master data and

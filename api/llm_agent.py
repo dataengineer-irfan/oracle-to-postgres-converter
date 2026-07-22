@@ -1,6 +1,7 @@
 import httpx
 import json
 import os
+import re
 from api.rag_engine import get_rag_engine
 from metadata_loader import MetadataLoader
 
@@ -143,8 +144,21 @@ async def generate_sql_from_intent(prompt: str) -> str:
                 response = await client.post(url, json=payload, headers=headers)
                 if response.status_code == 200:
                     data = response.json()
-                    sql_text = data.get("response", "").strip()
-                    sql_text = sql_text.replace("```sql", "").replace("```", "").strip()
+                    response_text = data.get("response", "").strip()
+                    
+                    # 1. Try to extract from markdown block
+                    sql_match = re.search(r"```sql\s*(.*?)\s*```", response_text, re.DOTALL | re.IGNORECASE)
+                    if sql_match:
+                        sql_text = sql_match.group(1).strip()
+                    else:
+                        # 2. Try to extract everything from the first SELECT or UPDATE or DELETE or INSERT to the last semicolon
+                        stmt_match = re.search(r"(SELECT|UPDATE|DELETE|INSERT|WITH)\s+.*?;", response_text, re.DOTALL | re.IGNORECASE)
+                        if stmt_match:
+                            sql_text = stmt_match.group(0).strip()
+                        else:
+                            # 3. Fallback, just strip wrappers
+                            sql_text = response_text.replace("```sql", "").replace("```", "").strip()
+                            
                     if sql_text:
                         return sql_text
                     else:
