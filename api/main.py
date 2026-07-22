@@ -327,12 +327,7 @@ from api.rag_engine import get_rag_engine
 @app.post("/api/sql/ai-generate")
 async def ai_generate_sql(req: GenerateRequest):
     """Generate SQL from natural language."""
-    engine = get_rag_engine()
-    relevant_tables = engine.retrieve_context(req.prompt)
-    
-    schema_context = engine.retrieve_schema_context(relevant_tables)
-
-    sql = await generate_sql_from_intent(req.prompt, schema_context)
+    sql = await generate_sql_from_intent(req.prompt)
     return {"sql": sql}
 
 @app.post("/api/sql/execute")

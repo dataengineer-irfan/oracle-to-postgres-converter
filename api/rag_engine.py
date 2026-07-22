@@ -115,7 +115,7 @@ class RAGEngine:
                 
         # If we found direct matches, just return them! No need to guess.
         if matched_tables:
-            return sorted(list(matched_tables))[:3]
+            return sorted(list(matched_tables))[:8]
         
         # 1. Match against Business Glossary terms
         for term, tables in self.glossary.items():
@@ -147,8 +147,8 @@ class RAGEngine:
             matched_list.remove("p_dtl_tb")
             matched_list.insert(0, "p_dtl_tb")
             
-        # TUNE: Limit context window bloat by strictly capping matched tables to top 3
-        return matched_list[:3]
+        # TUNE: Limit context window bloat by strictly capping matched tables
+        return matched_list[:8]
 
     def retrieve_schema_context(self, matched_tables: list[str]) -> str:
         """Returns a formatted string containing exact columns and their business descriptions for the LLM."""
@@ -167,6 +167,42 @@ class RAGEngine:
         if len(matched_tables) < 2:
             return ""
             
+        # Build undirected graph of joins
+        adj = {}
+        join_defs = {}
+        for src_tbl, src_col, tgt_tbl, tgt_col in self.joins:
+            adj.setdefault(src_tbl, set()).add(tgt_tbl)
+            adj.setdefault(tgt_tbl, set()).add(src_tbl)
+            join_defs[(src_tbl, tgt_tbl)] = f"{src_tbl}.{src_col} = {tgt_tbl}.{tgt_col}"
+            join_defs[(tgt_tbl, src_tbl)] = f"{src_tbl}.{src_col} = {tgt_tbl}.{tgt_col}"
+
+        # Find paths to link disconnected tables in matched_tables
+        expanded_tables = set(matched_tables)
+        
+        for t1 in matched_tables:
+            for t2 in matched_tables:
+                if t1 >= t2: continue
+                # BFS to find shortest path
+                queue = [[t1]]
+                visited = {t1}
+                path = None
+                while queue:
+                    curr_path = queue.pop(0)
+                    node = curr_path[-1]
+                    if node == t2:
+                        path = curr_path
+                        break
+                    for neighbor in adj.get(node, []):
+                        if neighbor not in visited:
+                            visited.add(neighbor)
+                            queue.append(curr_path + [neighbor])
+                if path:
+                    expanded_tables.update(path)
+
+        # Update matched_tables in-place so LLM agent can use them
+        matched_tables.clear()
+        matched_tables.extend(sorted(list(expanded_tables)))
+
         join_rules = []
         for src_tbl, src_col, tgt_tbl, tgt_col in self.joins:
             if src_tbl in matched_tables and tgt_tbl in matched_tables:

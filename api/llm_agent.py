@@ -77,7 +77,7 @@ async def parse_intent(prompt: str) -> list[str]:
     # Deterministic fallback: just pick the first most likely table if LLM completely fails
     return [relevant_tables[0]] if relevant_tables else []
 
-async def generate_sql_from_intent(prompt: str, schema_context: str = "") -> str:
+async def generate_sql_from_intent(prompt: str) -> str:
     """
     Calls the local Ollama API to translate natural language into a valid PostgreSQL statement.
     """
@@ -86,12 +86,13 @@ async def generate_sql_from_intent(prompt: str, schema_context: str = "") -> str
     
     context_hint = ""
     if relevant_tables:
+        join_context = engine.retrieve_join_context(relevant_tables)
+        schema_context = engine.retrieve_schema_context(relevant_tables)
+        
         fq_tables = [MetadataLoader.get_qualified_table_name(t) for t in relevant_tables]
         context_hint = f"\nRelevant tables based on your keywords (including their exact database schemas!): {', '.join(fq_tables)}"
         if schema_context:
             context_hint += f"\n{schema_context}"
-            
-        join_context = engine.retrieve_join_context(relevant_tables)
         if join_context:
             context_hint += f"\n{join_context}"
         
