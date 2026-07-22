@@ -1,0 +1,299 @@
+{
+  "module": "Provider",
+  "schema": "provider",
+  "source": "Rebuilt using verified DDL (DDL_Tables.zip / DDLS.zip) and verified FK/PK constraints from SIT export (First_Query_results_in_SIT.xlsx / 2_query_results_in_SIT.xlsx) - replaces earlier generic PROVIDER/PROVIDER_TAXONOMY/PROVIDER_ADDRESS/PROVIDER_LICENSE table names with real schema.",
+  "important_notes": [
+    "There is NO provider address table in this schema. Address/contact data lives in an external Contact Management module, linked via p_dtl_tb.g_cmn_enty_sk. SCN-007 has been rewritten to reflect this - it cannot be tested from Provider tables alone.",
+    "NPI is stored as a row in p_alt_id_tb (p_alt_id_ty_cd = 'NPI'), not as a column on p_dtl_tb.",
+    "Every child table's real primary key is composite: (p_sys_id, its own _sk surrogate key) - e.g. p_txnmy_tb is keyed by (p_sys_id, p_txnmy_sk), not p_sys_id alone.",
+    "Coded fields (status, type, taxonomy, etc.) validate against R_VV_TB (composite key: R_VV_DOMAIN_NAM + R_VV_CD), not a single-column code table."
+  ],
+  "scenarios": [
+    {
+      "name": "Provider Creation",
+      "description": "Create a new individual or organizational provider record and bring it to Active status",
+      "required_entities": [
+        "Provider",
+        "Type",
+        "Taxonomy",
+        "Specialty",
+        "License",
+        "Enrollment Status",
+        "Alternate ID (NPI)",
+        "Application Status"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_ty_tb",
+        "p_txnmy_tb",
+        "p_specl_tb",
+        "p_lic_cert_tb",
+        "p_enrol_stat_tb",
+        "p_alt_id_tb",
+        "p_appl_stat_tb"
+      ],
+      "insert_sequence": [
+        "Insert parent record into p_dtl_tb, capture generated p_sys_id",
+        "Insert into p_ty_tb using p_sys_id + new p_ty_sk (Provider Type)",
+        "Insert into p_txnmy_tb using p_sys_id + new p_txnmy_sk (Taxonomy - HIPAA required)",
+        "Insert into p_specl_tb using p_sys_id + new p_specl_sk (Specialty)",
+        "Insert into p_lic_cert_tb using p_sys_id + new p_lic_cert_sk (License/Certification)",
+        "Insert into p_enrol_stat_tb using p_sys_id + new p_enrol_stat_sk, p_enrol_stat_ty_cd = 'AC' (sets Active)",
+        "Insert into p_alt_id_tb using p_sys_id + new p_alt_id_sk, p_alt_id_ty_cd = 'NPI' (NPI is stored as an alternate ID row, not a p_dtl_tb column)",
+        "Insert into p_appl_stat_tb using p_sys_id + new p_appl_stat_sk, p_appl_stat_cd = 'APR' (Approved)"
+      ],
+      "business_validations": [
+        "Provider cannot be considered Active without rows in p_ty_tb, p_txnmy_tb, p_specl_tb, p_lic_cert_tb, and an Active row in p_enrol_stat_tb",
+        "NPI value in p_alt_id_tb must be exactly 10 numeric digits",
+        "p_sys_id must be unique across p_dtl_tb",
+        "All coded fields must resolve to a valid (domain, code) pair in R_VV_TB",
+        "Do not attempt to insert address data into any table in this list - it is out of scope, see important_notes"
+      ],
+      "expected_outcome": "New p_dtl_tb record with Active status in p_enrol_stat_tb and all six required child rows present",
+      "worked_example_ref": "handwritten_QA_examples.sql QA-011"
+    },
+    {
+      "name": "Provider Update",
+      "description": "Update demographic details for an existing provider",
+      "required_entities": [
+        "Provider"
+      ],
+      "related_tables": [
+        "p_dtl_tb"
+      ],
+      "insert_sequence": [
+        "Confirm p_sys_id exists in p_dtl_tb and current enrollment status is not Terminated",
+        "Update p_dtl_tb demographic columns (e.g. p_nam, p_last_nam, p_first_nam, p_dba_nam) for the matching p_sys_id"
+      ],
+      "business_validations": [
+        "p_sys_id must already exist in p_dtl_tb",
+        "Current row in p_enrol_stat_tb must not have p_enrol_stat_ty_cd = 'TM' (Terminated)"
+      ],
+      "expected_outcome": "p_dtl_tb record updated in place; g_aud_ts/g_aud_user_id reflect the change"
+    },
+    {
+      "name": "Provider Taxonomy Change",
+      "description": "Add or end-date a specialty taxonomy code for a provider",
+      "required_entities": [
+        "Provider",
+        "Taxonomy"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_txnmy_tb"
+      ],
+      "insert_sequence": [
+        "Update the existing active p_txnmy_tb row: set p_txnmy_end_dt = new end date",
+        "Insert a new p_txnmy_tb row using p_sys_id + new p_txnmy_sk with the new p_txnmy_cd and p_txnmy_beg_dt = new begin date"
+      ],
+      "business_validations": [
+        "p_txnmy_cd must be a valid NUCC taxonomy code (validated against SYSTEM_LISTTB - R_LIST_HDR_TB/R_LIST_DTL_TB)",
+        "Provider's current p_enrol_stat_tb row must be Active (p_enrol_stat_ty_cd = 'AC')",
+        "New p_txnmy_beg_dt must not be earlier than the prior row's p_txnmy_end_dt"
+      ],
+      "expected_outcome": "Prior taxonomy row end-dated, new taxonomy row inserted with its own p_txnmy_sk"
+    },
+    {
+      "name": "Provider Termination",
+      "description": "Terminate an active provider's enrollment",
+      "required_entities": [
+        "Provider",
+        "Enrollment Status"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_enrol_stat_tb"
+      ],
+      "insert_sequence": [
+        "End-date the current Active row in p_enrol_stat_tb: set p_enrol_stat_end_dt = termination date",
+        "Insert a new p_enrol_stat_tb row using p_sys_id + new p_enrol_stat_sk, p_enrol_stat_ty_cd = 'TM' (Terminated), p_enrol_stat_beg_dt = termination date"
+      ],
+      "business_validations": [
+        "Provider's current status must be Active before termination",
+        "p_enrol_stat_beg_dt for the new Terminated row is required",
+        "New status row's p_enrol_stat_beg_dt must not precede the prior row's p_enrol_stat_beg_dt"
+      ],
+      "expected_outcome": "New p_enrol_stat_tb row with p_enrol_stat_ty_cd = 'TM' and termination date recorded; prior Active row end-dated"
+    },
+    {
+      "name": "Provider Enrollment",
+      "description": "Move a provider from Pending/Application to Active enrollment status",
+      "required_entities": [
+        "Provider",
+        "License",
+        "Enrollment Status",
+        "Application Status"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_lic_cert_tb",
+        "p_enrol_stat_tb",
+        "p_appl_stat_tb"
+      ],
+      "insert_sequence": [
+        "Confirm p_lic_cert_tb has a row with p_lic_vrfy_ind = 'Y' for this p_sys_id",
+        "Insert into p_enrol_stat_tb using p_sys_id + new p_enrol_stat_sk, p_enrol_stat_ty_cd = 'AC'",
+        "Insert into p_appl_stat_tb using p_sys_id + new p_appl_stat_sk, p_appl_stat_cd = 'APR'"
+      ],
+      "business_validations": [
+        "A verified license (p_lic_vrfy_ind = 'Y') must exist in p_lic_cert_tb before enrollment can proceed",
+        "p_enrol_stat_beg_dt is required on the new Active row",
+        "p_rtrctv_elig_ind should be set explicitly ('Y' or 'N'), not left null, if retroactive eligibility applies"
+      ],
+      "expected_outcome": "New p_enrol_stat_tb row with p_enrol_stat_ty_cd = 'AC' and matching p_appl_stat_tb row showing Approved"
+    },
+    {
+      "name": "Provider Revalidation",
+      "description": "Periodic re-verification of provider credentials per CMS requirements",
+      "required_entities": [
+        "Provider",
+        "License",
+        "Taxonomy",
+        "Enrollment Status"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_lic_cert_tb",
+        "p_txnmy_tb",
+        "p_enrol_stat_tb"
+      ],
+      "insert_sequence": [
+        "Check R_PARAM_TB / R_PARAM_DTL_TB for the configured revalidation cycle length parameter",
+        "Confirm p_lic_cert_tb's current row has p_lic_cert_end_dt in the future (not expired)",
+        "Confirm p_txnmy_tb's current row is still active (p_txnmy_end_dt in the future or default '31-DEC-9999')",
+        "If both checks pass, no status change needed; if either fails, insert a new p_enrol_stat_tb row with p_enrol_stat_ty_cd flagged for revalidation review"
+      ],
+      "business_validations": [
+        "License must not be expired at time of revalidation",
+        "Taxonomy code must still be active",
+        "Revalidation cycle length is a configurable value from R_PARAM_TB, not hardcoded"
+      ],
+      "expected_outcome": "Provider confirmed Active (no new row needed) or a new p_enrol_stat_tb row flagging revalidation required"
+    },
+    {
+      "name": "Provider Address Change",
+      "description": "OUT OF SCOPE for this table set - address/contact data is managed by an external Contact Management module",
+      "required_entities": [
+        "Provider",
+        "Common Entity (external)"
+      ],
+      "related_tables": [
+        "p_dtl_tb"
+      ],
+      "insert_sequence": [
+        "Do NOT insert address data into any table in this schema",
+        "p_dtl_tb.g_cmn_enty_sk points to the external Contact Management module where address changes actually occur",
+        "If your sandbox needs to test address scenarios, request DDL for the Contact Management module separately"
+      ],
+      "business_validations": [
+        "This scenario cannot be fully executed using only the Provider DDL currently loaded"
+      ],
+      "expected_outcome": "N/A within this module - flagged as a known gap, not a working scenario"
+    },
+    {
+      "name": "Provider License Verification",
+      "description": "Validate a provider's license status and expiration",
+      "required_entities": [
+        "Provider",
+        "License"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_lic_cert_tb"
+      ],
+      "insert_sequence": [
+        "Read current p_lic_cert_tb row for the provider's p_sys_id",
+        "If p_lic_cert_end_dt is in the future, update p_lic_vrfy_ind = 'Y'",
+        "If p_lic_cert_end_dt is in the past, leave p_lic_vrfy_ind = 'N' and flag as Expired"
+      ],
+      "business_validations": [
+        "p_lic_cert_num format must be valid for p_lic_cert_state_cd's issuing state",
+        "p_lic_cert_end_dt must be evaluated against CURRENT_DATE, not assumed"
+      ],
+      "expected_outcome": "p_lic_vrfy_ind set to 'Y' (Verified) or left 'N' with the license flagged Expired"
+    },
+    {
+      "name": "Provider Network/Group Affiliation Change",
+      "description": "Add or end-date a provider's affiliation with a group or managed care network",
+      "required_entities": [
+        "Provider (Member)",
+        "Provider (Group)"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_affl_tb",
+        "p_affl_tx"
+      ],
+      "insert_sequence": [
+        "Confirm both p_grp_sys_id (the group) and p_mbr_sys_id (the individual member) already exist as valid p_sys_id values in p_dtl_tb",
+        "Insert into p_affl_tb linking p_grp_sys_id and p_mbr_sys_id",
+        "Insert matching extension row into p_affl_tx if additional affiliation attributes are required",
+        "To remove an affiliation, end-date the existing p_affl_tb row rather than deleting it"
+      ],
+      "business_validations": [
+        "Both referenced p_sys_id values must already exist in p_dtl_tb",
+        "The group-side provider (p_grp_sys_id) should have p_indiv_grp_cd = 'G' on p_dtl_tb",
+        "The member-side provider (p_mbr_sys_id) should have p_indiv_grp_cd = 'I' on p_dtl_tb"
+      ],
+      "expected_outcome": "New p_affl_tb row linking the two providers, or an end-dated row if removing an affiliation"
+    },
+    {
+      "name": "Provider Deactivation and Reactivation",
+      "description": "Temporarily deactivate a provider and later reinstate enrollment",
+      "required_entities": [
+        "Provider",
+        "Enrollment Status"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_enrol_stat_tb"
+      ],
+      "insert_sequence": [
+        "Deactivation: end-date the current Active p_enrol_stat_tb row, insert a new row with p_enrol_stat_ty_cd = 'IN' (Inactive) and a p_enrol_stat_rsn_cd explaining why",
+        "Reactivation: end-date the Inactive row, insert a new row with p_enrol_stat_ty_cd = 'AC' - only after a status review is completed"
+      ],
+      "business_validations": [
+        "Deactivation requires a non-null p_enrol_stat_rsn_cd",
+        "Reactivation should not be performed by simply flipping the code back - a new dated row is required to preserve status history",
+        "Each status change must have a later p_enrol_stat_beg_dt than the row it replaces"
+      ],
+      "expected_outcome": "Full status history preserved across p_enrol_stat_tb rows, current status reflecting either Active or Inactive"
+    },
+    {
+      "name": "System Reference List Validation Lookup",
+      "description": "Query providers matching a system list (e.g. G1-1009) and fetch their name, provider type, description from r_vv_tb or valid value table, list values, and related reference data. Handles lookups of valid value descriptions for provider type codes, license codes, or any domain-keyed code.",
+      "required_entities": [
+        "Provider",
+        "System List Detail Range",
+        "System List Header",
+        "Valid Value Code",
+        "Valid Value Description",
+        "Provider Type",
+        "Reference List"
+      ],
+      "related_tables": [
+        "p_dtl_tb",
+        "p_ty_tb",
+        "p_lic_cert_tb",
+        "r_list_dtl_tb",
+        "r_list_hdr_tb",
+        "r_vv_tb"
+      ],
+      "insert_sequence": [
+        "1. Identify the system list domain name from r_list_hdr_tb using r_list_num (e.g. 'P_CLIA_CERT_TY_CD' for list 1009).",
+        "2. Join provider.p_dtl_tb (demographics: p_first_nam, p_last_nam, p_nam) to child tables on p_sys_id.",
+        "3. For provider type description: JOIN provider.p_ty_tb ON p_dtl_tb.p_sys_id = p_ty_tb.p_sys_id, then JOIN provider.r_vv_tb ON p_ty_tb.p_ty_cd = r_vv_tb.r_vv_cd AND r_vv_tb.r_vv_domain_nam = 'P_TY_CD'.",
+        "4. For license/cert description: JOIN provider.p_lic_cert_tb ON p_dtl_tb.p_sys_id = p_lic_cert_tb.p_sys_id, then JOIN provider.r_vv_tb ON p_lic_cert_tb.p_lic_cert_ty_cd = r_vv_tb.r_vv_cd AND r_vv_tb.r_vv_domain_nam = 'P_CLIA_CERT_TY_CD'.",
+        "5. Join provider.r_list_dtl_tb on r_list_dtl_tb.r_list_num = 1009 and r_list_dtl_tb.r_func_area_cd = 'P1' to filter code values (e.g. p_lic_cert_ty_cd = r_list_dtl_tb.r_list_beg_value OR p_ty_cd = r_list_dtl_tb.r_list_beg_value).",
+        "6. CRITICAL: p_dtl_tb does NOT have a column named p_vv_cd. NEVER join p_dtl_tb directly to r_vv_tb. Always go through p_ty_tb or p_lic_cert_tb."
+      ],
+      "business_validations": [
+        "Validate coded values against allowed list range values: r_list_beg_value / r_list_end_value",
+        "Domain name constraints must be matched: r_vv_domain_nam must equal the system list domain name",
+        "p_dtl_tb has NO column p_vv_cd - join r_vv_tb only through p_ty_tb.p_ty_cd or p_lic_cert_tb.p_lic_cert_ty_cd"
+      ],
+      "expected_outcome": "Providers and their types/licensing codes retrieved along with matching valid value description labels.",
+      "example_sql": "SELECT p.p_first_nam, p.p_last_nam, pty.p_ty_cd AS provider_type, vv.r_vv_short_desc AS type_description FROM provider.p_dtl_tb p INNER JOIN provider.p_ty_tb pty ON p.p_sys_id = pty.p_sys_id LEFT JOIN provider.r_list_dtl_tb r ON pty.p_ty_cd = r.r_list_beg_value AND r.r_list_num = 1009 AND r.r_func_area_cd = 'P1' LEFT OUTER JOIN provider.r_vv_tb vv ON pty.p_ty_cd = vv.r_vv_cd AND vv.r_vv_domain_nam = 'P_TY_CD';"
+    }
+  ]
+}

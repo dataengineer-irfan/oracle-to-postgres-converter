@@ -1,0 +1,4081 @@
+{
+    "p_acptnc_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_acptnc_cd": {
+                "type": "categorical",
+                "values": [
+                    4,
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    5,
+                    1,
+                    7,
+                    6,
+                    2,
+                    3,
+                    8,
+                    4
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion",
+                    "THENDERSON",
+                    "SHERSAYLER",
+                    "MMANYGUNS",
+                    "JMLAGRO",
+                    "KARINARUIZ",
+                    "PJHEID"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "28-MAR-13 03.57.50.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_affl_tb": {
+        "num_columns": 11,
+        "columns": {
+            "p_affl_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "M",
+                    "I",
+                    "X"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "28-MAR-13 03.56.36.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_affl_tx": {
+        "num_columns": 9,
+        "columns": {
+            "p_affl_pcp_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    5,
+                    1,
+                    7,
+                    3,
+                    2,
+                    4,
+                    8,
+                    6,
+                    10
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_alt_id_tb": {
+        "num_columns": 13,
+        "columns": {
+            "p_alt_id_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "1D",
+                    "1C",
+                    "EI",
+                    "XX",
+                    "OB",
+                    "SY",
+                    "1G"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_tax_rpt_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y",
+                    "1"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1,
+                    3,
+                    2,
+                    7,
+                    8,
+                    4
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "28-MAR-13 03.56.29.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_appl_stat_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_appl_stat_cd": {
+                "type": "categorical",
+                "values": [
+                    "PS",
+                    "IW",
+                    "V",
+                    "PN",
+                    "CN",
+                    "PC",
+                    "AP",
+                    "AA",
+                    "IP",
+                    "RQ"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    7,
+                    5,
+                    8,
+                    1,
+                    2,
+                    11,
+                    41
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "RRUD",
+                    "guestUser",
+                    "JMLAGRO",
+                    "userID",
+                    "NMAIER",
+                    "SMCNEIL",
+                    "MMANYGUNS",
+                    "KRBACKMAN"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "RRUD",
+                    "guestUser",
+                    "JMLAGRO",
+                    "userID",
+                    "NMAIER",
+                    "defect ESPRD01032661 data fix",
+                    "MMANYGUNS",
+                    "KRBACKMAN"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_blng_medm_tb": {
+        "num_columns": 8,
+        "columns": {
+            "p_blng_medm_cd": {
+                "type": "categorical",
+                "values": [
+                    "I"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_care_crd_tx": {
+        "num_columns": 11,
+        "columns": {
+            "p_sys_id": {
+                "type": "categorical",
+                "values": [
+                    1183402,
+                    1282278
+                ],
+                "null_ratio": 0.0
+            },
+            "p_care_void_indr": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "smarathi",
+                    "PPATEL"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "smarathi",
+                    "PPATEL"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_clia_cert_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_clia_cert_li_num": {
+                "type": "categorical",
+                "values": [
+                    10,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                ],
+                "null_ratio": 0.0
+            },
+            "p_clia_cert_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    3,
+                    4,
+                    1,
+                    2,
+                    9
+                ],
+                "null_ratio": 0.0
+            },
+            "p_clia_lab_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "2",
+                    " ",
+                    "1"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-CLIA-UPD_8943636.00",
+                    "B-IF-PRV-CLIA-UPD_1054767.00",
+                    "B-IF-PRV-CLIA-UPD_1051373.00",
+                    "B-IF-PRV-CLIA-UPD_723052.00",
+                    "B-IF-PRV-CLIA-UPD_967146.00",
+                    "B-IF-PRV-CLIA-UPD_953610.00",
+                    "B-IF-PRV-CLIA-UPD_9554259.00",
+                    "B-IF-PRV-CLIA-UPD_1047885.00",
+                    "B-IF-PRV-CLIA-UPD_1051298.00",
+                    "B-IF-PRV-CLIA-UPD_233151.00",
+                    "B-IF-PRV-CLIA-UPD_1048863.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-CLIA-UPD_8943636.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_clia_cert_seq_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_clia_lab_cd_tb": {
+        "num_columns": 9,
+        "columns": {
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-CLIA-UPD_8943636.00"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_clia_lab_tb": {
+        "num_columns": 15,
+        "columns": {
+            "p_clia_lab_pay_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_clia_mcare_num": {
+                "type": "categorical",
+                "values": [
+                    " "
+                ],
+                "null_ratio": 0.0
+            },
+            "p_clia_add_dt": {
+                "type": "categorical",
+                "values": [
+                    "26-NOV-13",
+                    "20-NOV-13",
+                    "27-NOV-13",
+                    "18-NOV-13",
+                    "19-NOV-13",
+                    "22-NOV-13",
+                    "25-NOV-13",
+                    "21-NOV-13"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_clia_npi_num": {
+                "type": "categorical",
+                "values": [
+                    " "
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-CLIA-UPD_8943636.00"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_dtl_tb": {
+        "num_columns": 78,
+        "columns": {
+            "p_ty_class_cd": {
+                "type": "categorical",
+                "values": [
+                    4,
+                    1,
+                    2
+                ],
+                "null_ratio": 0.0
+            },
+            "p_rec_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "C"
+                ],
+                "null_ratio": 0.5671342685370742
+            },
+            "p_locn_cd": {
+                "type": "categorical",
+                "values": [
+                    "I",
+                    "B",
+                    "O"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_ra_sort_seq_cd": {
+                "type": "categorical",
+                "values": [
+                    "I",
+                    "N",
+                    "D",
+                    "B",
+                    "1",
+                    "P",
+                    "7",
+                    "3",
+                    " "
+                ],
+                "null_ratio": 0.2565130260521042
+            },
+            "p_ra_prt_susp_cd": {
+                "type": "categorical",
+                "values": [
+                    "D",
+                    "A",
+                    "N",
+                    "S",
+                    " "
+                ],
+                "null_ratio": 0.24448897795591182
+            },
+            "p_indiv_grp_cd": {
+                "type": "categorical",
+                "values": [
+                    "G",
+                    "I"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_owner_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "X"
+                ],
+                "null_ratio": 0.44288577154308617
+            },
+            "p_dba_org_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_dba_sfx_nam": {
+                "type": "categorical",
+                "values": [
+                    "MD",
+                    "CRNA",
+                    "DC",
+                    "DO",
+                    "PHD",
+                    " MD",
+                    " DO"
+                ],
+                "null_ratio": 0.7635270541082164
+            },
+            "p_nam_org_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_sfx_nam": {
+                "type": "categorical",
+                "values": [
+                    "MD",
+                    "CRNA",
+                    "DC",
+                    "DO",
+                    "PHD",
+                    " MD",
+                    " DO"
+                ],
+                "null_ratio": 0.7094188376753507
+            },
+            "p_blltn_medm_cd": {
+                "type": "categorical",
+                "values": [
+                    "I",
+                    "P",
+                    " "
+                ],
+                "null_ratio": 0.8076152304609219
+            },
+            "p_blltn_copy_num": {
+                "type": "categorical",
+                "values": [
+                    0.0,
+                    1.0
+                ],
+                "null_ratio": 0.43286573146292584
+            },
+            "p_mcare_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_bkup_whold_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_multi_locn_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_prft_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_blng_cd": {
+                "type": "categorical",
+                "values": [
+                    "B",
+                    "U",
+                    "S"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_ihs_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_sole_comm_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_epsdt_only_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_state_match_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_enrol_actn_cd": {
+                "type": "categorical",
+                "values": [
+                    "I"
+                ],
+                "null_ratio": 0.5671342685370742
+            },
+            "p_dupl_ovrrd_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_cancel_appl_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_fscl_end_mo_num": {
+                "type": "categorical",
+                "values": [
+                    12.0,
+                    6.0,
+                    8.0
+                ],
+                "null_ratio": 0.43286573146292584
+            },
+            "p_gender_cd": {
+                "type": "categorical",
+                "values": [
+                    "F",
+                    "M"
+                ],
+                "null_ratio": 0.050100200400801605
+            },
+            "p_open_24_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_title_cd": {
+                "type": "categorical",
+                "values": [
+                    "MD",
+                    "DO",
+                    "DC",
+                    "CRNA",
+                    "ARNP",
+                    "NP"
+                ],
+                "null_ratio": 0.5250501002004008
+            },
+            "p_hndcpd_accs_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_teach_hosp_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_tdd_tty_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_in_kind_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_drive_thru_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_curr_alt_id_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "1D"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_other_lang_text": {
+                "type": "categorical",
+                "values": [
+                    "175 Languages",
+                    "Translation Service",
+                    "175 languages available",
+                    "175 LANGUAGES AVAIL",
+                    "175 AVAILABLE LANGUAGES",
+                    "Dinka, Kirundi, Kurdish, Nepali, Somali",
+                    "German",
+                    "175 LANGUAGES AVAILABLE",
+                    "175 ADDTIONAL LANGUAGES",
+                    "175 Add'l languages",
+                    "175 ADD'L LANGUAGES",
+                    "175 Languages Available",
+                    "Language Line Available"
+                ],
+                "null_ratio": 0.9158316633266533
+            },
+            "p_pharm_dlvry_svc_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "28-MAR-13 03.54.09.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_dtl_tx": {
+        "num_columns": 19,
+        "columns": {
+            "p_prov_agmt_read_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_pccm_agmt_read_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    5,
+                    4,
+                    1,
+                    3,
+                    8,
+                    2,
+                    7,
+                    6,
+                    10,
+                    13
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "28-MAR-13 03.52.06.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_340b_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_1099_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_pub_prov_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_tp_agmt_read_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_website": {
+                "type": "categorical",
+                "values": [
+                    "https://www.cincinnatichildrens.org",
+                    "www.trinityhealth.org",
+                    "sanfordhealth.org",
+                    "www.sanfordhealth.org",
+                    "avera.org/locations/profile/avera-medical-group-ur",
+                    "Avera.org/locations/profile/avera-medical-group-ea"
+                ],
+                "null_ratio": 0.9859719438877755
+            },
+            "p_accept_new": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.8076152304609219
+            },
+            "p_telehealth": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.8076152304609219
+            }
+        }
+    },
+    "p_eligible_recip_entry_form_tn": {
+        "num_columns": 18,
+        "columns": {
+            "p_reside_in_hsehld_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_fost_child_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_recip_rel_cd": {
+                "type": "categorical",
+                "values": [
+                    56.0,
+                    14.0,
+                    3.0,
+                    19.0
+                ],
+                "null_ratio": 0.40080160320641284
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "p_recip_sfx_nam": {
+                "type": "categorical",
+                "values": [
+                    "PHD",
+                    "JR"
+                ],
+                "null_ratio": 0.9959919839679359
+            }
+        }
+    },
+    "p_enrol_affl_tb": {
+        "num_columns": 14,
+        "columns": {
+            "p_mbr_sys_id": {
+                "type": "categorical",
+                "values": [
+                    1162950.0,
+                    1001646.0,
+                    1001647.0,
+                    1281866.0
+                ],
+                "null_ratio": 0.9919839679358717
+            },
+            "p_grp_sys_id": {
+                "type": "categorical",
+                "values": [
+                    1276764.0,
+                    1276790.0,
+                    1169023.0
+                ],
+                "null_ratio": 0.9919839679358717
+            },
+            "p_affl_end_dt": {
+                "type": "categorical",
+                "values": [
+                    "31-DEC-99"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_affl_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "G",
+                    "I",
+                    "M"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "TBRABANDT",
+                    "LISACAMPBELL",
+                    "JMLAGRO",
+                    "PJHEID",
+                    "SHERSAYLER",
+                    "guestUser",
+                    "KARCHARVAT",
+                    "CKRAFT",
+                    "JUDITHSZEGEDI",
+                    "JOYSPEZIALE"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "TBRABANDT",
+                    "guestUser",
+                    "KWOODALL",
+                    "JMLAGRO",
+                    "JOYSPEZIALE",
+                    "LISACAMPBELL"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_enrol_affl_tx": {
+        "num_columns": 8,
+        "columns": {
+            "p_affl_pcp_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "PJHEID"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "JMLAGRO",
+                    "PJHEID",
+                    "guestUser",
+                    "KWOODALL",
+                    "JOYSPEZIALE",
+                    "LISACAMPBELL",
+                    "ZOEASANDY",
+                    "SHERSAYLER",
+                    "JUDITHSZEGEDI",
+                    "PAULASOLL",
+                    "MARKARENBURG",
+                    "DMOCK",
+                    "DOMINICKNGANTOU",
+                    "CKRAFT"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_enrol_alt_id_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_enrol_alt_id_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "SY",
+                    "EI",
+                    "1C",
+                    "XX",
+                    "12",
+                    "CL",
+                    "PP",
+                    "07"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_tax_rpt_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "LISACAMPBELL",
+                    "ZOEASANDY",
+                    "KRBACKMAN",
+                    "NMAIER",
+                    "PAULASOLL",
+                    "JOYSPEZIALE",
+                    "JUDITHSZEGEDI",
+                    "ZULEIMARUIZ"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "KRBACKMAN",
+                    "NMAIER",
+                    "JMLAGRO",
+                    "PJHEID"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_enrol_stat_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_enrol_stat_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "A",
+                    "I"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_enrol_stat_rsn_cd": {
+                "type": "categorical",
+                "values": [
+                    51,
+                    45,
+                    0,
+                    48
+                ],
+                "null_ratio": 0.0
+            },
+            "p_rtrctv_elig_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1,
+                    3,
+                    5,
+                    2,
+                    4,
+                    6,
+                    18,
+                    10,
+                    7,
+                    12,
+                    9,
+                    14,
+                    20,
+                    8
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "28-MAR-13 03.56.49.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_enrol_tp_info_tb": {
+        "num_columns": 15,
+        "columns": {
+            "p_isp_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "w_sftwr_prtcl_cd": {
+                "type": "categorical",
+                "values": [
+                    "  ",
+                    "4",
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_enrol_tp_txn_info_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_txn_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "837P",
+                    "835",
+                    "277",
+                    "270",
+                    "276",
+                    "837I",
+                    "834",
+                    "820",
+                    "278",
+                    "271",
+                    "837D"
+                ],
+                "null_ratio": 0.0
+            },
+            "w_txn_drctn_cd": {
+                "type": "categorical",
+                "values": [
+                    "I",
+                    "O"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_event_rsn_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_event_rsn_cd": {
+                "type": "categorical",
+                "values": [
+                    9903,
+                    9910,
+                    9902,
+                    9945,
+                    9901,
+                    9957,
+                    9106
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_event_tb": {
+        "num_columns": 13,
+        "columns": {
+            "p_event_prcs_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_event_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "E"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    11
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_faci_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_faci_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "PSY",
+                    "NRS",
+                    "ICF",
+                    "6",
+                    "ACF",
+                    "8",
+                    "7",
+                    "9",
+                    "RCF",
+                    "REH",
+                    "11",
+                    "PRT"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_faci_fy_mo_num": {
+                "type": "categorical",
+                "values": [
+                    1
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_glbl_endrsmnts_sought_tn": {
+        "num_columns": 8,
+        "columns": {
+            "p_endrsmnt_cd": {
+                "type": "categorical",
+                "values": [
+                    "I",
+                    "E",
+                    "A",
+                    "C",
+                    "D",
+                    "G",
+                    "H",
+                    "B",
+                    "F"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_endrsmnt_nam": {
+                "type": "categorical",
+                "values": [
+                    "Temp/Blood Pres/Respiration Rate/Pulse",
+                    "Suppository, Non-prescription",
+                    "Exercise",
+                    "Ted Stockings",
+                    "Medical Gasses, Oxygen Only",
+                    "Cognitive/Supervision",
+                    "Prosthesis/Orthotics/Adaptive Devices",
+                    "Catheter",
+                    "Hoyer Lift/Mechanized Bath Chair"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "NMAIER",
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "NMAIER",
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_glbl_endrsmnts_tn": {
+        "num_columns": 8,
+        "columns": {
+            "p_endrsmnt_cd": {
+                "type": "categorical",
+                "values": [
+                    "E",
+                    "D",
+                    "I",
+                    "C",
+                    "H",
+                    "B",
+                    "G",
+                    "A",
+                    "F",
+                    " "
+                ],
+                "null_ratio": 0.0
+            },
+            "p_endrsmnt_nam": {
+                "type": "categorical",
+                "values": [
+                    "Suppository, Non-prescription",
+                    "Medical Gasses, Oxygen Only",
+                    "Temp/Blood Pres/Respiration Rate/Pulse",
+                    "Ted Stockings",
+                    "Prosthesis/Orthotics/Adaptive Devices",
+                    "Catheter",
+                    "Cognitive/Supervision",
+                    "Exercise",
+                    "Hoyer Lift/Mechanized Bath Chair",
+                    " "
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "SMCNEIL",
+                    "KRBACKMAN",
+                    "DVESEY",
+                    "GUESTUSER",
+                    "NMAIER",
+                    "TOMEYER",
+                    "ALESHA.YARBROUGH",
+                    "JWALTON",
+                    "DMOCK",
+                    "TMCDONNELL",
+                    "CLOWENS"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "SMCNEIL",
+                    "KRBACKMAN",
+                    "DVESEY",
+                    "GUESTUSER",
+                    "NMAIER",
+                    "TOMEYER",
+                    "ALESHA.YARBROUGH",
+                    "JWALTON",
+                    "DMOCK",
+                    "TMCDONNELL",
+                    "CLOWENS"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_if_pt_ps_tb": {
+        "num_columns": 6,
+        "columns": {
+            "p_if_nam": {
+                "type": "categorical",
+                "values": [
+                    "THERAP",
+                    "SANDATA"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    48,
+                    39
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "DataFix_ESPRD01278924",
+                    "DataFix_ESPRD01285372",
+                    "DATAFIX_ESPRD01287128"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_if_sandata_tb": {
+        "num_columns": 28,
+        "columns": {
+            "p_qlfr_nam": {
+                "type": "categorical",
+                "values": [
+                    "MedicaidID"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_payer_id": {
+                "type": "categorical",
+                "values": [
+                    "ND"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_adr_line2": {
+                "type": "categorical",
+                "values": [
+                    " ",
+                    "Suite 308",
+                    "401",
+                    "APT 125D",
+                    "Suite 215",
+                    "Suite 8",
+                    "#15",
+                    "APT 6",
+                    "APT 209",
+                    "213",
+                    "Ste F1",
+                    "303"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_us_state_cd": {
+                "type": "categorical",
+                "values": [
+                    "ND",
+                    "MN",
+                    "FL",
+                    "TX",
+                    "SD"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_if_sandata_resp_cd": {
+                "type": "categorical",
+                "values": [
+                    "S"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_if_sandata_prcs_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    1
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_if_therap_tb": {
+        "num_columns": 28,
+        "columns": {
+            "p_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    48
+                ],
+                "null_ratio": 0.0
+            },
+            "p_txnmy_cd": {
+                "type": "categorical",
+                "values": [
+                    "253Z00000X",
+                    "3747P1801X",
+                    "376J00000X",
+                    "261QA0600X",
+                    "3747A0650X",
+                    "372500000X",
+                    "372600000X",
+                    "347C00000X",
+                    "311500000X",
+                    "171WH0202X",
+                    "332B00000X",
+                    "385H00000X",
+                    "310400000X",
+                    "251B00000X"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_phone_usg_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "W",
+                    " "
+                ],
+                "null_ratio": 0.0
+            },
+            "p_us_state_cd": {
+                "type": "categorical",
+                "values": [
+                    "ND",
+                    "MN",
+                    " ",
+                    "AZ",
+                    "CO",
+                    "DC"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_enrol_stat_end_dt": {
+                "type": "categorical",
+                "values": [
+                    "31-DEC-99",
+                    "31-DEC-20"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_indiv_grp_cd": {
+                "type": "categorical",
+                "values": [
+                    "G",
+                    "I"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_if_therap_resp_cd": {
+                "type": "categorical",
+                "values": [
+                    "S",
+                    "E"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_if_therap_prcs_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "UC-PRV-THERAP-001_3512839.00",
+                    "UC-PRV-THERAP-001_3512898.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-PRV-IF-THERAP_3512849.00",
+                    "B-PRV-IF-THERAP_3512916.00",
+                    "B-PRV-IF-THERAP_3512906.00",
+                    "B-PRV-IF-THERAP_3512902.00"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_interp_svc_tb": {
+        "num_columns": 8,
+        "columns": {
+            "p_interp_svc_cd": {
+                "type": "categorical",
+                "values": [
+                    "O",
+                    "S",
+                    "X",
+                    "B",
+                    "T"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_lang_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_prim_lang_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1,
+                    2
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_lic_cert_tb": {
+        "num_columns": 17,
+        "columns": {
+            "p_lic_cert_cd": {
+                "type": "categorical",
+                "values": [
+                    "L",
+                    "C"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_lic_cert_ind_cd": {
+                "type": "categorical",
+                "values": [
+                    "L",
+                    "C"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_lic_rstrct_cd": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_lic_vrfy_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_lic_prmt_id": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_lic_cert_state_cd": {
+                "type": "categorical",
+                "values": [
+                    "ND",
+                    "SD",
+                    "MN",
+                    "KS",
+                    "AL",
+                    "FL",
+                    "MT",
+                    "MI",
+                    "MD"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "PJHEID"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_mcare_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_mcare_part_cd": {
+                "type": "categorical",
+                "values": [
+                    "B",
+                    "D",
+                    "A",
+                    "C"
+                ],
+                "null_ratio": 0.0
+            },
+            "t_carr_id": {
+                "type": "categorical",
+                "values": [
+                    1111111111.0
+                ],
+                "null_ratio": 0.9739478957915831
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    5,
+                    14,
+                    1,
+                    16,
+                    2,
+                    4,
+                    7,
+                    3,
+                    9,
+                    10,
+                    6,
+                    11,
+                    15,
+                    8
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "GUESTUSER",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "JOYSPEZIALE"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_mc_prtcptn_tn": {
+        "num_columns": 12,
+        "columns": {
+            "p_mc_prtcptn_prog_cd": {
+                "type": "categorical",
+                "values": [
+                    "P"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_mc_stat_cd": {
+                "type": "categorical",
+                "values": [
+                    "99",
+                    "00",
+                    "VV"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_mc_prtcptn_rsn_cd": {
+                "type": "categorical",
+                "values": [
+                    "PNP",
+                    "PNM",
+                    "OEN",
+                    "ADC"
+                ],
+                "null_ratio": 0.5831663326653307
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "28-MAR-13 03.57.57.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "DATAFIX_ESPRD01209184",
+                    "Provider conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_mc_max_mbr_cnt": {
+                "type": "categorical",
+                "values": [
+                    1500,
+                    5,
+                    0,
+                    32,
+                    282
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_nonmed_prov_recip_tn": {
+        "num_columns": 9,
+        "columns": {
+            "g_cnty_cd": {
+                "type": "categorical",
+                "values": [
+                    999,
+                    2
+                ],
+                "null_ratio": 0.0
+            },
+            "p_scrn_locn_cd": {
+                "type": "categorical",
+                "values": [
+                    "Q"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "JMLAGRO"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "JMLAGRO"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_nppes_npi_src_other_id_tb": {
+        "num_columns": 11,
+        "columns": {
+            "p_other_pty_cd": {
+                "type": "categorical",
+                "values": [
+                    1,
+                    5
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-NPI-Upd_3452444.00   "
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_ts": {
+                "type": "categorical",
+                "values": [
+                    "15-NOV-20 07.01.48.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-NPI-Upd_3452444.00   "
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "15-NOV-20 07.01.48.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_nppes_npi_src_tb": {
+        "num_columns": 51,
+        "columns": {
+            "p_enty_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    1.0,
+                    2.0
+                ],
+                "null_ratio": 0.01002004008016032
+            },
+            "p_ein_num": {
+                "type": "categorical",
+                "values": [
+                    "<UNAVAIL>"
+                ],
+                "null_ratio": 0.8156312625250501
+            },
+            "p_prefx_nam": {
+                "type": "categorical",
+                "values": [
+                    "MRS.",
+                    "DR.",
+                    "MS.",
+                    "MR.",
+                    "MISS"
+                ],
+                "null_ratio": 0.7915831663326653
+            },
+            "p_sfx_nam": {
+                "type": "categorical",
+                "values": [
+                    "III",
+                    "JR.",
+                    "II"
+                ],
+                "null_ratio": 0.9859719438877755
+            },
+            "p_other_org_nam_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    3.0,
+                    5.0
+                ],
+                "null_ratio": 0.9418837675350702
+            },
+            "p_other_mid_nam": {
+                "type": "categorical",
+                "values": [
+                    "MARIE",
+                    "JO",
+                    "LAVONNE",
+                    "EVELYN",
+                    "R",
+                    "ANNE",
+                    "M.",
+                    "RENAE",
+                    "JUNE",
+                    "MARGARET",
+                    "J",
+                    "ANN",
+                    "THI"
+                ],
+                "null_ratio": 0.9719438877755511
+            },
+            "p_other_prefx_nam": {
+                "type": "categorical",
+                "values": [
+                    "MS.",
+                    "DR.",
+                    "MRS.",
+                    "MR."
+                ],
+                "null_ratio": 0.9839679358717435
+            },
+            "p_other_credntl_text": {
+                "type": "categorical",
+                "values": [
+                    "M.D.",
+                    "APRN",
+                    "PA-C",
+                    "LMSW",
+                    "PHARMD",
+                    "DDS",
+                    "LMHC, CASAC",
+                    "R.N.",
+                    "PH.D.",
+                    "LCSW",
+                    "NP",
+                    "O.D.",
+                    "D.O.",
+                    "RPH"
+                ],
+                "null_ratio": 0.969939879759519
+            },
+            "p_mlg_adr_cntry_cd": {
+                "type": "categorical",
+                "values": [
+                    "US"
+                ],
+                "null_ratio": 0.01002004008016032
+            },
+            "p_pract_adr_cntry_cd": {
+                "type": "categorical",
+                "values": [
+                    "US"
+                ],
+                "null_ratio": 0.01002004008016032
+            },
+            "p_last_upd_dt": {
+                "type": "categorical",
+                "values": [
+                    "11/02/2020"
+                ],
+                "null_ratio": 0.01002004008016032
+            },
+            "p_npi_deactv_dt": {
+                "type": "categorical",
+                "values": [
+                    "11/02/2020",
+                    "04/17/2019",
+                    "10/02/2020"
+                ],
+                "null_ratio": 0.9859719438877755
+            },
+            "p_npi_reactv_dt": {
+                "type": "categorical",
+                "values": [
+                    "07/17/2019",
+                    "10/30/2020"
+                ],
+                "null_ratio": 0.9959919839679359
+            },
+            "p_gender_cd": {
+                "type": "categorical",
+                "values": [
+                    "M",
+                    "F"
+                ],
+                "null_ratio": 0.19438877755511022
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-NPI-Upd_3452444.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_ts": {
+                "type": "categorical",
+                "values": [
+                    "15-NOV-20 07.01.48.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-NPI-Upd_3452444.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "15-NOV-20 07.01.48.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_nppes_npi_src_txnmy_tb": {
+        "num_columns": 11,
+        "columns": {
+            "p_nppes_npi_src_txnmy_seq_num": {
+                "type": "categorical",
+                "values": [
+                    3,
+                    1,
+                    2,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "null_ratio": 0.0
+            },
+            "p_txnmy_switch_cd": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.004008016032064128
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-NPI-Upd_3452444.00   "
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_ts": {
+                "type": "categorical",
+                "values": [
+                    "15-NOV-20 07.01.48.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-NPI-Upd_3452444.00   "
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "15-NOV-20 07.01.48.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_nw_part_tb": {
+        "num_columns": 12,
+        "columns": {
+            "r_nw_id": {
+                "type": "categorical",
+                "values": [
+                    "ATYPICAL",
+                    "CSHS",
+                    "DDS",
+                    "DOCR",
+                    "MCAID"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_nw_stat_cd": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "p_nwst_rsn_cd": {
+                "type": "categorical",
+                "values": [
+                    " ",
+                    "I",
+                    "O"
+                ],
+                "null_ratio": 0.9498997995991983
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1,
+                    2,
+                    7,
+                    3,
+                    4,
+                    9,
+                    6,
+                    8,
+                    5
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion",
+                    "JMLAGRO",
+                    "CAROLREEVES",
+                    "MAURICIOPENERAND",
+                    "ESTHERSHAHPAR",
+                    "USHASHA",
+                    "SMCNEIL",
+                    "ZULEIMARUIZ"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_ofc_hrs_tb": {
+        "num_columns": 10,
+        "columns": {
+            "p_day_of_wk_cd": {
+                "type": "categorical",
+                "values": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "PJHEID"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_ofc_open_tm_text": {
+                "type": "categorical",
+                "values": [
+                    "12:00am",
+                    "8:30am",
+                    "8:00am",
+                    "9:00am",
+                    "7:00am",
+                    "12:00pm",
+                    "7:30am",
+                    "6:00am",
+                    "10:00am",
+                    "1:00am",
+                    "9:30am",
+                    "7:30pm",
+                    "6:30am"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_owner_dtl_tb": {
+        "num_columns": 21,
+        "columns": {
+            "p_owner_mcare_id": {
+                "type": "categorical",
+                "values": [
+                    " "
+                ],
+                "null_ratio": 0.02004008016032064
+            },
+            "p_owner_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "I",
+                    "G"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER",
+                    "PBARDWELL",
+                    "NARGEDDES",
+                    "ANNDOLL"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER",
+                    "PBARDWELL",
+                    "NARGEDDES",
+                    "ANNDOLL"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_owner_xref_tb": {
+        "num_columns": 14,
+        "columns": {
+            "p_owner_pct": {
+                "type": "categorical",
+                "values": [
+                    0.0
+                ],
+                "null_ratio": 0.8036072144288577
+            },
+            "p_prsnl_rel_cd": {
+                "type": "categorical",
+                "values": [
+                    "A"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER",
+                    "ANDOLL",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "ANNDOLL",
+                    "MLMOOS"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_prev_mcaid_tb": {
+        "num_columns": 11,
+        "columns": {
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "RRUD",
+                    "TBRABANDT",
+                    "KRBACKMAN",
+                    "JMLAGRO",
+                    "PJHEID",
+                    "NMAIER"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_prev_nam_tn": {
+        "num_columns": 9,
+        "columns": {
+            "p_prev_nam_seq_num": {
+                "type": "categorical",
+                "values": [
+                    1,
+                    2,
+                    3,
+                    0,
+                    4
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "PAULASOLL",
+                    "JMLAGRO",
+                    "SHERSAYLER",
+                    "PJHEID"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_prov_cnty_tn": {
+        "num_columns": 8,
+        "columns": {
+            "p_scrn_locn_cd": {
+                "type": "categorical",
+                "values": [
+                    "S",
+                    "Q"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_prov_hrarchy_tb": {
+        "num_columns": 8,
+        "columns": {
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "wf_ND_MC_PRV_HRARCHYV1"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_ts": {
+                "type": "categorical",
+                "values": [
+                    "05-MAY-15 04.56.38.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "wf_ND_MC_PRV_HRARCHYV1"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "05-MAY-15 04.56.38.000000000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_qsp_prov_recip_tn": {
+        "num_columns": 10,
+        "columns": {
+            "p_qsp_prov_recip_seq_num": {
+                "type": "categorical",
+                "values": [
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "p_recip_rel_cd": {
+                "type": "categorical",
+                "values": [
+                    2.0,
+                    1.0,
+                    3.0,
+                    5.0,
+                    4.0,
+                    8.0,
+                    7.0
+                ],
+                "null_ratio": 0.004008016032064128
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    2,
+                    3,
+                    1,
+                    4,
+                    10,
+                    5,
+                    6,
+                    22,
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "KRBACKMAN",
+                    "SMCNEIL",
+                    "LBARKER",
+                    "NMAIER",
+                    "DVESEY",
+                    "TWOLF",
+                    "SLSCHAAF",
+                    "JSCHICK",
+                    "KALBAUER",
+                    "TOMEYER",
+                    "TMCDONNELL",
+                    "JAHETT",
+                    "ALESHA.YARBROUGH"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_qsp_qstnr_initialed_resp_tn": {
+        "num_columns": 9,
+        "columns": {
+            "p_qstnr_sect_cd": {
+                "type": "categorical",
+                "values": [
+                    1,
+                    2,
+                    4,
+                    3
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "KRBACKMAN",
+                    "NMAIER",
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    5,
+                    4,
+                    10,
+                    8,
+                    3,
+                    2,
+                    1,
+                    21,
+                    6,
+                    28,
+                    11,
+                    7
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_qsp_qstnr_tn": {
+        "num_columns": 10,
+        "columns": {
+            "p_qstnr_sect_cd": {
+                "type": "categorical",
+                "values": [
+                    1,
+                    2,
+                    3
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_seq_num": {
+                "type": "categorical",
+                "values": [
+                    9,
+                    3,
+                    8,
+                    2,
+                    7,
+                    1,
+                    6,
+                    5,
+                    10,
+                    4
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_responce_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.09018036072144289
+            },
+            "p_qstnr_resp_text": {
+                "type": "categorical",
+                "values": [
+                    "-",
+                    "SAME OFFENSE AS ABOVE",
+                    "TAKING STOLEN PROPERTY FROM A RETAIL STORE",
+                    "WHEN I WAS 5 YEARS OLD I STOLE A HOTWHEELS CAR FROM THE PAY AND SAVE STORE.",
+                    "4.80-",
+                    "REJOICE ELDER CARE",
+                    "13.00-HOUR",
+                    "CAR ACCIDENT & INSURANCE HAD LAPSED",
+                    "DUI 2003",
+                    "A & P ADULT FOSTER CARE"
+                ],
+                "null_ratio": 0.8957915831663327
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    5,
+                    3,
+                    4,
+                    10,
+                    8,
+                    6,
+                    2,
+                    7
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "KRBACKMAN",
+                    "guestUser",
+                    "NMAIER"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_qstnr_exclsn_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_sys_id": {
+                "type": "categorical",
+                "values": [
+                    1320336,
+                    1321429,
+                    1321469,
+                    1322514,
+                    1320935,
+                    1299910,
+                    1317821,
+                    1327410,
+                    1331262,
+                    1329058,
+                    1328286
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_seq_num": {
+                "type": "categorical",
+                "values": [
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_last_nam": {
+                "type": "categorical",
+                "values": [
+                    "MULL",
+                    "SHAH",
+                    "Cota",
+                    "Dawson",
+                    "Lindemann",
+                    "Liebelt",
+                    "Vaughan",
+                    "Brewster",
+                    "Michael",
+                    "Marsette"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_first_nam": {
+                "type": "categorical",
+                "values": [
+                    "MELISSA",
+                    "tANYA",
+                    "Manuel",
+                    "Douglas",
+                    "Alan",
+                    "Courtney",
+                    "Ingrid",
+                    "Mark",
+                    "Lowe",
+                    "Justin"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_mi_nam": {
+                "type": "categorical",
+                "values": [
+                    "D",
+                    "J",
+                    "I",
+                    "L"
+                ],
+                "null_ratio": 0.5454545454545454
+            },
+            "p_qstnr_sfx_nam": {
+                "type": "categorical",
+                "values": [
+                    " ",
+                    "MD"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_rel_cd": {
+                "type": "categorical",
+                "values": [
+                    "B"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER",
+                    "KAMELTZER"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_ts": {
+                "type": "categorical",
+                "values": [
+                    "23-NOV-21 02.47.36.282000000 PM",
+                    "14-FEB-22 10.02.18.849000000 PM",
+                    "16-FEB-22 04.20.15.906000000 PM",
+                    "18-MAY-22 12.27.16.370000000 PM",
+                    "25-JAN-22 12.52.26.222000000 PM",
+                    "07-NOV-16 11.57.07.485000000 AM",
+                    "15-JUL-21 09.23.35.497000000 AM",
+                    "30-JUN-23 10.57.02.174000000 AM",
+                    "16-APR-24 03.56.56.556000000 PM",
+                    "25-OCT-23 04.23.57.112000000 PM",
+                    "29-AUG-23 08.52.57.238000000 AM"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "23-NOV-21 02.47.36.282000000 PM",
+                    "14-FEB-22 10.02.18.849000000 PM",
+                    "16-FEB-22 04.20.15.906000000 PM",
+                    "18-MAY-22 12.27.16.370000000 PM",
+                    "17-JAN-22 01.28.52.923000000 PM",
+                    "07-NOV-16 11.57.07.485000000 AM",
+                    "15-JUL-21 09.23.35.497000000 AM",
+                    "30-JUN-23 10.57.02.174000000 AM",
+                    "16-APR-24 03.56.56.556000000 PM",
+                    "25-OCT-23 04.23.57.112000000 PM",
+                    "29-AUG-23 08.52.57.238000000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_qstnr_other_state_tb": {
+        "num_columns": 8,
+        "columns": {
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "ZOEASANDY",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "JOYSPEZIALE",
+                    "JUDITHSZEGEDI",
+                    "LISACAMPBELL",
+                    "TBRABANDT",
+                    "KWOODALL",
+                    "GUESTUSER"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "ZOEASANDY",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "JOYSPEZIALE",
+                    "JUDITHSZEGEDI",
+                    "LISACAMPBELL",
+                    "TBRABANDT",
+                    "KWOODALL",
+                    "GUESTUSER"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_qstnr_ovr_pmt_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_qstnr_seq_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    3,
+                    1,
+                    2
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_fed_prog_nam": {
+                "type": "categorical",
+                "values": [
+                    "Centers for ",
+                    "Center for Medicare and Medicaid Services",
+                    "Social Security",
+                    "Subsidy",
+                    "ND unemployment",
+                    "Housing Assistance",
+                    "Social Security Disability Program",
+                    "MA Medicare",
+                    "MEDICARE WPS",
+                    "Jobs Service nd covid overpayment",
+                    "medicare",
+                    "Jobs Service",
+                    "SNAP"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_first_nam": {
+                "type": "categorical",
+                "values": [
+                    "Medicaid",
+                    "CMS",
+                    "Rebecca",
+                    "Christine",
+                    "Kevin",
+                    "Dacotah",
+                    "Disability",
+                    "Bio-Reference Laboratory",
+                    "TIMOTHY",
+                    "Kristen",
+                    "Christopher",
+                    "Curtis"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_last_nam": {
+                "type": "categorical",
+                "values": [
+                    "Medicare and",
+                    "CMS",
+                    "Heazlett",
+                    "Lawson",
+                    "Perdue",
+                    "Krushevsky",
+                    "Social Security",
+                    "Bio-Reference Laboratories, Inc.",
+                    "BACHENBERG",
+                    "Erck",
+                    "Rouse",
+                    "Jahner"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_mi_nam": {
+                "type": "categorical",
+                "values": [
+                    " ",
+                    "K",
+                    "C",
+                    "L",
+                    "V"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_qstnr_sfx_nam": {
+                "type": "categorical",
+                "values": [
+                    " ",
+                    "MD"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    32,
+                    21,
+                    9,
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "GUESTUSER",
+                    "JUDITHSZEGEDI",
+                    "JMLAGRO"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "GUESTUSER",
+                    "JUDITHSZEGEDI",
+                    "JMLAGRO"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_qstnr_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_qstnr_occ_dt": {
+                "type": "categorical",
+                "values": [
+                    "01-JAN-00",
+                    "31-DEC-99",
+                    "05-MAY-09"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "GUESTUSER",
+                    "NMAIER"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "GUESTUSER",
+                    "NMAIER"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_ra_medm_tb": {
+        "num_columns": 8,
+        "columns": {
+            "p_ra_medm_cd": {
+                "type": "categorical",
+                "values": [
+                    3,
+                    1,
+                    4
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_ra_medm_tx": {
+        "num_columns": 18,
+        "columns": {
+            "p_era_acct_num_lnkg_desc": {
+                "type": "categorical",
+                "values": [
+                    "National Provider Identifier (NPI)",
+                    "Provider Tax Identification Number (TIN)"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_era_mthd_rtrvl_text": {
+                "type": "categorical",
+                "values": [
+                    "other",
+                    " ",
+                    "MMIS Portal",
+                    "Other"
+                ],
+                "null_ratio": 0.7354709418837675
+            },
+            "p_era_asgn_authrty_text": {
+                "type": "categorical",
+                "values": [
+                    "ND Department of Human Services Medical Services"
+                ],
+                "null_ratio": 0.9959919839679359
+            },
+            "p_era_subm_rsn_desc": {
+                "type": "categorical",
+                "values": [
+                    "New Enrollment"
+                ],
+                "null_ratio": 0.7354709418837675
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1,
+                    2,
+                    6,
+                    3,
+                    5,
+                    4,
+                    7,
+                    9,
+                    8
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_req_attach_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_attach_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    5,
+                    17,
+                    30,
+                    47,
+                    48,
+                    58,
+                    27,
+                    31,
+                    46
+                ],
+                "null_ratio": 0.0
+            },
+            "p_attach_recd_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y",
+                    "N"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "NMAIER",
+                    "KRBACKMAN",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "TBRABANDT",
+                    "JOYSPEZIALE",
+                    "JUDITHSZEGEDI",
+                    "RRUD",
+                    "LISACAMPBELL",
+                    "ZOEASANDY",
+                    "PAULASOLL"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "NMAIER",
+                    "KRBACKMAN",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "TBRABANDT",
+                    "RRUD",
+                    "JOYSPEZIALE"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_reval_stat_tn": {
+        "num_columns": 19,
+        "columns": {
+            "p_reval_started_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_general_info_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_name_addr_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_lic_spec_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_financial_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_sanctions_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.006012024048096192
+            },
+            "p_bankruptcy_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_ownership_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_managing_stat_ind": {
+                "type": "categorical",
+                "values": [
+                    "N",
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_reval_stat_cd": {
+                "type": "categorical",
+                "values": [
+                    "TN",
+                    "SS",
+                    "SN",
+                    "FN",
+                    "ST"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_reval_comp_by_nam": {
+                "type": "categorical",
+                "values": [
+                    " "
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    1,
+                    3,
+                    0,
+                    2
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-Term-Prov-Trigger_3250759.00",
+                    "B-Term-Prov-Trigger_3285638.00",
+                    "B-Term-Prov-Trigger_3287192.00",
+                    "B-Term-Prov-Trigger_3298850.00",
+                    "B-Term-Prov-Trigger_3312024.00",
+                    "B-Term-Prov-Trigger_3316910.00",
+                    "B-Term-Prov-Trigger_3275509.00",
+                    "B-Term-Prov-Trigger_3295571.00",
+                    "B-Term-Prov-Trigger_3297310.00",
+                    "B-Term-Prov-Trigger_3300441.00",
+                    "B-Term-Prov-Trigger_3303752.00",
+                    "B-Term-Prov-Trigger_3306992.00",
+                    "B-Term-Prov-Trigger_3315443.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "17-JUL-20 06.01.22.000000000 PM",
+                    "07-AUG-20 06.00.19.000000000 PM",
+                    "08-AUG-20 06.01.05.000000000 PM",
+                    "15-AUG-20 06.01.05.000000000 PM",
+                    "23-AUG-20 06.00.16.000000000 PM",
+                    "26-AUG-20 06.00.47.000000000 PM",
+                    "17-JUL-20 06.01.23.000000000 PM",
+                    "01-AUG-20 06.01.07.000000000 PM",
+                    "13-AUG-20 06.00.15.000000000 PM",
+                    "14-AUG-20 06.01.03.000000000 PM",
+                    "16-AUG-20 06.01.03.000000000 PM",
+                    "18-AUG-20 06.01.01.000000000 PM",
+                    "20-AUG-20 06.00.16.000000000 PM",
+                    "25-AUG-20 06.00.14.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rpt_cms_upd_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_rec_type": {
+                "type": "categorical",
+                "values": [
+                    " "
+                ],
+                "null_ratio": 0.0
+            },
+            "p_iface_prcs_dt": {
+                "type": "categorical",
+                "values": [
+                    "22-SEP-25"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_err_msg_text": {
+                "type": "categorical",
+                "values": [
+                    "ND-MSG-02-8610-Revalidation DT Updated"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-CMS-RVL_IB_1568478.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "22-SEP-25 08.03.07.559157000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rpt_dot_extrt_tn": {
+        "num_columns": 10,
+        "columns": {
+            "p_rpt_dot_extrt_sk": {
+                "type": "categorical",
+                "values": [
+                    24504
+                ],
+                "null_ratio": 0.0
+            },
+            "p_lic_cert_num": {
+                "type": "categorical",
+                "values": [
+                    "B362026121211"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_alt_id": {
+                "type": "categorical",
+                "values": [
+                    192522
+                ],
+                "null_ratio": 0.0
+            },
+            "p_alt_id_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "AA"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_sort_nam": {
+                "type": "categorical",
+                "values": [
+                    "Eskelson, Michelle N"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_dob_dt": {
+                "type": "categorical",
+                "values": [
+                    "12-JUL-83"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_rpt_prcs_dt": {
+                "type": "categorical",
+                "values": [
+                    "05-APR-26"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-DOT_1848449.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "05-APR-26 07.00.19.850423000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rpt_ln_cl_err_tb": {
+        "num_columns": 14,
+        "columns": {
+            "p_cl_error_msg": {
+                "type": "categorical",
+                "values": [
+                    "ND-MSG-02-8368-CLIA-IN HE NOT ON FILE"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_cl_prcs_dt": {
+                "type": "categorical",
+                "values": [
+                    "10-MAR-26"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-CLIA-MNLY_1811166.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "10-MAR-26 11.00.17.616080000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rpt_ln_de_err_tb": {
+        "num_columns": 10,
+        "columns": {
+            "p_de_error_msg": {
+                "type": "categorical",
+                "values": [
+                    "ND-MSG-02-8372-DEA-ON FILE NOT IN HE",
+                    "ND-MSG-02-8375-DEA-IN HE NOT ON  FILE"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_de_prcs_dt": {
+                "type": "categorical",
+                "values": [
+                    "10-MAR-26"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-HMS-DEA-MNTHLY1811167.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "10-MAR-26 11.00.14.390614000 PM",
+                    "10-MAR-26 11.00.41.032320000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rpt_ln_ml_err_tb": {
+        "num_columns": 15,
+        "columns": {
+            "p_ml_error_msg": {
+                "type": "categorical",
+                "values": [
+                    "ND-MSG-02-8377-ML-LICENSE NOT FOUND"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_ml_prcs_dt": {
+                "type": "categorical",
+                "values": [
+                    "09-JUL-26"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-LIC-002_3052490.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "09-JUL-26 10.16.12.377575000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rpt_ln_sn_err_tb": {
+        "num_columns": 15,
+        "columns": {
+            "p_sn_sanc_state": {
+                "type": "categorical",
+                "values": [
+                    "FL",
+                    "KS",
+                    "MS",
+                    "ND",
+                    "MN",
+                    "SD",
+                    "TX",
+                    "CA",
+                    "CO",
+                    "ME",
+                    "WI"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_sn_sanc_lic_loss_ind": {
+                "type": "categorical",
+                "values": [
+                    "N"
+                ],
+                "null_ratio": 0.6666666666666666
+            },
+            "p_sn_error_msg": {
+                "type": "categorical",
+                "values": [
+                    "ND-MSG-02-8365-PROVIDER ON SANC FILE"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_sn_prcs_dt": {
+                "type": "categorical",
+                "values": [
+                    "30-JUN-21"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-HMS-SANC-WKLY"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "30-JUN-21 01.38.00.517038000 AM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rpt_ln_upd_tb": {
+        "num_columns": 12,
+        "columns": {
+            "p_rpt_ln_upd_sk": {
+                "type": "categorical",
+                "values": [
+                    567691,
+                    567692
+                ],
+                "null_ratio": 0.0
+            },
+            "p_rec_type": {
+                "type": "categorical",
+                "values": [
+                    "ML"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_iface_prcs_dt": {
+                "type": "categorical",
+                "values": [
+                    "09-JUL-26"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_success_ind": {
+                "type": "categorical",
+                "values": [
+                    "Y"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_mmis_id": {
+                "type": "categorical",
+                "values": [
+                    1450830,
+                    1494329
+                ],
+                "null_ratio": 0.0
+            },
+            "p_prov_nam": {
+                "type": "categorical",
+                "values": [
+                    "Sanford Aberdeen Medical Center Physicians"
+                ],
+                "null_ratio": 0.5
+            },
+            "p_update_field_text": {
+                "type": "categorical",
+                "values": [
+                    "HUIWE-12-45-34R ND",
+                    "60-KAT-III-4324 ND"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_prev_dt": {
+                "type": "categorical",
+                "values": [
+                    "31-DEC-26"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_new_dt": {
+                "type": "categorical",
+                "values": [
+                    "31-DEC-00",
+                    "31-DEC-99"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "B-IF-PRV-LIC-002_3052490.00"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "09-JUL-26 10.15.59.620497000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_rsk_scrn_tn": {
+        "num_columns": 11,
+        "columns": {
+            "p_rs_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "R",
+                    "C",
+                    "I",
+                    "S"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_rs_last_value": {
+                "type": "categorical",
+                "values": [
+                    "L"
+                ],
+                "null_ratio": 0.9839679358717435
+            },
+            "p_rs_source": {
+                "type": "categorical",
+                "values": [
+                    "E",
+                    "L",
+                    "M"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "DataFix_ESPRD01213970",
+                    "ANNDOLL",
+                    "AYARBROUGH",
+                    "SLSCHAAF",
+                    "CHLHARMON",
+                    "B-IF-PRV-LIC-002_2019332.00"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_specl_need_tb": {
+        "num_columns": 8,
+        "columns": {
+            "p_specl_need_cd": {
+                "type": "categorical",
+                "values": [
+                    "SA",
+                    "VI",
+                    "DD",
+                    "BD",
+                    "PH",
+                    "MH",
+                    "SU",
+                    "HI",
+                    "HV",
+                    "OT"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER",
+                    "guestUser",
+                    "SHERSAYLER",
+                    "DMOCK"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "GUESTUSER",
+                    "guestUser",
+                    "SHERSAYLER",
+                    "DMOCK"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_specl_tb": {
+        "num_columns": 13,
+        "columns": {
+            "p_specl_cert_num": {
+                "type": "categorical",
+                "values": [
+                    0.0
+                ],
+                "null_ratio": 0.9138276553106213
+            },
+            "p_state_cd": {
+                "type": "categorical",
+                "values": [
+                    "ND",
+                    "CA"
+                ],
+                "null_ratio": 0.4649298597194389
+            },
+            "p_specl_cert_board_cd": {
+                "type": "categorical",
+                "values": [
+                    26.0,
+                    25.0
+                ],
+                "null_ratio": 0.9138276553106213
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_ts": {
+                "type": "categorical",
+                "values": [
+                    "30-MAR-13 12.53.04.000000000 PM"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_svc_ty_cd_tb": {
+        "num_columns": 10,
+        "columns": {
+            "p_svc_ty_cd": {
+                "type": "categorical",
+                "values": [
+                    "AGE",
+                    "GND"
+                ],
+                "null_ratio": 0.0
+            },
+            "p_svc_seq_num": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    6,
+                    5,
+                    4,
+                    7
+                ],
+                "null_ratio": 0.0
+            },
+            "p_svc_cd": {
+                "type": "categorical",
+                "values": [
+                    6,
+                    2,
+                    4,
+                    3,
+                    1,
+                    7,
+                    5,
+                    9,
+                    8
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "RRUD",
+                    "ANDOLL",
+                    "GUESTUSER",
+                    "PJHEID"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_tax_ntc_tb": {
+        "num_columns": 11,
+        "columns": {
+            "p_bkup_whold_ind": {
+                "type": "categorical",
+                "values": [
+                    "W"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "NMAIER",
+                    "KRBACKMAN",
+                    "PJHEID",
+                    "JMLAGRO",
+                    "TBRABANDT",
+                    "MGUDMUNSEN",
+                    "SLSCHAAF",
+                    "JOYSPEZIALE",
+                    "JUDITHSZEGEDI",
+                    "ZOEASANDY",
+                    "TWOLF",
+                    "RRUD"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_txnmy_tb": {
+        "num_columns": 10,
+        "columns": {
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "Provider Conversion",
+                    "JMLAGRO",
+                    "GUESTUSER"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_ty_specl_txnmy_xref_tb": {
+        "num_columns": 9,
+        "columns": {
+            "p_indiv_grp_cd": {
+                "type": "categorical",
+                "values": [
+                    "I",
+                    "B",
+                    "G"
+                ],
+                "null_ratio": 0.0
+            },
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "wf_ND_MC_P_TY_SPL_TXMY_XRFV8",
+                    "CKRAFT"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "wf_ND_MC_P_TY_SPL_TXMY_XRFV8",
+                    "CKRAFT"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_ty_specl_xref_tb": {
+        "num_columns": 7,
+        "columns": {
+            "l_hibernate_ver_num": {
+                "type": "categorical",
+                "values": [
+                    0
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_user_id": {
+                "type": "categorical",
+                "values": [
+                    "wf_ND_MC_PRV_TY_SP_XREFV17",
+                    "CKRAFT",
+                    "SHAHAAS",
+                    "DataFix_HT1356293",
+                    "KAYLAMRAHRICH"
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "wf_ND_MC_PRV_TY_SP_XREFV17",
+                    "CKRAFT",
+                    "SHAHAAS",
+                    "DataFix_HT1356293",
+                    "KAYLAMRAHRICH"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    },
+    "p_web_dsply_tb": {
+        "num_columns": 7,
+        "columns": {
+            "p_do_not_dsply_cd": {
+                "type": "categorical",
+                "values": [
+                    0,
+                    1
+                ],
+                "null_ratio": 0.0
+            },
+            "g_aud_add_user_id": {
+                "type": "categorical",
+                "values": [
+                    "guestUser",
+                    "NMAIER",
+                    "KRBACKMAN"
+                ],
+                "null_ratio": 0.0
+            }
+        }
+    }
+}

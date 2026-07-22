@@ -105,15 +105,32 @@ async def generate_sql_from_intent(prompt: str) -> str:
         "2. NEVER ask for more information, clarification, or follow-up questions. "
         "3. ALWAYS use the exact fully qualified table names (including schema, e.g. provider.p_dtl_tb or common.g_adr_tb) as provided in the schema context below. Do not guess the schema! "
         "4. NEVER invent or hallucinate column names. ONLY use the exact column names provided in the context below. "
-        "5. If the user's request is vague or missing details, MAKE YOUR BEST GUESS and write a generic SQL query anyway. "
-        "6. Output ONLY the raw SQL string ending with a semicolon. If you output anything other than SQL, the system will crash."
+        "5. NEVER invent or hallucinate column VALUES if a column is marked with 'MUST BE ONE OF'. You MUST select exactly one of the provided valid values. Do NOT use null or generic placeholders for these columns! "
+        "6. If the user's request is vague or missing details, MAKE YOUR BEST GUESS and write a generic SQL query anyway. "
+        "7. Output ONLY the raw SQL string ending with a semicolon. If you output anything other than SQL, the system will crash."
         "Example output: UPDATE provider.p_dtl_tb SET p_dba_nam = 'testname' WHERE p_sys_id = 3163961;"
         f"{context_hint}"
     )
     
+    # Gather enum constraints explicitly to hammer it home to the small LLM
+    enum_constraints = ""
+    if relevant_tables:
+        for t in relevant_tables:
+            valid_dict = engine.valid_values.get(t, {})
+            for col, vals in valid_dict.items():
+                formatted_vals = [f"'{v}'" if isinstance(v, str) else str(v) for v in vals]
+                enum_constraints += f"- {t}.{col} MUST BE exactly one of these values: [{', '.join(formatted_vals)}]\n"
+    
+    if enum_constraints:
+        enum_constraints = "\n\nCRITICAL ENUM CONSTRAINTS FOR VALUES (DO NOT INVENT VALUES):\n" + enum_constraints
+
+    scenarios = engine.retrieve_relevant_scenarios(prompt)
+    if scenarios:
+        scenarios = f"\n\n{scenarios}\nYou MUST follow the Required Insert Sequence strictly and include all Tables Involved.\n"
+
     payload = {
         "model": "qwen2.5:3b",
-        "prompt": system_prompt + "\n\nUser Request: " + prompt,
+        "prompt": system_prompt + enum_constraints + scenarios + "\n\nUser Request: " + prompt,
         "stream": False,
         "options": {
             "temperature": 0.0,

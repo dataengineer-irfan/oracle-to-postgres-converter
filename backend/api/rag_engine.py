@@ -19,11 +19,69 @@ class RAGEngine:
         self.table_columns = {} # Maps table_name -> list of {name, desc}
         self.table_owners = {} # Maps table_name -> schema/owner
         self.joins = [] # List of (source_table, source_col, target_table, target_col)
+        self.valid_values = {} # Maps table_name -> {col_name -> [valid_values]}
+        self.scenarios = [] # List of scenarios from knowledgebase
         
         # Load ODM first to build the LDM -> Table mapping
         self._load_odm(odm_path)
         self._load_glossary(glossary_path)
         self._load_postgres_schema()
+        self._load_valid_values()
+        self._load_scenarios()
+        
+    def _load_scenarios(self):
+        import json
+        kb_path = Path(__file__).parent.parent / "knowledgebase" / "provider_scenarios.json"
+        if kb_path.exists():
+            try:
+                with open(kb_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    self.scenarios = data.get("scenarios", [])
+            except Exception as e:
+                print(f"Failed to load scenarios JSON: {e}")
+                
+    def retrieve_relevant_scenarios(self, prompt: str) -> str:
+        """Returns a string containing matching business scenarios for the prompt."""
+        if not self.scenarios:
+            return ""
+            
+        prompt_lower = prompt.lower()
+        matches = []
+        for s in self.scenarios:
+            name_words = set(s.get("name", "").lower().split())
+            if any(w in prompt_lower for w in name_words if len(w) > 3):
+                matches.append(s)
+                
+        if not matches:
+            return ""
+            
+        output = "MATCHING BUSINESS WORKFLOW SCENARIOS:\n"
+        for idx, s in enumerate(matches[:2]): # Max 2 scenarios to save context
+            output += f"Scenario: {s.get('name')}\n"
+            output += f"Tables Involved: {', '.join(s.get('related_tables', []))}\n"
+            output += f"Required Insert Sequence:\n"
+            for step in s.get("insert_sequence", []):
+                output += f"  - {step}\n"
+            output += f"Business Validations:\n"
+            for val in s.get("business_validations", []):
+                output += f"  - {val}\n"
+            output += "\n"
+        return output
+
+    def _load_valid_values(self):
+        import json
+        analysis_path = Path(__file__).parent.parent.parent / "temp" / "data_analysis.json"
+        if analysis_path.exists():
+            try:
+                with open(analysis_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    for table, stats in data.items():
+                        self.valid_values[table] = {}
+                        for col, col_data in stats.get("columns", {}).items():
+                            if col_data.get("type") == "categorical":
+                                self.valid_values[table][col] = col_data.get("values", [])
+            except Exception as e:
+                print(f"Failed to load data analysis JSON: {e}")
         
     def _load_postgres_schema(self):
         """Fetches table columns directly from Postgres for tables NOT in the ODM."""
@@ -172,7 +230,20 @@ class RAGEngine:
         for t in matched_tables:
             cols = self.table_columns.get(t, [])
             if cols:
-                col_strs = [f"{c['name']} ({c['desc']})" if c['desc'] else c['name'] for c in cols]
+                col_strs = []
+                for c in cols:
+                    c_name = c['name']
+                    c_desc = c['desc']
+                    
+                    # Inject valid values if we have them
+                    valid_vals = self.valid_values.get(t, {}).get(c_name)
+                    if valid_vals:
+                        formatted_vals = [f"'{v}'" if isinstance(v, str) else str(v) for v in valid_vals]
+                        val_str = f"MUST BE ONE OF: [{', '.join(formatted_vals)}]"
+                        c_desc = f"{c_desc} - {val_str}" if c_desc else val_str
+                        
+                    col_strs.append(f"{c_name} ({c_desc})" if c_desc else c_name)
+                    
                 context += f"- Table {t}: {', '.join(col_strs)}\n"
         return context
 

@@ -1,0 +1,1 @@
+p_rpt_pharm_upd_sk,p_sys_id,r_image_cd,p_alt_id,p_dea_id,p_fed_tax_id,p_npi_num,p_ncpdp_id,p_sort_nam,p_enrol_stat_beg_dt,p_enrol_stat_end_dt,p_lic_cert_num,g_line1_adr,g_line2_adr,g_city_nam,g_us_state_cd,g_zip5_cd,g_zip4_cd,g_phone_num,g_fax_num,g_adr_usg_ty_cd,l_hibernate_ver_num,g_aud_add_user_id,g_aud_add_ts

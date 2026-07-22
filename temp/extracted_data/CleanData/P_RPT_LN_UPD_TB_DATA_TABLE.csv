@@ -1,0 +1,3 @@
+p_rpt_ln_upd_sk,p_rec_type,p_iface_prcs_dt,p_success_ind,p_mmis_id,p_prov_nam,p_update_field_text,p_prev_dt,p_new_dt,l_hibernate_ver_num,g_aud_add_user_id,g_aud_add_ts
+567691,ML,2026-07-09,Y,1450830,Sanford Aberdeen Medical Center Physicians,HUIWE-12-45-34R ND,2026-12-31,2000-12-31,0,B-IF-PRV-LIC-002_3052490.00,2026-07-09 22:15:59.620497
+567692,ML,2026-07-09,Y,1494329,,60-KAT-III-4324 ND,2026-12-31,1999-12-31,0,B-IF-PRV-LIC-002_3052490.00,2026-07-09 22:15:59.620497
