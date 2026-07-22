@@ -2,7 +2,7 @@ import httpx
 import json
 import os
 import re
-from api.rag_engine import get_rag_engine
+from backend.api.rag_engine import get_rag_engine
 from core.metadata_loader import MetadataLoader
 
 # Determine if running in Docker to reach host machine's Ollama
@@ -90,7 +90,7 @@ async def generate_sql_from_intent(prompt: str) -> str:
         join_context = engine.retrieve_join_context(relevant_tables)
         schema_context = engine.retrieve_schema_context(relevant_tables)
         
-        fq_tables = [MetadataLoader.get_qualified_table_name(t) for t in relevant_tables]
+        fq_tables = [f"{engine.table_owners.get(t, 'provider')}.{t}" for t in relevant_tables]
         context_hint = f"\nRelevant tables based on your keywords (including their exact database schemas!): {', '.join(fq_tables)}"
         if schema_context:
             context_hint += f"\n{schema_context}"

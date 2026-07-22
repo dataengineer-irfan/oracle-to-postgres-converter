@@ -7,9 +7,9 @@ import sys
 from pathlib import Path
 import yaml
 
-from api.llm_agent import parse_intent, generate_sql_from_intent
-from api.dependency_graph import resolve_dependencies
-from api.guardrails import enforce_schema
+from backend.api.llm_agent import parse_intent, generate_sql_from_intent
+from backend.api.dependency_graph import resolve_dependencies
+from backend.api.guardrails import enforce_schema
 from config import DB_CONFIG
 import psycopg
 
@@ -322,7 +322,7 @@ class SQLRequest(BaseModel):
     sql: str
     database: str = "postgres"
 
-from api.rag_engine import get_rag_engine
+from backend.api.rag_engine import get_rag_engine
 
 @app.post("/api/sql/ai-generate")
 async def ai_generate_sql(req: GenerateRequest):
@@ -340,7 +340,8 @@ async def execute_sql(req: SQLRequest):
                 if req.sql.strip().lower().startswith(("drop", "truncate", "alter")):
                     raise HTTPException(status_code=400, detail="Destructive DDL commands are blocked for safety.")
                 
-                cur.execute("SET search_path TO public, provider, common;")
+                cur.execute("SET search_path TO public, provider, common, reference;")
+                print(f"Executing SQL: {req.sql}")
                 cur.execute(req.sql)
                 
                 is_select = cur.description is not None
@@ -361,6 +362,7 @@ async def execute_sql(req: SQLRequest):
                     "duration_ms": 0, # Placeholder
                 }
     except Exception as e:
+        print(f"SQL Execution Error: {e}")
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/api/data/{table}")

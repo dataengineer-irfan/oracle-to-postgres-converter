@@ -1,6 +1,6 @@
 import Levenshtein
 from typing import List
-from api.rag_engine import get_rag_engine
+from backend.api.rag_engine import get_rag_engine
 
 def enforce_schema(predicted_tables: List[str]) -> List[str]:
     """
