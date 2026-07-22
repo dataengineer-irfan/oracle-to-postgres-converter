@@ -106,49 +106,59 @@ class RAGEngine:
 
     def retrieve_context(self, prompt: str) -> list[str]:
         prompt_lower = prompt.lower()
-        matched_tables = set()
+        table_scores = {}
         
+        def add_score(t, points):
+            if t not in table_scores:
+                table_scores[t] = 0
+            table_scores[t] += points
+            
         # 0. DIRECT MATCH (Highest Priority): If the user literally types the table name!
         for t in self.odm_tables:
             if t in prompt_lower:
-                matched_tables.add(t)
+                add_score(t, 100)
                 
         # If we found direct matches, just return them! No need to guess.
-        if matched_tables:
-            return sorted(list(matched_tables))[:8]
+        if table_scores and any(s >= 100 for s in table_scores.values()):
+            top = sorted(table_scores.items(), key=lambda x: (-x[1], x[0]))
+            return [t for t, s in top][:8]
         
-        # 1. Match against Business Glossary terms
+        # 1. Match against Business Glossary terms (+5 points)
         for term, tables in self.glossary.items():
             if term in prompt_lower:
                 for t in tables:
-                    matched_tables.add(t)
+                    add_score(t, 5)
                     
         # 2. Match against Table names directly and their descriptions
         for t in self.odm_tables:
             core_name = re.sub(r"_(tb|tn|tx)$", "", t)
             core_name_spaces = core_name.replace("_", " ")
             if core_name in prompt_lower or core_name_spaces in prompt_lower:
-                matched_tables.add(t)
+                add_score(t, 5)
                 
-            # Full text search on description as fallback (with strict stop words)
+            # Full text search on description as fallback (+1 point per keyword)
             desc = self.table_descriptions.get(t, "")
-            # Filter out extreme common SQL words
-            stop_words = {"create", "generate", "record", "records", "table", "tables", "with", "that", "this", "some", "from", "where", "delete", "update", "select", "insert", "number", "code", "date", "name", "type"}
-            words = [w for w in prompt_lower.split() if len(w) > 4 and w not in stop_words]
+            # Removed 'type', 'code' from stop words so they can match descriptions like 'Provider Type Table'
+            stop_words = {"create", "generate", "record", "records", "table", "tables", "with", "that", "this", "some", "from", "where", "delete", "update", "select", "insert", "number", "date", "name"}
+            words = [w for w in prompt_lower.split() if len(w) >= 4 and w not in stop_words]
             for w in words:
                 if w in desc:
-                    matched_tables.add(t)
-                
-        # Ensure deterministic order, with core tables prioritized
-        matched_list = sorted(list(matched_tables))
+                    add_score(t, 1)
+                    
+        if not table_scores:
+            return []
+            
+        # Ensure deterministic order, sort by score descending, then alphabetical
+        matched_list = sorted(table_scores.items(), key=lambda x: (-x[1], x[0]))
+        matched_tables = [t for t, s in matched_list]
         
         # Prioritize the core Provider table so it is chosen by the LLM or fallback
-        if "p_dtl_tb" in matched_list:
-            matched_list.remove("p_dtl_tb")
-            matched_list.insert(0, "p_dtl_tb")
+        if "p_dtl_tb" in matched_tables:
+            matched_tables.remove("p_dtl_tb")
+            matched_tables.insert(0, "p_dtl_tb")
             
         # TUNE: Limit context window bloat by strictly capping matched tables
-        return matched_list[:8]
+        return matched_tables[:8]
 
     def retrieve_schema_context(self, matched_tables: list[str]) -> str:
         """Returns a formatted string containing exact columns and their business descriptions for the LLM."""
