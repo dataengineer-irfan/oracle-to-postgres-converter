@@ -697,15 +697,15 @@ class DataGenerator:
         prof      : ColumnProfile,
         seq_state : dict[str, int],
     ) -> Any:
-        if prof.null_rate > 0 and random.random() < prof.null_rate:
-            return None
-
-        # Check rules engine
+        # Check rules engine FIRST so explicit rules override learned null rates
         rule = self._rules_engine.get_rule_for_column(table_name, col)
         if rule:
             rule_val = self._rules_engine.generate_value(rule)
             if rule_val is not None:
                 return rule_val
+
+        if prof.null_rate > 0 and random.random() < prof.null_rate:
+            return None
 
         s = prof.strategy
 
