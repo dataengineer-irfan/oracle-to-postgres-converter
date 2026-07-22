@@ -51,7 +51,7 @@ export default function AISqlAssistantTab() {
   const handleCopy = () => {
     navigator.clipboard.writeText(generatedSql);
   };
-
+  const handleDownload = () => {
     const blob = new Blob([generatedSql], { type: 'text/sql' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
