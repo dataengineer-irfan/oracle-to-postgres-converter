@@ -119,10 +119,10 @@ async def generate_sql_from_intent(prompt: str) -> str:
             valid_dict = engine.valid_values.get(t, {})
             for col, vals in valid_dict.items():
                 formatted_vals = [f"'{v}'" if isinstance(v, str) else str(v) for v in vals]
-                enum_constraints += f"- {t}.{col} MUST BE exactly one of these values: [{', '.join(formatted_vals)}]\n"
+                enum_constraints += f"- Valid values for {t}.{col}: {', '.join(formatted_vals)}\n"
     
     if enum_constraints:
-        enum_constraints = "\n\nCRITICAL ENUM CONSTRAINTS FOR VALUES (DO NOT INVENT VALUES):\n" + enum_constraints
+        enum_constraints = "\n\nConstrain your values to the following options:\n" + enum_constraints
 
     payload = {
         "model": "qwen2.5:3b",

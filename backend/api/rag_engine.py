@@ -200,7 +200,7 @@ class RAGEngine:
                     valid_vals = self.valid_values.get(t, {}).get(c_name)
                     if valid_vals:
                         formatted_vals = [f"'{v}'" if isinstance(v, str) else str(v) for v in valid_vals]
-                        val_str = f"MUST BE ONE OF: [{', '.join(formatted_vals)}]"
+                        val_str = f"Valid Values: [{', '.join(formatted_vals)}]"
                         c_desc = f"{c_desc} - {val_str}" if c_desc else val_str
                         
                     col_strs.append(f"{c_name} ({c_desc})" if c_desc else c_name)
