@@ -6,7 +6,7 @@ import { ENDPOINTS } from '../../../api/endpoints';
 export default function AISqlAssistantTab() {
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedSql, setGeneratedSql] = useState('');
+  const [generatedSql, setGeneratedSql] = useState('-- Generated PostgreSQL will appear here.\n-- Type a request above and click Generate SQL.');
   
   const [isExecuting, setIsExecuting] = useState(false);
   const [executionResult, setExecutionResult] = useState(null);
@@ -52,13 +52,15 @@ export default function AISqlAssistantTab() {
     navigator.clipboard.writeText(generatedSql);
   };
 
-  const handleDownload = () => {
     const blob = new Blob([generatedSql], { type: 'text/sql' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
+    a.style.display = 'none';
     a.href = url;
     a.download = 'query.sql';
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     URL.revokeObjectURL(url);
   };
 
@@ -120,77 +122,75 @@ export default function AISqlAssistantTab() {
         </form>
 
         {/* Generated SQL */}
-        {generatedSql && (
-          <div style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', borderRadius: '8px', overflow: 'hidden' }}>
-            <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-text-muted)', textTransform: 'uppercase' }}>
-                Generated PostgreSQL
-              </span>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <button
-                  onClick={handleCopy}
-                  style={{
-                    background: 'transparent', color: 'var(--color-text-muted)', border: '1px solid var(--color-border)',
-                    padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem'
-                  }}
-                  title="Copy SQL"
-                >
-                  <Copy size={14} /> Copy
-                </button>
-                <button
-                  onClick={handleDownload}
-                  style={{
-                    background: 'transparent', color: 'var(--color-text-muted)', border: '1px solid var(--color-border)',
-                    padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem'
-                  }}
-                  title="Download SQL"
-                >
-                  <Download size={14} /> Download
-                </button>
-                <button
-                  onClick={handleExecute}
-                  disabled={isExecuting}
-                  style={{
-                    background: 'var(--color-success)',
-                    color: 'white',
-                    border: 'none',
-                    padding: '6px 12px',
-                    borderRadius: '4px',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    cursor: isExecuting ? 'not-allowed' : 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    opacity: isExecuting ? 0.7 : 1
-                  }}
-                >
-                  <Play size={14} fill="currentColor" />
-                  {isExecuting ? 'Executing...' : 'Run Query'}
-                </button>
-              </div>
-            </div>
-            <div style={{ padding: '0' }}>
-              <textarea
-                value={generatedSql}
-                onChange={e => setGeneratedSql(e.target.value)}
-                style={{ 
-                  margin: 0, 
-                  width: '100%', 
-                  minHeight: '80px',
-                  fontFamily: 'monospace', 
-                  fontSize: '0.875rem', 
-                  color: '#e2e8f0', 
-                  background: 'var(--color-bg)',
-                  border: 'none',
-                  padding: '16px',
-                  resize: 'vertical',
-                  outline: 'none'
+        <div style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', borderRadius: '8px', overflow: 'hidden' }}>
+          <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-text-muted)', textTransform: 'uppercase' }}>
+              Generated PostgreSQL
+            </span>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                onClick={handleCopy}
+                style={{
+                  background: 'transparent', color: 'var(--color-text-muted)', border: '1px solid var(--color-border)',
+                  padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem'
                 }}
-              />
+                title="Copy SQL"
+              >
+                <Copy size={14} /> Copy
+              </button>
+              <button
+                onClick={handleDownload}
+                style={{
+                  background: 'transparent', color: 'var(--color-text-muted)', border: '1px solid var(--color-border)',
+                  padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem'
+                }}
+                title="Download SQL"
+              >
+                <Download size={14} /> Download
+              </button>
+              <button
+                onClick={handleExecute}
+                disabled={isExecuting || !generatedSql.trim() || generatedSql.startsWith('-- Generated PostgreSQL')}
+                style={{
+                  background: 'var(--color-success)',
+                  color: 'white',
+                  border: 'none',
+                  padding: '6px 12px',
+                  borderRadius: '4px',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  cursor: (isExecuting || !generatedSql.trim() || generatedSql.startsWith('-- Generated PostgreSQL')) ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  opacity: (isExecuting || !generatedSql.trim() || generatedSql.startsWith('-- Generated PostgreSQL')) ? 0.7 : 1
+                }}
+              >
+                <Play size={14} fill="currentColor" />
+                {isExecuting ? 'Executing...' : 'Run Query'}
+              </button>
             </div>
           </div>
-        )}
+          <div style={{ padding: '0' }}>
+            <textarea
+              value={generatedSql}
+              onChange={e => setGeneratedSql(e.target.value)}
+              style={{ 
+                margin: 0, 
+                width: '100%', 
+                minHeight: '80px',
+                fontFamily: 'monospace', 
+                fontSize: '0.875rem', 
+                color: '#e2e8f0', 
+                background: 'var(--color-bg)',
+                border: 'none',
+                padding: '16px',
+                resize: 'vertical',
+                outline: 'none'
+              }}
+            />
+          </div>
+        </div>
 
         {/* Execution Error */}
         {executionError && (
