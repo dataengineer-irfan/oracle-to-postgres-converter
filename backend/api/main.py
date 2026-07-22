@@ -10,7 +10,7 @@ import yaml
 from backend.api.llm_agent import parse_intent, generate_sql_from_intent
 from backend.api.dependency_graph import resolve_dependencies
 from backend.api.guardrails import enforce_schema
-from config import DB_CONFIG
+from backend.config import DB_CONFIG
 import psycopg
 
 app = FastAPI(title="Smart Test Data Generator API")
