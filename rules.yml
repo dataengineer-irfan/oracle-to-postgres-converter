@@ -327,73 +327,7 @@ columns:
 
   p_hcidea_alt_id_ty_cd:
     generator: choice
-Mandatory audit add timestamp
-
-g_aud_ts:
-
-generator:
-
-faker
-
-faker_tag:
-
-past_datetime
-
-description:
-
-Mandatory audit update timestamp
-
-g_aud_add_user_id:
-
-generator:
-
-choice
-
-values:
-
-[SYSTEM
-
-ADMIN
-
-ETL_USER
-
-]
-
-g_aud_user_id:
-
-generator:
-
-choice
-
-values:
-
-[SYSTEM
-
-ADMIN
-
-ETL_USER
-
-]
-
-p_specl_nm:
-
-generator:
-
-choice
-
-values:
-
-[Cardiology
-
-Pediatrics
-
-Neurology
-
-Family Medicine
-
-]
-
-
+    values: ['TY1', 'TY2']
 
   p_hcidea_spi_locn_cd:
     generator: choice
