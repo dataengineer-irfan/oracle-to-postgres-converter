@@ -37,7 +37,7 @@ import yaml
 def apply_business_rules(tables: set[str]) -> set[str]:
     expanded_tables = set(tables)
     try:
-        rules_path = Path(__file__).parent.parent / "_Input" / "business_rules.yaml"
+        rules_path = Path(__file__).parent.parent.parent / "_Input" / "business_rules.yaml"
         if rules_path.exists():
             with open(rules_path, "r", encoding="utf-8") as f:
                 rules = yaml.safe_load(f)
@@ -68,7 +68,7 @@ async def run_data_generator(tables: List[str], rows: int):
     execution_logs.append(f"Starting data generation pipeline for {len(tables)} tables...")
     
     # Run generate_data.py inside the container natively
-    script_path = str(Path(__file__).parent.parent / "generate_data.py")
+    script_path = str(Path(__file__).parent.parent / "generation" / "generate_data.py")
     tables_arg = ",".join(tables)
     
     import random
@@ -225,7 +225,7 @@ def oracle_schema():
         "connected": False
     }
     try:
-        odm_path = Path(__file__).parent.parent / "_Input" / "provider_odm.yaml"
+        odm_path = Path(__file__).parent.parent.parent / "_Input" / "provider_odm.yaml"
         if odm_path.exists():
             with open(odm_path, "r", encoding="utf-8") as f:
                 data = yaml.safe_load(f)
@@ -264,7 +264,7 @@ def connections_health():
     health = {"oracle": False, "postgres": False, "timestamp": datetime.utcnow().isoformat() + "Z"}
     
     try:
-        odm_path = Path(__file__).parent.parent / "_Input" / "provider_odm.yaml"
+        odm_path = Path(__file__).parent.parent.parent / "_Input" / "provider_odm.yaml"
         if odm_path.exists():
             health["oracle"] = True
     except: pass

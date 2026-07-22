@@ -8,12 +8,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt fastapi uvicorn websockets Levenshtein httpx python-multipart pyyaml
 
 # Copy the entire backend API code and the data generator core
-COPY api/ ./api/
-COPY *.py ./
-COPY *.yml ./
-COPY *.yaml ./
+COPY backend/ ./backend/
 COPY _Input/ ./_Input/
 COPY input/ ./input/
 
 # Run the FastAPI server. Render sets the PORT env var.
-CMD sh -c "uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000}"
+CMD sh -c "uvicorn backend.api.main:app --host 0.0.0.0 --port ${PORT:-8000}"
