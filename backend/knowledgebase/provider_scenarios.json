@@ -282,9 +282,9 @@
       "insert_sequence": [
         "1. Identify the system list domain name from r_list_hdr_tb using r_list_num (e.g. 'P_CLIA_CERT_TY_CD' for list 1009).",
         "2. Join provider.p_dtl_tb (demographics: p_first_nam, p_last_nam, p_nam) to child tables on p_sys_id.",
-        "3. For provider type description: JOIN provider.p_ty_tb ON p_dtl_tb.p_sys_id = p_ty_tb.p_sys_id, then JOIN provider.r_vv_tb ON p_ty_tb.p_ty_cd = r_vv_tb.r_vv_cd AND r_vv_tb.r_vv_domain_nam = 'P_TY_CD'.",
-        "4. For license/cert description: JOIN provider.p_lic_cert_tb ON p_dtl_tb.p_sys_id = p_lic_cert_tb.p_sys_id, then JOIN provider.r_vv_tb ON p_lic_cert_tb.p_lic_cert_ty_cd = r_vv_tb.r_vv_cd AND r_vv_tb.r_vv_domain_nam = 'P_CLIA_CERT_TY_CD'.",
-        "5. Join provider.r_list_dtl_tb on r_list_dtl_tb.r_list_num = 1009 and r_list_dtl_tb.r_func_area_cd = 'P1' to filter code values (e.g. p_lic_cert_ty_cd = r_list_dtl_tb.r_list_beg_value OR p_ty_cd = r_list_dtl_tb.r_list_beg_value).",
+        "3. For provider type description: JOIN provider.p_ty_tb ON p_dtl_tb.p_sys_id = p_ty_tb.p_sys_id, then JOIN reference.r_vv_tb ON p_ty_tb.p_ty_cd = r_vv_tb.r_vv_cd AND r_vv_tb.r_vv_domain_nam = 'P_TY_CD'.",
+        "4. For license/cert description: JOIN provider.p_lic_cert_tb ON p_dtl_tb.p_sys_id = p_lic_cert_tb.p_sys_id, then JOIN reference.r_vv_tb ON p_lic_cert_tb.p_lic_cert_ty_cd = r_vv_tb.r_vv_cd AND r_vv_tb.r_vv_domain_nam = 'P_CLIA_CERT_TY_CD'.",
+        "5. Join reference.r_list_dtl_tb on r_list_dtl_tb.r_list_num = 1009 and r_list_dtl_tb.r_func_area_cd = 'P1' to filter code values (e.g. p_lic_cert_ty_cd = r_list_dtl_tb.r_list_beg_value OR p_ty_cd = r_list_dtl_tb.r_list_beg_value).",
         "6. CRITICAL: p_dtl_tb does NOT have a column named p_vv_cd. NEVER join p_dtl_tb directly to r_vv_tb. Always go through p_ty_tb or p_lic_cert_tb."
       ],
       "business_validations": [
@@ -293,7 +293,7 @@
         "p_dtl_tb has NO column p_vv_cd - join r_vv_tb only through p_ty_tb.p_ty_cd or p_lic_cert_tb.p_lic_cert_ty_cd"
       ],
       "expected_outcome": "Providers and their types/licensing codes retrieved along with matching valid value description labels.",
-      "example_sql": "SELECT p.p_first_nam, p.p_last_nam, pty.p_ty_cd AS provider_type, vv.r_vv_short_desc AS type_description FROM provider.p_dtl_tb p INNER JOIN provider.p_ty_tb pty ON p.p_sys_id = pty.p_sys_id LEFT JOIN provider.r_list_dtl_tb r ON pty.p_ty_cd = r.r_list_beg_value AND r.r_list_num = 1009 AND r.r_func_area_cd = 'P1' LEFT OUTER JOIN provider.r_vv_tb vv ON pty.p_ty_cd = vv.r_vv_cd AND vv.r_vv_domain_nam = 'P_TY_CD';"
+      "example_sql": "SELECT p.p_first_nam, p.p_last_nam, pty.p_ty_cd AS provider_type, vv.r_vv_short_desc AS type_description FROM provider.p_dtl_tb p INNER JOIN provider.p_ty_tb pty ON p.p_sys_id = pty.p_sys_id LEFT JOIN reference.r_list_dtl_tb r ON pty.p_ty_cd = r.r_list_beg_value AND r.r_list_num = 1009 AND r.r_func_area_cd = 'P1' LEFT OUTER JOIN reference.r_vv_tb vv ON pty.p_ty_cd = vv.r_vv_cd AND vv.r_vv_domain_nam = 'P_TY_CD';"
     }
   ]
 }

@@ -46,7 +46,8 @@ class RulesEngine:
         path = self.rules_path
         if not path or not path.exists():
             root = Path(__file__).parent
-            for cand in [root / "rules.yml", root / "rules.yaml"]:
+            cwd = Path.cwd()
+            for cand in [cwd / "rules.yml", cwd / "rules.yaml", root / "rules.yml", root / "rules.yaml", root.parent.parent / "rules.yml"]:
                 if cand.exists():
                     path = cand
                     break
