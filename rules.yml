@@ -327,11 +327,98 @@ columns:
 
   p_hcidea_alt_id_ty_cd:
     generator: choice
-    values: ['TY1', 'TY2']
-  p_hcidea_mcaid_id:
-    generator: sequence
-    start: 4000000
-    increment: 1
+ M a n d a t o r y   a u d i t   a d d   t i m e s t a m p 
+ 
+ g _ a u d _ t s : 
+ 
+ g e n e r a t o r : 
+ 
+ f a k e r 
+ 
+ f a k e r _ t a g : 
+ 
+ p a s t _ d a t e t i m e 
+ 
+ d e s c r i p t i o n : 
+ 
+ M a n d a t o r y   a u d i t   u p d a t e   t i m e s t a m p 
+ 
+ g _ a u d _ a d d _ u s e r _ i d : 
+ 
+ g e n e r a t o r : 
+ 
+ c h o i c e 
+ 
+ v a l u e s : 
+ 
+ [ S Y S T E M 
+ 
+ A D M I N 
+ 
+ E T L _ U S E R 
+ 
+ ] 
+ 
+ g _ a u d _ u s e r _ i d : 
+ 
+ g e n e r a t o r : 
+ 
+ c h o i c e 
+ 
+ v a l u e s : 
+ 
+ [ S Y S T E M 
+ 
+ A D M I N 
+ 
+ E T L _ U S E R 
+ 
+ ] 
+ 
+ p _ s p e c l _ n m : 
+ 
+ g e n e r a t o r : 
+ 
+ c h o i c e 
+ 
+ v a l u e s : 
+ 
+ [ C a r d i o l o g y 
+ 
+ P e d i a t r i c s 
+ 
+ N e u r o l o g y 
+ 
+ F a m i l y   M e d i c i n e 
+ 
+ ] 
+ 
+ 
+
   p_hcidea_spi_locn_cd:
     generator: choice
     values: ['L1', 'L2']
+
+  g_aud_add_ts:
+    generator: faker
+    faker_tag: past_datetime
+
+  g_aud_ts:
+    generator: faker
+    faker_tag: past_datetime
+
+  g_aud_add_user_id:
+    generator: choice
+    values: ['SYSTEM', 'ADMIN', 'ETL_USER']
+
+  g_aud_user_id:
+    generator: choice
+    values: ['SYSTEM', 'ADMIN', 'ETL_USER']
+
+  g_us_state_cd:
+    generator: choice
+    values: ["NY", "NH", "ND"]
+
+  p_specl_nm:
+    generator: choice
+    values: ['Cardiology', 'Pediatrics', 'Neurology', 'Family Medicine']

@@ -2,6 +2,7 @@ import httpx
 import json
 import os
 from api.rag_engine import get_rag_engine
+from metadata_loader import MetadataLoader
 
 # Determine if running in Docker to reach host machine's Ollama
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "host.docker.internal")
@@ -85,7 +86,8 @@ async def generate_sql_from_intent(prompt: str, schema_context: str = "") -> str
     
     context_hint = ""
     if relevant_tables:
-        context_hint = f"\nRelevant tables based on your keywords: {', '.join(relevant_tables)}"
+        fq_tables = [MetadataLoader.get_qualified_table_name(t) for t in relevant_tables]
+        context_hint = f"\nRelevant tables based on your keywords (including their exact database schemas!): {', '.join(fq_tables)}"
         if schema_context:
             context_hint += f"\n{schema_context}"
             
@@ -99,7 +101,7 @@ async def generate_sql_from_intent(prompt: str, schema_context: str = "") -> str
         "CRITICAL INSTRUCTIONS: "
         "1. Do not include any explanations, greetings, or markdown formatting (no ```sql). "
         "2. NEVER ask for more information, clarification, or follow-up questions. "
-        "3. ALWAYS prefix EVERY table name with the 'provider.' schema (e.g., provider.p_mcare_tb). "
+        "3. ALWAYS use the exact fully qualified table names (including schema, e.g. provider.p_dtl_tb or common.g_adr_tb) as provided in the schema context below. Do not guess the schema! "
         "4. NEVER invent or hallucinate column names. ONLY use the exact column names provided in the context below. "
         "5. If the user's request is vague or missing details, MAKE YOUR BEST GUESS and write a generic SQL query anyway. "
         "6. Output ONLY the raw SQL string ending with a semicolon. If you output anything other than SQL, the system will crash."

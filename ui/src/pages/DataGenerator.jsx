@@ -80,8 +80,44 @@ export default function DataGenerator() {
   const handleDownload = async (format) => {
     setDownloading(true);
     appendLog(`Generating ${format.toUpperCase()} download...`, 'INFO');
-    await new Promise(r => setTimeout(r, 800)); // simulate
-    appendLog(`Download ready: output.${format}`, 'SUCCESS');
+    try {
+      let textToDownload = '';
+      if (format === 'all' || format === 'logs') {
+         textToDownload = logs.map(l => `[${l.level}] ${l.time} ${l.text}`).join('\n') || 'No logs available.';
+      } else if (format === 'sql' || format === 'dml') {
+         if (plan && plan.length > 0) {
+           try {
+             const res = await client.post(ENDPOINTS.PREVIEW_DML, { tables: plan });
+             textToDownload = res.data.dml || '-- No data generated yet.';
+           } catch (e) {
+             textToDownload = '-- Error fetching DML preview. Have you run the pipeline?';
+           }
+         } else {
+           textToDownload = '-- No tables in plan.';
+         }
+      } else if (format === 'ddl') {
+         textToDownload = (plan || []).map(t => `CREATE TABLE ${t} (\n  id SERIAL PRIMARY KEY\n);`).join('\n\n') || '-- No tables in plan.';
+      } else if (format === 'json') {
+         textToDownload = JSON.stringify({ plan: plan || [], targetRows: 50 }, null, 2);
+      } else if (format === 'csv') {
+         textToDownload = (plan || []).join(',\n') || 'No tables';
+      }
+
+      const blob = new Blob([textToDownload], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = `output.${format === 'logs' || format === 'all' ? 'txt' : format}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      appendLog(`Download ready: output.${format}`, 'SUCCESS');
+    } catch (err) {
+      appendLog(`Download failed.`, 'ERROR');
+    }
     setDownloading(false);
   };
 
