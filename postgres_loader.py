@@ -145,6 +145,8 @@ class PostgresLoader:
             # 5. executemany
             with conn.cursor() as cur:
                 cur.executemany(insert_sql, value_rows)
+            
+            conn.commit()
 
             logger.info("  Loaded %d rows into %s.", len(value_rows), full_table)
             return LoadResult(
