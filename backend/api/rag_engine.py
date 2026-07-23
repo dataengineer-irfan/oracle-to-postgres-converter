@@ -64,6 +64,11 @@ class RAGEngine:
                         self.odm_tables.add(t_name)
                         self.table_owners[t_name] = schema_name
                         
+                        # Drop standard audit columns to prevent context window bloat
+                        audit_prefixes = ("g_aud_", "l_hibernate_", "r_void_dt")
+                        if c_name.startswith(audit_prefixes):
+                            continue
+                            
                         if t_name not in self.table_columns:
                             self.table_columns[t_name] = []
                             
@@ -154,7 +159,7 @@ class RAGEngine:
         # If we found direct matches, just return them! No need to guess.
         if table_scores and any(s >= 100 for s in table_scores.values()):
             top = sorted(table_scores.items(), key=lambda x: (-x[1], x[0]))
-            return [t for t, s in top][:8]
+            return [t for t, s in top][:4]
         
         # 1. Match against Business Glossary terms (+5 points)
         for term, tables in self.glossary.items():
@@ -191,7 +196,7 @@ class RAGEngine:
             matched_tables.insert(0, "p_dtl_tb")
             
         # TUNE: Limit context window bloat by strictly capping matched tables
-        return matched_tables[:8]
+        return matched_tables[:4]
 
     def retrieve_schema_context(self, matched_tables: list[str]) -> str:
         """Returns a formatted string containing exact columns and their business descriptions for the LLM."""

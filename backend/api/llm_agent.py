@@ -5,6 +5,8 @@ import re
 from backend.api.rag_engine import get_rag_engine
 from core.metadata_loader import MetadataLoader
 
+_cached_few_shot_examples = None
+
 # Determine if running in Docker to reach host machine's Ollama
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "host.docker.internal")
 
@@ -124,23 +126,25 @@ async def generate_sql_from_intent(prompt: str) -> str:
     if enum_constraints:
         enum_constraints = "\n\nConstrain your values to the following options:\n" + enum_constraints
 
-    # Inject reference few-shot examples if present
-    few_shot_examples = ""
-    examples_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "_Input", "r_vv_tb_examples.txt")
-    if os.path.exists(examples_path):
-        try:
-            with open(examples_path, "r", encoding="utf-8") as f:
-                few_shot_examples = "\n\n" + f.read()
-        except Exception:
-            pass
+    # Inject reference few-shot examples if present (using global in-memory cache)
+    global _cached_few_shot_examples
+    if _cached_few_shot_examples is None:
+        _cached_few_shot_examples = ""
+        examples_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "_Input", "r_vv_tb_examples.txt")
+        if os.path.exists(examples_path):
+            try:
+                with open(examples_path, "r", encoding="utf-8") as f:
+                    _cached_few_shot_examples = "\n\n" + f.read()
+            except Exception:
+                pass
 
     payload = {
         "model": "qwen2.5:3b",
-        "prompt": system_prompt + enum_constraints + few_shot_examples + "\n\nUser Request: " + prompt,
+        "prompt": system_prompt + enum_constraints + _cached_few_shot_examples + "\n\nUser Request: " + prompt,
         "stream": False,
         "options": {
             "temperature": 0.0,
-            "num_predict": 800,
+            "num_predict": 200,
             "top_k": 10
         }
     }
