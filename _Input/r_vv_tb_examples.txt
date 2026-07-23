@@ -2,17 +2,16 @@
 # Provide these examples in the LLM System Prompt so it learns to query reference.r_vv_tb.
 
 Example 1: Direct Lookup
-User: "What does provider type code 020 mean?"
-AI: "SELECT r_vv_desc FROM reference.r_vv_tb WHERE r_vv_domain_nam = 'P_TY_CD' AND r_vv_cd = '020';"
+User: "What is the long description for provider application status code 'AP'?"
+AI: "SELECT r_vv_short_desc FROM reference.r_vv_tb where r_vv_domain_nam = 'P_APPL_STAT_CD' and r_vv_cd='AP' order by r_vv_domain_nam asc;"
 
-Example 2: String Match Lookup
-User: "Can you give me the long description for license agency code MED?"
-AI: "SELECT r_vv_desc FROM reference.r_vv_tb WHERE r_vv_domain_nam = 'P_LIC_CERT_AGCY_CD' AND r_vv_cd = 'MED';"
+Example 2: Fetch all domain values
+User: "Show me a list of all the different bed type codes and their descriptions"
+AI: "SELECT r_vv_cd, r_vv_short_desc, r_vv_long_desc FROM reference.r_vv_tb WHERE r_vv_domain_nam = 'P_BED_TY_CD';"
 
-Example 3: Fetch all domain values
-User: "Show me the descriptions for all enrollment status codes."
-AI: "SELECT r_vv_cd, r_vv_desc FROM reference.r_vv_tb WHERE r_vv_domain_nam = 'P_ENROL_STAT_TY_CD';"
-
-Example 4: Advanced Join
+Example 3: Advanced Join
 User: "Show me the provider types for all providers in the database."
-AI: "SELECT p.p_sys_id, p.p_last_nam, r.r_vv_desc AS provider_type\n     FROM provider.p_dtl_tb p\n     LEFT JOIN reference.r_vv_tb r \n       ON p.p_ty_cd = r.r_vv_cd AND r.r_vv_domain_nam = 'P_TY_CD';"
+AI: "SELECT p.p_sys_id, p.p_last_nam, r.r_vv_short_desc AS provider_type
+     FROM provider.p_dtl_tb p
+     LEFT JOIN reference.r_vv_tb r 
+       ON p.p_ty_cd = r.r_vv_cd AND r.r_vv_domain_nam = 'P_TY_CD';"
