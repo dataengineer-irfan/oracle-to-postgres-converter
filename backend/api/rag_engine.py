@@ -53,7 +53,7 @@ class RAGEngine:
                     cur.execute("""
                         SELECT table_name, column_name, table_schema 
                         FROM information_schema.columns 
-                        WHERE table_schema IN ('provider', 'reference')
+                        WHERE table_schema IN ('provider', 'reference', 'common')
                         ORDER BY table_name, ordinal_position;
                     """)
                     for row in cur.fetchall():
