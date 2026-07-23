@@ -2277,7 +2277,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_ADR_USG_TB.G_ADR_USG_TY_CD
+    references: common.G_ADR_USG_TB.G_ADR_USG_TY_CD
   - column_name: G_ADR_SK
     data_type: NUMBER(10,0)
     nullable: false
@@ -2285,7 +2285,7 @@ tables:
     pii_classification: restricted
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_ADR_USG_TB.G_ADR_SK
+    references: common.G_ADR_USG_TB.G_ADR_SK
   - column_name: G_ADR_USG_SEQ_NUM
     data_type: NUMBER(5,0)
     nullable: false
@@ -2293,7 +2293,7 @@ tables:
     pii_classification: restricted
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
+    references: common.G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
   - column_name: G_PHONE_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
@@ -2515,7 +2515,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
@@ -2530,7 +2530,7 @@ tables:
     pii_classification: restricted
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_ADR_TB.G_ADR_SK
+    references: common.G_ADR_TB.G_ADR_SK
   - column_name: G_ADR_USG_SEQ_NUM
     data_type: NUMBER(5,0)
     nullable: false
@@ -2634,7 +2634,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_REP_SK
     data_type: NUMBER(10,0)
     nullable: false
@@ -2836,7 +2836,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_REVW_SEQ_NUM
     data_type: NUMBER(5,0)
     nullable: false
@@ -3006,7 +3006,7 @@ tables:
       as Payer ID on some UI screens.
     pii_classification: none
     is_foreign_key: true
-    references: provider.G_ADR_USG_TB.G_CMN_ENTY_SK
+    references: common.G_ADR_USG_TB.G_CMN_ENTY_SK
   - column_name: G_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
@@ -3014,14 +3014,14 @@ tables:
       Carrier Corporate Billing Payment
     pii_classification: none
     is_foreign_key: true
-    references: provider.G_ADR_USG_TB.G_ADR_USG_TY_CD
+    references: common.G_ADR_USG_TB.G_ADR_USG_TY_CD
   - column_name: G_ADR_SK
     data_type: NUMBER(10,0)
     nullable: true
     description: Surrogate Key
     pii_classification: restricted
     is_foreign_key: true
-    references: provider.G_ADR_USG_TB.G_ADR_SK
+    references: common.G_ADR_USG_TB.G_ADR_SK
   - column_name: G_E_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
@@ -3141,7 +3141,7 @@ tables:
     description: Added to PK to ensure uniqueness and/or provide order to the rows.
     pii_classification: restricted
     is_foreign_key: true
-    references: provider.G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
+    references: common.G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
   - column_name: G_E_ADR_USG_SEQ_NUM
     data_type: NUMBER(10,0)
     nullable: true
@@ -3413,7 +3413,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_CASE_CR_CONTCT_RSN_CD
     data_type: VARCHAR2(2)
     nullable: false
@@ -3873,7 +3873,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_E_ADR_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
@@ -4068,7 +4068,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_PHONE_USG_TY_CD
     data_type: VARCHAR2(2)
     nullable: false
@@ -4250,7 +4250,7 @@ tables:
     description: G Bank Adr Sk for G Pye Pyr Eft Setup Tb.
     pii_classification: restricted
     is_foreign_key: true
-    references: provider.G_ADR_TB.G_ADR_SK
+    references: common.G_ADR_TB.G_ADR_SK
   - column_name: G_BANK_PHONE_SK
     data_type: NUMBER(10,0)
     nullable: true
@@ -4307,7 +4307,7 @@ tables:
     description: G Prov Adr Sk for G Pye Pyr Eft Setup Tb.
     pii_classification: restricted
     is_foreign_key: true
-    references: provider.G_ADR_TB.G_ADR_SK
+    references: common.G_ADR_TB.G_ADR_SK
 - owner: provider
   table_name: G_PYE_PYR_TB
   subject_area: Providers
@@ -4323,7 +4323,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_SORT_NAM
     data_type: VARCHAR2(60)
     nullable: true
@@ -4546,7 +4546,7 @@ tables:
       as Payer ID on some UI screens.
     pii_classification: none
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_ORG_NAM
     data_type: VARCHAR2(50)
     nullable: true
@@ -4620,7 +4620,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_TITLE_NAM
     data_type: VARCHAR2(20)
     nullable: true
@@ -5800,7 +5800,7 @@ tables:
       for the enrolled provider).
     pii_classification: restricted
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_NOTE_SET_SK
     data_type: NUMBER(10,0)
     nullable: true
@@ -6760,7 +6760,7 @@ tables:
     description: G Prov Adr Sk for P Ra Medm Tb.
     pii_classification: restricted
     is_foreign_key: true
-    references: provider.G_ADR_TB.G_ADR_SK
+    references: common.G_ADR_TB.G_ADR_SK
 - owner: provider
   table_name: P_REVLDTN_APPL_STAT_TB
   subject_area: Providers
@@ -8141,7 +8141,7 @@ tables:
     pii_classification: none
     is_primary_key: true
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_CMN_ENTY_TY_CD
     data_type: VARCHAR2(2)
     nullable: true
@@ -8739,7 +8739,7 @@ tables:
       row in Common Entity.
     pii_classification: none
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_NOTE_SET_SK
     data_type: NUMBER(10,0)
     nullable: true
@@ -9070,7 +9070,7 @@ tables:
       as Payer ID on some UI screens.
     pii_classification: none
     is_foreign_key: true
-    references: provider.G_CMN_ENTY_TB.G_CMN_ENTY_SK
+    references: common.G_CMN_ENTY_TB.G_CMN_ENTY_SK
   - column_name: G_NOTE_SET_SK
     data_type: NUMBER(10,0)
     nullable: true
@@ -9200,7 +9200,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_ADR_PHONE_USG_TB
-  to_table: provider.G_ADR_USG_TB
+  to_table: common.G_ADR_USG_TB
   join_condition: G_ADR_PHONE_USG_TB.G_CMN_ENTY_SK = G_ADR_USG_TB.G_CMN_ENTY_SK AND
     G_ADR_PHONE_USG_TB.G_ADR_USG_TY_CD = G_ADR_USG_TB.G_ADR_USG_TY_CD AND G_ADR_PHONE_USG_TB.G_ADR_SK
     = G_ADR_USG_TB.G_ADR_SK AND G_ADR_PHONE_USG_TB.G_ADR_USG_SEQ_NUM = G_ADR_USG_TB.G_ADR_USG_SEQ_NUM
@@ -9214,18 +9214,18 @@ join_paths:
     = G_PHONE_USG_TB.G_PHONE_USG_SEQ_NUM
   join_type: INNER
   cardinality: many-to-one
-- from_table: provider.G_ADR_USG_TB
-  to_table: provider.G_CMN_ENTY_TB
+- from_table: common.G_ADR_USG_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_ADR_USG_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
-- from_table: provider.G_ADR_USG_TB
-  to_table: provider.G_ADR_TB
+- from_table: common.G_ADR_USG_TB
+  to_table: common.G_ADR_TB
   join_condition: G_ADR_USG_TB.G_ADR_SK = G_ADR_TB.G_ADR_SK
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_CMN_ENTY_REP_XREF_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_CMN_ENTY_REP_XREF_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9234,7 +9234,7 @@ join_paths:
   join_condition: G_CMN_ENTY_REP_XREF_TB.G_REP_SK = G_REP_TB.G_REP_SK
   join_type: INNER
   cardinality: many-to-one
-- from_table: provider.G_CMN_ENTY_TB
+- from_table: common.G_CMN_ENTY_TB
   to_table: provider.G_NOTE_SET_TB
   join_condition: G_CMN_ENTY_TB.G_NOTE_SET_SK = G_NOTE_SET_TB.G_NOTE_SET_SK
   join_type: INNER
@@ -9260,7 +9260,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_CMN_REVW_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_CMN_REVW_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9278,7 +9278,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_COTS_LTR_REQ_RECR_TB
-  to_table: provider.G_ADR_USG_TB
+  to_table: common.G_ADR_USG_TB
   join_condition: G_COTS_LTR_REQ_RECR_TB.G_CMN_ENTY_SK = G_ADR_USG_TB.G_CMN_ENTY_SK
     AND G_COTS_LTR_REQ_RECR_TB.G_ADR_USG_TY_CD = G_ADR_USG_TB.G_ADR_USG_TY_CD AND
     G_COTS_LTR_REQ_RECR_TB.G_ADR_SK = G_ADR_USG_TB.G_ADR_SK AND G_COTS_LTR_REQ_RECR_TB.G_ADR_USG_SEQ_NUM
@@ -9318,7 +9318,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_CR_CMN_ENTY_XREF_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_CR_CMN_ENTY_XREF_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9383,7 +9383,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_E_ADR_USG_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_E_ADR_USG_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9398,7 +9398,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_PHONE_USG_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_PHONE_USG_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9408,17 +9408,17 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_PYE_PYR_EFT_SETUP_TB
-  to_table: provider.G_ADR_TB
+  to_table: common.G_ADR_TB
   join_condition: G_PYE_PYR_EFT_SETUP_TB.G_PROV_ADR_SK = G_ADR_TB.G_ADR_SK
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_PYE_PYR_EFT_SETUP_TB
-  to_table: provider.G_ADR_TB
+  to_table: common.G_ADR_TB
   join_condition: G_PYE_PYR_EFT_SETUP_TB.G_BANK_ADR_SK = G_ADR_TB.G_ADR_SK
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_PYE_PYR_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_PYE_PYR_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9433,12 +9433,12 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_REP_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_REP_TB.G_REP_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.G_SPEC_ENTY_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: G_SPEC_ENTY_TB.G_SPEC_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9503,7 +9503,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.P_DTL_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: P_DTL_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9553,7 +9553,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.P_RA_MEDM_TB
-  to_table: provider.G_ADR_TB
+  to_table: common.G_ADR_TB
   join_condition: P_RA_MEDM_TB.G_PROV_ADR_SK = G_ADR_TB.G_ADR_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9591,7 +9591,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.P_TRNG_RGSTR_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: P_TRNG_RGSTR_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9637,7 +9637,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.R_PROV_NW_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: R_PROV_NW_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one
@@ -9672,7 +9672,7 @@ join_paths:
   join_type: INNER
   cardinality: many-to-one
 - from_table: provider.W_TP_TB
-  to_table: provider.G_CMN_ENTY_TB
+  to_table: common.G_CMN_ENTY_TB
   join_condition: W_TP_TB.G_CMN_ENTY_SK = G_CMN_ENTY_TB.G_CMN_ENTY_SK
   join_type: INNER
   cardinality: many-to-one

@@ -89,7 +89,9 @@ class RulesEngine:
                 self.direct_rule_map[rule_id.lower()] = rule
 
             if rule.generator == "sequence":
-                self.sequence_state[rule_id] = rule.start
+                import random
+                offset = random.randint(10000, 9000000)
+                self.sequence_state[rule_id] = rule.start + offset
 
         logger.info("Loaded %d column generation rules from %s", len(self.rules), path.name)
 
