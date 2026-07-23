@@ -2349,7 +2349,7 @@ tables:
     nullable: false
     description: The timestamp when the row was added.
     pii_classification: none
-- owner: provider
+- owner: common
   table_name: G_ADR_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderAddress
@@ -2500,7 +2500,7 @@ tables:
     nullable: true
     description: G Dummy User Id for G Adr Tb.
     pii_classification: none
-- owner: provider
+- owner: common
   table_name: G_ADR_USG_TB
   subject_area: Providers
   maps_to_ldm_entity: ProviderAddress
@@ -2723,7 +2723,7 @@ tables:
     nullable: true
     description: G Dummy User Id for G Cmn Enty Rep Xref Tb.
     pii_classification: none
-- owner: provider
+- owner: common
   table_name: G_CMN_ENTY_TB
   subject_area: Providers
   maps_to_ldm_entity: CommonEntity
