@@ -11,13 +11,7 @@ AI: "SELECT r_vv_cd, r_vv_short_desc, r_vv_long_desc FROM reference.r_vv_tb WHER
 
 Example 3: Advanced Join
 User: "Show me the provider types for all providers in the database."
-AI: "SELECT p.p_sys_id, p.p_last_nam, r.r_vv_short_desc AS provider_type
-     SELECT 
-    p.p_sys_id,
-    r.r_vv_short_desc AS provider_type
-FROM 
-    provider.p_ty_tb p
-LEFT JOIN 
-    reference.r_vv_tb r 
-ON 
-    p.p_ty_cd = r.r_vv_cd AND r.r_vv_domain_nam = 'P_TY_CD';"
+AI: "SELECT p.p_sys_id, r.r_vv_short_desc AS provider_type
+     FROM provider.p_ty_tb p
+     LEFT JOIN reference.r_vv_tb r 
+       ON p.p_ty_cd = r.r_vv_cd AND r.r_vv_domain_nam = 'P_TY_CD';"
