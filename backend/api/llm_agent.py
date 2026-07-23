@@ -124,9 +124,19 @@ async def generate_sql_from_intent(prompt: str) -> str:
     if enum_constraints:
         enum_constraints = "\n\nConstrain your values to the following options:\n" + enum_constraints
 
+    # Inject reference few-shot examples if present
+    few_shot_examples = ""
+    examples_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "_Input", "r_vv_tb_examples.txt")
+    if os.path.exists(examples_path):
+        try:
+            with open(examples_path, "r", encoding="utf-8") as f:
+                few_shot_examples = "\n\n" + f.read()
+        except Exception:
+            pass
+
     payload = {
         "model": "qwen2.5:3b",
-        "prompt": system_prompt + enum_constraints + "\n\nUser Request: " + prompt,
+        "prompt": system_prompt + enum_constraints + few_shot_examples + "\n\nUser Request: " + prompt,
         "stream": False,
         "options": {
             "temperature": 0.0,

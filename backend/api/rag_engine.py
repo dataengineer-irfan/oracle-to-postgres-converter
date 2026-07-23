@@ -11,7 +11,7 @@ if str(root_dir) not in sys.path:
 from config import DB_CONFIG
 
 class RAGEngine:
-    def __init__(self, glossary_path: Path, odm_path: Path):
+    def __init__(self, glossary_path: Path, odm_path: Path, ref_glossary_path: Path = None):
         self.glossary = {}
         self.odm_tables = set()
         self.ldm_to_tables = {} # Maps LDM entity name -> List of physical tables
@@ -24,9 +24,10 @@ class RAGEngine:
         # Load ODM first to build the LDM -> Table mapping
         self._load_odm(odm_path)
         self._load_glossary(glossary_path)
+        if ref_glossary_path:
+            self._load_ref_glossary(ref_glossary_path)
         self._load_postgres_schema()
         self._load_valid_values()
-        
 
 
     def _load_valid_values(self):
@@ -50,17 +51,18 @@ class RAGEngine:
             with psycopg.connect(**DB_CONFIG) as conn:
                 with conn.cursor() as cur:
                     cur.execute("""
-                        SELECT table_name, column_name 
+                        SELECT table_name, column_name, table_schema 
                         FROM information_schema.columns 
-                        WHERE table_schema = 'provider'
+                        WHERE table_schema IN ('provider', 'reference')
                         ORDER BY table_name, ordinal_position;
                     """)
                     for row in cur.fetchall():
                         t_name = row[0].lower()
                         c_name = row[1].lower()
+                        schema_name = row[2].lower()
                         
                         self.odm_tables.add(t_name)
-                        self.table_owners[t_name] = "provider"
+                        self.table_owners[t_name] = schema_name
                         
                         if t_name not in self.table_columns:
                             self.table_columns[t_name] = []
@@ -126,6 +128,15 @@ class RAGEngine:
         except Exception:
             pass
 
+    def _load_ref_glossary(self, path: Path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+                for term, domain in data.get("reference_glossary", {}).items():
+                    # Map any reference terminology directly to the r_vv_tb table
+                    self.glossary[term.lower()] = ["r_vv_tb"]
+        except Exception as e:
+            print(f"Failed to load reference glossary: {e}")
     def retrieve_context(self, prompt: str) -> list[str]:
         prompt_lower = prompt.lower()
         table_scores = {}
@@ -235,6 +246,7 @@ def get_rag_engine() -> RAGEngine:
         base_dir = Path(__file__).parent.parent.parent
         _engine = RAGEngine(
             base_dir / "_Input" / "provider_business_glossary.yaml",
-            base_dir / "_Input" / "provider_odm.yaml"
+            base_dir / "_Input" / "provider_odm.yaml",
+            base_dir / "_Input" / "r_vv_tb_glossary.yaml"
         )
     return _engine
