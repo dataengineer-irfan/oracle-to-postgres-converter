@@ -5,9 +5,7 @@
 
 // Use VITE_API_URL if provided (e.g. on Render), fallback to relative path (if served together) or localhost
 export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-
-// Construct WebSocket URL by replacing http with ws
-export const WS_BASE = API_BASE.replace(/^http/, 'ws');
+export const WS_BASE  = import.meta.env.VITE_WS_URL || 'ws://localhost:8080';
 
 export const ENDPOINTS = {
   // Auth

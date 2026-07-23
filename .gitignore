@@ -37,4 +37,4 @@ build/
 *.egg-info/
 
 # ── Generated test data (synthetic, not for VCS) ─────────────────────────
-generated_data/
+# We are allowing generated_data/ now so that it deploys to Render successfully.

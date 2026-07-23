@@ -131,12 +131,13 @@ import csv
 async def preview_dml(req: DMLPreviewRequest):
     """Generate up to 10 real INSERT statements per table from generated CSVs."""
     output = []
-    data_dir = Path(__file__).parent.parent / "generated_data"
+    print(f"preview-dml called with tables: {req.tables}", flush=True)
+    # Path(__file__) is backend/api/main.py -> parent.parent.parent is the root /app dir
+    data_dir = Path(__file__).parent.parent.parent / "generated_data"
     
     for table in req.tables:
         csv_file = data_dir / f"{table.upper()}.csv"
         if not csv_file.exists():
-            output.append(f"-- No generated data found for {table}")
             continue
             
         output.append(f"-- Smart Test Data Generation DML for {table} (First 10 rows)")
@@ -169,6 +170,15 @@ async def preview_dml(req: DMLPreviewRequest):
             output.append(f"-- Error reading {table}: {e}")
             
         output.append("") # blank line between tables
+        
+    if not output:
+        output.append(f"-- DEBUG INFO:")
+        output.append(f"-- Requested tables: {req.tables}")
+        try:
+            files = [f.name for f in data_dir.iterdir()]
+            output.append(f"-- Files in {data_dir}: {files}")
+        except Exception as e:
+            output.append(f"-- Error reading dir: {e}")
         
     return {"dml": "\n".join(output)}
 
@@ -375,12 +385,32 @@ async def execute_sql(req: SQLRequest):
 @app.get("/api/data/{table}")
 async def get_table_data(table: str, page: int = 1, per_page: int = 100):
     """Paginated live table data."""
-    # TODO: wire to real PostgreSQL query
-    return {
-        "table":    table,
-        "page":     page,
-        "per_page": per_page,
-        "total":    0,
-        "columns":  [],
-        "rows":     [],
-    }
+    try:
+        with psycopg.connect(**DB_CONFIG) as conn:
+            with conn.cursor() as cur:
+                import re
+                if not re.match(r"^[a-zA-Z0-9_\.]+$", table):
+                    raise HTTPException(status_code=400, detail="Invalid table name")
+
+                cur.execute("SET search_path TO public, provider, common, reference;")
+                
+                cur.execute(f"SELECT COUNT(*) FROM {table};")
+                total = cur.fetchone()[0]
+                
+                offset = (page - 1) * per_page
+                cur.execute(f"SELECT * FROM {table} LIMIT {per_page} OFFSET {offset};")
+                rows = cur.fetchall()
+                columns = [desc.name for desc in cur.description] if cur.description else []
+                
+                row_dicts = [dict(zip(columns, row)) for row in rows]
+                
+                return {
+                    "table":    table,
+                    "page":     page,
+                    "per_page": per_page,
+                    "total":    total,
+                    "columns":  columns,
+                    "rows":     row_dicts,
+                }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

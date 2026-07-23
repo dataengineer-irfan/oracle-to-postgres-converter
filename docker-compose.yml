@@ -5,6 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
+    volumes:
+      - ./backend:/app/backend
+      - ./input:/app/input
+      - ./_Input:/app/_Input
+      - ./rules.yml:/app/rules.yml
+      - ./generated_data:/app/generated_data
     ports:
       - "8080:8000"
     env_file:

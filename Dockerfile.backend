@@ -12,6 +12,7 @@ COPY backend/ ./backend/
 COPY _Input/ ./_Input/
 COPY input/ ./input/
 COPY rules.yml ./rules.yml
+COPY generated_data/ ./generated_data/
 
 # Run the FastAPI server. Render sets the PORT env var.
 CMD sh -c "uvicorn backend.api.main:app --host 0.0.0.0 --port ${PORT:-8000}"
