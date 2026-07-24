@@ -217,11 +217,11 @@ class PatternAnalyzer:
             conn = db_manager.connect()
             with conn.cursor() as cur:
                 cur.execute("""
-                    SELECT table_name, column_name, character_maximum_length, is_nullable
+                    SELECT table_name, column_name, character_maximum_length, is_nullable, data_type
                     FROM information_schema.columns 
                     WHERE table_schema IN ('provider', 'common');
                 """)
-                for tbl, col, maxlen, is_null in cur.fetchall():
+                for tbl, col, maxlen, is_null, dtype in cur.fetchall():
                     tbl_l = tbl.lower()
                     col_l = col.lower()
                     if tbl_l in profiles and col_l in profiles[tbl_l]:
@@ -230,7 +230,13 @@ class PatternAnalyzer:
                             prof.max_length = maxlen
                         if is_null == 'NO':
                             prof.null_rate = 0.0
-            logger.info("Enriched profiles with DDL max length and NOT NULL constraints from PostgreSQL.")
+                        
+                        # GLOBAL FIX: Enforce integer data types if Pandas mistakenly casted missing values to float64
+                        if dtype in ('integer', 'bigint', 'smallint') and prof.strategy == STRAT_FLOAT_RANGE:
+                            prof.strategy = STRAT_INT_RANGE
+                            prof.int_min = int(prof.float_min) if prof.float_min is not None else 0
+                            prof.int_max = int(prof.float_max) if prof.float_max is not None else 1000
+            logger.info("Enriched profiles with DDL max length, NOT NULL, and data type constraints from PostgreSQL.")
         except Exception as exc:  # noqa: BLE001
             logger.warning("Could not query DB schema for column constraints: %s", exc)
 
